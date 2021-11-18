@@ -6,8 +6,13 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +24,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     static Main f = new Main();
+
     public Main() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -88,9 +94,17 @@ public class Main extends javax.swing.JFrame {
         jd_registro = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        Nombre_Campo2 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jDialog_CrearRegistro = new javax.swing.JDialog();
+        jPanel8 = new javax.swing.JPanel();
+        B_NuevoRegistro1 = new javax.swing.JButton();
+        B_AbrirRegistro = new javax.swing.JButton();
+        B_GuardarRegistro = new javax.swing.JButton();
+        B_CerrarRegistro = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -432,6 +446,11 @@ public class Main extends javax.swing.JFrame {
         B_NuevoArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_NuevoArchivo.setText("Nuevo Archivo");
+        B_NuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_NuevoArchivoActionPerformed(evt);
+            }
+        });
         jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 176, 35));
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
@@ -446,7 +465,7 @@ public class Main extends javax.swing.JFrame {
 
         B_CerrarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_CerrarArchivo.setText("Guardar Archivo");
+        B_CerrarArchivo.setText("Cerrar Archivo");
         jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
@@ -472,13 +491,6 @@ public class Main extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel6.setText("Escriba Campo");
 
-        Nombre_Campo2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Nombre_Campo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Nombre_Campo2ActionPerformed(evt);
-            }
-        });
-
         jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jButton4.setText("LLenar Campo");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -486,6 +498,24 @@ public class Main extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable2);
 
         javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
         jd_registro.getContentPane().setLayout(jd_registroLayout);
@@ -495,15 +525,15 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(252, 252, 252)
+                        .addGap(119, 119, 119)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(210, 210, 210)
-                        .addComponent(Nombre_Campo2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(285, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jd_registroLayout.setVerticalGroup(
             jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,14 +543,60 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jd_registroLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(Nombre_Campo2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(336, 336, 336)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(329, 329, 329)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jFormattedTextField1.setText("jFormattedTextField1");
+
+        jPanel8.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        B_NuevoRegistro1.setBackground(new java.awt.Color(255, 255, 255));
+        B_NuevoRegistro1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_NuevoRegistro1.setText("Nuevo Registro");
+        B_NuevoRegistro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_NuevoRegistro1ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(B_NuevoRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 176, 35));
+
+        B_AbrirRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        B_AbrirRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_AbrirRegistro.setText("Abrir Registro");
+        jPanel8.add(B_AbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
+
+        B_GuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        B_GuardarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_GuardarRegistro.setText("Guardar Registro");
+        jPanel8.add(B_GuardarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
+
+        B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        B_CerrarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_CerrarRegistro.setText("Cerrar Registro");
+        jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
+
+        javax.swing.GroupLayout jDialog_CrearRegistroLayout = new javax.swing.GroupLayout(jDialog_CrearRegistro.getContentPane());
+        jDialog_CrearRegistro.getContentPane().setLayout(jDialog_CrearRegistroLayout);
+        jDialog_CrearRegistroLayout.setHorizontalGroup(
+            jDialog_CrearRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(jDialog_CrearRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDialog_CrearRegistroLayout.setVerticalGroup(
+            jDialog_CrearRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jDialog_CrearRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
@@ -546,7 +622,7 @@ public class Main extends javax.swing.JFrame {
                 B_CampoActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 160, 50));
+        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 160, 50));
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -556,7 +632,7 @@ public class Main extends javax.swing.JFrame {
                 B_RegistroActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 160, 50));
+        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, 50));
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -672,52 +748,72 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-            String name=Nombre_Campo.getText();
-            String tipo="";
-            if(cb_TD.getSelectedIndex()==0){
-                tipo="String";
+        try {
+            String name = Nombre_Campo.getText();
+            String tipo = "";
+            if (cb_TD.getSelectedIndex() == 0) {
+                tipo = "String";
             }
-            if(cb_TD.getSelectedIndex()==1){
-                tipo="Char";
+            if (cb_TD.getSelectedIndex() == 1) {
+                tipo = "Char";
             }
-            if(cb_TD.getSelectedIndex()==2){
-                tipo="int";
+            if (cb_TD.getSelectedIndex() == 2) {
+                tipo = "int";
             }
-            int size=(Integer)spinnerS.getValue();
+            int size = (Integer) spinnerS.getValue();
             boolean llave;
-            if(RB1.isSelected()){
-                llave=true;
-            }else{
-                llave=false;
+            if (RB1.isSelected()) {
+                llave = true;
+            } else {
+                llave = false;
             }
-            Campos c1=new Campos(name,tipo,size,llave);
-            
+            Campos c1 = new Campos(name, tipo, size, llave);
+            Listac.add(c1);
             JOptionPane.showMessageDialog(this, "Creado Excitosamente");
             System.out.println(c1.toString());
-            
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,"Error al crear");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al crear");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void Nombre_Campo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_Campo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Nombre_Campo2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        jd_registro.pack();
-        jd_registro.setLocationRelativeTo(this);
-        jd_registro.setVisible(true);
+        jDialog_CrearRegistro.pack();
+        jDialog_CrearRegistro.setLocationRelativeTo(this);
+        jDialog_CrearRegistro.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        try{
-        }catch(Exception e){
-    }
+        try {
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
+        Registros r;
+        for (Campos p : Listac) {
+
+            
+
+            
+        }
+
+       
+    }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
+
+    private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
+        Archivo ap = new Archivo();
+        
+        try {
+            ap.crearArchivo();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -745,7 +841,7 @@ public class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -758,23 +854,26 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_AbrirArchivo;
+    private javax.swing.JButton B_AbrirRegistro;
     private javax.swing.JButton B_BorrarCampo;
     private javax.swing.JButton B_Campo;
     private javax.swing.JButton B_CerrarArchivo;
+    private javax.swing.JButton B_CerrarRegistro;
     private javax.swing.JButton B_CrearCampo;
     private javax.swing.JButton B_Eliminar;
     private javax.swing.JButton B_Exportar;
     private javax.swing.JButton B_GuardarArchivo;
+    private javax.swing.JButton B_GuardarRegistro;
     private javax.swing.JButton B_Index;
     private javax.swing.JButton B_ListarCampo;
     private javax.swing.JButton B_ModificarCampo;
     private javax.swing.JButton B_NuevoArchivo;
+    private javax.swing.JButton B_NuevoRegistro1;
     private javax.swing.JButton B_Registro;
     private javax.swing.JComboBox<String> Cb_editarCampo;
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
-    private javax.swing.JTextField Nombre_Campo2;
     private javax.swing.JRadioButton RB1;
     private javax.swing.JRadioButton RB2;
     private javax.swing.JLabel Titulo;
@@ -792,6 +891,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
     private javax.swing.JDialog jDialog_CrearCampos;
+    private javax.swing.JDialog jDialog_CrearRegistro;
     private javax.swing.JDialog jDialog_EditarCampos;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
@@ -800,6 +900,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;
     private javax.swing.JLabel jLabel_CrearCampo10;
@@ -818,11 +919,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JDialog jd_registro;
     private javax.swing.JSpinner spinnerS;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Campos> Listac = new ArrayList();
+
 }
