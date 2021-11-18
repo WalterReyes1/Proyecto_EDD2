@@ -19,7 +19,7 @@ public class Main extends javax.swing.JFrame {
     static Main f = new Main();
     public Main() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -39,6 +39,7 @@ public class Main extends javax.swing.JFrame {
         B_ListarCampo = new javax.swing.JButton();
         B_ModificarCampo = new javax.swing.JButton();
         B_BorrarCampo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jDialog_CrearCampos = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
         jLabel_CrearCampo = new javax.swing.JLabel();
@@ -52,6 +53,7 @@ public class Main extends javax.swing.JFrame {
         No = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jSpinner1 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jDialog_EditarCampos = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
@@ -73,19 +75,25 @@ public class Main extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         B_Eliminar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jDialog_Registro = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         B_NuevoArchivo = new javax.swing.JButton();
         B_AbrirArchivo = new javax.swing.JButton();
         B_GuardarArchivo = new javax.swing.JButton();
         B_CerrarArchivo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        Titulo = new javax.swing.JLabel();
+        Titulo1 = new javax.swing.JLabel();
         B_Campo = new javax.swing.JButton();
         B_Registro = new javax.swing.JButton();
         B_Index = new javax.swing.JButton();
         B_Exportar = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,64 +108,50 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable1);
 
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 240));
+
+        B_CrearCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_CrearCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_CrearCampo.setText("Crear Campo");
         B_CrearCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_CrearCampoActionPerformed(evt);
             }
         });
+        jPanel2.add(B_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 126, -1));
 
+        B_ListarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_ListarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ListarCampo.setText("Listar Campos");
         B_ListarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_ListarCampoActionPerformed(evt);
             }
         });
+        jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 126, -1));
 
+        B_ModificarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_ModificarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ModificarCampo.setText("Modificar Campo");
         B_ModificarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_ModificarCampoActionPerformed(evt);
             }
         });
+        jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
+        B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_BorrarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_BorrarCampo.setText("Borrar Campo");
         B_BorrarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_BorrarCampoActionPerformed(evt);
             }
         });
+        jPanel2.add(B_BorrarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 126, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(B_BorrarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_ModificarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_ListarCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_CrearCampo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(B_CrearCampo)
-                        .addGap(18, 18, 18)
-                        .addComponent(B_ListarCampo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(B_ModificarCampo))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(B_BorrarCampo)
-                .addContainerGap(176, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 400));
 
         javax.swing.GroupLayout jDialog_CamposLayout = new javax.swing.GroupLayout(jDialog_Campos.getContentPane());
         jDialog_Campos.getContentPane().setLayout(jDialog_CamposLayout);
@@ -174,13 +168,16 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_CrearCampo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel_CrearCampo.setText("Crear Campo");
+        jPanel3.add(jLabel_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel_CrearCampo1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel_CrearCampo1.setText("Nombre del Campo");
+        jPanel3.add(jLabel_CrearCampo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 73, -1, -1));
 
         Nombre_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         Nombre_Campo.addActionListener(new java.awt.event.ActionListener() {
@@ -188,89 +185,41 @@ public class Main extends javax.swing.JFrame {
                 Nombre_CampoActionPerformed(evt);
             }
         });
+        jPanel3.add(Nombre_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 73, 260, -1));
 
         jLabel_CrearCampo2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel_CrearCampo2.setText("Tipo de Dato");
+        jPanel3.add(jLabel_CrearCampo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, -1, -1));
 
         cb_TD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Char", "Int" }));
+        jPanel3.add(cb_TD, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 109, 120, -1));
 
         jLabel_CrearCampo3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel_CrearCampo3.setText("Numero de caracteres máximo");
+        jPanel3.add(jLabel_CrearCampo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 154, -1, -1));
 
         jLabel_CrearCampo4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel_CrearCampo4.setText("¿Es llave primaria? ");
+        jPanel3.add(jLabel_CrearCampo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 199, -1, -1));
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 102, 51));
+        jRadioButton1.setBackground(new java.awt.Color(204, 0, 204));
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Sí");
+        jPanel3.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 197, -1, -1));
 
-        No.setBackground(new java.awt.Color(255, 102, 51));
+        No.setBackground(new java.awt.Color(204, 0, 204));
         buttonGroup1.add(No);
         No.setText("No");
+        jPanel3.add(No, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 197, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Crear Campo");
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_CrearCampo2)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel_CrearCampo1)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel_CrearCampo))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(cb_TD, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Nombre_Campo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel_CrearCampo4)
-                        .addGap(44, 44, 44)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(No))))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel_CrearCampo3)
-                        .addGap(29, 29, 29)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(265, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel_CrearCampo)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel_CrearCampo1)
-                    .addComponent(Nombre_Campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_TD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(No))
-                .addGap(72, 72, 72)
-                .addComponent(jButton1)
-                .addGap(40, 40, 40))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
 
         javax.swing.GroupLayout jDialog_CrearCamposLayout = new javax.swing.GroupLayout(jDialog_CrearCampos.getContentPane());
         jDialog_CrearCampos.getContentPane().setLayout(jDialog_CrearCamposLayout);
@@ -429,42 +378,27 @@ public class Main extends javax.swing.JFrame {
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 143, 36));
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Campo a Eliminar");
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
+        B_Eliminar.setBackground(new java.awt.Color(255, 255, 255));
+        B_Eliminar.setForeground(new java.awt.Color(0, 0, 0));
         B_Eliminar.setText("Eliminar");
         B_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_EliminarActionPerformed(evt);
             }
         });
+        jPanel5.add(B_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 143, 50));
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(B_Eliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(170, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(B_Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-180, 0, 660, 290));
 
         javax.swing.GroupLayout jDialog_BorrarCampoLayout = new javax.swing.GroupLayout(jDialog_BorrarCampo.getContentPane());
         jDialog_BorrarCampo.getContentPane().setLayout(jDialog_BorrarCampoLayout);
@@ -478,46 +412,34 @@ public class Main extends javax.swing.JFrame {
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        B_NuevoArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_NuevoArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoArchivo.setText("Nuevo Archivo");
+        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 176, 35));
 
+        B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_AbrirArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirArchivo.setText("Abrir archivo");
+        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
 
+        B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_GuardarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarArchivo.setText("Guardar Archivo");
+        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
 
+        B_CerrarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_CerrarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_CerrarArchivo.setText("Guardar Archivo");
+        jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(B_CerrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(B_GuardarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                        .addComponent(B_AbrirArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(B_NuevoArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(B_NuevoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(B_AbrirArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(B_GuardarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(B_CerrarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
 
         javax.swing.GroupLayout jDialog_RegistroLayout = new javax.swing.GroupLayout(jDialog_Registro.getContentPane());
         jDialog_Registro.getContentPane().setLayout(jDialog_RegistroLayout);
@@ -538,91 +460,86 @@ public class Main extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(300, 700));
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Titulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        Titulo.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo.setText("File Manager");
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+
+        Titulo1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        Titulo1.setForeground(new java.awt.Color(255, 255, 255));
+        Titulo1.setText("Standard");
+        jPanel1.add(Titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+
+        B_Campo.setBackground(new java.awt.Color(255, 255, 255));
         B_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Campo.setForeground(new java.awt.Color(0, 0, 0));
         B_Campo.setText("Campos");
         B_Campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_CampoActionPerformed(evt);
             }
         });
+        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 180, 60));
 
+        B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Registro.setForeground(new java.awt.Color(0, 0, 0));
         B_Registro.setText("Registro");
         B_Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_RegistroActionPerformed(evt);
             }
         });
+        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 181, 60));
 
+        B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Index.setForeground(new java.awt.Color(0, 0, 0));
         B_Index.setText("Index");
         B_Index.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_IndexActionPerformed(evt);
             }
         });
+        jPanel1.add(B_Index, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 181, 60));
 
+        B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Exportar.setForeground(new java.awt.Color(0, 0, 0));
         B_Exportar.setText("Exportar");
         B_Exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_ExportarActionPerformed(evt);
             }
         });
+        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 181, 60));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(B_Exportar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_Index, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_Campo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(B_Campo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(B_Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(B_Index, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
-                .addComponent(B_Exportar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
-        );
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 0, 860, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 356, Short.MAX_VALUE)
+            .addGap(0, 404, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 530, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void B_IndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IndexActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_IndexActionPerformed
-
-    private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_ExportarActionPerformed
 
     private void B_ListarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ListarCampoActionPerformed
         // TODO add your handling code here:
@@ -639,12 +556,6 @@ public class Main extends javax.swing.JFrame {
         jDialog_BorrarCampo.setLocationRelativeTo(this);
         jDialog_BorrarCampo.setVisible(true);
     }//GEN-LAST:event_B_BorrarCampoActionPerformed
-
-    private void B_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CampoActionPerformed
-        jDialog_Campos.pack();
-        jDialog_Campos.setLocationRelativeTo(this);
-        jDialog_Campos.setVisible(true);
-    }//GEN-LAST:event_B_CampoActionPerformed
 
     private void Nombre_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_CampoActionPerformed
         // TODO add your handling code here:
@@ -668,11 +579,25 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_ExportarActionPerformed
+
+    private void B_IndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IndexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_IndexActionPerformed
+
     private void B_RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RegistroActionPerformed
         jDialog_Registro.pack();
         jDialog_Registro.setLocationRelativeTo(this);
         jDialog_Registro.setVisible(true);
     }//GEN-LAST:event_B_RegistroActionPerformed
+
+    private void B_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CampoActionPerformed
+        jDialog_Campos.pack();
+        jDialog_Campos.setLocationRelativeTo(this);
+        jDialog_Campos.setVisible(true);
+    }//GEN-LAST:event_B_CampoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -730,6 +655,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
+    private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel Titulo1;
+    private javax.swing.JLabel background;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_TD;
     private javax.swing.JComboBox<String> cb_TD1;
@@ -742,6 +670,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog_EditarCampos;
     private javax.swing.JDialog jDialog_Registro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;
     private javax.swing.JLabel jLabel_CrearCampo10;
