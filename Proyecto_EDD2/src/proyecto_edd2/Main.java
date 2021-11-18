@@ -111,7 +111,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 240));
 
         B_CrearCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_CrearCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_CrearCampo.setText("Crear Campo");
         B_CrearCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +120,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 126, -1));
 
         B_ListarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_ListarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ListarCampo.setText("Listar Campos");
         B_ListarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +129,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 126, -1));
 
         B_ModificarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_ModificarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ModificarCampo.setText("Modificar Campo");
         B_ModificarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +138,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
 
         B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_BorrarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_BorrarCampo.setText("Borrar Campo");
         B_BorrarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,10 +168,12 @@ public class Main extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel_CrearCampo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel_CrearCampo.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo.setText("Crear Campo");
         jPanel3.add(jLabel_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel_CrearCampo1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo1.setText("Nombre del Campo");
         jPanel3.add(jLabel_CrearCampo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 73, -1, -1));
 
@@ -188,6 +186,7 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(Nombre_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 73, 260, -1));
 
         jLabel_CrearCampo2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo2.setText("Tipo de Dato");
         jPanel3.add(jLabel_CrearCampo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, -1, -1));
 
@@ -195,10 +194,12 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(cb_TD, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 109, 120, -1));
 
         jLabel_CrearCampo3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo3.setText("Numero de caracteres máximo");
         jPanel3.add(jLabel_CrearCampo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 154, -1, -1));
 
         jLabel_CrearCampo4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo4.setText("¿Es llave primaria? ");
         jPanel3.add(jLabel_CrearCampo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 199, -1, -1));
 
@@ -213,7 +214,6 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(No, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 197, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("Crear Campo");
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
         jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
@@ -388,7 +388,6 @@ public class Main extends javax.swing.JFrame {
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
         B_Eliminar.setBackground(new java.awt.Color(255, 255, 255));
-        B_Eliminar.setForeground(new java.awt.Color(0, 0, 0));
         B_Eliminar.setText("Eliminar");
         B_Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,25 +415,21 @@ public class Main extends javax.swing.JFrame {
 
         B_NuevoArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_NuevoArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoArchivo.setText("Nuevo Archivo");
         jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 176, 35));
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_AbrirArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirArchivo.setText("Abrir archivo");
         jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_GuardarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarArchivo.setText("Guardar Archivo");
         jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
 
         B_CerrarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_CerrarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_CerrarArchivo.setText("Guardar Archivo");
         jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
 
@@ -474,7 +469,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Campo.setBackground(new java.awt.Color(255, 255, 255));
         B_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Campo.setForeground(new java.awt.Color(0, 0, 0));
         B_Campo.setText("Campos");
         B_Campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -485,7 +479,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Registro.setForeground(new java.awt.Color(0, 0, 0));
         B_Registro.setText("Registro");
         B_Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -496,7 +489,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Index.setForeground(new java.awt.Color(0, 0, 0));
         B_Index.setText("Index");
         B_Index.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -507,7 +499,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Exportar.setForeground(new java.awt.Color(0, 0, 0));
         B_Exportar.setText("Exportar");
         B_Exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
