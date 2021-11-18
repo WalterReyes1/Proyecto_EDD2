@@ -6,6 +6,8 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,10 +51,10 @@ public class Main extends javax.swing.JFrame {
         cb_TD = new javax.swing.JComboBox<>();
         jLabel_CrearCampo3 = new javax.swing.JLabel();
         jLabel_CrearCampo4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        No = new javax.swing.JRadioButton();
+        RB1 = new javax.swing.JRadioButton();
+        RB2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        spinnerS = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jDialog_EditarCampos = new javax.swing.JDialog();
@@ -76,13 +78,19 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         B_Eliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jDialog_Registro = new javax.swing.JDialog();
+        jDialog_Archivo = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         B_NuevoArchivo = new javax.swing.JButton();
         B_AbrirArchivo = new javax.swing.JButton();
         B_GuardarArchivo = new javax.swing.JButton();
         B_CerrarArchivo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jd_registro = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        Nombre_Campo2 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -90,6 +98,7 @@ public class Main extends javax.swing.JFrame {
         B_Registro = new javax.swing.JButton();
         B_Index = new javax.swing.JButton();
         B_Exportar = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
@@ -203,20 +212,27 @@ public class Main extends javax.swing.JFrame {
         jLabel_CrearCampo4.setText("¿Es llave primaria? ");
         jPanel3.add(jLabel_CrearCampo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 199, -1, -1));
 
-        jRadioButton1.setBackground(new java.awt.Color(204, 0, 204));
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Sí");
-        jPanel3.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 197, -1, -1));
+        RB1.setBackground(new java.awt.Color(204, 0, 204));
+        buttonGroup1.add(RB1);
+        RB1.setForeground(new java.awt.Color(255, 255, 255));
+        RB1.setText("Sí");
+        jPanel3.add(RB1, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 197, -1, -1));
 
-        No.setBackground(new java.awt.Color(204, 0, 204));
-        buttonGroup1.add(No);
-        No.setText("No");
-        jPanel3.add(No, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 197, -1, -1));
+        RB2.setBackground(new java.awt.Color(204, 0, 204));
+        buttonGroup1.add(RB2);
+        RB2.setForeground(new java.awt.Color(255, 255, 255));
+        RB2.setText("No");
+        jPanel3.add(RB2, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 197, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Crear Campo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
-        jPanel3.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
+        jPanel3.add(spinnerS, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
@@ -436,20 +452,75 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
 
-        javax.swing.GroupLayout jDialog_RegistroLayout = new javax.swing.GroupLayout(jDialog_Registro.getContentPane());
-        jDialog_Registro.getContentPane().setLayout(jDialog_RegistroLayout);
-        jDialog_RegistroLayout.setHorizontalGroup(
-            jDialog_RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDialog_ArchivoLayout = new javax.swing.GroupLayout(jDialog_Archivo.getContentPane());
+        jDialog_Archivo.getContentPane().setLayout(jDialog_ArchivoLayout);
+        jDialog_ArchivoLayout.setHorizontalGroup(
+            jDialog_ArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 346, Short.MAX_VALUE)
-            .addGroup(jDialog_RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_ArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDialog_RegistroLayout.setVerticalGroup(
-            jDialog_RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jDialog_ArchivoLayout.setVerticalGroup(
+            jDialog_ArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 394, Short.MAX_VALUE)
-            .addGroup(jDialog_RegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDialog_ArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel6.setText("Escriba Campo");
+
+        Nombre_Campo2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Nombre_Campo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Nombre_Campo2ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jButton4.setText("LLenar Campo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
+        jd_registro.getContentPane().setLayout(jd_registroLayout);
+        jd_registroLayout.setHorizontalGroup(
+            jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_registroLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGap(252, 252, 252)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGap(210, 210, 210)
+                        .addComponent(Nombre_Campo2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_registroLayout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(285, Short.MAX_VALUE))
+        );
+        jd_registroLayout.setVerticalGroup(
+            jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_registroLayout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jd_registroLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(Nombre_Campo2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(336, 336, 336)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
+        );
+
+        jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
@@ -475,17 +546,17 @@ public class Main extends javax.swing.JFrame {
                 B_CampoActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 180, 60));
+        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 160, 50));
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Registro.setText("Registro");
+        B_Registro.setText("Archivo");
         B_Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_RegistroActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 181, 60));
+        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 160, 50));
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -495,7 +566,7 @@ public class Main extends javax.swing.JFrame {
                 B_IndexActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Index, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, 181, 60));
+        jPanel1.add(B_Index, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 160, 50));
 
         B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -505,10 +576,19 @@ public class Main extends javax.swing.JFrame {
                 B_ExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 460, 181, 60));
+        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 160, 50));
+
+        jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton3.setText("Registro");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 160, 50));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
-        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-290, 0, 860, 530));
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -579,9 +659,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_IndexActionPerformed
 
     private void B_RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RegistroActionPerformed
-        jDialog_Registro.pack();
-        jDialog_Registro.setLocationRelativeTo(this);
-        jDialog_Registro.setVisible(true);
+        jDialog_Archivo.pack();
+        jDialog_Archivo.setLocationRelativeTo(this);
+        jDialog_Archivo.setVisible(true);
     }//GEN-LAST:event_B_RegistroActionPerformed
 
     private void B_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CampoActionPerformed
@@ -589,6 +669,55 @@ public class Main extends javax.swing.JFrame {
         jDialog_Campos.setLocationRelativeTo(this);
         jDialog_Campos.setVisible(true);
     }//GEN-LAST:event_B_CampoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String name=Nombre_Campo.getText();
+            String tipo="";
+            if(cb_TD.getSelectedIndex()==0){
+                tipo="String";
+            }
+            if(cb_TD.getSelectedIndex()==1){
+                tipo="Char";
+            }
+            if(cb_TD.getSelectedIndex()==2){
+                tipo="int";
+            }
+            int size=(Integer)spinnerS.getValue();
+            boolean llave;
+            if(RB1.isSelected()){
+                llave=true;
+            }else{
+                llave=false;
+            }
+            Campos c1=new Campos(name,tipo,size,llave);
+            
+            JOptionPane.showMessageDialog(this, "Creado Excitosamente");
+            System.out.println(c1.toString());
+            
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this,"Error al crear");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Nombre_Campo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_Campo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Nombre_Campo2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        jd_registro.pack();
+        jd_registro.setLocationRelativeTo(this);
+        jd_registro.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try{
+        }catch(Exception e){
+    }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,10 +771,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_NuevoArchivo;
     private javax.swing.JButton B_Registro;
     private javax.swing.JComboBox<String> Cb_editarCampo;
-    private javax.swing.JRadioButton No;
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
+    private javax.swing.JTextField Nombre_Campo2;
+    private javax.swing.JRadioButton RB1;
+    private javax.swing.JRadioButton RB2;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel background;
@@ -654,17 +785,21 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_TD1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
     private javax.swing.JDialog jDialog_CrearCampos;
     private javax.swing.JDialog jDialog_EditarCampos;
-    private javax.swing.JDialog jDialog_Registro;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;
     private javax.swing.JLabel jLabel_CrearCampo10;
@@ -682,11 +817,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JDialog jd_registro;
+    private javax.swing.JSpinner spinnerS;
     // End of variables declaration//GEN-END:variables
 }
