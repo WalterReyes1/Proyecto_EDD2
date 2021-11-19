@@ -1,6 +1,0 @@
-TOTAL CAMPOS: 1
-|Nombre: Adiooooooooos, Type: String, Size: 0, Key: false|
-
-
-AVAILIST HEAD: NULL 
-miiiii amoooooooor|

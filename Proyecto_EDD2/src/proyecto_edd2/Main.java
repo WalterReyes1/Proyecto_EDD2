@@ -86,7 +86,7 @@ public class Main extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jDialog_BorrarCampo = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cb_borrarc = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         B_Eliminar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -356,8 +356,7 @@ public class Main extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(255, 102, 51));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 143, 36));
+        jPanel5.add(cb_borrarc, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 143, 36));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -599,9 +598,7 @@ public class Main extends javax.swing.JFrame {
                 p.getNombre(),
                 p.getData_type(),
                 p.getSize(),
-                p.isIsKey(),
-                
-            };
+                p.isIsKey(),};
             modelo2.addRow(newRow);
         }
 
@@ -618,6 +615,8 @@ public class Main extends javax.swing.JFrame {
         jDialog_BorrarCampo.pack();
         jDialog_BorrarCampo.setLocationRelativeTo(this);
         jDialog_BorrarCampo.setVisible(true);
+
+
     }//GEN-LAST:event_B_BorrarCampoActionPerformed
 
     private void Nombre_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_CampoActionPerformed
@@ -635,7 +634,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Nombre_Campo1ActionPerformed
 
     private void B_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_EliminarActionPerformed
-        // TODO add your handling code here:
+        Registros r = new Registros();
+        Campos c = new Campos();
+        r.setListaCampo(Listac);
+        c = (Campos) cb_borrarc.getSelectedItem();
+        r.getListaCampo().remove(c);
+        cb_borrarc.removeItem(c);
+
     }//GEN-LAST:event_B_EliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -689,6 +694,16 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Creado Excitosamente");
             System.out.println(c1.toString());
 
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_borrarc.getModel();
+
+            cb_borrarc.setModel(modelo);
+
+            modelo.addElement(c1);
+            
+            DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Cb_editarCampo.getModel();
+            //Cb_editarCampo.
+            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al crear");
         }
@@ -720,9 +735,9 @@ public class Main extends javax.swing.JFrame {
 
         try {
             nameArchivo = JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
-            nameArchivo+=".txt";
+            nameArchivo += ".txt";
             ap.setName(nameArchivo);
-            System.out.println("NAME"+ap.getName());
+            System.out.println("NAME" + ap.getName());
             ap.crearArchivo(nameArchivo);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
@@ -763,15 +778,13 @@ public class Main extends javax.swing.JFrame {
             //"CAMPOS: 4 "+"\n"+
             //+"\n"+"AVAILIST HEAD: NULL "+"\n";
             String pal2 = "";
-            pal2 += r.getListaCampo().size()+"\n"+ cc1 +"Cantidad de Registros: "+r.getListaString().size()
-                    + " \n AVAILIST HEAD: NULL  "+"\n";
-            String pal3=pal2+pal2.length()+"\n"+"_ \n"+pal;
-            
-             
-            
+            pal2 += r.getListaCampo().size() + "\n" + cc1 + "Cantidad de Registros: " + r.getListaString().size()
+                    + " \n AVAILIST HEAD: NULL  " + "\n";
+            String pal3 = pal2 + pal2.length() + "\n" + "_ \n" + pal;
+
             ap.setName(nameArchivo);
-            System.out.println("NAME"+ap.getName());
-            ap.escribirArchivo(pal3,nameArchivo);
+            System.out.println("NAME" + ap.getName());
+            ap.escribirArchivo(pal3, nameArchivo);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -852,7 +865,6 @@ public class Main extends javax.swing.JFrame {
             ls.add(s2);
 
             //agregado tercer campo
-            
             lc.add(c3);
             ls.add(s3);
 
@@ -880,7 +892,7 @@ public class Main extends javax.swing.JFrame {
             Archivo ap2 = new Archivo();
             ap2.crearArchivo("prueba1.txt");
 
-            ap2.escribirArchivo("4","prueba1.txt");
+            ap2.escribirArchivo("4", "prueba1.txt");
 
             String size4 = "" + c4.getSize();
             String key4 = "" + c4.isIsKey();
@@ -901,10 +913,9 @@ public class Main extends javax.swing.JFrame {
 
             //ap.escribirArchivo(cc4, "prueba2.txt");
             //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-            
-            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" +"\n";
-            String fin3 = fin2+fin2.length()+"\n"+pal;
-            ap2.escribirArchivo(fin3,"prueba1.txt");
+            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
+            String fin3 = fin2 + fin2.length() + "\n" + pal;
+            ap2.escribirArchivo(fin3, "prueba1.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -915,7 +926,7 @@ public class Main extends javax.swing.JFrame {
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
         // TODO add your handling code here:
         ap.setName("NULL.txt");
-        Registros r=new Registros();
+        Registros r = new Registros();
         Listac.clear();
         ListaS.clear();
         r.getListaCampo().clear();
@@ -992,19 +1003,19 @@ public class Main extends javax.swing.JFrame {
                 r.getListaCampo().add(c2);
                 r.getListaCampo().add(c3);
                 r.getListaCampo().add(c4);
-                ArrayList<String>lista_string = new ArrayList();
+                ArrayList<String> lista_string = new ArrayList();
                 System.out.println("fuera");
-                try{
+                try {
                     System.out.println("adentro");
-                    RandomAccessFile file_a = new RandomAccessFile("prueba1.txt","rw");
+                    RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
                     file_a.seek(158);
                     String seek = file_a.readLine();
-                    System.out.println("Soy el seek: "+seek);
+                    System.out.println("Soy el seek: " + seek);
                     //file_a.writeUTF("soy seek"+"\n");
-                    JOptionPane.showMessageDialog(null,"Funcionó");
-                }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Funcionó");
+                } catch (Exception e) {
                     System.out.println(e);
-                    JOptionPane.showMessageDialog(null,"c mamo");
+                    JOptionPane.showMessageDialog(null, "c mamo");
                 }
                 System.out.println("salgo");
 
@@ -1080,11 +1091,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_TD;
     private javax.swing.JComboBox<String> cb_TD1;
+    private javax.swing.JComboBox<String> cb_borrarc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
@@ -1127,8 +1138,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<String> ListaS = new ArrayList();
     Archivo ap = new Archivo();
     String nameArchivo;
-    
-    
+
     public void eliminarTabla() {
         //---------------------------------------------------//
         //      Esto hace que no se repitan cosas en la tabla
