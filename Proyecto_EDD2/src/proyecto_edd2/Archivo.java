@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 
 /**
@@ -77,5 +78,16 @@ public class Archivo {
             e.printStackTrace();
         }
 
+    }
+    public void escribirArchivo(String word) throws IOException {
+        try {
+            FileWriter myWriter = new FileWriter("filename.txt");
+            myWriter.write(word);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

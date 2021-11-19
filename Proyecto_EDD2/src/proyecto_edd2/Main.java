@@ -573,6 +573,11 @@ public class Main extends javax.swing.JFrame {
         B_GuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_GuardarRegistro.setText("Guardar Registro");
+        B_GuardarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_GuardarRegistroActionPerformed(evt);
+            }
+        });
         jPanel8.add(B_GuardarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
 
         B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
@@ -769,6 +774,7 @@ public class Main extends javax.swing.JFrame {
             }
             Campos c1 = new Campos(name, tipo, size, llave);
             Listac.add(c1);
+            
             JOptionPane.showMessageDialog(this, "Creado Excitosamente");
             System.out.println(c1.toString());
 
@@ -792,19 +798,21 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
-        Registros r;
-        for (Campos p : Listac) {
-
-            
-
+        Registros r=new Registros();
+        r.setListaCampo(Listac);
+        String pal="";
+        for(int i=0;i<r.getListaCampo().size();i++){
+            pal=JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+            ListaS.add(pal);
             
         }
-
-       
+        r.setListaString(ListaS);
+        JOptionPane.showMessageDialog(this, "GUARDADO");
+   
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
 
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
-        Archivo ap = new Archivo();
+        
         
         try {
             ap.crearArchivo();
@@ -814,6 +822,34 @@ public class Main extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
+
+    private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
+        // TODO add your handling code here:
+        Registros r=new Registros();
+        r.setListaCampo(Listac);
+        r.setListaString(ListaS);
+        String pal="";
+        System.out.println(r.getListaCampo().size());
+        System.out.println(r.getListaString().size());
+        try {
+            
+            for(int i=0;i<r.getListaString().size();i++){
+                System.out.println(r.getListaCampo().size());
+                System.out.println(r.getListaString().size());
+                pal="CAMPO "+r.getListaCampo().get(i).getNombre()+"|"+r.getListaString().get(i);
+            try {
+            ap.escribirArchivo(pal);
+            } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            
+            ap.escribirArchivo(pal);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JOptionPane.showMessageDialog(this, "GUARDADO");
+    }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -930,5 +966,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner spinnerS;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campos> Listac = new ArrayList();
-
+    ArrayList<String> ListaS = new ArrayList();
+    Archivo ap = new Archivo();
 }

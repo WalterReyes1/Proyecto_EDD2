@@ -13,8 +13,16 @@ import java.util.ArrayList;
  */
 public class Registros extends Campos {
     private ArrayList<Campos> listaCampo=new ArrayList();
-
+    private ArrayList<String> listaString=new ArrayList();
     public Registros() {
+    }
+
+    public ArrayList<String> getListaString() {
+        return listaString;
+    }
+
+    public void setListaString(ArrayList<String> listaString) {
+        this.listaString = listaString;
     }
 
     public ArrayList<Campos> getListaCampo() {
@@ -23,6 +31,12 @@ public class Registros extends Campos {
 
     public void setListaCampo(ArrayList<Campos> listaCampo) {
         this.listaCampo = listaCampo;
+    }
+    public void addCampo(Campos c){
+        this.listaCampo.add(c);
+    }
+    public void addString(String s){
+        this.listaString.add(s);
     }
     
 }
