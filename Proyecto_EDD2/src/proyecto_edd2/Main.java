@@ -8,6 +8,7 @@ package proyecto_edd2;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -784,7 +785,7 @@ public class Main extends javax.swing.JFrame {
             }
             Campos c1 = new Campos(name, tipo, size, llave);
             Listac.add(c1);
-            
+
             JOptionPane.showMessageDialog(this, "Creado Excitosamente");
             System.out.println(c1.toString());
 
@@ -808,54 +809,60 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
-        Registros r=new Registros();
+        Registros r = new Registros();
         r.setListaCampo(Listac);
-        String pal="";
-        for(int i=0;i<r.getListaCampo().size();i++){
-            pal=JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-            
+        String pal = "";
+        for (int i = 0; i < r.getListaCampo().size(); i++) {
+            pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+
             ListaS.add(pal);
-            
+
         }
         r.setListaString(ListaS);
         JOptionPane.showMessageDialog(this, "GUARDADO");
-   
+
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
 
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
-        
-        
+
         try {
             ap.crearArchivo();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            
+
         }
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
-        Registros r=new Registros();
+        int cont1 = 1;
+        Registros r = new Registros();
         r.setListaCampo(Listac);
         r.setListaString(ListaS);
-        String pal="";
+        String pal = "";
         System.out.println(r.getListaCampo().size());
         System.out.println(r.getListaString().size());
         try {
-            
-            for(int i=0;i<r.getListaString().size();i++){
+
+            for (int i = 0; i < r.getListaString().size(); i++) {
+
                 System.out.println(r.getListaString().size());
-                
-                pal+=r.getListaString().get(i)+"|"+"\n";
-            
+
+                pal += r.getListaString().get(i) + "|";
+                if (cont1 == r.getListaCampo().size()) {
+                    pal += "\n";
+                    cont1 = 0;
+                }
+                cont1++;
             }
+
             try {
-            ap.escribirArchivo(pal);
+                ap.escribirArchivo(pal);
             } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             ap.escribirArchivo(pal);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -865,40 +872,101 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
-        String[] days = { "Sofía", "Camila", "Valentina",
-                  "Isabella", "Valeria","Daniela", "Mariana","Sara", "Victoria", "Gabriela",
-                  "Ximena", "Andrea","Natalia", "Martina","Andrea", "Camila", "Natalia",
-                  "Mía", "Martina","Lucía", "Samantha","María", "Nicole", "Alejandra",
-                  "Paula", "Emily","Fernanda", "Regina","Santiago", "Sebastián", "Diego","Nicolás", 
-                  "Samuel","Alejandro", "Daniel", "Mateo","Ángel", "Matías", "Gabriel",
-                   "Tomás", "David", "Emiliano", "Andrés", "Joaquín","Carlos", "Alexander", "Adrián",
-                  "Lucas", "Benjamín","Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín","Fernando", "Isaac",
-                  "Manuel", "Juan Pablo", "Emmanuel","Emilio", "Vicente", "Eduardo","Juan", "Javier", "Luis", "Lucas", "Mateo" };
-        /*
+        System.out.println("hola");
+        String[] names = {"Sofía", "Camila", "Valentina",
+            "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
+            "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
+            "Mía", "Martina", "Lucía", "Samantha", "María", "Nicole", "Alejandra",
+            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastián", "Diego", "Nicolás",
+            "Samuel", "Alejandro", "Daniel", "Mateo", "Ángel", "Matías", "Gabriel",
+            "Tomás", "David", "Emiliano", "Andrés", "Joaquín", "Carlos", "Alexander", "Adrián",
+            "Lucas", "Benjamín", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín", "Fernando", "Isaac",
+            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler"};
+        //person name , person age,city ID and person ID
+        System.out.println("holax2");
 
-María
-María Fernanda
-Nicole
-Alejandra
-Paula
-Emily
-María José
-Fernanda
-Luciana
-Ana Sofía
-Melanie
-Regina
-Catalina
-Ashley
-Renata
-Agustina
-Abril
-Emma
-Emilia
-Jazmín
-        
-        */
-        
+        Campos c1 = new Campos("PersonName", "String", 12, false);
+        Campos c2 = new Campos("PersonAge", "String", 12, false);
+        Campos c3 = new Campos("CityId", "int", 8, false);
+        Campos c4 = new Campos("personId", "int", 8, false);
+        System.out.println("holax3");
+        ArrayList<Integer> PersonalIDval = new ArrayList();
+        ArrayList<Integer> CityIDval = new ArrayList();
+        PersonalIDval.add(0);
+        CityIDval.add(0);
+        ArrayList<Campos> lc = new ArrayList();
+        ArrayList<String> ls = new ArrayList();
+        Registros re1 = new Registros();
+
+        String s1 = "";
+        String s2 = "";
+        String s3 = "";
+        String s4 = "";
+        System.out.println("holax4");
+        Random r1 = new Random();
+        Random r2 = new Random();
+        Random r3 = new Random();
+        Random r4 = new Random();
+        for (int i = 0; i < 20; i++) {
+            
+
+            int x1 = r1.nextInt() + 40;//nombres
+            int x2 = r2.nextInt() + 80;//edad
+            int x3 = -1;
+            int x4 = 0;
+            
+
+                x3 = r3.nextInt() + 80000000;//person ID 
+                if (!PersonalIDval.contains(x3)) {
+                    PersonalIDval.add(x3);
+                }
+                System.out.println("aquí estoy");
+            
+
+  
+            x4 = r4.nextInt() + 90000000;//City ID
+
+            s1 += names[x1];//agarro nombres
+            lc.add(c1);
+            ls.add(s1);
+            re1.setListaCampo(lc);
+            re1.setListaString(ls);
+            //agregado primer campo
+            s2 += x2;
+            lc.add(c2);
+            ls.add(s2);
+            re1.setListaCampo(lc);
+            re1.setListaString(ls);
+            //agregando segundo campo
+
+            s3 += x3;
+            lc.add(c3);
+            ls.add(s3);
+            re1.setListaCampo(lc);
+            re1.setListaString(ls);
+            //agregado tercer campo
+
+            s4 += x4;
+            lc.add(c4);
+            ls.add(s4);
+            re1.setListaCampo(lc);
+            re1.setListaString(ls);
+            //agregado cuarto campo
+        }
+        int cont1 = 1;
+        String pal = "";
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+
+            System.out.println(re1.getListaString().size());
+
+            pal += re1.getListaString().get(i) + "|";
+            if (cont1 == re1.getListaCampo().size()) {
+                pal += "\n";
+                cont1 = 0;
+            }
+            cont1++;
+        }
+        System.out.println(pal);
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
