@@ -826,7 +826,7 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
 
         try {
-            ap.crearArchivo();
+            ap.crearArchivo("filename.txt");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -858,12 +858,12 @@ public class Main extends javax.swing.JFrame {
             }
 
             try {
-                ap.escribirArchivo(pal);
+                ap.escribirArchivo(pal,"filename.txt");
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            ap.escribirArchivo(pal);
+            ap.escribirArchivo(pal,"filename.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -872,6 +872,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
+        int cont1 = 1;
         System.out.println("hola");
         String[] names = {"Sofía", "Camila", "Valentina",
             "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
@@ -883,13 +884,14 @@ public class Main extends javax.swing.JFrame {
             "Lucas", "Benjamín", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín", "Fernando", "Isaac",
             "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler"};
         //person name , person age,city ID and person ID
-        System.out.println("holax2");
+        
 
         Campos c1 = new Campos("PersonName", "String", 12, false);
         Campos c2 = new Campos("PersonAge", "String", 12, false);
         Campos c3 = new Campos("CityId", "int", 8, false);
         Campos c4 = new Campos("personId", "int", 8, false);
-        System.out.println("holax3");
+        
+        
         ArrayList<Integer> PersonalIDval = new ArrayList();
         ArrayList<Integer> CityIDval = new ArrayList();
         PersonalIDval.add(0);
@@ -897,21 +899,26 @@ public class Main extends javax.swing.JFrame {
         ArrayList<Campos> lc = new ArrayList();
         ArrayList<String> ls = new ArrayList();
         Registros re1 = new Registros();
-
+        lc.add(c1);
+        lc.add(c2);
+        lc.add(c3);
+        lc.add(c4);
         String s1 = "";
         String s2 = "";
         String s3 = "";
         String s4 = "";
-        System.out.println("holax4");
-        Random r1 = new Random();
-        Random r2 = new Random();
-        Random r3 = new Random();
-        Random r4 = new Random();
+        re1.setListaCampo(lc);
+        
         for (int i = 0; i < 20; i++) {
-            
+            Random r1 = new Random();
+            Random r2 = new Random();
+            Random r3 = new Random();
+            Random r4 = new Random();
 
-            int x1 = r1.nextInt() + 40;//nombres
-            int x2 = r2.nextInt() + 80;//edad
+            int x1=0;
+            x1+= r1.nextInt(48);//nombres
+            int x2 =0;
+            x2+= r2.nextInt(80) ;//edad
             int x3 = -1;
             int x4 = 0;
             
@@ -920,53 +927,89 @@ public class Main extends javax.swing.JFrame {
                 if (!PersonalIDval.contains(x3)) {
                     PersonalIDval.add(x3);
                 }
-                System.out.println("aquí estoy");
+                
             
 
   
             x4 = r4.nextInt() + 90000000;//City ID
-
+            System.out.println("X1: "+x1);
+            
             s1 += names[x1];//agarro nombres
+            
+            
             lc.add(c1);
             ls.add(s1);
-            re1.setListaCampo(lc);
-            re1.setListaString(ls);
+            
+            
             //agregado primer campo
             s2 += x2;
             lc.add(c2);
             ls.add(s2);
-            re1.setListaCampo(lc);
-            re1.setListaString(ls);
+            
+          
             //agregando segundo campo
 
             s3 += x3;
             lc.add(c3);
             ls.add(s3);
-            re1.setListaCampo(lc);
-            re1.setListaString(ls);
+            
+            
             //agregado tercer campo
 
             s4 += x4;
             lc.add(c4);
             ls.add(s4);
-            re1.setListaCampo(lc);
-            re1.setListaString(ls);
+            
+            
             //agregado cuarto campo
+            
         }
-        int cont1 = 1;
+        
+        re1.setListaString(ls);
+        System.out.println("SIZE S"+re1.getListaString().size());
         String pal = "";
+        System.out.println("SIZE: "+re1.getListaCampo().size());
+        
         for (int i = 0; i < re1.getListaString().size(); i++) {
-
-            System.out.println(re1.getListaString().size());
-
             pal += re1.getListaString().get(i) + "|";
-            if (cont1 == re1.getListaCampo().size()) {
+            if (cont1 == 4) {
                 pal += "\n";
                 cont1 = 0;
             }
             cont1++;
         }
-        System.out.println(pal);
+        
+        try {
+            Archivo ap2=new Archivo();
+            ap2.crearArchivo("prueba2.txt");
+           
+            ap2.escribirArchivo("4","prueba2.txt");
+            
+            String size1=""+c1.getSize();
+            String key1=""+c1.isIsKey();
+            String cc1="|Nombre: "+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+key1;
+            //System.out.println("KEY"+cc1);
+            //ap.escribirArchivo(cc1, "prueba2.txt");
+            
+            String size2=""+c2.getSize();
+            String cc2="|Nombre: "+c2.getNombre()+", Type: "+c2.getData_type()+", Size: "+size2+", Key: "+c2.isIsKey();
+            //ap.escribirArchivo(cc2, "prueba2.txt");
+            String size3=""+c3.getSize();
+            String cc3="|Nombre: "+c3.getNombre()+", Type: "+c3.getData_type()+", Size: "+size3+", Key: "+c3.isIsKey();
+            //ap.escribirArchivo(cc3, "prueba2.txt");
+            String size4=""+c4.getSize();
+            String cc4="|Nombre: "+c4.getNombre()+", Type: "+c4.getData_type()+", Size: "+size4+", Key: "+c4.isIsKey();
+            String fin=cc1+"\n"+cc2+"\n"+cc3+"\n"+cc4;
+            System.out.println(fin);
+            //ap.escribirArchivo(cc4, "prueba2.txt");
+            //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
+            String fin2="4"+"\n"+fin+"\n"+"CABEZA DE AVAILIST:NULL"+"\n"+"\n"+"\n"+"\n"+pal;
+            ap2.escribirArchivo(fin2, "prueba2.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**

@@ -65,9 +65,9 @@ public class Archivo {
         this.availList = availList;
     }
 
-    public void crearArchivo() throws IOException {
+    public void crearArchivo(String name) throws IOException {
         try {
-            this.archivo= new File("filename.txt");
+            this.archivo= new File(name);
             if (this.archivo.createNewFile()) {
                 System.out.println("File created: " + this.archivo.getName());
             } else {
@@ -79,9 +79,9 @@ public class Archivo {
         }
 
     }
-    public void escribirArchivo(String word) throws IOException {
+    public void escribirArchivo(String word,String name) throws IOException {
         try {
-            FileWriter myWriter = new FileWriter("filename.txt");
+            FileWriter myWriter = new FileWriter(name);
             myWriter.write(word);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
