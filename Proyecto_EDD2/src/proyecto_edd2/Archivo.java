@@ -65,7 +65,7 @@ public class Archivo {
         this.availList = availList;
     }
 
-    public void crearArchivo(String name) throws IOException {
+   public void crearArchivo(String name) throws IOException {
         try {
             this.archivo= new File(name);
             if (this.archivo.createNewFile()) {

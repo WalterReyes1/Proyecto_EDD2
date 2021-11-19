@@ -6,12 +6,15 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -121,12 +124,12 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Tipo", "Tamaño", "Es Llave"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 240));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 260));
 
         B_CrearCampo.setBackground(new java.awt.Color(255, 255, 255));
         B_CrearCampo.setText("Crear Campo");
@@ -451,6 +454,11 @@ public class Main extends javax.swing.JFrame {
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_AbrirArchivo.setText("Abrir archivo");
+        B_AbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_AbrirArchivoActionPerformed(evt);
+            }
+        });
         jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 176, 35));
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
@@ -634,7 +642,21 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_ListarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ListarCampoActionPerformed
-        // TODO add your handling code here:
+        eliminarTabla();
+        DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+        for (Campos p : Listac) {
+
+            Object[] newRow = {
+                p.getNombre(),
+                p.getData_type(),
+                p.getSize(),
+                p.isIsKey(),
+                
+            };
+            modelo2.addRow(newRow);
+        }
+
+        JOptionPane.showMessageDialog(null, "Listados");
     }//GEN-LAST:event_B_ListarCampoActionPerformed
 
     private void B_ModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ModificarCampoActionPerformed
@@ -748,8 +770,8 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
 
         try {
-            nameArchivo=JOptionPane.showInputDialog(this,"NOMBRE DE ARCHIVO A CREAR");
-            ap.crearArchivo(nameArchivo+".txt");
+            nameArchivo = JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
+            ap.crearArchivo(nameArchivo + ".txt");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -779,26 +801,26 @@ public class Main extends javax.swing.JFrame {
                 }
                 cont1++;
             }
-            String cc1="";
+            String cc1 = "";
             for (int i = 0; i < r.getListaCampo().size(); i++) {
-                Campos c1=r.getListaCampo().get(i);
-                String size1=c1.getSize()+"";
-                cc1+="|Nombre: "+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+c1.isIsKey()+"|"+"\n";
-                
+                Campos c1 = r.getListaCampo().get(i);
+                String size1 = c1.getSize() + "";
+                cc1 += "|Nombre: " + c1.getNombre() + ", Type: " + c1.getData_type() + ", Size: " + size1 + ", Key: " + c1.isIsKey() + "|" + "\n";
+
             }
             //"CAMPOS: 4 "+"\n"+
             //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-            String pal2="";
-            pal2+="TOTAL CAMPOS: "+r.getListaCampo().size()+
-                    "\n"+cc1+"\n"+"\n"+"AVAILIST HEAD: NULL "+"\n"+pal;
-           
+            String pal2 = "";
+            pal2 += "TOTAL CAMPOS: " + r.getListaCampo().size()
+                    + "\n" + cc1 + "\n" + "\n" + "AVAILIST HEAD: NULL " + "\n" + pal;
+
             try {
-                ap.escribirArchivo(pal2,nameArchivo);
+                ap.escribirArchivo(pal2, nameArchivo);
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            ap.escribirArchivo(pal2,nameArchivo);
+            ap.escribirArchivo(pal2, nameArchivo);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -817,16 +839,14 @@ public class Main extends javax.swing.JFrame {
             "Samuel", "Alejandro", "Daniel", "Mateo", "Ángel", "Matías", "Gabriel",
             "Tomás", "David", "Emiliano", "Andrés", "Joaquín", "Carlos", "Alexander", "Adrián",
             "Lucas", "Benjamín", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín", "Fernando", "Isaac",
-            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler","Obdulio"};
+            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
         //person name , person age,city ID and person ID
-        
 
         Campos c1 = new Campos("PersonName", "String", 12, false);
         Campos c2 = new Campos("PersonAge", "String", 12, false);
         Campos c3 = new Campos("CityId", "int", 8, false);
         Campos c4 = new Campos("personId", "int", 8, false);
-        
-        
+
         ArrayList<Integer> PersonalIDval = new ArrayList();
         ArrayList<Integer> CityIDval = new ArrayList();
         PersonalIDval.add(0);
@@ -838,68 +858,56 @@ public class Main extends javax.swing.JFrame {
         lc.add(c2);
         lc.add(c3);
         lc.add(c4);
-        String s1 ;
-        String s2 ;
-        String s3 ;
-        String s4 ;
+        String s1;
+        String s2;
+        String s3;
+        String s4;
         re1.setListaCampo(lc);
-        
+
         for (int i = 0; i < 10000; i++) {
             Random r1 = new Random();
             Random r2 = new Random();
             Random r3 = new Random();
             Random r4 = new Random();
 
-            int x1=0;
-            x1+= r1.nextInt(48);//nombres
-            int x2 =0;
-            x2+= r2.nextInt(80) ;//edad
+            int x1 = 0;
+            x1 += r1.nextInt(48);//nombres
+            int x2 = 0;
+            x2 += r2.nextInt(80);//edad
             int x3 = -1;
             int x4 = 0;
-            
 
-                x3 = r3.nextInt(80000000) ;//person ID 
-                if (!PersonalIDval.contains(x3)) {
-                    PersonalIDval.add(x3);
-                }
-                
-            
+            x3 = r3.nextInt(80000000);//person ID 
+            if (!PersonalIDval.contains(x3)) {
+                PersonalIDval.add(x3);
+            }
 
-  
-            x4 = r4.nextInt(90000000) ;//City ID
-            System.out.println("X1: "+x1);
-            
+            x4 = r4.nextInt(90000000);//City ID
+            //System.out.println("X1: "+x1);
+
             s1 = names[x1];//agarro nombres
-            
-            
+
             lc.add(c1);
             ls.add(s1);
-            
-            
+
             //agregado primer campo
-            s2 = x2+"";
+            s2 = x2 + "";
             lc.add(c2);
             ls.add(s2);
-            
-          
-            //agregando segundo campo
 
-            s3 = x3+"";
+            //agregando segundo campo
+            s3 = x3 + "";
             lc.add(c3);
             ls.add(s3);
-            
-            
-            //agregado tercer campo
 
-            s4 = x4+"";
+            //agregado tercer campo
+            s4 = x4 + "";
             lc.add(c4);
             ls.add(s4);
-            
-            
+
             //agregado cuarto campo
-            
         }
-        
+
         re1.setListaString(ls);
         //System.out.println("SIZE S"+re1.getListaString().size());
         String pal = "";
@@ -907,7 +915,7 @@ public class Main extends javax.swing.JFrame {
         for (int i = 0; i < re1.getListaString().size(); i++) {
             //System.out.println("STRING: "+re1.getListaString().get(i));
         }
-        
+
         for (int i = 0; i < re1.getListaString().size(); i++) {
             pal += re1.getListaString().get(i) + "|";
             if (cont1 == 4) {
@@ -916,39 +924,39 @@ public class Main extends javax.swing.JFrame {
             }
             cont1++;
         }
-        
+
         try {
-            Archivo ap2=new Archivo();
+            Archivo ap2 = new Archivo();
             ap2.crearArchivo("prueba1.txt");
-           
-            ap2.escribirArchivo("4","prueba1.txt");
-            
-            String size1=""+c1.getSize();
-            String key1=""+c1.isIsKey();
-            String cc1="|Nombre:"+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+key1+"|";
+
+            ap2.escribirArchivo("4", "prueba1.txt");
+
+            String size1 = "" + c1.getSize();
+            String key1 = "" + c1.isIsKey();
+            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + key1 + ";";
             //System.out.println("KEY"+cc1);
             //ap.escribirArchivo(cc1, "prueba2.txt");
-            
-            String size2=""+c2.getSize();
-            String cc2="|Nombre:"+c2.getNombre()+", Type: "+c2.getData_type()+", Size: "+size2+", Key: "+c2.isIsKey();
+
+            String size2 = "" + c2.getSize();
+            String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
             //ap.escribirArchivo(cc2, "prueba2.txt");
-            String size3=""+c3.getSize();
-            String cc3="|Nombre:"+c3.getNombre()+", Type: "+c3.getData_type()+", Size: "+size3+", Key: "+c3.isIsKey();
+            String size3 = "" + c3.getSize();
+            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";";
             //ap.escribirArchivo(cc3, "prueba2.txt");
-            String size4=""+c4.getSize();
-            String cc4="|Nombre:"+c4.getNombre()+", Type: "+c4.getData_type()+", Size: "+size4+", Key: "+c4.isIsKey()+"\n"
-                    +"CANTIDAD DE REGISTROS: "+re1.getListaString().size()/4;
-            String fin=cc1+"\n"+cc2+"\n"+cc3+"\n"+cc4;
-           
+            String size4 = "" + c4.getSize();
+            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + c4.isIsKey() + ";" + "\n"
+                    + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
+            String fin = cc1 + "\n" + cc2 + "\n" + cc3 + "\n" + cc4;
+
             //ap.escribirArchivo(cc4, "prueba2.txt");
             //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-            String fin2="4"+"\n"+fin+"\n"+"CABEZA DE AVAILIST:NULL"+"\n"+"\n"+"\n"+"\n"+pal;
+            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n" + "\n" + "\n" + pal;
             ap2.escribirArchivo(fin2, "prueba1.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -961,6 +969,82 @@ public class Main extends javax.swing.JFrame {
         r.getListaString().clear();
         JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
+
+    private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
+        JFileChooser fileChooser = new JFileChooser("./");
+
+        int seleccion = fileChooser.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            int cont = 0;
+            try {
+
+                Scanner sc = null;
+                Scanner sc2 = null;
+                File archivo = fileChooser.getSelectedFile();
+                ap.setArchivo(archivo);
+                String file = "";
+
+                sc = new Scanner(ap.getArchivo());
+
+                file = sc.nextLine();
+                file = "";
+
+                //System.out.println(file);
+                while (cont < 4) {
+
+                    file += sc.nextLine();
+                    cont++;
+
+                }
+
+                sc2 = new Scanner(file);
+                System.out.println("Revisar: " + file);
+                sc2.useDelimiter(";");
+                //System.out.println(file);
+
+                Campos c1 = new Campos();
+                c1.setNombre(sc2.next());
+                c1.setData_type(sc2.next());
+                c1.setSize(sc2.nextInt());
+                c1.setIsKey(sc2.nextBoolean());
+
+                System.out.println(c1.getNombre() + " " + c1.getData_type() + " " + c1.getSize() + " " + c1.isIsKey());
+
+                Campos c2 = new Campos();
+                c2.setNombre(sc2.next());
+                c2.setData_type(sc2.next());
+                c2.setSize(sc2.nextInt());
+                c2.setIsKey(sc2.nextBoolean());
+
+                System.out.println(c2.getNombre() + " " + c2.getData_type() + " " + c2.getSize() + " " + c2.isIsKey());
+
+                Campos c3 = new Campos();
+                c3.setNombre(sc2.next());
+                c3.setData_type(sc2.next());
+                c3.setSize(sc2.nextInt());
+                c3.setIsKey(sc2.nextBoolean());
+
+                System.out.println(c3.getNombre() + " " + c3.getData_type() + " " + c3.getSize() + " " + c3.isIsKey());
+
+                Campos c4 = new Campos();
+                c4.setNombre(sc2.next());
+                c4.setData_type(sc2.next());
+                c4.setSize(sc2.nextInt());
+                c4.setIsKey(sc2.nextBoolean());
+
+                System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
+
+                Registros r = new Registros();
+                r.getListaCampo().add(c1);
+                r.getListaCampo().add(c2);
+                r.getListaCampo().add(c3);
+                r.getListaCampo().add(c4);
+
+            } catch (Exception e) {
+            }
+
+        }
+    }//GEN-LAST:event_B_AbrirArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1074,4 +1158,17 @@ public class Main extends javax.swing.JFrame {
     ArrayList<String> ListaS = new ArrayList();
     Archivo ap = new Archivo();
     String nameArchivo;
+    
+    
+    public void eliminarTabla() {
+        //---------------------------------------------------//
+        //      Esto hace que no se repitan cosas en la tabla
+        //---------------------------------------------------//
+        DefaultTableModel tb = (DefaultTableModel) jTable1.getModel();
+        int a = jTable1.getRowCount() - 1;
+        for (int i = a; i >= 0; i--) {
+            tb.removeRow(tb.getRowCount() - 1);
+        }
+
+    }
 }
