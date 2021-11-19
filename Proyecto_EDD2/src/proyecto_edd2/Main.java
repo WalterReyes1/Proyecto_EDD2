@@ -90,6 +90,7 @@ public class Main extends javax.swing.JFrame {
         B_AbrirArchivo = new javax.swing.JButton();
         B_GuardarArchivo = new javax.swing.JButton();
         B_CerrarArchivo = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jd_registro = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
@@ -461,12 +462,21 @@ public class Main extends javax.swing.JFrame {
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_GuardarArchivo.setText("Guardar Archivo");
-        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
+        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 176, 35));
 
         B_CerrarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_CerrarArchivo.setText("Cerrar Archivo");
-        jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
+        jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 176, 35));
+
+        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setText("Probar Archivo");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 180, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -803,6 +813,7 @@ public class Main extends javax.swing.JFrame {
         String pal="";
         for(int i=0;i<r.getListaCampo().size();i++){
             pal=JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+            
             ListaS.add(pal);
             
         }
@@ -834,14 +845,15 @@ public class Main extends javax.swing.JFrame {
         try {
             
             for(int i=0;i<r.getListaString().size();i++){
-                System.out.println(r.getListaCampo().size());
                 System.out.println(r.getListaString().size());
-                pal="CAMPO "+r.getListaCampo().get(i).getNombre()+"|"+r.getListaString().get(i);
+                
+                pal+=r.getListaString().get(i)+"|"+"\n";
+            
+            }
             try {
             ap.escribirArchivo(pal);
             } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
             }
             
             ap.escribirArchivo(pal);
@@ -850,6 +862,44 @@ public class Main extends javax.swing.JFrame {
         }
         JOptionPane.showMessageDialog(this, "GUARDADO");
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:}
+        String[] days = { "Sofía", "Camila", "Valentina",
+                  "Isabella", "Valeria","Daniela", "Mariana","Sara", "Victoria", "Gabriela",
+                  "Ximena", "Andrea","Natalia", "Martina","Andrea", "Camila", "Natalia",
+                  "Mía", "Martina","Lucía", "Samantha","María", "Nicole", "Alejandra",
+                  "Paula", "Emily","Fernanda", "Regina","Santiago", "Sebastián", "Diego","Nicolás", 
+                  "Samuel","Alejandro", "Daniel", "Mateo","Ángel", "Matías", "Gabriel",
+                   "Tomás", "David", "Emiliano", "Andrés", "Joaquín","Carlos", "Alexander", "Adrián",
+                  "Lucas", "Benjamín","Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín","Fernando", "Isaac",
+                  "Manuel", "Juan Pablo", "Emmanuel","Emilio", "Vicente", "Eduardo","Juan", "Javier", "Luis", "Lucas", "Mateo" };
+        /*
+
+María
+María Fernanda
+Nicole
+Alejandra
+Paula
+Emily
+María José
+Fernanda
+Luciana
+Ana Sofía
+Melanie
+Regina
+Catalina
+Ashley
+Renata
+Agustina
+Abril
+Emma
+Emilia
+Jazmín
+        
+        */
+        
+    }//GEN-LAST:event_jButton5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -922,6 +972,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;

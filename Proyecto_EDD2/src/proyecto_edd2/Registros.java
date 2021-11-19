@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class Registros extends Campos {
     private ArrayList<Campos> listaCampo=new ArrayList();
+    //NAME,ID
+    //LUIS,1201
     private ArrayList<String> listaString=new ArrayList();
     public Registros() {
     }
