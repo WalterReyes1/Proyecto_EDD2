@@ -8,6 +8,7 @@ package proyecto_edd2;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.File;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -82,6 +83,7 @@ public class Main extends javax.swing.JFrame {
         jLabel_CrearCampo10 = new javax.swing.JLabel();
         Cb_editarCampo = new javax.swing.JComboBox<>();
         jSpinner2 = new javax.swing.JSpinner();
+        jLabel6 = new javax.swing.JLabel();
         jDialog_BorrarCampo = new javax.swing.JDialog();
         jPanel5 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -156,7 +158,7 @@ public class Main extends javax.swing.JFrame {
                 B_ModificarCampoActionPerformed(evt);
             }
         });
-        jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, -1, -1));
+        jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
 
         B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
         B_BorrarCampo.setText("Borrar Campo");
@@ -265,12 +267,17 @@ public class Main extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel_CrearCampo5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo5.setText("Editar campo");
+        jPanel4.add(jLabel_CrearCampo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 33, -1, -1));
 
         jLabel_CrearCampo6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo6.setText("Nombre del Campo");
+        jPanel4.add(jLabel_CrearCampo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 73, -1, -1));
 
         Nombre_Campo1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         Nombre_Campo1.addActionListener(new java.awt.event.ActionListener() {
@@ -278,25 +285,37 @@ public class Main extends javax.swing.JFrame {
                 Nombre_Campo1ActionPerformed(evt);
             }
         });
+        jPanel4.add(Nombre_Campo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 73, 120, -1));
 
         jLabel_CrearCampo7.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo7.setText("Tipo de Dato");
+        jPanel4.add(jLabel_CrearCampo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 107, -1, -1));
 
         cb_TD1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Char", "Int" }));
+        jPanel4.add(cb_TD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 110, 87, -1));
 
         jLabel_CrearCampo8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo8.setText("Numero de caracteres máximo");
+        jPanel4.add(jLabel_CrearCampo8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 148, -1, -1));
 
         jLabel_CrearCampo9.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo9.setText("¿Es llave primaria? ");
+        jPanel4.add(jLabel_CrearCampo9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 189, -1, -1));
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 102, 51));
+        jRadioButton2.setBackground(new java.awt.Color(51, 0, 51));
         buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Sí");
+        jPanel4.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 191, -1, -1));
 
-        No1.setBackground(new java.awt.Color(255, 102, 51));
+        No1.setBackground(new java.awt.Color(51, 0, 51));
         buttonGroup1.add(No1);
+        No1.setForeground(new java.awt.Color(255, 255, 255));
         No1.setText("No");
+        jPanel4.add(No1, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 191, -1, -1));
 
         jButton2.setText("Modificar Campo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -304,91 +323,20 @@ public class Main extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 286, -1, -1));
 
         jLabel_CrearCampo10.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel_CrearCampo10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_CrearCampo10.setText("Campo a Editar");
+        jPanel4.add(jLabel_CrearCampo10, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 53, -1, -1));
 
         Cb_editarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(Cb_editarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 81, 98, -1));
+        jPanel4.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 151, 54, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel_CrearCampo6)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(49, 49, 49)
-                                        .addComponent(jLabel_CrearCampo5))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
-                                        .addComponent(cb_TD1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Nombre_Campo1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLabel_CrearCampo7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_CrearCampo10)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(Cb_editarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(44, 44, 44))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel_CrearCampo9)
-                                .addGap(44, 44, 44)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(No1))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel_CrearCampo8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel_CrearCampo5)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel_CrearCampo6)
-                            .addComponent(Nombre_Campo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel_CrearCampo10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cb_editarCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_TD1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel_CrearCampo9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(No1))
-                .addGap(72, 72, 72)
-                .addComponent(jButton2)
-                .addGap(40, 40, 40))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 1, 560, 350));
 
         javax.swing.GroupLayout jDialog_EditarCamposLayout = new javax.swing.GroupLayout(jDialog_EditarCampos.getContentPane());
         jDialog_EditarCampos.getContentPane().setLayout(jDialog_EditarCamposLayout);
@@ -400,7 +348,7 @@ public class Main extends javax.swing.JFrame {
         );
         jDialog_EditarCamposLayout.setVerticalGroup(
             jDialog_EditarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 351, Short.MAX_VALUE)
             .addGroup(jDialog_EditarCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -412,6 +360,7 @@ public class Main extends javax.swing.JFrame {
         jPanel5.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, 143, 36));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Campo a Eliminar");
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
@@ -808,19 +757,21 @@ public class Main extends javax.swing.JFrame {
             for (int i = 0; i < r.getListaCampo().size(); i++) {
                 Campos c1 = r.getListaCampo().get(i);
                 String size1 = c1.getSize() + "";
-                cc1 += "|Nombre: " + c1.getNombre() + ", Type: " + c1.getData_type() + ", Size: " + size1 + ", Key: " + c1.isIsKey() + "|" + "\n";
+                cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
 
             }
             //"CAMPOS: 4 "+"\n"+
             //+"\n"+"AVAILIST HEAD: NULL "+"\n";
             String pal2 = "";
-            pal2 += "TOTAL CAMPOS: " + r.getListaCampo().size()
-                    + "\n" + cc1 + "\n" + "\n" + "AVAILIST HEAD: NULL " + "\n" + pal;
+            pal2 += r.getListaCampo().size()+"\n"+ cc1 +"Cantidad de Registros: "+r.getListaString().size()
+                    + " \n AVAILIST HEAD: NULL  "+"\n";
+            String pal3=pal2+pal2.length()+"\n"+"_ \n"+pal;
+            
              
             
             ap.setName(nameArchivo);
             System.out.println("NAME"+ap.getName());
-            ap.escribirArchivo(pal2,nameArchivo);
+            ap.escribirArchivo(pal3,nameArchivo);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -831,14 +782,14 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:}
         int cont1 = 1;
         System.out.println("hola");
-        String[] names = {"Sofía", "Camila", "Valentina",
+        String[] names = {"Sofia", "Camila", "Valentina",
             "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
             "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
-            "Mía", "Martina", "Lucía", "Samantha", "María", "Nicole", "Alejandra",
-            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastián", "Diego", "Nicolás",
-            "Samuel", "Alejandro", "Daniel", "Mateo", "Ángel", "Matías", "Gabriel",
-            "Tomás", "David", "Emiliano", "Andrés", "Joaquín", "Carlos", "Alexander", "Adrián",
-            "Lucas", "Benjamín", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín", "Fernando", "Isaac",
+            "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
+            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
+            "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
+            "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
+            "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
             "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
         //person name , person age,city ID and person ID
 
@@ -886,24 +837,24 @@ public class Main extends javax.swing.JFrame {
             //System.out.println("X1: "+x1);
 
             s1 = names[x1];//agarro nombres
-
-            lc.add(c1);
-            ls.add(s1);
-
-            //agregado primer campo
-            s2 = x2 + "";
-            lc.add(c2);
-            ls.add(s2);
-
-            //agregando segundo campo
-            s3 = x3 + "";
-            lc.add(c3);
-            ls.add(s3);
-
-            //agregado tercer campo
             s4 = x4 + "";
             lc.add(c4);
             ls.add(s4);
+
+            //agregado primer campo
+            s2 = x2 + "";
+            lc.add(c1);
+            ls.add(s1);
+
+            //agregando segundo campo
+            s3 = x3 + "";
+            lc.add(c2);
+            ls.add(s2);
+
+            //agregado tercer campo
+            
+            lc.add(c3);
+            ls.add(s3);
 
             //agregado cuarto campo
         }
@@ -931,27 +882,29 @@ public class Main extends javax.swing.JFrame {
 
             ap2.escribirArchivo("4","prueba1.txt");
 
-            String size1 = "" + c1.getSize();
-            String key1 = "" + c1.isIsKey();
-            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + key1 + ";";
+            String size4 = "" + c4.getSize();
+            String key4 = "" + c4.isIsKey();
+            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
             //System.out.println("KEY"+cc1);
             //ap.escribirArchivo(cc1, "prueba2.txt");
 
+            String size1 = "" + c1.getSize();
+            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
+            //ap.escribirArchivo(cc2, "prueba2.txt");
             String size2 = "" + c2.getSize();
             String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
-            //ap.escribirArchivo(cc2, "prueba2.txt");
-            String size3 = "" + c3.getSize();
-            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";";
             //ap.escribirArchivo(cc3, "prueba2.txt");
-            String size4 = "" + c4.getSize();
-            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + c4.isIsKey() + ";" + "\n"
+            String size3 = "" + c3.getSize();
+            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
                     + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
-            String fin = cc1 + "\n" + cc2 + "\n" + cc3 + "\n" + cc4;
+            String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
 
             //ap.escribirArchivo(cc4, "prueba2.txt");
             //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n" + "\n" + "\n" + pal;
-            ap2.escribirArchivo(fin2,"prueba1.txt");
+            
+            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" +"\n";
+            String fin3 = fin2+fin2.length()+"\n"+pal;
+            ap2.escribirArchivo(fin3,"prueba1.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1039,6 +992,21 @@ public class Main extends javax.swing.JFrame {
                 r.getListaCampo().add(c2);
                 r.getListaCampo().add(c3);
                 r.getListaCampo().add(c4);
+                ArrayList<String>lista_string = new ArrayList();
+                System.out.println("fuera");
+                try{
+                    System.out.println("adentro");
+                    RandomAccessFile file_a = new RandomAccessFile("prueba1.txt","rw");
+                    file_a.seek(158);
+                    String seek = file_a.readLine();
+                    System.out.println("Soy el seek: "+seek);
+                    //file_a.writeUTF("soy seek"+"\n");
+                    JOptionPane.showMessageDialog(null,"Funcionó");
+                }catch(Exception e){
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"c mamo");
+                }
+                System.out.println("salgo");
 
             } catch (Exception e) {
             }
@@ -1129,6 +1097,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;

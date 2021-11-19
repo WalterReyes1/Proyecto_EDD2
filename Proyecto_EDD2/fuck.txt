@@ -1,0 +1,9 @@
+2
+Nombre;String;12;false;
+ID;String;12;true;
+Cantidad de Registros: 4 
+ AVAILIST HEAD: NULL  
+94
+_ 
+Luis|12312|
+Walter|1312|
