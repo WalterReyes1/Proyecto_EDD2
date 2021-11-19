@@ -771,7 +771,10 @@ public class Main extends javax.swing.JFrame {
 
         try {
             nameArchivo = JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
-            ap.crearArchivo(nameArchivo + ".txt");
+            nameArchivo+=".txt";
+            ap.setName(nameArchivo);
+            System.out.println("NAME"+ap.getName());
+            ap.crearArchivo(nameArchivo);
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -813,14 +816,11 @@ public class Main extends javax.swing.JFrame {
             String pal2 = "";
             pal2 += "TOTAL CAMPOS: " + r.getListaCampo().size()
                     + "\n" + cc1 + "\n" + "\n" + "AVAILIST HEAD: NULL " + "\n" + pal;
-
-            try {
-                ap.escribirArchivo(pal2, nameArchivo);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            ap.escribirArchivo(pal2, nameArchivo);
+             
+            
+            ap.setName(nameArchivo);
+            System.out.println("NAME"+ap.getName());
+            ap.escribirArchivo(pal2,nameArchivo);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -929,7 +929,7 @@ public class Main extends javax.swing.JFrame {
             Archivo ap2 = new Archivo();
             ap2.crearArchivo("prueba1.txt");
 
-            ap2.escribirArchivo("4", "prueba1.txt");
+            ap2.escribirArchivo("4","prueba1.txt");
 
             String size1 = "" + c1.getSize();
             String key1 = "" + c1.isIsKey();
@@ -951,7 +951,7 @@ public class Main extends javax.swing.JFrame {
             //ap.escribirArchivo(cc4, "prueba2.txt");
             //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
             String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n" + "\n" + "\n" + pal;
-            ap2.escribirArchivo(fin2, "prueba1.txt");
+            ap2.escribirArchivo(fin2,"prueba1.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }

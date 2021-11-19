@@ -79,9 +79,9 @@ public class Archivo {
         }
 
     }
-    public void escribirArchivo(String word,String name) throws IOException {
+    public void escribirArchivo(String word,String n) throws IOException {
         try {
-            FileWriter myWriter = new FileWriter(name);
+            FileWriter myWriter = new FileWriter(n);
             myWriter.write(word);
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
