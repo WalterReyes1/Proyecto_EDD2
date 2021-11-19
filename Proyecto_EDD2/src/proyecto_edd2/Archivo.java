@@ -90,4 +90,7 @@ public class Archivo {
             e.printStackTrace();
         }
     }
+    public void close(String name){
+        
+    }
 }

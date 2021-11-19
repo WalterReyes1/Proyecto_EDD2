@@ -90,15 +90,8 @@ public class Main extends javax.swing.JFrame {
         B_NuevoArchivo = new javax.swing.JButton();
         B_AbrirArchivo = new javax.swing.JButton();
         B_GuardarArchivo = new javax.swing.JButton();
-        B_CerrarArchivo = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jd_registro = new javax.swing.JDialog();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jDialog_CrearRegistro = new javax.swing.JDialog();
         jPanel8 = new javax.swing.JPanel();
@@ -453,31 +446,31 @@ public class Main extends javax.swing.JFrame {
                 B_NuevoArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 176, 35));
+        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 176, 35));
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         B_AbrirArchivo.setText("Abrir archivo");
-        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
+        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 176, 35));
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_GuardarArchivo.setText("Guardar Archivo");
-        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 176, 35));
-
-        B_CerrarArchivo.setBackground(new java.awt.Color(255, 255, 255));
-        B_CerrarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_CerrarArchivo.setText("Cerrar Archivo");
-        jPanel6.add(B_CerrarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 176, 35));
+        B_GuardarArchivo.setText("Cerrar y Guardar Archivo");
+        B_GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_GuardarArchivoActionPerformed(evt);
+            }
+        });
+        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 50));
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton5.setText("Probar Archivo");
+        jButton5.setText("Archivos de Prueba");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 180, 40));
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 180, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -495,70 +488,6 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 394, Short.MAX_VALUE)
             .addGroup(jDialog_ArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel6.setText("Escriba Campo");
-
-        jButton4.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jButton4.setText("LLenar Campo");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTable2);
-
-        javax.swing.GroupLayout jd_registroLayout = new javax.swing.GroupLayout(jd_registro.getContentPane());
-        jd_registro.getContentPane().setLayout(jd_registroLayout);
-        jd_registroLayout.setHorizontalGroup(
-            jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_registroLayout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jd_registroLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        jd_registroLayout.setVerticalGroup(
-            jd_registroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_registroLayout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(jd_registroLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(329, 329, 329)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jFormattedTextField1.setText("jFormattedTextField1");
@@ -801,13 +730,6 @@ public class Main extends javax.swing.JFrame {
         jDialog_CrearRegistro.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        try {
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
         r.setListaCampo(Listac);
@@ -819,14 +741,15 @@ public class Main extends javax.swing.JFrame {
 
         }
         r.setListaString(ListaS);
-        JOptionPane.showMessageDialog(this, "GUARDADO");
+        JOptionPane.showMessageDialog(this, "CREADO");
 
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
 
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
 
         try {
-            ap.crearArchivo("filename.txt");
+            nameArchivo=JOptionPane.showInputDialog(this,"NOMBRE DE ARCHIVO A CREAR");
+            ap.crearArchivo(nameArchivo+".txt");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -856,14 +779,26 @@ public class Main extends javax.swing.JFrame {
                 }
                 cont1++;
             }
-
+            String cc1="";
+            for (int i = 0; i < r.getListaCampo().size(); i++) {
+                Campos c1=r.getListaCampo().get(i);
+                String size1=c1.getSize()+"";
+                cc1+="|Nombre: "+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+c1.isIsKey()+"|"+"\n";
+                
+            }
+            //"CAMPOS: 4 "+"\n"+
+            //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+            String pal2="";
+            pal2+="TOTAL CAMPOS: "+r.getListaCampo().size()+
+                    "\n"+cc1+"\n"+"\n"+"AVAILIST HEAD: NULL "+"\n"+pal;
+           
             try {
-                ap.escribirArchivo(pal,"filename.txt");
+                ap.escribirArchivo(pal2,nameArchivo);
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            ap.escribirArchivo(pal,"filename.txt");
+            ap.escribirArchivo(pal2,nameArchivo);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -882,7 +817,7 @@ public class Main extends javax.swing.JFrame {
             "Samuel", "Alejandro", "Daniel", "Mateo", "Ángel", "Matías", "Gabriel",
             "Tomás", "David", "Emiliano", "Andrés", "Joaquín", "Carlos", "Alexander", "Adrián",
             "Lucas", "Benjamín", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martín", "Fernando", "Isaac",
-            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler"};
+            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler","Obdulio"};
         //person name , person age,city ID and person ID
         
 
@@ -903,13 +838,13 @@ public class Main extends javax.swing.JFrame {
         lc.add(c2);
         lc.add(c3);
         lc.add(c4);
-        String s1 = "";
-        String s2 = "";
-        String s3 = "";
-        String s4 = "";
+        String s1 ;
+        String s2 ;
+        String s3 ;
+        String s4 ;
         re1.setListaCampo(lc);
         
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 10000; i++) {
             Random r1 = new Random();
             Random r2 = new Random();
             Random r3 = new Random();
@@ -923,7 +858,7 @@ public class Main extends javax.swing.JFrame {
             int x4 = 0;
             
 
-                x3 = r3.nextInt() + 80000000;//person ID 
+                x3 = r3.nextInt(80000000) ;//person ID 
                 if (!PersonalIDval.contains(x3)) {
                     PersonalIDval.add(x3);
                 }
@@ -931,10 +866,10 @@ public class Main extends javax.swing.JFrame {
             
 
   
-            x4 = r4.nextInt() + 90000000;//City ID
+            x4 = r4.nextInt(90000000) ;//City ID
             System.out.println("X1: "+x1);
             
-            s1 += names[x1];//agarro nombres
+            s1 = names[x1];//agarro nombres
             
             
             lc.add(c1);
@@ -942,21 +877,21 @@ public class Main extends javax.swing.JFrame {
             
             
             //agregado primer campo
-            s2 += x2;
+            s2 = x2+"";
             lc.add(c2);
             ls.add(s2);
             
           
             //agregando segundo campo
 
-            s3 += x3;
+            s3 = x3+"";
             lc.add(c3);
             ls.add(s3);
             
             
             //agregado tercer campo
 
-            s4 += x4;
+            s4 = x4+"";
             lc.add(c4);
             ls.add(s4);
             
@@ -966,9 +901,12 @@ public class Main extends javax.swing.JFrame {
         }
         
         re1.setListaString(ls);
-        System.out.println("SIZE S"+re1.getListaString().size());
+        //System.out.println("SIZE S"+re1.getListaString().size());
         String pal = "";
-        System.out.println("SIZE: "+re1.getListaCampo().size());
+        //System.out.println("SIZE: "+re1.getListaCampo().size());
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+            //System.out.println("STRING: "+re1.getListaString().get(i));
+        }
         
         for (int i = 0; i < re1.getListaString().size(); i++) {
             pal += re1.getListaString().get(i) + "|";
@@ -981,36 +919,48 @@ public class Main extends javax.swing.JFrame {
         
         try {
             Archivo ap2=new Archivo();
-            ap2.crearArchivo("prueba2.txt");
+            ap2.crearArchivo("prueba1.txt");
            
-            ap2.escribirArchivo("4","prueba2.txt");
+            ap2.escribirArchivo("4","prueba1.txt");
             
             String size1=""+c1.getSize();
             String key1=""+c1.isIsKey();
-            String cc1="|Nombre: "+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+key1;
+            String cc1="|Nombre:"+c1.getNombre()+", Type: "+c1.getData_type()+", Size: "+size1+", Key: "+key1+"|";
             //System.out.println("KEY"+cc1);
             //ap.escribirArchivo(cc1, "prueba2.txt");
             
             String size2=""+c2.getSize();
-            String cc2="|Nombre: "+c2.getNombre()+", Type: "+c2.getData_type()+", Size: "+size2+", Key: "+c2.isIsKey();
+            String cc2="|Nombre:"+c2.getNombre()+", Type: "+c2.getData_type()+", Size: "+size2+", Key: "+c2.isIsKey();
             //ap.escribirArchivo(cc2, "prueba2.txt");
             String size3=""+c3.getSize();
-            String cc3="|Nombre: "+c3.getNombre()+", Type: "+c3.getData_type()+", Size: "+size3+", Key: "+c3.isIsKey();
+            String cc3="|Nombre:"+c3.getNombre()+", Type: "+c3.getData_type()+", Size: "+size3+", Key: "+c3.isIsKey();
             //ap.escribirArchivo(cc3, "prueba2.txt");
             String size4=""+c4.getSize();
-            String cc4="|Nombre: "+c4.getNombre()+", Type: "+c4.getData_type()+", Size: "+size4+", Key: "+c4.isIsKey();
+            String cc4="|Nombre:"+c4.getNombre()+", Type: "+c4.getData_type()+", Size: "+size4+", Key: "+c4.isIsKey()+"\n"
+                    +"CANTIDAD DE REGISTROS: "+re1.getListaString().size()/4;
             String fin=cc1+"\n"+cc2+"\n"+cc3+"\n"+cc4;
-            System.out.println(fin);
+           
             //ap.escribirArchivo(cc4, "prueba2.txt");
             //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
             String fin2="4"+"\n"+fin+"\n"+"CABEZA DE AVAILIST:NULL"+"\n"+"\n"+"\n"+"\n"+pal;
-            ap2.escribirArchivo(fin2, "prueba2.txt");
+            ap2.escribirArchivo(fin2, "prueba1.txt");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
+        // TODO add your handling code here:
+        ap.setName("NULL.txt");
+        Registros r=new Registros();
+        Listac.clear();
+        ListaS.clear();
+        r.getListaCampo().clear();
+        r.getListaString().clear();
+        JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
+    }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1054,7 +1004,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_AbrirRegistro;
     private javax.swing.JButton B_BorrarCampo;
     private javax.swing.JButton B_Campo;
-    private javax.swing.JButton B_CerrarArchivo;
     private javax.swing.JButton B_CerrarRegistro;
     private javax.swing.JButton B_CrearCampo;
     private javax.swing.JButton B_Eliminar;
@@ -1082,7 +1031,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog_Archivo;
@@ -1097,7 +1045,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;
@@ -1116,18 +1063,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JDialog jd_registro;
     private javax.swing.JSpinner spinnerS;
     // End of variables declaration//GEN-END:variables
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
     Archivo ap = new Archivo();
+    String nameArchivo;
 }
