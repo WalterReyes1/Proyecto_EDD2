@@ -330,7 +330,11 @@ public class Main extends javax.swing.JFrame {
         jLabel_CrearCampo10.setText("Campo a Editar");
         jPanel4.add(jLabel_CrearCampo10, new org.netbeans.lib.awtextra.AbsoluteConstraints(391, 53, -1, -1));
 
-        Cb_editarCampo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        Cb_editarCampo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Cb_editarCampoItemStateChanged(evt);
+            }
+        });
         jPanel4.add(Cb_editarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 81, 98, -1));
         jPanel4.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 151, 54, -1));
 
@@ -644,7 +648,36 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_EliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Campos c = new Campos();
+        c= (Campos)Cb_editarCampo.getSelectedItem();
+        try {
+            String name = Nombre_Campo1.getText();
+            String tipo = "";
+            if (cb_TD1.getSelectedIndex() == 0) {
+                tipo = "String";
+            }
+            if (cb_TD1.getSelectedIndex() == 1) {
+                tipo = "Char";
+            }
+            if (cb_TD1.getSelectedIndex() == 2) {
+                tipo = "int";
+            }
+            int size = (Integer) jSpinner2.getValue();
+            boolean llave;
+            if (jRadioButton2.isSelected()) {
+                llave = true;
+            } else {
+                llave = false;
+            }
+            c.setNombre(name);
+            c.setData_type(tipo);
+            c.setSize(size);
+            c.setIsKey(llave);
+        }catch(Exception e){
+            
+        }
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
@@ -701,7 +734,8 @@ public class Main extends javax.swing.JFrame {
             modelo.addElement(c1);
             
             DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Cb_editarCampo.getModel();
-            //Cb_editarCampo.
+            Cb_editarCampo.setModel(modelo2);
+            modelo2.addElement(c1);
             
 
         } catch (Exception e) {
@@ -1024,6 +1058,14 @@ public class Main extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_B_AbrirArchivoActionPerformed
+
+    private void Cb_editarCampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Cb_editarCampoItemStateChanged
+        Campos c = new Campos();
+       c = (Campos)Cb_editarCampo.getSelectedItem();
+       Nombre_Campo1.setText(c.getNombre());
+       
+       
+    }//GEN-LAST:event_Cb_editarCampoItemStateChanged
 
     /**
      * @param args the command line arguments
