@@ -134,6 +134,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 260));
 
         B_CrearCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_CrearCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_CrearCampo.setText("Crear Campo");
         B_CrearCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +144,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 126, -1));
 
         B_ListarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_ListarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ListarCampo.setText("Listar Campos");
         B_ListarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +154,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 126, -1));
 
         B_ModificarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_ModificarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ModificarCampo.setText("Modificar Campo");
         B_ModificarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +164,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
 
         B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
+        B_BorrarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_BorrarCampo.setText("Borrar Campo");
         B_BorrarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +250,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+
+        spinnerS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         jPanel3.add(spinnerS, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
@@ -317,6 +323,8 @@ public class Main extends javax.swing.JFrame {
         No1.setText("No");
         jPanel4.add(No1, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 191, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Modificar Campo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,6 +344,8 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel4.add(Cb_editarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 81, 98, -1));
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         jPanel4.add(jSpinner2, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 151, 54, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
@@ -395,26 +405,29 @@ public class Main extends javax.swing.JFrame {
 
         B_NuevoArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_NuevoArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoArchivo.setText("Nuevo Archivo");
         B_NuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_NuevoArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 176, 35));
+        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 35));
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_AbrirArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirArchivo.setText("Abrir archivo");
         B_AbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_AbrirArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 176, 35));
+        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 35));
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_GuardarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarArchivo.setText("Cerrar y Guardar Archivo");
         B_GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,14 +436,16 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 50));
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton5.setBackground(new java.awt.Color(255, 255, 255));
+        jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Archivos de Prueba");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 180, 40));
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -457,6 +472,7 @@ public class Main extends javax.swing.JFrame {
 
         B_NuevoRegistro1.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoRegistro1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_NuevoRegistro1.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoRegistro1.setText("Nuevo Registro");
         B_NuevoRegistro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -467,11 +483,18 @@ public class Main extends javax.swing.JFrame {
 
         B_AbrirRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_AbrirRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirRegistro.setText("Abrir Registro");
+        B_AbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_AbrirRegistroActionPerformed(evt);
+            }
+        });
         jPanel8.add(B_AbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
 
         B_GuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_GuardarRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarRegistro.setText("Guardar Registro");
         B_GuardarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,7 +505,13 @@ public class Main extends javax.swing.JFrame {
 
         B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_CerrarRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_CerrarRegistro.setText("Cerrar Registro");
+        B_CerrarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_CerrarRegistroActionPerformed(evt);
+            }
+        });
         jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
@@ -521,6 +550,7 @@ public class Main extends javax.swing.JFrame {
 
         B_Campo.setBackground(new java.awt.Color(255, 255, 255));
         B_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Campo.setForeground(new java.awt.Color(0, 0, 0));
         B_Campo.setText("Campos");
         B_Campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -531,6 +561,7 @@ public class Main extends javax.swing.JFrame {
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Registro.setForeground(new java.awt.Color(0, 0, 0));
         B_Registro.setText("Archivo");
         B_Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,6 +572,7 @@ public class Main extends javax.swing.JFrame {
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Index.setForeground(new java.awt.Color(0, 0, 0));
         B_Index.setText("Index");
         B_Index.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,22 +583,25 @@ public class Main extends javax.swing.JFrame {
 
         B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Exportar.setForeground(new java.awt.Color(0, 0, 0));
         B_Exportar.setText("Exportar");
         B_Exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_ExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 370, 160, 50));
+        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 160, 50));
 
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Registro");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 290, 160, 50));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 50));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
@@ -594,33 +629,44 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_ListarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ListarCampoActionPerformed
-        eliminarTabla();
-        DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
-        for (Campos p : Listac) {
+        if(boolCampos){
+            eliminarTabla();
+            DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+            for (Campos p : Listac) {
 
-            Object[] newRow = {
-                p.getNombre(),
-                p.getData_type(),
-                p.getSize(),
-                p.isIsKey(),};
-            modelo2.addRow(newRow);
+                Object[] newRow = {
+                    p.getNombre(),
+                    p.getData_type(),
+                    p.getSize(),
+                    p.isIsKey(),};
+                modelo2.addRow(newRow);
+            }
+
+            JOptionPane.showMessageDialog(null, "Listados");
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para poder listar");
         }
-
-        JOptionPane.showMessageDialog(null, "Listados");
     }//GEN-LAST:event_B_ListarCampoActionPerformed
 
     private void B_ModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ModificarCampoActionPerformed
-        jDialog_EditarCampos.pack();
-        jDialog_EditarCampos.setLocationRelativeTo(this);
-        jDialog_EditarCampos.setVisible(true);
+        if(boolCampos){
+            jDialog_EditarCampos.pack();
+            jDialog_EditarCampos.setLocationRelativeTo(this);
+            jDialog_EditarCampos.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para modificar");
+        }
     }//GEN-LAST:event_B_ModificarCampoActionPerformed
 
     private void B_BorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarCampoActionPerformed
+        if(boolCampos){
         jDialog_BorrarCampo.pack();
         jDialog_BorrarCampo.setLocationRelativeTo(this);
         jDialog_BorrarCampo.setVisible(true);
-
-
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para eliminar");
+        }
+        
     }//GEN-LAST:event_B_BorrarCampoActionPerformed
 
     private void Nombre_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_CampoActionPerformed
@@ -677,7 +723,11 @@ public class Main extends javax.swing.JFrame {
             
         }
         
-        
+        //vaciar y cerrar
+        Nombre_Campo1.setText("");
+        cb_TD1.setSelectedIndex(0);
+        Cb_editarCampo.setSelectedIndex(0);
+        jDialog_EditarCampos.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
@@ -695,9 +745,16 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_RegistroActionPerformed
 
     private void B_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CampoActionPerformed
-        jDialog_Campos.pack();
-        jDialog_Campos.setLocationRelativeTo(this);
-        jDialog_Campos.setVisible(true);
+        
+        if(boolArchivo && boolEntroRegistro){
+            jDialog_Campos.pack();
+            jDialog_Campos.setLocationRelativeTo(this);
+            jDialog_Campos.setVisible(true);
+        }else if(boolArchivo==false){
+            JOptionPane.showMessageDialog(this, "Debe crear un archivo antes de ingresar a la opcion de campos");
+        }else{
+            JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
+        }
     }//GEN-LAST:event_B_CampoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -737,17 +794,34 @@ public class Main extends javax.swing.JFrame {
             Cb_editarCampo.setModel(modelo2);
             modelo2.addElement(c1);
             
+            boolCampos=true;
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al crear");
         }
+        //vaciar y cerrar
+        Nombre_Campo.setText("");
+        cb_TD.setSelectedIndex(0);
+        spinnerS.setValue(1);
+        jDialog_CrearCampos.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        jDialog_CrearRegistro.pack();
-        jDialog_CrearRegistro.setLocationRelativeTo(this);
-        jDialog_CrearRegistro.setVisible(true);
+        if(boolArchivo==true && boolCampos==true){
+            int resp = JOptionPane.showConfirmDialog(this, "¿Esta seguro que ya no quiere agregar/modificar/eliminar algun campo?");
+            if(resp==0){
+                jDialog_CrearRegistro.pack();
+                jDialog_CrearRegistro.setLocationRelativeTo(this);
+                jDialog_CrearRegistro.setVisible(true);
+                boolEntroRegistro=false;
+            }else{
+                //no puede ingresar al menu de registro
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe crear un archivo y por lo menos un campo para ingresar a la opcion de registro");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
@@ -762,6 +836,7 @@ public class Main extends javax.swing.JFrame {
         }
         r.setListaString(ListaS);
         JOptionPane.showMessageDialog(this, "CREADO");
+        boolRegistro = true;
 
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
 
@@ -773,60 +848,70 @@ public class Main extends javax.swing.JFrame {
             ap.setName(nameArchivo);
             System.out.println("NAME" + ap.getName());
             ap.crearArchivo(nameArchivo);
+            boolArchivo=true;
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 
         }
+        jDialog_Archivo.setVisible(false);
+        boolGuardado = false;
+        
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
-        int cont1 = 1;
-        Registros r = new Registros();
-        r.setListaCampo(Listac);
-        r.setListaString(ListaS);
-        String pal = "";
-        System.out.println(r.getListaCampo().size());
-        System.out.println(r.getListaString().size());
-        try {
+        if(boolRegistro){
+            //ya hay registros creados
+            int cont1 = 1;
+            Registros r = new Registros();
+            r.setListaCampo(Listac);
+            r.setListaString(ListaS);
+            String pal = "";
+            System.out.println(r.getListaCampo().size());
+            System.out.println(r.getListaString().size());
+            try {
 
-            for (int i = 0; i < r.getListaString().size(); i++) {
+                for (int i = 0; i < r.getListaString().size(); i++) {
 
-                System.out.println(r.getListaString().size());
+                    System.out.println(r.getListaString().size());
 
-                pal += r.getListaString().get(i) + "|";
-                if (cont1 == r.getListaCampo().size()) {
-                    pal += "\n";
-                    cont1 = 0;
+                    pal += r.getListaString().get(i) + "|";
+                    if (cont1 == r.getListaCampo().size()) {
+                        pal += "\n";
+                        cont1 = 0;
+                    }
+                    cont1++;
                 }
-                cont1++;
-            }
-            String cc1 = "";
-            for (int i = 0; i < r.getListaCampo().size(); i++) {
-                Campos c1 = r.getListaCampo().get(i);
-                String size1 = c1.getSize() + "";
-                cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
+                String cc1 = "";
+                for (int i = 0; i < r.getListaCampo().size(); i++) {
+                    Campos c1 = r.getListaCampo().get(i);
+                    String size1 = c1.getSize() + "";
+                    cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
 
-            }
-            //"CAMPOS: 4 "+"\n"+
-            //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-            String pal2 = "";
-            pal2 += r.getListaCampo().size() + "\n" + cc1 + "Cantidad de Registros: " + r.getListaString().size()
-                    + " \n AVAILIST HEAD: NULL  " + "\n";
-            String pal3 = pal2 + pal2.length() + "\n" + "_ \n" + pal;
+                }
+                //"CAMPOS: 4 "+"\n"+
+                //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+                String pal2 = "";
+                pal2 += r.getListaCampo().size() + "\n" + cc1 + "Cantidad de Registros: " + r.getListaString().size()
+                        + " \n AVAILIST HEAD: NULL  " + "\n";
+                String pal3 = pal2 + pal2.length() + "\n" + "_ \n" + pal;
 
-            ap.setName(nameArchivo);
-            System.out.println("NAME" + ap.getName());
-            ap.escribirArchivo(pal3, nameArchivo);
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                ap.setName(nameArchivo);
+                System.out.println("NAME" + ap.getName());
+                ap.escribirArchivo(pal3, nameArchivo);
+            } catch (IOException ex) {
+             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "GUARDADO");
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
         }
-        JOptionPane.showMessageDialog(this, "GUARDADO");
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
+        if(boolGuardado){
         int cont1 = 1;
         System.out.println("hola");
         String[] names = {"Sofia", "Camila", "Valentina",
@@ -953,8 +1038,9 @@ public class Main extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
+        }
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -966,9 +1052,11 @@ public class Main extends javax.swing.JFrame {
         r.getListaCampo().clear();
         r.getListaString().clear();
         JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
+        boolGuardado = true;
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
+        if(boolGuardado){
         JFileChooser fileChooser = new JFileChooser("./");
 
         int seleccion = fileChooser.showOpenDialog(this);
@@ -1057,6 +1145,9 @@ public class Main extends javax.swing.JFrame {
             }
 
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno nuevo");
+        }
     }//GEN-LAST:event_B_AbrirArchivoActionPerformed
 
     private void Cb_editarCampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Cb_editarCampoItemStateChanged
@@ -1066,6 +1157,27 @@ public class Main extends javax.swing.JFrame {
        
        
     }//GEN-LAST:event_Cb_editarCampoItemStateChanged
+
+    private void B_AbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirRegistroActionPerformed
+        // TODO add your handling code here:
+        if(boolRegistro && boolGuardarRegistro){
+            //ya hay registros creados
+        }else if(boolRegistro==false){
+            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
+        }else if(boolGuardarRegistro==false){
+            JOptionPane.showMessageDialog(this, "Debe guardar el registro antes de abrirlo");
+        }
+
+    }//GEN-LAST:event_B_AbrirRegistroActionPerformed
+
+    private void B_CerrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CerrarRegistroActionPerformed
+        // TODO add your handling code here:
+        if(boolRegistro){
+            //ya hay registros creados
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
+        }
+    }//GEN-LAST:event_B_CerrarRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1192,4 +1304,12 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
+    
+    //booleans de validaciones
+    boolean boolArchivo = false;
+    boolean boolCampos = false;
+    boolean boolRegistro = false;
+    boolean boolGuardado = false;
+    boolean boolGuardarRegistro = false;
+    boolean boolEntroRegistro = true;
 }
