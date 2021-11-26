@@ -1380,9 +1380,46 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ArbolB tree=new ArbolB(6);
-        LLave l=new LLave(21212,1);
-       tree.Insert(tree.getRaiz(), l);
+        ArbolB2 tree=new ArbolB2(6);
+        LLave l1=new LLave(21212,1);
+        LLave l2=new LLave(21212,2);
+        LLave l3=new LLave(21212,3);
+        LLave l4=new LLave(21212,4);
+        LLave l5=new LLave(21212,5);
+        
+        //LLave l6=new LLave(21212,6);
+        //LLave l7=new LLave(21212,7);
+        //LLave l8=new LLave(21212,8);
+        //LLave l9=new LLave(21212,9);
+        //LLave l10=new LLave(21212,10);
+        //LLave l11=new LLave(21212,11);
+        //LLave l12=new LLave(21212,12);
+        tree.raiz.llaves[0]=l1;
+        tree.raiz.llaves[1]=l2;
+        tree.raiz.llaves[2]=l3;
+        tree.raiz.llaves[3]=l4;
+       tree.raiz.llaves[4]=l5;
+       ///tree.raiz.llaves[6]=l7;
+        //tree.raiz.llaves[7]=l8;
+        //tree.raiz.llaves[8]=l9;
+        //tree.raiz.llaves[9]=l10;
+        //tree.raiz.llaves[10]=l11;
+        
+        
+        tree.Insert(l1);
+        tree.Insert(l2);
+        tree.Insert(l3);
+        tree.Insert(l4);
+        tree.Insert(l5);
+        //tree.Insert(l6);
+        //tree.Insert(l7);
+        //tree.Insert(l8);
+        ///tree.Insert(l9);
+        ///tree.Insert(l10);
+        ///tree.Insert(l11);
+        ///tree.Insert(l12);
+        tree.Show();
+        
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
