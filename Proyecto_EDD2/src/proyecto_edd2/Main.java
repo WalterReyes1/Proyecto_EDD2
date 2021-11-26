@@ -1380,15 +1380,9 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ArbolB tree=new ArbolB();
-        tree.create(6);
-        Nodo n1=new Nodo();
-        n1.setCant_llaves(1);
-        Nodo n2=new Nodo();
-        n2.setCant_llaves(1);
-        
-     
-        tree.Print(tree.raiz);
+        ArbolB tree=new ArbolB(6);
+        LLave l=new LLave(21212,1);
+       tree.Insert(tree.getRaiz(), l);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

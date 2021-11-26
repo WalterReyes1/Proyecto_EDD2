@@ -20,6 +20,14 @@ public class ArbolB {
 
     public ArbolB() {
     }
+    public ArbolB(int T){
+        this.Grado=T;
+        raiz=new Nodo(T);
+        raiz.setCant_llaves(0);
+        raiz.esHoja=true;
+        System.out.println("CREO ARBOL");
+        
+    }
 
     public Nodo getRaiz() {
         return raiz;
@@ -36,29 +44,22 @@ public class ArbolB {
     public void setGrado(int Grado) {
         this.Grado = Grado;
     }
-    public void create(int T){
-        Nodo x=new Nodo();
-        x.setEsHoja(true);
-        x.setCant_llaves(0);
-        raiz=x;
-        System.out.println("CREO PERF");
- 
-    }
+   
     // Search key
-    private LLave Search(Nodo x, int key) {
+    private LLave Search(Nodo x, LLave l1) {
         int i=1;
         
-        while(i<=x.getCant_llaves()&&key>x.llaves[i].getLlave()){
+        while(i<=x.getCant_llaves()&&l1.getLlave()>x.llaves[i].getLlave()){
             i=i+1;
         }
-        if(i<=x.getCant_llaves()&&key==x.getLlaves()[i].getLlave()){
+        if(i<=x.getCant_llaves()&&l1.getLlave()==x.getLlaves()[i].getLlave()){
             
             return(x.getLlaves()[i]);
         }
         if(x.isEsHoja()){
             return null;
         }else{
-           return Search(x.getHijos()[i],key); 
+           return Search(x.getHijos()[i],l1); 
             
         }
     }
@@ -67,119 +68,84 @@ public class ArbolB {
         z.esHoja=h.esHoja;
         z.setCant_llaves((Grado-1)/2);
         for (int j = 1; j < Grado-1; j++) {
-            z.getLlaves()[j]=h.getLlaves()[j+Grado];
+            z.llaves[j].llave=h.llaves[j+Grado].llave;
         }
         if(h.isEsHoja()==false){
             for (int j = 1; j < Grado; j++) {
-                z.getHijos()[j]=h.getHijos()[j+Grado];
+                z.hijos[j]=h.hijos[j+Grado];
             }
         }
         
         h.setCant_llaves(Grado-1);
         
-        for (int j = x.getCant_llaves()+1; j > i+1; j--) {
-            x.getHijos()[j+1]=x.getHijos()[j]; 
+        for (int j = x.getCant_llaves()+1; j >= i+1; j--) {
+            //x.getHijos()[j+1]=x.getHijos()[j]; 
+            x.hijos[j+1]=x.hijos[j];
         }
-        x.getHijos()[i+1]=z;
-        for (int j = x.getCant_llaves(); j > i; j--) {
-            x.getHijos()[j+1]=x.getHijos()[j]; 
+        x.hijos[i+1]=z;
+        for (int j = x.getCant_llaves(); j >= i; j--) {
+            x.llaves[j+1].llave=x.llaves[j].llave; 
         }
-        x.getLlaves()[i]=h.getLlaves()[Grado];
-        x.setCant_llaves(z.getCant_llaves()+1);
+        x.llaves[i].llave=h.llaves[Grado].llave;
+        x.cant_llaves=x.cant_llaves+1;
+        System.out.println("SPLIT SUCCESFUL");
     }
-    /*
-    public void Insert(Nodo T,int k){
-        System.out.println("ESTOY EN INSERT 1");
-        Nodo r=raiz;
-        if(r.getCant_llaves()==(2*Grado)-1){
-            Nodo s=new Nodo();
-            raiz=s;
-            s.setEsHoja(false);
-            s.setCant_llaves(0);
-            s.setHijos(r.getHijos());
-            Split(s,1,r);
-            //full(s,k)
-            //else(r,k)
-            Insert2(s,k);
-        }else{
-            Insert2(r,k);
-        }
-        System.out.println("PERFECTO INGRESO");
-    }  
-    public void Insert2(Nodo x,int k){
+   
+  public void Insert(Nodo T, LLave l1) {
+      System.out.println("Adentro Insert 1");
+    Nodo r = T;
+    if (r.getCant_llaves() == 2 * Grado- 1) {
+      Nodo s = new Nodo();
+      raiz = s;
+      s.esHoja = false;
+      s.cant_llaves = 0;
+      s.hijos[1] = r;
+      Split(s, 1, r);
+      insertValue(s, l1);
+    } else {
+      insertValue(r, l1);
+    }
+    System.out.println("Afuera Insert 1");
+  }
+
+  // Insert the node
+  
+  public void insertValue(Nodo x, LLave l1) {
         System.out.println("ESTOY EN INSERT 2");
         int i=x.getCant_llaves();
+        System.out.println("I: "+i);
+        System.out.println("LLAVE X: "+x.llaves[i].getLlave());
         if(x.isEsHoja()){
-            while(i>=1&&k<x.getLlaves()[i].getLlave()){
-                //x.getLlaves()[i+1]=x.getLlaves()[i];
-                x.llaves[i+1].llave=x.llaves[i].llave;//me jode y no estoy seguro
+            System.out.println("LLAVE recibida "+l1.getLlave());
+            //LLave l2=x.llaves[i];
+            //System.out.println("LLAVE x "+l2.getLlave());
+            while(i>=1&&l1.getLlave()<x.getLlaves()[i].getLlave()){
+                
+                x.llaves[i + 1].llave = x.llaves[i].llave;
                 i=i-1;
             }
-            x.llaves[i+1].llave=k;////me jode  no estoy seguro
+           // x.llaves[i+1].llave=k;////me jode  no estoy seguro
+            System.out.println("LLAVES: "+x.getLlaves().length);
+            System.out.println("LLAVE X: "+x.llaves[i+1].getLlave());
+            x.llaves[i + 1].setLlave(l1.getLlave());
             x.setCant_llaves(i+1);
            //
         }else {
-            while(i>=1&&k<x.llaves[i].getLlave()){
+            while(i>=1&&l1.getLlave()<x.llaves[i].getLlave()){
                 i=i-1;
                 
             }
             i=i+1;
             if(x.hijos[i].cant_llaves==(2*Grado)-1){
                 Split(x,i,x.hijos[i]);
-                if(k>x.llaves[i].getLlave()){
+                if(l1.getLlave()>x.llaves[i].getLlave()){
                     i=i+1;
                 }
             }
-            Insert2(x.hijos[i],k);
+            insertValue(x.hijos[i],l1);
         }
-        System.out.println("PERFECTO INGRESO");
-        
-        
-    }*/
-    // Inserting a value
-    /*
-  public void Insert(final int key) {
-    Nodo r = raiz;
-    if (r.getCant_llaves() == 2 * Grado- 1) {
-      Nodo s = new Nodo();
-      raiz = s;
-      s.esHoja = false;
-      s.cant_llaves = 0;
-      s.hijos[0] = r;
-      Split(s, 0, r);
-      insertValue(s, key);
-    } else {
-      insertValue(r, key);
-    }
+        System.out.println("PERFECTO INGRESO 2");
   }
-
-  // Insert the node
-  final private void insertValue(Nodo x, int k) {
-
-    if (x.esHoja) {
-      int i = 0;
-      for (i = x.cant_llaves - 1; i >= 0 && k < x.llaves[i].llave; i--) {
-        x.llaves[i + 1].llave = x.llaves[i].llave;//esto tambien
-      }
-      x.llaves[i + 1].llave = k;//esto me falla a mi
-      x.cant_llaves= x.cant_llaves+ 1;
-    } else {
-      int i = 0;
-      for (i = x.cant_llaves - 1; i >= 0 && k < x.llaves[i].llave; i--) {
-      }
-      ;
-      i++;
-      Nodo tmp = x.hijos[i];
-      if (tmp.cant_llaves == 2 * Grado - 1) {
-        Split(x, i, tmp);
-        if (k > x.llaves[i].llave) {
-          i++;
-        }
-      }
-      insertValue(x.hijos[i], k);
-    }
-
-  }*/
     //no estoy seguro ni pija 
     public void Print(Nodo x) {
     assert (x == null);
@@ -193,5 +159,61 @@ public class ArbolB {
     }
   
   }
+    
+     /*
+    public void Insert(Nodo T,LLave l1){
+        System.out.println("ESTOY EN INSERT 1");
+        Nodo r=T;
+        if(r.getCant_llaves()==(2*Grado)-1){
+            Nodo s=new Nodo();
+            raiz=s;
+            s.setEsHoja(false);
+            s.setCant_llaves(0);
+            s.getHijos()[1]=r;
+            Split(s,1,r);
+            //full(s,k)
+            //else(r,k)
+            Insert2(s,l1);
+        }else{
+            Insert2(r,l1);
+        }
+        System.out.println("PERFECTO INGRESO 1");
+    }  
+    public void Insert2(Nodo x,LLave l1){
+        System.out.println("ESTOY EN INSERT 2");
+        int i=x.getCant_llaves();
+        if(x.isEsHoja()){
+            while(i>=1&&l1.getLlave()<x.getLlaves()[i].getLlave()){
+                //x.getLlaves()[i+1]=x.getLlaves()[i];
+                //x.llaves[i+1].llave=x.llaves[i].llave;//me jode y no estoy seguro
+                x.llaves[i + 1].llave = x.llaves[i].llave;
+                i=i-1;
+            }
+           // x.llaves[i+1].llave=k;////me jode  no estoy seguro
+            System.out.println("LLAVES: "+x.getLlaves().length);
+            x.llaves[i + 1].setLlave(l1.getLlave());
+            x.setCant_llaves(i+1);
+           //
+        }else {
+            while(i>=1&&l1.getLlave()<x.llaves[i].getLlave()){
+                i=i-1;
+                
+            }
+            i=i+1;
+            if(x.hijos[i].cant_llaves==(2*Grado)-1){
+                Split(x,i,x.hijos[i]);
+                if(l1.getLlave()>x.llaves[i].getLlave()){
+                    i=i+1;
+                }
+            }
+            Insert2(x.hijos[i],l1);
+        }
+        System.out.println("PERFECTO INGRESO 2");
+        
+        
+    }
+    */
+    // Inserting a value
+   
     
 }

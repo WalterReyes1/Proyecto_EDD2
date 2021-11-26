@@ -22,6 +22,8 @@ public class Nodo {
         this.llaves=new LLave[(2*g)-1];
         this.esHoja=true;
         this.hijos=new Nodo[2*g];
+        System.out.println("CREO NODO ");
+        
     }
     /*
     public BTree(int t) {
