@@ -6,7 +6,9 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.FileChooser;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -48,6 +51,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        GuardarCampos = new javax.swing.JButton();
         B_CrearCampo = new javax.swing.JButton();
         B_ListarCampo = new javax.swing.JButton();
         B_ModificarCampo = new javax.swing.JButton();
@@ -133,8 +137,15 @@ public class Main extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 46, 452, 260));
 
+        GuardarCampos.setText("Guardar Campos");
+        GuardarCampos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarCamposActionPerformed(evt);
+            }
+        });
+        jPanel2.add(GuardarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 150, 50));
+
         B_CrearCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_CrearCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_CrearCampo.setText("Crear Campo");
         B_CrearCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +155,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_CrearCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 46, 126, -1));
 
         B_ListarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_ListarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ListarCampo.setText("Listar Campos");
         B_ListarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,7 +164,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 126, -1));
 
         B_ModificarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_ModificarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_ModificarCampo.setText("Modificar Campo");
         B_ModificarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,7 +173,6 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
 
         B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
-        B_BorrarCampo.setForeground(new java.awt.Color(0, 0, 0));
         B_BorrarCampo.setText("Borrar Campo");
         B_BorrarCampo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,6 +226,11 @@ public class Main extends javax.swing.JFrame {
         jPanel3.add(jLabel_CrearCampo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 110, -1, -1));
 
         cb_TD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Char", "Int" }));
+        cb_TD.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_TDItemStateChanged(evt);
+            }
+        });
         jPanel3.add(cb_TD, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 109, 120, -1));
 
         jLabel_CrearCampo3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -324,7 +337,6 @@ public class Main extends javax.swing.JFrame {
         jPanel4.add(No1, new org.netbeans.lib.awtextra.AbsoluteConstraints(259, 191, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Modificar Campo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,7 +417,6 @@ public class Main extends javax.swing.JFrame {
 
         B_NuevoArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_NuevoArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoArchivo.setText("Nuevo Archivo");
         B_NuevoArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -416,7 +427,6 @@ public class Main extends javax.swing.JFrame {
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_AbrirArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirArchivo.setText("Abrir archivo");
         B_AbrirArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,7 +437,6 @@ public class Main extends javax.swing.JFrame {
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_GuardarArchivo.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarArchivo.setText("Cerrar y Guardar Archivo");
         B_GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,7 +447,6 @@ public class Main extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(0, 0, 0));
         jButton5.setText("Archivos de Prueba");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -472,7 +480,6 @@ public class Main extends javax.swing.JFrame {
 
         B_NuevoRegistro1.setBackground(new java.awt.Color(255, 255, 255));
         B_NuevoRegistro1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_NuevoRegistro1.setForeground(new java.awt.Color(0, 0, 0));
         B_NuevoRegistro1.setText("Nuevo Registro");
         B_NuevoRegistro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -483,7 +490,6 @@ public class Main extends javax.swing.JFrame {
 
         B_AbrirRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_AbrirRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_AbrirRegistro.setText("Abrir Registro");
         B_AbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -494,7 +500,6 @@ public class Main extends javax.swing.JFrame {
 
         B_GuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_GuardarRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_GuardarRegistro.setText("Guardar Registro");
         B_GuardarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -505,7 +510,6 @@ public class Main extends javax.swing.JFrame {
 
         B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_CerrarRegistro.setForeground(new java.awt.Color(0, 0, 0));
         B_CerrarRegistro.setText("Cerrar Registro");
         B_CerrarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -550,7 +554,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Campo.setBackground(new java.awt.Color(255, 255, 255));
         B_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Campo.setForeground(new java.awt.Color(0, 0, 0));
         B_Campo.setText("Campos");
         B_Campo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -561,7 +564,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Registro.setForeground(new java.awt.Color(0, 0, 0));
         B_Registro.setText("Archivo");
         B_Registro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,7 +574,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Index.setForeground(new java.awt.Color(0, 0, 0));
         B_Index.setText("Index");
         B_Index.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -583,7 +584,6 @@ public class Main extends javax.swing.JFrame {
 
         B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Exportar.setForeground(new java.awt.Color(0, 0, 0));
         B_Exportar.setText("Exportar");
         B_Exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -594,7 +594,6 @@ public class Main extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 0, 0));
         jButton3.setText("Registro");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -629,44 +628,28 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_ListarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ListarCampoActionPerformed
-        if(boolCampos){
-            eliminarTabla();
-            DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
-            for (Campos p : Listac) {
 
-                Object[] newRow = {
-                    p.getNombre(),
-                    p.getData_type(),
-                    p.getSize(),
-                    p.isIsKey(),};
-                modelo2.addRow(newRow);
-            }
-
-            JOptionPane.showMessageDialog(null, "Listados");
-        }else{
-            JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para poder listar");
-        }
     }//GEN-LAST:event_B_ListarCampoActionPerformed
 
     private void B_ModificarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ModificarCampoActionPerformed
-        if(boolCampos){
+        if (boolCampos) {
             jDialog_EditarCampos.pack();
             jDialog_EditarCampos.setLocationRelativeTo(this);
             jDialog_EditarCampos.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para modificar");
         }
     }//GEN-LAST:event_B_ModificarCampoActionPerformed
 
     private void B_BorrarCampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_BorrarCampoActionPerformed
-        if(boolCampos){
-        jDialog_BorrarCampo.pack();
-        jDialog_BorrarCampo.setLocationRelativeTo(this);
-        jDialog_BorrarCampo.setVisible(true);
-        }else{
+        if (boolCampos) {
+            jDialog_BorrarCampo.pack();
+            jDialog_BorrarCampo.setLocationRelativeTo(this);
+            jDialog_BorrarCampo.setVisible(true);
+        } else {
             JOptionPane.showMessageDialog(this, "Debe crear al menos un campo para eliminar");
         }
-        
+
     }//GEN-LAST:event_B_BorrarCampoActionPerformed
 
     private void Nombre_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Nombre_CampoActionPerformed
@@ -690,44 +673,108 @@ public class Main extends javax.swing.JFrame {
         c = (Campos) cb_borrarc.getSelectedItem();
         r.getListaCampo().remove(c);
         cb_borrarc.removeItem(c);
+        //actualizar table
+        if (boolCampos) {
+            eliminarTabla();
+            DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+            for (Campos p : Listac) {
 
+                Object[] newRow = {
+                    p.getNombre(),
+                    p.getData_type(),
+                    p.getSize(),
+                    p.isIsKey(),};
+                modelo2.addRow(newRow);
+            }
+
+        } else {
+
+        }
     }//GEN-LAST:event_B_EliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Campos c = new Campos();
-        c= (Campos)Cb_editarCampo.getSelectedItem();
-        try {
-            String name = Nombre_Campo1.getText();
-            String tipo = "";
-            if (cb_TD1.getSelectedIndex() == 0) {
-                tipo = "String";
+       Campos c = new Campos();
+        c = (Campos) Cb_editarCampo.getSelectedItem();
+        boolean llave1 = false;
+        for (int i = 0; i < Listac.size(); i++) {
+            if (Listac.get(i).isIsKey()&& jRadioButton2.isSelected()) {
+                llave1 = true;
             }
-            if (cb_TD1.getSelectedIndex() == 1) {
-                tipo = "Char";
-            }
-            if (cb_TD1.getSelectedIndex() == 2) {
-                tipo = "int";
-            }
-            int size = (Integer) jSpinner2.getValue();
-            boolean llave;
-            if (jRadioButton2.isSelected()) {
-                llave = true;
-            } else {
-                llave = false;
-            }
-            c.setNombre(name);
-            c.setData_type(tipo);
-            c.setSize(size);
-            c.setIsKey(llave);
-        }catch(Exception e){
             
+            if (Listac.get(i).isIsKey()&& No1.isSelected()) {
+                llave1 = false;
+            }
         }
+        if(llave1){
+            JOptionPane.showMessageDialog(null,"Ya existe una llave primaria");
+        }
+        while (llave1 == false) {
+            int size = (Integer) spinnerS.getValue();
+            try {
+                String name = Nombre_Campo1.getText();
+                String tipo = "";
+                if (cb_TD1.getSelectedIndex() == 0) {
+                    tipo = "String";
+                }
+                if (cb_TD1.getSelectedIndex() == 1) {
+                    tipo = "Char";
+                    size=1;
+                }
+                if (cb_TD1.getSelectedIndex() == 2) {
+                    tipo = "int";
+                    size = 32;
+                }
+
+                boolean llave;
+                if (jRadioButton2.isSelected()) {
+                    llave = true;
+                } else {
+                    llave = false;
+                }
+                c.setNombre(name);
+                c.setData_type(tipo);
+                c.setSize(size);
+                c.setIsKey(llave);
+                
+               
+
+                JOptionPane.showMessageDialog(this, "editado Excitosamente");
+                System.out.println(c.toString());
+
+               
+
+                boolCampos = true;
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al editar");
+            }
+            //vaciar y cerrar
+            Nombre_Campo.setText("");
+            cb_TD.setSelectedIndex(0);
+            spinnerS.setValue(1);
+            jDialog_CrearCampos.setVisible(false);
+
+            //actualizar table
+            if (boolCampos) {
+                eliminarTabla();
+                DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+                for (Campos p : Listac) {
+
+                    Object[] newRow = {
+                        p.getNombre(),
+                        p.getData_type(),
+                        p.getSize(),
+                        p.isIsKey(),};
+                    modelo2.addRow(newRow);
+                }
+
+            } else {
+
+            }
+            llave1=true;
+        }
+        llave1=false;
         
-        //vaciar y cerrar
-        Nombre_Campo1.setText("");
-        cb_TD1.setSelectedIndex(0);
-        Cb_editarCampo.setSelectedIndex(0);
-        jDialog_EditarCampos.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
@@ -745,81 +792,137 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_RegistroActionPerformed
 
     private void B_CampoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CampoActionPerformed
-        
-        if(boolArchivo && boolEntroRegistro){
+
+        if (boolArchivo && boolEntroRegistro) {
             jDialog_Campos.pack();
             jDialog_Campos.setLocationRelativeTo(this);
             jDialog_Campos.setVisible(true);
-        }else if(boolArchivo==false){
+        } else if (boolArchivo == false) {
             JOptionPane.showMessageDialog(this, "Debe crear un archivo antes de ingresar a la opcion de campos");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
+        }
+
+        if (boolCampos) {
+            eliminarTabla();
+            DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+            for (Campos p : Listac) {
+
+                Object[] newRow = {
+                    p.getNombre(),
+                    p.getData_type(),
+                    p.getSize(),
+                    p.isIsKey(),};
+                modelo2.addRow(newRow);
+            }
+
+        } else {
+
         }
     }//GEN-LAST:event_B_CampoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
-            String name = Nombre_Campo.getText();
-            String tipo = "";
-            if (cb_TD.getSelectedIndex() == 0) {
-                tipo = "String";
+        boolean llave1 = false;
+        for (int i = 0; i < Listac.size(); i++) {
+            if (Listac.get(i).isIsKey()&& RB1.isSelected()) {
+                llave1 = true;
             }
-            if (cb_TD.getSelectedIndex() == 1) {
-                tipo = "Char";
-            }
-            if (cb_TD.getSelectedIndex() == 2) {
-                tipo = "int";
-            }
-            int size = (Integer) spinnerS.getValue();
-            boolean llave;
-            if (RB1.isSelected()) {
-                llave = true;
-            } else {
-                llave = false;
-            }
-            Campos c1 = new Campos(name, tipo, size, llave);
-            Listac.add(c1);
-
-            JOptionPane.showMessageDialog(this, "Creado Excitosamente");
-            System.out.println(c1.toString());
-
-            DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_borrarc.getModel();
-
-            cb_borrarc.setModel(modelo);
-
-            modelo.addElement(c1);
             
-            DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Cb_editarCampo.getModel();
-            Cb_editarCampo.setModel(modelo2);
-            modelo2.addElement(c1);
-            
-            boolCampos=true;
-            
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al crear");
+            if (Listac.get(i).isIsKey()&& RB2.isSelected()) {
+                llave1 = false;
+            }
         }
-        //vaciar y cerrar
-        Nombre_Campo.setText("");
-        cb_TD.setSelectedIndex(0);
-        spinnerS.setValue(1);
-        jDialog_CrearCampos.setVisible(false);
+        if(llave1){
+            JOptionPane.showMessageDialog(null,"Ya existe una llave primaria");
+        }
+        while (llave1 == false) {
+            int size = (Integer) spinnerS.getValue();
+            try {
+                String name = Nombre_Campo.getText();
+                String tipo = "";
+                if (cb_TD.getSelectedIndex() == 0) {
+                    tipo = "String";
+                }
+                if (cb_TD.getSelectedIndex() == 1) {
+                    tipo = "Char";
+                    size=1;
+                }
+                if (cb_TD.getSelectedIndex() == 2) {
+                    tipo = "int";
+                    size = 32;
+                }
+
+                boolean llave;
+                if (RB1.isSelected()) {
+                    llave = true;
+                } else {
+                    llave = false;
+                }
+
+                Campos c1 = new Campos(name, tipo, size, llave);
+                Listac.add(c1);
+
+                JOptionPane.showMessageDialog(this, "Creado Excitosamente");
+                System.out.println(c1.toString());
+
+                DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_borrarc.getModel();
+
+                cb_borrarc.setModel(modelo);
+
+                modelo.addElement(c1);
+
+                DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Cb_editarCampo.getModel();
+                Cb_editarCampo.setModel(modelo2);
+                modelo2.addElement(c1);
+
+                boolCampos = true;
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al crear");
+            }
+            //vaciar y cerrar
+            Nombre_Campo.setText("");
+            cb_TD.setSelectedIndex(0);
+            spinnerS.setValue(1);
+            jDialog_CrearCampos.setVisible(false);
+
+            //actualizar table
+            if (boolCampos) {
+                eliminarTabla();
+                DefaultTableModel modelo2 = (DefaultTableModel) jTable1.getModel();
+                for (Campos p : Listac) {
+
+                    Object[] newRow = {
+                        p.getNombre(),
+                        p.getData_type(),
+                        p.getSize(),
+                        p.isIsKey(),};
+                    modelo2.addRow(newRow);
+                }
+
+            } else {
+
+            }
+            llave1=true;
+        }
+        llave1=false;
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(boolArchivo==true && boolCampos==true){
+        if (boolArchivo == true && boolCampos == true) {
             int resp = JOptionPane.showConfirmDialog(this, "¿Esta seguro que ya no quiere agregar/modificar/eliminar algun campo?");
-            if(resp==0){
+            if (resp == 0) {
                 jDialog_CrearRegistro.pack();
                 jDialog_CrearRegistro.setLocationRelativeTo(this);
                 jDialog_CrearRegistro.setVisible(true);
-                boolEntroRegistro=false;
-            }else{
+                boolEntroRegistro = false;
+            } else {
                 //no puede ingresar al menu de registro
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe crear un archivo y por lo menos un campo para ingresar a la opcion de registro");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -827,13 +930,42 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
         r.setListaCampo(Listac);
+        boolean valid=false;
         String pal = "";
+        int value=0;
+        boolean valid2=false;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
-            pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-
-            ListaS.add(pal);
-
+           
+            if(r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char") ){
+                
+                do{
+                    if(!valid){
+                        
+                    }else{
+                       JOptionPane.showMessageDialog(null,"Longitud invalida"); 
+                    }
+                   pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                   valid=true;
+                }while(pal.length()>r.getListaCampo().get(i).getSize());
+                ListaS.add(pal);
+               
+            }else{
+                do{
+                    try{
+                        value=Integer.parseInt(JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre()));
+                        valid2=false;
+                    }catch(Exception e){
+                      JOptionPane.showMessageDialog(null,"Entrada invalida");
+                      valid2=true;
+                    }
+                } while(valid2);
+                ListaS.add(value+"");
+            }
+            valid=false;
+            
+           
         }
+        System.out.println("Este es pal: "+pal);
         r.setListaString(ListaS);
         JOptionPane.showMessageDialog(this, "CREADO");
         boolRegistro = true;
@@ -841,14 +973,37 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
 
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
+        String camino = "";
+
+        File fichero = null;
+        FileReader fr = null;
+        BufferedReader br = null;
 
         try {
-            nameArchivo = JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
-            nameArchivo += ".txt";
+            JFileChooser jfc = new JFileChooser("./");
+
+            int seleccion = jfc.showOpenDialog(this);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                camino = jfc.getSelectedFile().getPath();
+                //ap.setName(jfc.getSelectedFile().getName()+".txt");
+                //nameArchivo = "";
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        try {
+
+            //JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
+            // nameArchivo += ".txt";
+            ap.crearArchivo(camino, nameArchivo);
+            nameArchivo = camino + ".txt";
             ap.setName(nameArchivo);
-            System.out.println("NAME" + ap.getName());
-            ap.crearArchivo(nameArchivo);
-            boolArchivo=true;
+
+            System.out.println("NAME " + ap.getName());
+            boolArchivo = true;
+
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -856,18 +1011,20 @@ public class Main extends javax.swing.JFrame {
         }
         jDialog_Archivo.setVisible(false);
         boolGuardado = false;
-        
+
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
-        if(boolRegistro){
+        System.out.println(ap.getName());
+        if (boolRegistro) {
             //ya hay registros creados
             int cont1 = 1;
             Registros r = new Registros();
             r.setListaCampo(Listac);
             r.setListaString(ListaS);
             String pal = "";
+            String cc1="";
             System.out.println(r.getListaCampo().size());
             System.out.println(r.getListaString().size());
             try {
@@ -883,162 +1040,162 @@ public class Main extends javax.swing.JFrame {
                     }
                     cont1++;
                 }
-                String cc1 = "";
-                for (int i = 0; i < r.getListaCampo().size(); i++) {
-                    Campos c1 = r.getListaCampo().get(i);
+                 for (int i = 0; i < Listac.size(); i++) {
+                    Campos c1 = Listac.get(i);
                     String size1 = c1.getSize() + "";
                     cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
-
+                    
                 }
                 //"CAMPOS: 4 "+"\n"+
                 //+"\n"+"AVAILIST HEAD: NULL "+"\n";
                 String pal2 = "";
-                pal2 += r.getListaCampo().size() + "\n" + cc1 + "Cantidad de Registros: " + r.getListaString().size()
+                pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
                         + " \n AVAILIST HEAD: NULL  " + "\n";
-                String pal3 = pal2 + pal2.length() + "\n" + "_ \n" + pal;
-
+               
+                String pal3 = pal2+pal;
+                
                 ap.setName(nameArchivo);
                 System.out.println("NAME" + ap.getName());
-                ap.escribirArchivo(pal3, nameArchivo);
+                ap.escribirArchivo(pal3);
             } catch (IOException ex) {
-             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
             JOptionPane.showMessageDialog(this, "GUARDADO");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
         }
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
-        if(boolGuardado){
-        int cont1 = 1;
-        System.out.println("hola");
-        String[] names = {"Sofia", "Camila", "Valentina",
-            "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
-            "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
-            "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
-            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
-            "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
-            "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
-            "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
-            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
-        //person name , person age,city ID and person ID
+        if (boolGuardado) {
+            int cont1 = 1;
+            System.out.println("hola");
+            String[] names = {"Sofia", "Camila", "Valentina",
+                "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
+                "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
+                "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
+                "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
+                "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
+                "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
+                "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
+                "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
+            //person name , person age,city ID and person ID
 
-        Campos c1 = new Campos("PersonName", "String", 12, false);
-        Campos c2 = new Campos("PersonAge", "String", 12, false);
-        Campos c3 = new Campos("CityId", "int", 8, false);
-        Campos c4 = new Campos("personId", "int", 8, false);
+            Campos c1 = new Campos("PersonName", "String", 12, false);
+            Campos c2 = new Campos("PersonAge", "String", 12, false);
+            Campos c3 = new Campos("CityId", "int", 8, false);
+            Campos c4 = new Campos("personId", "int", 8, false);
 
-        ArrayList<Integer> PersonalIDval = new ArrayList();
-        ArrayList<Integer> CityIDval = new ArrayList();
-        PersonalIDval.add(0);
-        CityIDval.add(0);
-        ArrayList<Campos> lc = new ArrayList();
-        ArrayList<String> ls = new ArrayList();
-        Registros re1 = new Registros();
-        lc.add(c1);
-        lc.add(c2);
-        lc.add(c3);
-        lc.add(c4);
-        String s1;
-        String s2;
-        String s3;
-        String s4;
-        re1.setListaCampo(lc);
-
-        for (int i = 0; i < 10000; i++) {
-            Random r1 = new Random();
-            Random r2 = new Random();
-            Random r3 = new Random();
-            Random r4 = new Random();
-
-            int x1 = 0;
-            x1 += r1.nextInt(48);//nombres
-            int x2 = 0;
-            x2 += r2.nextInt(80);//edad
-            int x3 = -1;
-            int x4 = 0;
-
-            x3 = r3.nextInt(80000000);//person ID 
-            if (!PersonalIDval.contains(x3)) {
-                PersonalIDval.add(x3);
-            }
-
-            x4 = r4.nextInt(90000000);//City ID
-            //System.out.println("X1: "+x1);
-
-            s1 = names[x1];//agarro nombres
-            s4 = x4 + "";
-            lc.add(c4);
-            ls.add(s4);
-
-            //agregado primer campo
-            s2 = x2 + "";
+            ArrayList<Integer> PersonalIDval = new ArrayList();
+            ArrayList<Integer> CityIDval = new ArrayList();
+            PersonalIDval.add(0);
+            CityIDval.add(0);
+            ArrayList<Campos> lc = new ArrayList();
+            ArrayList<String> ls = new ArrayList();
+            Registros re1 = new Registros();
             lc.add(c1);
-            ls.add(s1);
-
-            //agregando segundo campo
-            s3 = x3 + "";
             lc.add(c2);
-            ls.add(s2);
-
-            //agregado tercer campo
             lc.add(c3);
-            ls.add(s3);
+            lc.add(c4);
+            String s1;
+            String s2;
+            String s3;
+            String s4;
+            re1.setListaCampo(lc);
 
-            //agregado cuarto campo
-        }
+            for (int i = 0; i < 10000; i++) {
+                Random r1 = new Random();
+                Random r2 = new Random();
+                Random r3 = new Random();
+                Random r4 = new Random();
 
-        re1.setListaString(ls);
-        //System.out.println("SIZE S"+re1.getListaString().size());
-        String pal = "";
-        //System.out.println("SIZE: "+re1.getListaCampo().size());
-        for (int i = 0; i < re1.getListaString().size(); i++) {
-            //System.out.println("STRING: "+re1.getListaString().get(i));
-        }
+                int x1 = 0;
+                x1 += r1.nextInt(48);//nombres
+                int x2 = 0;
+                x2 += r2.nextInt(80);//edad
+                int x3 = -1;
+                int x4 = 0;
 
-        for (int i = 0; i < re1.getListaString().size(); i++) {
-            pal += re1.getListaString().get(i) + "|";
-            if (cont1 == 4) {
-                pal += "\n";
-                cont1 = 0;
+                x3 = r3.nextInt(80000000);//person ID 
+                if (!PersonalIDval.contains(x3)) {
+                    PersonalIDval.add(x3);
+                }
+
+                x4 = r4.nextInt(90000000);//City ID
+                //System.out.println("X1: "+x1);
+
+                s1 = names[x1];//agarro nombres
+                s4 = x4 + "";
+                lc.add(c4);
+                ls.add(s4);
+
+                //agregado primer campo
+                s2 = x2 + "";
+                lc.add(c1);
+                ls.add(s1);
+
+                //agregando segundo campo
+                s3 = x3 + "";
+                lc.add(c2);
+                ls.add(s2);
+
+                //agregado tercer campo
+                lc.add(c3);
+                ls.add(s3);
+
+                //agregado cuarto campo
             }
-            cont1++;
-        }
 
-        try {
-            Archivo ap2 = new Archivo();
-            ap2.crearArchivo("prueba1.txt");
+            re1.setListaString(ls);
+            //System.out.println("SIZE S"+re1.getListaString().size());
+            String pal = "";
+            //System.out.println("SIZE: "+re1.getListaCampo().size());
+            for (int i = 0; i < re1.getListaString().size(); i++) {
+                //System.out.println("STRING: "+re1.getListaString().get(i));
+            }
 
-            ap2.escribirArchivo("4", "prueba1.txt");
+            for (int i = 0; i < re1.getListaString().size(); i++) {
+                pal += re1.getListaString().get(i) + "|";
+                if (cont1 == 4) {
+                    pal += "\n";
+                    cont1 = 0;
+                }
+                cont1++;
+            }
 
-            String size4 = "" + c4.getSize();
-            String key4 = "" + c4.isIsKey();
-            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
-            //System.out.println("KEY"+cc1);
-            //ap.escribirArchivo(cc1, "prueba2.txt");
+            try {
+                Archivo ap2 = new Archivo();
+                ap2.crearArchivo("Prueba1", "");
+                ap2.setName("Prueba1.txt");
+                ap2.escribirArchivo("4");
 
-            String size1 = "" + c1.getSize();
-            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
-            //ap.escribirArchivo(cc2, "prueba2.txt");
-            String size2 = "" + c2.getSize();
-            String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
-            //ap.escribirArchivo(cc3, "prueba2.txt");
-            String size3 = "" + c3.getSize();
-            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
-                    + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
-            String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
+                String size4 = "" + c4.getSize();
+                String key4 = "" + c4.isIsKey();
+                String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
+                //System.out.println("KEY"+cc1);
+                //ap.escribirArchivo(cc1, "prueba2.txt");
 
-            //ap.escribirArchivo(cc4, "prueba2.txt");
-            //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
-            String fin3 = fin2 + fin2.length() + "\n" + pal;
-            ap2.escribirArchivo(fin3, "prueba1.txt");
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }else{
+                String size1 = "" + c1.getSize();
+                String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
+                //ap.escribirArchivo(cc2, "prueba2.txt");
+                String size2 = "" + c2.getSize();
+                String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
+                //ap.escribirArchivo(cc3, "prueba2.txt");
+                String size3 = "" + c3.getSize();
+                String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
+                        + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
+                String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
+
+                //ap.escribirArchivo(cc4, "prueba2.txt");
+                //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
+                String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
+                String fin3 = fin2 + fin2.length() + "\n" + pal;
+                ap2.escribirArchivo(fin3);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
         }
     }//GEN-LAST:event_jButton5MouseClicked
@@ -1056,115 +1213,116 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
-        if(boolGuardado){
-        JFileChooser fileChooser = new JFileChooser("./");
+        if (boolGuardado) {
+            JFileChooser fileChooser = new JFileChooser("./");
 
-        int seleccion = fileChooser.showOpenDialog(this);
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            int cont = 0;
-            try {
-
-                Scanner sc = null;
-                Scanner sc2 = null;
-                File archivo = fileChooser.getSelectedFile();
-                ap.setArchivo(archivo);
-                String file = "";
-
-                sc = new Scanner(ap.getArchivo());
-
-                file = sc.nextLine();
-                file = "";
-
-                //System.out.println(file);
-                while (cont < 4) {
-
-                    file += sc.nextLine();
-                    cont++;
-
-                }
-
-                sc2 = new Scanner(file);
-                System.out.println("Revisar: " + file);
-                sc2.useDelimiter(";");
-                //System.out.println(file);
-
-                Campos c1 = new Campos();
-                c1.setNombre(sc2.next());
-                c1.setData_type(sc2.next());
-                c1.setSize(sc2.nextInt());
-                c1.setIsKey(sc2.nextBoolean());
-
-                System.out.println(c1.getNombre() + " " + c1.getData_type() + " " + c1.getSize() + " " + c1.isIsKey());
-
-                Campos c2 = new Campos();
-                c2.setNombre(sc2.next());
-                c2.setData_type(sc2.next());
-                c2.setSize(sc2.nextInt());
-                c2.setIsKey(sc2.nextBoolean());
-
-                System.out.println(c2.getNombre() + " " + c2.getData_type() + " " + c2.getSize() + " " + c2.isIsKey());
-
-                Campos c3 = new Campos();
-                c3.setNombre(sc2.next());
-                c3.setData_type(sc2.next());
-                c3.setSize(sc2.nextInt());
-                c3.setIsKey(sc2.nextBoolean());
-
-                System.out.println(c3.getNombre() + " " + c3.getData_type() + " " + c3.getSize() + " " + c3.isIsKey());
-
-                Campos c4 = new Campos();
-                c4.setNombre(sc2.next());
-                c4.setData_type(sc2.next());
-                c4.setSize(sc2.nextInt());
-                c4.setIsKey(sc2.nextBoolean());
-
-                System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
-
-                Registros r = new Registros();
-                r.getListaCampo().add(c1);
-                r.getListaCampo().add(c2);
-                r.getListaCampo().add(c3);
-                r.getListaCampo().add(c4);
-                ArrayList<String> lista_string = new ArrayList();
-                System.out.println("fuera");
+            int seleccion = fileChooser.showOpenDialog(this);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                int cont = 0;
                 try {
-                    System.out.println("adentro");
-                    RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
-                    file_a.seek(158);
-                    String seek = file_a.readLine();
-                    System.out.println("Soy el seek: " + seek);
-                    //file_a.writeUTF("soy seek"+"\n");
-                    JOptionPane.showMessageDialog(null, "Funcionó");
+
+                    Scanner sc = null;
+                    Scanner sc2 = null;
+                    File archivo = fileChooser.getSelectedFile();
+                    ap.setArchivo(archivo);
+                    String file = "";
+
+                    sc = new Scanner(ap.getArchivo());
+
+                    file = sc.nextLine();
+                    file = "";
+
+                    //System.out.println(file);
+                    while (cont < 4) {
+
+                        file += sc.nextLine();
+                        cont++;
+
+                    }
+
+                    sc2 = new Scanner(file);
+                    System.out.println("Revisar: " + file);
+                    sc2.useDelimiter(";");
+                    //System.out.println(file);
+
+                    Campos c1 = new Campos();
+                    c1.setNombre(sc2.next());
+                    c1.setData_type(sc2.next());
+                    c1.setSize(sc2.nextInt());
+                    c1.setIsKey(sc2.nextBoolean());
+
+                    System.out.println(c1.getNombre() + " " + c1.getData_type() + " " + c1.getSize() + " " + c1.isIsKey());
+
+                    Campos c2 = new Campos();
+                    c2.setNombre(sc2.next());
+                    c2.setData_type(sc2.next());
+                    c2.setSize(sc2.nextInt());
+                    c2.setIsKey(sc2.nextBoolean());
+
+                    System.out.println(c2.getNombre() + " " + c2.getData_type() + " " + c2.getSize() + " " + c2.isIsKey());
+
+                    Campos c3 = new Campos();
+                    c3.setNombre(sc2.next());
+                    c3.setData_type(sc2.next());
+                    c3.setSize(sc2.nextInt());
+                    c3.setIsKey(sc2.nextBoolean());
+
+                    System.out.println(c3.getNombre() + " " + c3.getData_type() + " " + c3.getSize() + " " + c3.isIsKey());
+
+                    Campos c4 = new Campos();
+                    c4.setNombre(sc2.next());
+                    c4.setData_type(sc2.next());
+                    c4.setSize(sc2.nextInt());
+                    c4.setIsKey(sc2.nextBoolean());
+
+                    System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
+
+                    Registros r = new Registros();
+                    r.getListaCampo().add(c1);
+                    r.getListaCampo().add(c2);
+                    r.getListaCampo().add(c3);
+                    r.getListaCampo().add(c4);
+                    ArrayList<String> lista_string = new ArrayList();
+                    System.out.println("fuera");
+                    try {
+                        System.out.println("adentro");
+                        RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
+                        file_a.seek(158);
+                        String seek = file_a.readLine();
+                        System.out.println("Soy el seek: " + seek);
+                        //file_a.writeUTF("soy seek"+"\n");
+                        JOptionPane.showMessageDialog(null, "Funcionó");
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        
+                    }
+                    System.out.println("salgo");
+
                 } catch (Exception e) {
-                    System.out.println(e);
-                    JOptionPane.showMessageDialog(null, "c mamo");
                 }
-                System.out.println("salgo");
 
-            } catch (Exception e) {
             }
-
-        }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno nuevo");
         }
     }//GEN-LAST:event_B_AbrirArchivoActionPerformed
 
     private void Cb_editarCampoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Cb_editarCampoItemStateChanged
         Campos c = new Campos();
-       c = (Campos)Cb_editarCampo.getSelectedItem();
-       Nombre_Campo1.setText(c.getNombre());
-       
-       
+        c = (Campos) Cb_editarCampo.getSelectedItem();
+        Nombre_Campo1.setText(c.getNombre());
+        jSpinner2.setValue(c.getSize());
+
+
     }//GEN-LAST:event_Cb_editarCampoItemStateChanged
 
     private void B_AbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirRegistroActionPerformed
         // TODO add your handling code here:
-        if(boolRegistro && boolGuardarRegistro){
+        if (boolRegistro && boolGuardarRegistro) {
             //ya hay registros creados
-        }else if(boolRegistro==false){
+        } else if (boolRegistro == false) {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
-        }else if(boolGuardarRegistro==false){
+        } else if (boolGuardarRegistro == false) {
             JOptionPane.showMessageDialog(this, "Debe guardar el registro antes de abrirlo");
         }
 
@@ -1172,12 +1330,44 @@ public class Main extends javax.swing.JFrame {
 
     private void B_CerrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CerrarRegistroActionPerformed
         // TODO add your handling code here:
-        if(boolRegistro){
+        if (boolRegistro) {
             //ya hay registros creados
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
         }
     }//GEN-LAST:event_B_CerrarRegistroActionPerformed
+
+    private void cb_TDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TDItemStateChanged
+        if (cb_TD.getSelectedItem().equals("Int")||cb_TD.getSelectedItem().equals("Char")) {
+            jLabel_CrearCampo3.setVisible(false);
+            spinnerS.setVisible(false);
+        } else {
+            jLabel_CrearCampo3.setVisible(true);
+            spinnerS.setVisible(true);
+        }
+    }//GEN-LAST:event_cb_TDItemStateChanged
+
+    private void GuardarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarCamposActionPerformed
+        String cc1 = "";
+                
+        for (int i = 0; i < Listac.size(); i++) {
+                    Campos c1 = Listac.get(i);
+                    String size1 = c1.getSize() + "";
+                    cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
+                    
+                }
+                //"CAMPOS: 4 "+"\n"+
+                //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+                String pal2 = "";
+                pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
+                        + " \n AVAILIST HEAD: NULL  " + "\n";
+                ap.setName(nameArchivo);
+        try {
+            ap.escribirArchivo(pal2);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_GuardarCamposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1234,6 +1424,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_NuevoRegistro1;
     private javax.swing.JButton B_Registro;
     private javax.swing.JComboBox<String> Cb_editarCampo;
+    private javax.swing.JButton GuardarCampos;
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
@@ -1304,7 +1495,7 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-    
+
     //booleans de validaciones
     boolean boolArchivo = false;
     boolean boolCampos = false;
@@ -1312,4 +1503,5 @@ public class Main extends javax.swing.JFrame {
     boolean boolGuardado = false;
     boolean boolGuardarRegistro = false;
     boolean boolEntroRegistro = true;
+
 }
