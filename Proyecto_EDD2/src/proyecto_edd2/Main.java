@@ -117,6 +117,7 @@ public class Main extends javax.swing.JFrame {
         B_Index = new javax.swing.JButton();
         B_Exportar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
@@ -601,6 +602,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 50));
+
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
@@ -1369,6 +1378,21 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GuardarCamposActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ArbolB tree=new ArbolB();
+        tree.create(6);
+        Nodo n1=new Nodo();
+        n1.setCant_llaves(1);
+        Nodo n2=new Nodo();
+        n2.setCant_llaves(1);
+        
+        tree.Insert(n1, 11);
+        tree.Insert(n2, 22);
+        //tree.Print(tree.raiz);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1440,6 +1464,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;

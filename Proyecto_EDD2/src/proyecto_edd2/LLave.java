@@ -13,6 +13,9 @@ public class LLave {
     long offset;
     int llave;
 
+    public LLave() {
+    }
+
     public LLave(long offset, int llave) {
         this.offset = offset;
         this.llave = llave;
