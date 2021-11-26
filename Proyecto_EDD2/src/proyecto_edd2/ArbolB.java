@@ -87,6 +87,7 @@ public class ArbolB {
         x.getLlaves()[i]=h.getLlaves()[Grado];
         x.setCant_llaves(z.getCant_llaves()+1);
     }
+    /*
     public void Insert(Nodo T,int k){
         System.out.println("ESTOY EN INSERT 1");
         Nodo r=raiz;
@@ -134,7 +135,51 @@ public class ArbolB {
         System.out.println("PERFECTO INGRESO");
         
         
+    }*/
+    // Inserting a value
+    /*
+  public void Insert(final int key) {
+    Nodo r = raiz;
+    if (r.getCant_llaves() == 2 * Grado- 1) {
+      Nodo s = new Nodo();
+      raiz = s;
+      s.esHoja = false;
+      s.cant_llaves = 0;
+      s.hijos[0] = r;
+      Split(s, 0, r);
+      insertValue(s, key);
+    } else {
+      insertValue(r, key);
     }
+  }
+
+  // Insert the node
+  final private void insertValue(Nodo x, int k) {
+
+    if (x.esHoja) {
+      int i = 0;
+      for (i = x.cant_llaves - 1; i >= 0 && k < x.llaves[i].llave; i--) {
+        x.llaves[i + 1].llave = x.llaves[i].llave;//esto tambien
+      }
+      x.llaves[i + 1].llave = k;//esto me falla a mi
+      x.cant_llaves= x.cant_llaves+ 1;
+    } else {
+      int i = 0;
+      for (i = x.cant_llaves - 1; i >= 0 && k < x.llaves[i].llave; i--) {
+      }
+      ;
+      i++;
+      Nodo tmp = x.hijos[i];
+      if (tmp.cant_llaves == 2 * Grado - 1) {
+        Split(x, i, tmp);
+        if (k > x.llaves[i].llave) {
+          i++;
+        }
+      }
+      insertValue(x.hijos[i], k);
+    }
+
+  }*/
     //no estoy seguro ni pija 
     public void Print(Nodo x) {
     assert (x == null);

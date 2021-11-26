@@ -1387,9 +1387,8 @@ public class Main extends javax.swing.JFrame {
         Nodo n2=new Nodo();
         n2.setCant_llaves(1);
         
-        tree.Insert(n1, 11);
-        tree.Insert(n2, 22);
-        //tree.Print(tree.raiz);
+     
+        tree.Print(tree.raiz);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
