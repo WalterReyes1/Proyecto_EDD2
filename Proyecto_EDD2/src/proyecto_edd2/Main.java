@@ -1379,47 +1379,34 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarCamposActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        ArbolB2 tree=new ArbolB2(6);
-        LLave l1=new LLave(21212,1);
-        LLave l2=new LLave(21212,2);
-        LLave l3=new LLave(21212,3);
-        LLave l4=new LLave(21212,4);
-        LLave l5=new LLave(21212,5);
+        //inserto NUMEROS 1,2,3,15,6,70,28,8
+        Arbolb tree=new Arbolb(6);
+        LLave l1=new LLave(12121,1);
+        LLave l2=new LLave(12122,2);
+         LLave l3=new LLave(12123,3);
+        LLave l4=new LLave(12124,15);
+         LLave l5=new LLave(12125,7);
+        LLave l6=new LLave(12126,70);
+         LLave l7=new LLave(12127,28);
+        LLave l8=new LLave(12128,8);
         
-        //LLave l6=new LLave(21212,6);
-        //LLave l7=new LLave(21212,7);
-        //LLave l8=new LLave(21212,8);
-        //LLave l9=new LLave(21212,9);
-        //LLave l10=new LLave(21212,10);
-        //LLave l11=new LLave(21212,11);
-        //LLave l12=new LLave(21212,12);
-        tree.raiz.llaves[0]=l1;
-        tree.raiz.llaves[1]=l2;
-        tree.raiz.llaves[2]=l3;
-        tree.raiz.llaves[3]=l4;
-       tree.raiz.llaves[4]=l5;
-       ///tree.raiz.llaves[6]=l7;
-        //tree.raiz.llaves[7]=l8;
-        //tree.raiz.llaves[8]=l9;
-        //tree.raiz.llaves[9]=l10;
-        //tree.raiz.llaves[10]=l11;
+        tree.insert(l1);
+        tree.insert(l2);
+        tree.insert(l3);
+        tree.insert(l4);
+        tree.insert(l5);
+        tree.insert(l6);
+        tree.insert(l7);
+        tree.insert(l8);
+        tree.print(tree.raiz);
+        //search llave 28
+        LLave mia=tree.buscarLlave(tree.raiz, 28);
+        System.out.println("");
+        System.out.println("LLAVE ENCONTRADA:  "+mia.getLlave());
         
         
-        tree.Insert(l1);
-        tree.Insert(l2);
-        tree.Insert(l3);
-        tree.Insert(l4);
-        tree.Insert(l5);
-        //tree.Insert(l6);
-        //tree.Insert(l7);
-        //tree.Insert(l8);
-        ///tree.Insert(l9);
-        ///tree.Insert(l10);
-        ///tree.Insert(l11);
-        ///tree.Insert(l12);
-        tree.Show();
         
+       
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

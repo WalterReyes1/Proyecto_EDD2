@@ -18,21 +18,15 @@ public class Nodo {
     public Nodo() {
     }
     public Nodo(int g){
-        this.cant_llaves=0;
-        this.llaves=new LLave[(2*g)-1];
-        this.esHoja=true;
-        this.hijos=new Nodo[2*g];
-        System.out.println("NODO");
+        this.cant_llaves=0;//al principio no tendra llaves
+        this.llaves=new LLave[(2*g)-1];//dar numero de llaves max
+        this.esHoja=true;//es hoja pq es insert at leaf
+        this.hijos=new Nodo[2*g];//numero de hijos
+        System.out.println("NODO CREADO");
         
     }
-    /*
-    public BTree(int t) {
-    T = t;
-    root = new Node();
-    root.n = 0;
-    root.leaf = true;
-  }
-    */
+    
+    
 
     public int getCant_llaves() {
         return cant_llaves;
@@ -66,5 +60,26 @@ public class Nodo {
         this.llaves = llaves;
     }
     
-    
+     public void imprimir() {
+        System.out.print("[");
+        for (int i = 0; i < this.cant_llaves; i++) {
+            if (i < this.cant_llaves - 1) {
+                System.out.print(llaves[i].llave + " | ");
+            } else {
+                System.out.print(llaves[i].llave);
+            }
+        }
+        System.out.print("]");
+    }
+     public int indice(LLave llave) {
+
+        for (int i = 0; i < llaves.length; i++) {
+
+            if (llaves[i].llave == llave.getLlave()) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }
