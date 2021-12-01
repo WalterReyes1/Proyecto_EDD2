@@ -65,7 +65,7 @@ public class Arbolb {
     public void insert(LLave llave) {
         Nodo r = raiz;//el nodo primero sera la raiz
 
-        if (r.getCant_llaves()== ((2 * T) - 1)) {
+        if (r.getCant_llaves()== ((2 * T) - 1)) {//formula repetida
             //nueva llave a subir sera guardada
             Nodo s = new Nodo(T);
             raiz = s;
@@ -106,7 +106,7 @@ public class Arbolb {
             i++;
 
             //si esta lleno hacer split
-            if (x.getHijos()[i].getCant_llaves() == (2 * T - 1)) {
+            if (x.getHijos()[i].getCant_llaves() == (2 * T - 1)) {///FORMULA REPETIDA
                 Split(x, i, x.hijos[i]);
 
                 //si la llave  a insert es menor , aumentar indice cont
@@ -120,10 +120,10 @@ public class Arbolb {
     public void Split(Nodo x, int i, Nodo y) {
         Nodo z = new Nodo(T);// Nodo temp
         z.esHoja = y.esHoja;
-        z.setCant_llaves(T - 1);
+        z.setCant_llaves(T - 1);//CANTIDAD DE LLAVES
 
         //asignacion de llaves 
-        for (int j = 0; j < (T - 1); j++) {
+        for (int j = 0; j < (T - 1); j++) {//dividir por 2
             z.llaves[j] = y.llaves[j + T];
         }
 
@@ -155,6 +155,7 @@ public class Arbolb {
         x.llaves[i] = y.llaves[(T - 1)];
         //aumento en el numero de llaves de x, para saber que ocurre split
         x.cant_llaves++;
+        System.out.println("SPLIT OCURRIO");
     }
     
    
@@ -168,13 +169,30 @@ public class Arbolb {
             //recorre los nodos para saber si tiene hijos
             for (int j = 0; j <= n.cant_llaves; j++) {
                 if (n.hijos[j] != null) {
+                    
                     System.out.println();
                     print(n.hijos[j]);
                 }
             }
         }
     }
-   
+    public void Show() {
+    Show(raiz);
+  }
+
+  // Display
+  private void Show(Nodo x) {
+    assert (x == null);
+    for (int i = 0; i < x.cant_llaves; i++) {
+      System.out.print(x.llaves[i].getLlave() + " ");
+    }
+    if (!x.esHoja) {
+      for (int i = 0; i < x.cant_llaves + 1; i++) {
+        Show(x.hijos[i]);
+      }
+    }
+  }
+  
 
     
 }

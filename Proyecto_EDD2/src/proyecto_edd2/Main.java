@@ -1036,13 +1036,23 @@ public class Main extends javax.swing.JFrame {
             String cc1="";
             System.out.println(r.getListaCampo().size());
             System.out.println(r.getListaString().size());
+            //al momento de crear un campo primera vez obligar a crear llave
+            //si quiere volver a crear lo dejas, pero ya tenemos validacion  de solo 1 llave
+            //no lo saques de crear campo hasta que diga que no
+            //si el j option dice que no quiere seguir creando  ocupo un boolean que nos diga si ya hay una llave
+            //hace un j option que diga quiere seguir creadno
+            //nombre,ultimo,idllave
+            //luis,flores,12
+            //ocupo saber en que posicion de la lista de campos esta la llave
+            //para poder saebr la posicion lista string
             try {
 
                 for (int i = 0; i < r.getListaString().size(); i++) {
 
                     System.out.println(r.getListaString().size());
 
-                    pal += r.getListaString().get(i) + "|";
+                    pal += r.getListaString().get(i) + "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
+                    
                     if (cont1 == r.getListaCampo().size()) {
                         pal += "\n";
                         cont1 = 0;
@@ -1382,27 +1392,43 @@ public class Main extends javax.swing.JFrame {
         //inserto NUMEROS 1,2,3,15,6,70,28,8
         Arbolb tree=new Arbolb(6);
         LLave l1=new LLave(12121,1);
-        LLave l2=new LLave(12122,2);
+        LLave l2=new LLave(12122,22);
          LLave l3=new LLave(12123,3);
-        LLave l4=new LLave(12124,15);
+        LLave l4=new LLave(12124,4);
          LLave l5=new LLave(12125,7);
         LLave l6=new LLave(12126,70);
-         LLave l7=new LLave(12127,28);
-        LLave l8=new LLave(12128,8);
+         LLave l7=new LLave(12127,222);
+        LLave l8=new LLave(12128,888);
+        //LLave l9=new LLave(12125,37);
+        LLave l10=new LLave(12126,270);
+         LLave l11=new LLave(12127,248);
+        LLave l12=new LLave(12128,6225454);
+        LLave l13=new LLave(12128,724542);
+        LLave l14=new LLave(12128,2);
+        LLave l15=new LLave(12128,122222);
         
-        tree.insert(l1);
-        tree.insert(l2);
-        tree.insert(l3);
+       
         tree.insert(l4);
         tree.insert(l5);
         tree.insert(l6);
         tree.insert(l7);
         tree.insert(l8);
-        tree.print(tree.raiz);
+         tree.insert(l1);
+        tree.insert(l2);
+        tree.insert(l3);
+       //tree.insert(l9);
+        tree.insert(l10);
+        tree.insert(l11);
+        tree.insert(l12);
+        tree.insert(l13);
+        tree.insert(l14);
+        tree.insert(l15);
+       // tree.print(tree.raiz);
+       tree.Show();
         //search llave 28
-        LLave mia=tree.buscarLlave(tree.raiz, 28);
+       // LLave mia=tree.buscarLlave(tree.raiz, 37);
         System.out.println("");
-        System.out.println("LLAVE ENCONTRADA:  "+mia.getLlave());
+        //System.out.println("LLAVE ENCONTRADA:  "+mia.getLlave());
         
         
         

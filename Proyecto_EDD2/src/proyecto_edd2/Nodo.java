@@ -19,7 +19,7 @@ public class Nodo {
     }
     public Nodo(int g){
         this.cant_llaves=0;//al principio no tendra llaves
-        this.llaves=new LLave[(2*g)-1];//dar numero de llaves max
+        this.llaves=new LLave[(2*g)-1];//dar numero de llaves max,///LINEA CAMBIADA 
         this.esHoja=true;//es hoja pq es insert at leaf
         this.hijos=new Nodo[2*g];//numero de hijos
         System.out.println("NODO CREADO");
