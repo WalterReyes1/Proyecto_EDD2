@@ -866,18 +866,18 @@ public class Main extends javax.swing.JFrame {
                 } else {
                     llave = false;
                 }
-                if(tipo.equals("Int")){
-                    size=4;
+                if (tipo.equals("Int")) {
+                    size = 4;
                     ListaL.add(size);
                 }
-                if(tipo.equals("Char")){
-                    size=1;
+                if (tipo.equals("Char")) {
+                    size = 1;
                     ListaL.add(size);
                 }
-                if(tipo.equals("String")){
+                if (tipo.equals("String")) {
                     ListaL.add(size);
                 }
-                
+
                 Campos c1 = new Campos(name, tipo, size, llave);
                 Listac.add(c1);
                 boolean key = false;
@@ -934,7 +934,7 @@ public class Main extends javax.swing.JFrame {
 
             }
             for (int i = 0; i < ListaKeyPos.size(); i++) {
-                System.out.println("La llave se encuentra en la pos: "+ListaKeyPos.get(i));
+                System.out.println("La llave se encuentra en la pos: " + ListaKeyPos.get(i));
             }
             //actualizar table
             if (boolCampos) {
@@ -982,6 +982,7 @@ public class Main extends javax.swing.JFrame {
         r.setListaCampo(Listac);
         boolean valid = false;
         String pal = "";
+        String valint = "";
         int value = 0;
         boolean valid2 = false;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
@@ -1000,15 +1001,30 @@ public class Main extends javax.swing.JFrame {
                 ListaS.add(pal);
 
             } else {
-                do {
-                    try {
-                        value = Integer.parseInt(JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre()));
-                        valid2 = false;
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Entrada invalida");
+
+                try {
+
+                    valid2 = false;
+                    do {
+                        if (valid2) {
+                            JOptionPane.showMessageDialog(null, "Se excede del tamaño de caracteres");
+                            valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                            value=Integer.parseInt(valint);
+                        } else {
+                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                              value=Integer.parseInt(valint);
+                        }
                         valid2 = true;
-                    }
-                } while (valid2);
+                       
+                    } while (valint.length() > 4);
+                    valid2 = false;
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Entrada invalida");
+                    System.out.println(e);
+                    valid2 = true;
+                }
+
                 ListaS.add(value + "");
             }
             valid = false;
@@ -1016,7 +1032,10 @@ public class Main extends javax.swing.JFrame {
         }
         //System.out.println("Este es pal: " + pal);
         r.setListaString(ListaS);
-        JOptionPane.showMessageDialog(this, "CREADO");
+        if (!valid2) {
+            JOptionPane.showMessageDialog(this, "CREADO");
+        }
+
         boolRegistro = true;
 
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
@@ -1090,14 +1109,14 @@ public class Main extends javax.swing.JFrame {
                 for (int i = 0; i < r.getListaString().size(); i++) {
 
                     System.out.println(r.getListaString().size());
-                    String word=r.getListaString().get(i);
-                    String esp="";
-                    int falta=ListaL.get(i)-word.length();
-                    System.out.println("LA DIFERENCIA ES: "+falta);
+                    String word = r.getListaString().get(i);
+                    String esp = "";
+                    int falta = ListaL.get(i) - word.length();
+                    System.out.println("LA DIFERENCIA ES: " + falta);
                     for (int j = 0; j < falta; j++) {
-                        esp+=" ";
+                        esp += " ";
                     }
-                    pal +=word+esp+"|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
+                    pal += word + esp + "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
 
                     if (cont1 == r.getListaCampo().size()) {
                         pal += "\n";
@@ -1116,8 +1135,8 @@ public class Main extends javax.swing.JFrame {
                 String pal2 = "";
                 pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
                         + " \n AVAILIST HEAD: NULL  " + "\n";
-                String pal22=writeMD();
-                String pal3 = pal22+pal;
+                String pal22 = writeMD();
+                String pal3 = pal22 + pal;
 
                 ap.setName(nameArchivo);
                 System.out.println("NAME" + ap.getName());
@@ -1423,15 +1442,15 @@ public class Main extends javax.swing.JFrame {
         }
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-        int diff=10-Listac.size();
+        int diff = 10 - Listac.size();
         String pal2 = "";
-        String esp="";
+        String esp = "";
         for (int i = 0; i < diff; i++) {
-            esp+="\n";
+            esp += "\n";
         }
-        
-        pal2 += Listac.size() + "\n" + cc1 +esp+ "Cantidad de Registros: " + Listac.size()
-                + " \n AVAILIST HEAD: NULL  " + "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "_"+"\n";
+
+        pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+                + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
         ap.setName(nameArchivo);
         try {
             ap.escribirArchivo(pal2);
@@ -1439,7 +1458,7 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_GuardarCamposActionPerformed
-    public String writeMD(){
+    public String writeMD() {
         String cc1 = "";
 
         for (int i = 0; i < Listac.size(); i++) {
@@ -1450,15 +1469,15 @@ public class Main extends javax.swing.JFrame {
         }
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-        int diff=10-Listac.size();
+        int diff = 10 - Listac.size();
         String pal2 = "";
-        String esp="";
+        String esp = "";
         for (int i = 0; i < diff; i++) {
-            esp+="\n";
+            esp += "\n";
         }
-        
-        pal2 += Listac.size() + "\n" + cc1 +esp+ "Cantidad de Registros: " + Listac.size()
-                + " \n AVAILIST HEAD: NULL  " + "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "_"+"\n";
+
+        pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+                + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
         return pal2;
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1616,7 +1635,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Integer>ListaL=new ArrayList();
+    ArrayList<Integer> ListaL = new ArrayList();
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
@@ -1635,7 +1654,6 @@ public class Main extends javax.swing.JFrame {
 
     }
     //variables globales
-    
 
     //booleans de validaciones
     boolean boolArchivo = false;
