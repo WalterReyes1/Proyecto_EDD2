@@ -69,7 +69,7 @@ public class Main extends javax.swing.JFrame {
         RB1 = new javax.swing.JRadioButton();
         RB2 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        spinnerS = new javax.swing.JSpinner();
+        longS = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
         buttonGroup1 = new javax.swing.ButtonGroup();
         jDialog_EditarCampos = new javax.swing.JDialog();
@@ -267,8 +267,8 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
 
-        spinnerS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
-        jPanel3.add(spinnerS, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
+        longS.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jPanel3.add(longS, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 153, 54, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 370));
@@ -720,7 +720,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ya existe una llave primaria");
         }
         while (llave1 == false) {
-            int size = (Integer) spinnerS.getValue();
+            int size = (Integer) longS.getValue();
             try {
                 String name = Nombre_Campo1.getText();
                 String tipo = "";
@@ -758,7 +758,7 @@ public class Main extends javax.swing.JFrame {
             //vaciar y cerrar
             Nombre_Campo.setText("");
             cb_TD.setSelectedIndex(0);
-            spinnerS.setValue(1);
+            longS.setValue(1);
             jDialog_CrearCampos.setVisible(false);
 
             //actualizar table
@@ -844,7 +844,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ya existe una llave primaria");
         }
         while (llave1 == false) {
-            int size = (Integer) spinnerS.getValue();
+            int size = (Integer) longS.getValue();
             try {
                 String name = Nombre_Campo.getText();
                 String tipo = "";
@@ -856,8 +856,8 @@ public class Main extends javax.swing.JFrame {
                     size = 1;
                 }
                 if (cb_TD.getSelectedIndex() == 2) {
-                    tipo = "int";
-                    size = 32;
+                    tipo = "Int";
+                    size = 4;
                 }
 
                 boolean llave;
@@ -866,7 +866,18 @@ public class Main extends javax.swing.JFrame {
                 } else {
                     llave = false;
                 }
-
+                if(tipo.equals("Int")){
+                    size=4;
+                    ListaL.add(size);
+                }
+                if(tipo.equals("Char")){
+                    size=1;
+                    ListaL.add(size);
+                }
+                if(tipo.equals("String")){
+                    ListaL.add(size);
+                }
+                
                 Campos c1 = new Campos(name, tipo, size, llave);
                 Listac.add(c1);
                 boolean key = false;
@@ -914,7 +925,7 @@ public class Main extends javax.swing.JFrame {
             //vaciar y cerrar
             Nombre_Campo.setText("");
             cb_TD.setSelectedIndex(0);
-            spinnerS.setValue(1);
+            longS.setValue(1);
             for (int i = 0; i < Listac.size(); i++) {
                 if (Listac.get(i).isIsKey() == true) {
 
@@ -1003,7 +1014,7 @@ public class Main extends javax.swing.JFrame {
             valid = false;
 
         }
-        System.out.println("Este es pal: " + pal);
+        //System.out.println("Este es pal: " + pal);
         r.setListaString(ListaS);
         JOptionPane.showMessageDialog(this, "CREADO");
         boolRegistro = true;
@@ -1079,8 +1090,14 @@ public class Main extends javax.swing.JFrame {
                 for (int i = 0; i < r.getListaString().size(); i++) {
 
                     System.out.println(r.getListaString().size());
-
-                    pal += r.getListaString().get(i) + "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
+                    String word=r.getListaString().get(i);
+                    String esp="";
+                    int falta=ListaL.get(i)-word.length();
+                    System.out.println("LA DIFERENCIA ES: "+falta);
+                    for (int j = 0; j < falta; j++) {
+                        esp+=" ";
+                    }
+                    pal +=word+esp+"|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
 
                     if (cont1 == r.getListaCampo().size()) {
                         pal += "\n";
@@ -1099,8 +1116,8 @@ public class Main extends javax.swing.JFrame {
                 String pal2 = "";
                 pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
                         + " \n AVAILIST HEAD: NULL  " + "\n";
-
-                String pal3 = pal2 + pal;
+                String pal22=writeMD();
+                String pal3 = pal22+pal;
 
                 ap.setName(nameArchivo);
                 System.out.println("NAME" + ap.getName());
@@ -1388,10 +1405,10 @@ public class Main extends javax.swing.JFrame {
     private void cb_TDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TDItemStateChanged
         if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
             jLabel_CrearCampo3.setVisible(false);
-            spinnerS.setVisible(false);
+            longS.setVisible(false);
         } else {
             jLabel_CrearCampo3.setVisible(true);
-            spinnerS.setVisible(true);
+            longS.setVisible(true);
         }
     }//GEN-LAST:event_cb_TDItemStateChanged
 
@@ -1406,9 +1423,15 @@ public class Main extends javax.swing.JFrame {
         }
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+        int diff=10-Listac.size();
         String pal2 = "";
-        pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
-                + " \n AVAILIST HEAD: NULL  " + "\n";
+        String esp="";
+        for (int i = 0; i < diff; i++) {
+            esp+="\n";
+        }
+        
+        pal2 += Listac.size() + "\n" + cc1 +esp+ "Cantidad de Registros: " + Listac.size()
+                + " \n AVAILIST HEAD: NULL  " + "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "_"+"\n";
         ap.setName(nameArchivo);
         try {
             ap.escribirArchivo(pal2);
@@ -1416,7 +1439,28 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_GuardarCamposActionPerformed
+    public String writeMD(){
+        String cc1 = "";
 
+        for (int i = 0; i < Listac.size(); i++) {
+            Campos c1 = Listac.get(i);
+            String size1 = c1.getSize() + "";
+            cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
+
+        }
+        //"CAMPOS: 4 "+"\n"+
+        //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+        int diff=10-Listac.size();
+        String pal2 = "";
+        String esp="";
+        for (int i = 0; i < diff; i++) {
+            esp+="\n";
+        }
+        
+        pal2 += Listac.size() + "\n" + cc1 +esp+ "Cantidad de Registros: " + Listac.size()
+                + " \n AVAILIST HEAD: NULL  " + "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "\n"+ "_"+"\n";
+        return pal2;
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //inserto NUMEROS 1,2,3,15,6,70,28,8
         Arbolb tree = new Arbolb(6);
@@ -1570,8 +1614,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JSpinner spinnerS;
+    private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Integer>ListaL=new ArrayList();
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
@@ -1589,6 +1634,8 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
+    //variables globales
+    
 
     //booleans de validaciones
     boolean boolArchivo = false;
