@@ -200,6 +200,8 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDialog_CrearCampos.setUndecorated(true);
+
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -702,20 +704,20 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_EliminarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       Campos c = new Campos();
+        Campos c = new Campos();
         c = (Campos) Cb_editarCampo.getSelectedItem();
         boolean llave1 = false;
         for (int i = 0; i < Listac.size(); i++) {
-            if (Listac.get(i).isIsKey()&& jRadioButton2.isSelected()) {
+            if (Listac.get(i).isIsKey() && jRadioButton2.isSelected()) {
                 llave1 = true;
             }
-            
-            if (Listac.get(i).isIsKey()&& No1.isSelected()) {
+
+            if (Listac.get(i).isIsKey() && No1.isSelected()) {
                 llave1 = false;
             }
         }
-        if(llave1){
-            JOptionPane.showMessageDialog(null,"Ya existe una llave primaria");
+        if (llave1) {
+            JOptionPane.showMessageDialog(null, "Ya existe una llave primaria");
         }
         while (llave1 == false) {
             int size = (Integer) spinnerS.getValue();
@@ -727,7 +729,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (cb_TD1.getSelectedIndex() == 1) {
                     tipo = "Char";
-                    size=1;
+                    size = 1;
                 }
                 if (cb_TD1.getSelectedIndex() == 2) {
                     tipo = "int";
@@ -744,13 +746,9 @@ public class Main extends javax.swing.JFrame {
                 c.setData_type(tipo);
                 c.setSize(size);
                 c.setIsKey(llave);
-                
-               
 
                 JOptionPane.showMessageDialog(this, "editado Excitosamente");
                 System.out.println(c.toString());
-
-               
 
                 boolCampos = true;
 
@@ -780,10 +778,10 @@ public class Main extends javax.swing.JFrame {
             } else {
 
             }
-            llave1=true;
+            llave1 = true;
         }
-        llave1=false;
-        
+        llave1 = false;
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
@@ -834,16 +832,16 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         boolean llave1 = false;
         for (int i = 0; i < Listac.size(); i++) {
-            if (Listac.get(i).isIsKey()&& RB1.isSelected()) {
+            if (Listac.get(i).isIsKey() && RB1.isSelected()) {
                 llave1 = true;
             }
-            
-            if (Listac.get(i).isIsKey()&& RB2.isSelected()) {
+
+            if (Listac.get(i).isIsKey() && RB2.isSelected()) {
                 llave1 = false;
             }
         }
-        if(llave1){
-            JOptionPane.showMessageDialog(null,"Ya existe una llave primaria");
+        if (llave1) {
+            JOptionPane.showMessageDialog(null, "Ya existe una llave primaria");
         }
         while (llave1 == false) {
             int size = (Integer) spinnerS.getValue();
@@ -855,7 +853,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (cb_TD.getSelectedIndex() == 1) {
                     tipo = "Char";
-                    size=1;
+                    size = 1;
                 }
                 if (cb_TD.getSelectedIndex() == 2) {
                     tipo = "int";
@@ -871,8 +869,31 @@ public class Main extends javax.swing.JFrame {
 
                 Campos c1 = new Campos(name, tipo, size, llave);
                 Listac.add(c1);
+                boolean key = false;
 
-                JOptionPane.showMessageDialog(this, "Creado Excitosamente");
+                for (int i = 0; i < Listac.size(); i++) {
+                    if (Listac.get(i).isIsKey() == true) {
+                        key = true;
+
+                    }
+
+                }
+                String[] arreglo = {"Sí", "No"};
+                int opcion = JOptionPane.showOptionDialog(null, "Creado exitosamente. Desea crear otro campo?", "Campos", 0, JOptionPane.QUESTION_MESSAGE, null, arreglo, "");
+                if (opcion == 0) {
+
+                } else {
+                    if (!key) {
+                        JOptionPane.showMessageDialog(null, "Necesitamos una llave primaria mínimo.Porfavor crear una");
+                        RB2.setVisible(false);
+                        RB1.setSelected(true);
+                    } else {
+                        jDialog_CrearCampos.setVisible(false);
+                        RB2.setVisible(true);
+                        RB1.setSelected(false);
+                    }
+
+                }
                 System.out.println(c1.toString());
 
                 DefaultComboBoxModel modelo = (DefaultComboBoxModel) cb_borrarc.getModel();
@@ -894,8 +915,16 @@ public class Main extends javax.swing.JFrame {
             Nombre_Campo.setText("");
             cb_TD.setSelectedIndex(0);
             spinnerS.setValue(1);
-            jDialog_CrearCampos.setVisible(false);
+            for (int i = 0; i < Listac.size(); i++) {
+                if (Listac.get(i).isIsKey() == true) {
 
+                    ListaKeyPos.add(i);
+                }
+
+            }
+            for (int i = 0; i < ListaKeyPos.size(); i++) {
+                System.out.println("La llave se encuentra en la pos: "+ListaKeyPos.get(i));
+            }
             //actualizar table
             if (boolCampos) {
                 eliminarTabla();
@@ -913,10 +942,11 @@ public class Main extends javax.swing.JFrame {
             } else {
 
             }
-            llave1=true;
+            llave1 = true;
         }
-        llave1=false;
-        
+        llave1 = false;
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -939,42 +969,41 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
         r.setListaCampo(Listac);
-        boolean valid=false;
+        boolean valid = false;
         String pal = "";
-        int value=0;
-        boolean valid2=false;
+        int value = 0;
+        boolean valid2 = false;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
-           
-            if(r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char") ){
-                
-                do{
-                    if(!valid){
-                        
-                    }else{
-                       JOptionPane.showMessageDialog(null,"Longitud invalida"); 
+
+            if (r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char")) {
+
+                do {
+                    if (!valid) {
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Longitud invalida");
                     }
-                   pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                   valid=true;
-                }while(pal.length()>r.getListaCampo().get(i).getSize());
+                    pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                    valid = true;
+                } while (pal.length() > r.getListaCampo().get(i).getSize());
                 ListaS.add(pal);
-               
-            }else{
-                do{
-                    try{
-                        value=Integer.parseInt(JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre()));
-                        valid2=false;
-                    }catch(Exception e){
-                      JOptionPane.showMessageDialog(null,"Entrada invalida");
-                      valid2=true;
+
+            } else {
+                do {
+                    try {
+                        value = Integer.parseInt(JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre()));
+                        valid2 = false;
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Entrada invalida");
+                        valid2 = true;
                     }
-                } while(valid2);
-                ListaS.add(value+"");
+                } while (valid2);
+                ListaS.add(value + "");
             }
-            valid=false;
-            
-           
+            valid = false;
+
         }
-        System.out.println("Este es pal: "+pal);
+        System.out.println("Este es pal: " + pal);
         r.setListaString(ListaS);
         JOptionPane.showMessageDialog(this, "CREADO");
         boolRegistro = true;
@@ -1033,7 +1062,7 @@ public class Main extends javax.swing.JFrame {
             r.setListaCampo(Listac);
             r.setListaString(ListaS);
             String pal = "";
-            String cc1="";
+            String cc1 = "";
             System.out.println(r.getListaCampo().size());
             System.out.println(r.getListaString().size());
             //al momento de crear un campo primera vez obligar a crear llave
@@ -1052,27 +1081,27 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(r.getListaString().size());
 
                     pal += r.getListaString().get(i) + "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
-                    
+
                     if (cont1 == r.getListaCampo().size()) {
                         pal += "\n";
                         cont1 = 0;
                     }
                     cont1++;
                 }
-                 for (int i = 0; i < Listac.size(); i++) {
+                for (int i = 0; i < Listac.size(); i++) {
                     Campos c1 = Listac.get(i);
                     String size1 = c1.getSize() + "";
                     cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
-                    
+
                 }
                 //"CAMPOS: 4 "+"\n"+
                 //+"\n"+"AVAILIST HEAD: NULL "+"\n";
                 String pal2 = "";
                 pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
                         + " \n AVAILIST HEAD: NULL  " + "\n";
-               
-                String pal3 = pal2+pal;
-                
+
+                String pal3 = pal2 + pal;
+
                 ap.setName(nameArchivo);
                 System.out.println("NAME" + ap.getName());
                 ap.escribirArchivo(pal3);
@@ -1313,7 +1342,7 @@ public class Main extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Funcionó");
                     } catch (Exception e) {
                         System.out.println(e);
-                        
+
                     }
                     System.out.println("salgo");
 
@@ -1357,7 +1386,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_CerrarRegistroActionPerformed
 
     private void cb_TDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TDItemStateChanged
-        if (cb_TD.getSelectedItem().equals("Int")||cb_TD.getSelectedItem().equals("Char")) {
+        if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
             jLabel_CrearCampo3.setVisible(false);
             spinnerS.setVisible(false);
         } else {
@@ -1368,19 +1397,19 @@ public class Main extends javax.swing.JFrame {
 
     private void GuardarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarCamposActionPerformed
         String cc1 = "";
-                
+
         for (int i = 0; i < Listac.size(); i++) {
-                    Campos c1 = Listac.get(i);
-                    String size1 = c1.getSize() + "";
-                    cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
-                    
-                }
-                //"CAMPOS: 4 "+"\n"+
-                //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-                String pal2 = "";
-                pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
-                        + " \n AVAILIST HEAD: NULL  " + "\n";
-                ap.setName(nameArchivo);
+            Campos c1 = Listac.get(i);
+            String size1 = c1.getSize() + "";
+            cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
+
+        }
+        //"CAMPOS: 4 "+"\n"+
+        //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+        String pal2 = "";
+        pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
+                + " \n AVAILIST HEAD: NULL  " + "\n";
+        ap.setName(nameArchivo);
         try {
             ap.escribirArchivo(pal2);
         } catch (IOException ex) {
@@ -1390,50 +1419,46 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //inserto NUMEROS 1,2,3,15,6,70,28,8
-        Arbolb tree=new Arbolb(6);
-        LLave l1=new LLave(12121,1);
-        LLave l2=new LLave(12122,22);
-         LLave l3=new LLave(12123,3);
-        LLave l4=new LLave(12124,4);
-         LLave l5=new LLave(12125,7);
-        LLave l6=new LLave(12126,70);
-         LLave l7=new LLave(12127,222);
-        LLave l8=new LLave(12128,888);
+        Arbolb tree = new Arbolb(6);
+        LLave l1 = new LLave(12121, 1);
+        LLave l2 = new LLave(12122, 22);
+        LLave l3 = new LLave(12123, 3);
+        LLave l4 = new LLave(12124, 4);
+        LLave l5 = new LLave(12125, 7);
+        LLave l6 = new LLave(12126, 70);
+        LLave l7 = new LLave(12127, 222);
+        LLave l8 = new LLave(12128, 888);
         //LLave l9=new LLave(12125,37);
-        LLave l10=new LLave(12126,270);
-         LLave l11=new LLave(12127,248);
-        LLave l12=new LLave(12128,6225454);
-        LLave l13=new LLave(12128,724542);
-        LLave l14=new LLave(12128,2);
-        LLave l15=new LLave(12128,122222);
-        
-       
+        LLave l10 = new LLave(12126, 270);
+        LLave l11 = new LLave(12127, 248);
+        LLave l12 = new LLave(12128, 6225454);
+        LLave l13 = new LLave(12128, 724542);
+        LLave l14 = new LLave(12128, 2);
+        LLave l15 = new LLave(12128, 122222);
+
         tree.insert(l4);
         tree.insert(l5);
         tree.insert(l6);
         tree.insert(l7);
         tree.insert(l8);
-         tree.insert(l1);
+        tree.insert(l1);
         tree.insert(l2);
         tree.insert(l3);
-       //tree.insert(l9);
+        //tree.insert(l9);
         tree.insert(l10);
         tree.insert(l11);
         tree.insert(l12);
         tree.insert(l13);
         tree.insert(l14);
         tree.insert(l15);
-       // tree.print(tree.raiz);
-       tree.Show();
+        // tree.print(tree.raiz);
+        tree.Show();
         //search llave 28
-       // LLave mia=tree.buscarLlave(tree.raiz, 37);
+        // LLave mia=tree.buscarLlave(tree.raiz, 37);
         System.out.println("");
         //System.out.println("LLAVE ENCONTRADA:  "+mia.getLlave());
-        
-        
-        
-       
-        
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -1549,6 +1574,7 @@ public class Main extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
+    ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
     Archivo ap = new Archivo();
     String nameArchivo;
 

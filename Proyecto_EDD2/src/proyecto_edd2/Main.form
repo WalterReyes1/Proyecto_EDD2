@@ -181,6 +181,9 @@
       </SubComponents>
     </Container>
     <Container class="javax.swing.JDialog" name="jDialog_CrearCampos">
+      <Properties>
+        <Property name="undecorated" type="boolean" value="true"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
