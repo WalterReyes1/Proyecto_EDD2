@@ -1084,14 +1084,15 @@ public class Main extends javax.swing.JFrame {
 
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
-        System.out.println(ap.getName());
+        try{
+            System.out.println(ap.getName());
         if (boolRegistro) {
             //ya hay registros creados
             int cont1 = 1;
             Registros r = new Registros();
             r.setListaCampo(Listac);
             r.setListaString(ListaS);
-            String pal = "";
+            //String pal = "";
             String cc1 = "";
             System.out.println(r.getListaCampo().size());
             System.out.println(r.getListaString().size());
@@ -1104,37 +1105,48 @@ public class Main extends javax.swing.JFrame {
             //luis,flores,12
             //ocupo saber en que posicion de la lista de campos esta la llave
             //para poder saebr la posicion lista string
+            
+           
+         
+           
+            
             try {
-
-                for (int i = 0; i < r.getListaString().size(); i++) {
-
-                    System.out.println(r.getListaString().size());
-                    String word = r.getListaString().get(i);
-                    String esp = "";
-                    int falta = ListaL.get(i) - word.length();
-                    System.out.println("LA DIFERENCIA ES: " + falta);
-                    for (int j = 0; j < falta; j++) {
-                        esp += " ";
+                //nombre,id
+                //luis,1,
+                //walter,2
+               
+                String pal="";
+                int valor=0;
+                int cont2=0;
+                
+                    for (int j = 0; j < r.getListaString().size(); j++) {
+                        String rr=r.getListaString().get(j);
+                        
+                            int dif=valor-rr.length();
+                            int cont=0;
+                           
+                             pal += rr+ "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
+                             
+                            if (cont1 == r.getListaCampo().size()) {
+                                
+                                pal += "\n";
+                                cont1 = 0;
+                            }
+                            cont1++;
+                            //1,2
+                            System.out.println("SOY LA LINEA: "+pal);
+                            cont2++;
+                            
+                        
+                        
+                        
+                        
                     }
-                    pal += word + esp + "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
-
-                    if (cont1 == r.getListaCampo().size()) {
-                        pal += "\n";
-                        cont1 = 0;
-                    }
-                    cont1++;
-                }
-                for (int i = 0; i < Listac.size(); i++) {
-                    Campos c1 = Listac.get(i);
-                    String size1 = c1.getSize() + "";
-                    cc1 += c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";" + "\n";
-
-                }
-                //"CAMPOS: 4 "+"\n"+
-                //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-                String pal2 = "";
-                pal2 += Listac.size() + "\n" + cc1 + "Cantidad de Registros: " + Listac.size()
-                        + " \n AVAILIST HEAD: NULL  " + "\n";
+                    
+                    
+                
+                
+               
                 String pal22 = writeMD();
                 String pal3 = pal22 + pal;
 
@@ -1148,6 +1160,12 @@ public class Main extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
         }
+        
+        }
+        catch(Exception e){
+            System.out.println("ERROR");
+        }
+        
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
