@@ -15,6 +15,8 @@ public class LLave {
 
     public LLave() {
     }
+    //luis,12
+    //walter,12
 
     public LLave(long offset, int llave) {
         this.offset = offset;
