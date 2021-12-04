@@ -8,6 +8,7 @@ package proyecto_edd2;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -993,9 +994,17 @@ public class Main extends javax.swing.JFrame {
         boolean valid = false;
         String pal = "";
         String valint = "";
+        String prim="";
         int value = 0;
         boolean valid2 = false;
         String k="";
+        ArrayList<String>ListaS1=new ArrayList();
+        ArrayList<String>ListaWR=new ArrayList();
+        //primera vez metes la llave aqui
+        //meter si no se repite
+        //donde//guarda donde esta llave
+        //
+        int llave=0;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
             
 
@@ -1016,10 +1025,13 @@ public class Main extends javax.swing.JFrame {
                         listaK1.add(pal);
                         k=pal;
                 
-                
+                        llave=Integer.parseInt(pal);
                         System.out.println("LLAVE A LISTA: "+pal);
-                    }
+                    }//meter si solo es la primera vez
                 ListaS.add(pal);
+                prim+=pal;
+                ListaS1.add(pal);
+                //cc3+=pal.length();
                 mdsize=writeMD().length();
                 
                 
@@ -1051,46 +1063,148 @@ public class Main extends javax.swing.JFrame {
                 if(i==donde){
                         listaK1.add(value+"");
                         k=value+"";
-                
+                        llave=value;
                 
                         System.out.println("LLAVE A LISTA: "+value);
-                    }
+                    }//meter si es primera vez
                 ListaS.add(value + "");
+                ListaS1.add(value + "");
+                prim+=value;
+                //cc3+=pal.length();
             }
             valid = false;
 
         }
         //System.out.println("Este es pal: " + pal);
+        //luis,flores,id
+        //name4,apell5,4
+        //name,id
+        //4,10
+        //luis,12,val,14,walter,12
         r.setListaString(ListaS);
-        ArrayList<String>ListaS1=new ArrayList();
-        ListaS1=ListaS;
+        
+        
+        LLave l1=new LLave();
         if (!valid2) {
+            String fin="";
+            String fin1="";
+            String fin2="";
+            String fin3="";
+            int w=0;
+           
             
+                for (int i = 0; i < ListaS1.size(); i++) {
+                    fin=ListaS1.get(i);
+                    
+                    while(w<r.getListaCampo().size()){
+                        int l=ListaL.get(w);
+                        fin2=fixSpace(fin,l);
+                        fin3+=fin2+"|";
+                       
+                        break;
+
+                    }
+                    w++;
+                    
+                }
+                //fin1+=fin3+"\n";
+                //String pal22 = writeMD();
+               long offset=fin3.length();
+               ;
+                ap.setName(nameArchivo);
+                
+            try {
+                RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                long md=writeMD().length();
+                raf.seek(raf.length());
+                offset= raf.getFilePointer();
+                
+                raf.writeChars(fin3);
+                raf.writeChars("\n");
+                raf.close();
+                l1.setOffset(offset);
+                l1.setLlave(llave);
+                tree.insert(l1);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+                ListaS1.clear();
+                System.out.println("PALABRA: "+fin3);
+                    
+            
+            /*
             System.out.println("SIZE MD: "+mdsize);
             String tot="";
-            for (int i = 0; i < ListaS.size(); i++) {
-                tot+=ListaS1.get(i)+ "|";
-                
-            }
-            System.out.println("PALABRA: "+tot);
-            System.out.println("LLAVE: "+k);
-            
-            System.out.println("CANT: "+tot.length());
-            LLave l1=new LLave();
+            String ttot2="";
+            int cc=0;
+            int cc1;
             int key=Integer.parseInt(k);
-            l1.setLlave(key);
-            l1.setOffset(tot.length()+mdsize);
-            tree.insert(l1);
-            k="";
-            key=0;
-            JOptionPane.showMessageDialog(this, "CREADO");
+            if(primeraVez==true){
+                
+                
+                System.out.println("PRIMERA VEZ");
+                System.out.println("OOFSET 1: "+mdsize);
+                 LLave l1=new LLave();
+                l1.setLlave(key);
+                l1.setOffset(mdsize-1);
+                tree.insert(l1);
+                k="";
+                key=0;
+                JOptionPane.showMessageDialog(this, "CREADO");
+               
+                primeraVez=false;
+            }else{
+                for (int i = 0; i < ListaS1.size(); i++) {
+                    
+                tot+=ListaS1.get(i)+ "|";//luis?12?1 
+
+                }
+                System.out.println("PALABRA: "+tot);
+                System.out.println("RECIEN Ingresada: "+prim);
+                cc2+=tot.length();
+        
+                System.out.println("SEGUNDA");
+           
+                
+                int v2=prim.length()+r.getListaCampo().size();
+                System.out.println("RESTANDO: "+v2);
+                
+                int m=tot.length()-v2;
+                //m+=r.getListaCampo().size();
+                System.out.println("OFFSET  : "+m);
+                 LLave l1=new LLave();
+                l1.setLlave(key);
+                l1.setOffset(m+mdsize);
+                tree.insert(l1);
+                prim="";
+                //cc3=0;
+                k="";
+                key=0;
+                
+
+
+                }*/
             
+            
+            JOptionPane.showMessageDialog(this, "CREADO");
         }
 
         boolRegistro = true;
 
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
+    public String fixSpace(String registro, int longitud) {
 
+        int length = longitud - registro.length();
+
+        for (int i = 0; i < length; i++) {
+            registro += " ";
+        }
+
+        return registro;
+    }
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
         String camino = "";
 
@@ -1132,9 +1246,10 @@ public class Main extends javax.swing.JFrame {
         boolGuardado = false;
 
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
-
+    
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
+        /*
         try{
             //n,l,id,age
             //lui,f,21,12,
@@ -1183,6 +1298,7 @@ public class Main extends javax.swing.JFrame {
                 //nombre,id
                 //luis,1,
                 //walter,2
+                /*
                
                 String pal="";
                 String pal2="";
@@ -1276,7 +1392,7 @@ public class Main extends javax.swing.JFrame {
         catch(Exception e){
             System.out.println("ERROR");
             System.out.println(e);
-        }
+        }*/
         
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
@@ -1658,10 +1774,11 @@ public class Main extends javax.swing.JFrame {
                     try {
                         System.out.println("adentro");
                         RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                        file_a.seek(111);//128
-                       // String seek = file_a.readLine();
-                        //System.out.println("Soy el seek: " + seek);
-                        file_a.writeUTF("soy seek");
+                        file_a.seek(l1.getOffset()+1);//128
+                        String seek = file_a.readLine();
+                        System.out.println("Soy el seek: " + seek);
+                        //file_a.writeUTF("soy seek");
+                      // file_a.wr
                         JOptionPane.showMessageDialog(null, "Funcionó");
                     } catch (Exception e) {
                         System.out.println(e);
@@ -1806,9 +1923,11 @@ public class Main extends javax.swing.JFrame {
     //variables globales
     boolean esta=false;
     int donde;
+    int cc2,cc3;
     int mdsize;
     Arbolb tree = new Arbolb(6);
     //booleans de validaciones
+    boolean primeraVez=true;
     boolean boolArchivo = false;
     boolean boolCampos = false;
     boolean boolRegistro = false;
