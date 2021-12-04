@@ -20,7 +20,7 @@ public class LLave {
 
     public LLave(long offset, int llave) {
         this.offset = offset;
-        this.llave = llave;
+        this.llave = llave; 
     }
 
     public long getOffset() {

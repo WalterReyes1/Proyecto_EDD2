@@ -33,6 +33,14 @@ public class Archivo {
 
     }
 
+    public Registros getR1() {
+        return r1;
+    }
+    
+    public void setR1(Registros r1) {
+        this.r1 = r1;
+    }
+
     public File getArchivo() {
         return archivo;
     }

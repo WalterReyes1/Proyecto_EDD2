@@ -117,6 +117,7 @@ public class Arbolb {
             insert_nonFull(x.getHijos()[i], llave);
         }
     }
+    
     public void Split(Nodo x, int i, Nodo y) {
         Nodo z = new Nodo(T);// Nodo temp
         z.esHoja = y.esHoja;
@@ -192,6 +193,286 @@ public class Arbolb {
       }
     }
   }
+  //ELIMINAR
+  public boolean eliminar(Nodo x, LLave llave) {
+
+        //encuentra el indice de la llave a eliminar adentro del nodo
+        int indice = x.indice(llave);
+        //verifica si el nodo es una hoja
+        if (indice != -1) {
+            if (x.esHoja) {
+                //si el indice de la llave se ubica al final al reemplaza con un valor nulo
+                if (indice == x.getLlaves().length - 1) {
+                    x.getLlaves()[indice] = null;
+                    x.setCant_llaves(x.getCant_llaves() - 1);
+                    return true;
+                } else {
+
+                    //si el valor esta dentro del arreglo hace un corrimiento
+                    //eliminando la llave en el proceso
+                    for (int j = indice; j < x.getLlaves().length - 1; j++) {
+                        x.getLlaves()[j] = x.getLlaves()[j + 1];
+                    }
+                    x.setCant_llaves(x.getCant_llaves() - 1);
+                    return true;
+                }
+            }
+
+            //caso # 2
+            if (!x.isEsHoja()) {
+                //Caso donde hijo predecesor tiene T llaves
+                //declaracion de un nuevo nodo
+                Nodo p = x.hijos[indice];
+                //declaracion de llave predecesora
+                LLave llaveP;
+                //valida que el nodo tenga arriba del minimo de llaves
+                if (p.getCant_llaves() >= T) {
+
+                    //busca en un for infinito la llave predecesora
+                    for (;;) {
+
+                        if (p.esHoja) {
+                            llaveP= p.llaves[p.getCant_llaves() - 1];
+                            break;
+
+                        } else {
+                            p = p.hijos[p.cant_llaves];
+                        }
+                    }
+
+                    //llamado recursivo al metodo de eliminar hasta dar al caso base
+                    eliminar(p, llaveP);
+                    x.llaves[indice] = llaveP;
+                    return true;
+                }
+
+                //caso donde hijo sucesor tiene T llaves
+                //declaracion de un nodo sucesor
+                Nodo s= x.hijos[indice + 1];
+
+                //verifica que el nodo sucesor tenga mas del minimo de llaves
+                if (s.cant_llaves >= T) {
+
+                    LLave llaveA = s.llaves[0];
+
+                    //verifica si el nodo sucesor es hoja
+                    if (!s.esHoja) {
+
+                        s = s.hijos[0];
+
+                        //for busca la llave sucesora dentro de los nodos sucesor
+                        for (;;) {
+
+                            //valida si el nodo sucesor es hoja
+                            if (s.esHoja) {
+                                llaveA= s.llaves[s.cant_llaves - 1];
+                                break;
+
+                            } else {
+                                s = s.hijos[s.cant_llaves];
+                            }
+                        }
+                    }
+
+                    //llamada recursiva a la funcion eliminar
+                    eliminar(s, llaveA);
+                    x.llaves[indice] = llaveA;
+                }
+
+                //Caso #3 Merges y mas
+                int temp = p.cant_llaves + 1;
+                p.llaves[p.cant_llaves++] = x.llaves[indice];
+
+                for (int i = 0, j = p.cant_llaves; i < s.cant_llaves; i++) {
+                    p.llaves[j + 1] = s.llaves[i];
+                    p.cant_llaves++;
+                }
+
+                for (int i = 0; i < s.cant_llaves + 1; i++) {
+                    p.hijos[temp+ 1] = s.hijos[i];
+                }
+
+                x.hijos[indice] = p;
+
+                //corrimiento de llaves
+                for (int i = indice; i < x.cant_llaves; i++) {
+
+                    //si i es diferente que el numero que el grado menos 2
+                    if (i != (2 * T - 2)) {
+                        x.llaves[i] = x.llaves[i + 1];
+                    }
+                }
+
+                //corrimiento en el arreglo de hijos
+                for (int i = indice + 1; i < x.cant_llaves + 1; i++) {
+
+                    if (i != (2 * T - 1)) {
+                        x.hijos[i] = x.hijos[i + 1];
+                    }
+                }
+
+                x.cant_llaves--;
+
+                if (x.cant_llaves == 0) {
+
+                    if (x == raiz) {
+                        raiz = x.hijos[0];
+                    }
+
+                    x = x.hijos[0];
+                }
+
+                eliminar(p, llave);
+                return true;
+
+            }
+        } else {
+            //caso donde no encuentra la posicion de la llave a insertar
+            for (indice = 0; indice < x.cant_llaves; indice++) {
+
+                if (x.llaves[indice].llave > llave.llave) {
+                    break;
+                }
+            }
+
+            Nodo temporal = x.hijos[indice];
+
+            if (temporal.cant_llaves >= T) {
+                eliminar(temporal, llave);
+                return true;
+            }
+
+            if (true) {
+                Nodo newNode = null;
+                LLave llaved;
+
+                if (indice != x.cant_llaves && x.hijos[indice + 1].cant_llaves >= T) {
+
+                    llaved= x.llaves[indice];
+                    newNode = x.hijos[indice + 1];
+
+                    x.llaves[indice] = newNode.llaves[0];
+
+                    temporal.llaves[temporal.cant_llaves++] = llaved;
+                    temporal.hijos[temporal.cant_llaves] = newNode.hijos[0];
+
+                    for (int i = 1; i < newNode.cant_llaves; i++) {
+                        newNode.llaves[i - 1] = newNode.llaves[i];
+                    }
+
+                    for (int i = 1; i <= newNode.cant_llaves; i++) {
+                        newNode.hijos[i - 1] = newNode.hijos[i];
+                    }
+
+                    newNode.cant_llaves--;
+                    eliminar(temporal, llave);
+                    return true;
+
+                } else if (indice != 0 && x.hijos[indice - 1].cant_llaves >= T) {
+
+                    llaved = x.llaves[indice - 1];
+
+                    newNode = x.hijos[indice - 1];
+
+                    x.llaves[indice - 1] = newNode.llaves[newNode.cant_llaves - 1];
+
+                    Nodo hijo = newNode.hijos[newNode.cant_llaves];
+                    newNode.cant_llaves--;
+
+                    for (int i = temporal.cant_llaves; i > 0; i--) {
+                        temporal.llaves[i] = temporal.llaves[i - 1];
+                    }
+
+                    temporal.llaves[0] = llaved;
+
+                    for (int i = temporal.cant_llaves + 1; i > 0; i--) {
+                        temporal.hijos[i] = temporal.hijos[i - 1];
+                    }
+
+                    temporal.hijos[0] = hijo;
+
+                    temporal.cant_llaves++;
+                    eliminar(temporal, llave);
+
+                } else {
+                    Nodo nodoIzquierdo = null;
+                    Nodo nodoDerecho = null;
+                    boolean ultimo = false;
+
+                    if (indice != x.cant_llaves) {
+                        llaved = x.llaves[indice];
+                        nodoIzquierdo = x.hijos[indice];
+                        nodoDerecho = x.hijos[indice + 1];
+
+                    } else {
+                        llaved = x.llaves[indice - 1];
+                        nodoDerecho = x.hijos[indice];
+                        nodoIzquierdo = x.hijos[indice - 1];
+                        ultimo = true;
+                        indice--;
+                    }
+
+                    for (int i = indice; i < x.cant_llaves - 1; i++) {
+                        x.llaves[i] = x.llaves[i + 1];
+                    }
+
+                    for (int i = indice + 1; i < x.cant_llaves; i++) {
+                        x.hijos[i] = x.hijos[i + 1];
+                    }
+
+                    x.cant_llaves--;
+
+                    nodoIzquierdo.llaves[nodoIzquierdo.cant_llaves++] = llaved;
+
+                    for (int i = 0, j = nodoIzquierdo.cant_llaves; i < nodoDerecho.cant_llaves + 1; i++, j++) {
+
+                        if (i < nodoDerecho.cant_llaves) {
+                            nodoIzquierdo.llaves[j] = nodoDerecho.llaves[i];
+                        }
+                        nodoIzquierdo.hijos[j] = nodoDerecho.hijos[i];
+                    }
+
+                    nodoIzquierdo.cant_llaves += nodoDerecho.cant_llaves;
+
+                    if (x.cant_llaves == 0) {
+                        if (x == raiz) {
+                            raiz = x.hijos[0];
+                        }
+                        x = x.hijos[0];
+                    }
+
+                    eliminar(nodoIzquierdo, llave);
+                    return true;
+
+                }
+            }
+        }
+        return false;
+    }
+
+    public Nodo buscarEliminado(Nodo x, int llave) {
+        //Contador utilizado para evaluar indice de llaves y nodos hijo
+        int contador = 0;
+        Nodo nodo = x;
+        //Ciclo while que evalua si el indice es menor al numero de llaves
+        //y si la llave es mayor que la llave del indice del contador
+        while (contador < nodo.getCant_llaves()&& llave > nodo.getLlaves()[contador].getLlave()) {
+            //incremento al contador
+            contador = contador + 1;
+        }
+        //si el contador es menor que el numero de llaves y la llave 
+        //del indice es igual a la llave a buscar entonces devuelve true
+        if (contador < nodo.getCant_llaves() && llave == nodo.getLlaves()[contador].getLlave()) {
+            return nodo;
+        }
+        //si en caso el nodo es hoja significa que la llave no existe y devuelve false
+        if (nodo.esHoja) {
+            return null;
+        } else {
+            //caso recursivo que evaluara las llaves del hijo del nodo actual
+            return buscarEliminado(x.getHijos()[contador], llave);
+        }
+    }
   
 
     

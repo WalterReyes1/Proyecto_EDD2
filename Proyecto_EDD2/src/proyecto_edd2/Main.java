@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -57,6 +58,7 @@ public class Main extends javax.swing.JFrame {
         B_ListarCampo = new javax.swing.JButton();
         B_ModificarCampo = new javax.swing.JButton();
         B_BorrarCampo = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jDialog_CrearCampos = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
@@ -107,8 +109,9 @@ public class Main extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         B_NuevoRegistro1 = new javax.swing.JButton();
         B_AbrirRegistro = new javax.swing.JButton();
-        B_GuardarRegistro = new javax.swing.JButton();
         B_CerrarRegistro = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
@@ -183,6 +186,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel2.add(B_BorrarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 126, -1));
+
+        jButton7.setText("jButton7");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 400));
@@ -495,7 +506,7 @@ public class Main extends javax.swing.JFrame {
 
         B_AbrirRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_AbrirRegistro.setText("Abrir Registro");
+        B_AbrirRegistro.setText("Mostrar Registro");
         B_AbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_AbrirRegistroActionPerformed(evt);
@@ -503,25 +514,26 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel8.add(B_AbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
 
-        B_GuardarRegistro.setBackground(new java.awt.Color(255, 255, 255));
-        B_GuardarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_GuardarRegistro.setText("Guardar Registro");
-        B_GuardarRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_GuardarRegistroActionPerformed(evt);
-            }
-        });
-        jPanel8.add(B_GuardarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
-
         B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_CerrarRegistro.setText("Cerrar Registro");
+        B_CerrarRegistro.setText("Borrar Registro");
         B_CerrarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_CerrarRegistroActionPerformed(evt);
             }
         });
-        jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 176, 35));
+        jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
+
+        jButton8.setText("Modificar Registro");
+        jPanel8.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 180, 40));
+
+        jButton9.setText("jButton9");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -1285,155 +1297,6 @@ public class Main extends javax.swing.JFrame {
 
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
-    private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
-        // TODO add your handling code here:
-        /*
-        try{
-            //n,l,id,age
-            //lui,f,21,12,
-            ArrayList <String>Listat=new ArrayList();
-            Registros r1=new Registros();
-            Listat=ListaS;
-            int c1=0;
-            int c2=0;
-            String env="";
-            while(c1<Listat.size()){
-                env+=Listat.get(c1);
-                c1++;
-            }
-            //System.out.println("MI STRING: "+env);
-            
-        }catch(Exception e){
-            
-        }
-        try{
-            System.out.println(ap.getName());
-        if (boolRegistro) {
-            //ya hay registros creados
-            int cont1 = 1;
-            Registros r = new Registros();
-            r.setListaCampo(Listac);
-            r.setListaString(ListaS);
-            //String pal = "";
-            String cc1 = "";
-            System.out.println(r.getListaCampo().size());
-            System.out.println(r.getListaString().size());
-            //al momento de crear un campo primera vez obligar a crear llave
-            //si quiere volver a crear lo dejas, pero ya tenemos validacion  de solo 1 llave
-            //no lo saques de crear campo hasta que diga que no
-            //si el j option dice que no quiere seguir creando  ocupo un boolean que nos diga si ya hay una llave
-            //hace un j option que diga quiere seguir creadno
-            //nombre,ultimo,idllave
-            //luis,flores,12
-            //ocupo saber en que posicion de la lista de campos esta la llave
-            //para poder saebr la posicion lista string
-            
-           
-         
-           
-            
-            try {
-                //nombre,id
-                //luis,1,
-                //walter,2
-                /*
-               
-                String pal="";
-                String pal2="";
-                int valor=0;
-                int cont2=0;
-                String ww="";
-                ArrayList <String> ls=new ArrayList();
-                ls=ListaS;
-                int contK=0;
-                    for (int j = 0; j < r.getListaString().size(); j++) {
-                        String rr=r.getListaString().get(j);
-                        String rr2=ls.get(j);
-                            int dif=valor-rr.length();
-                            int cont=0;
-                                
-                             pal += rr+ "|";//ESTA LINEA GUARDA LOS STRING DE J OPTION
-                             pal2+=rr+"|";
-                             int cant=0;
-                            if (cont1 == r.getListaCampo().size()) {
-                                //cant=pal2.length();
-                                //System.out.println("MI STRING ES: "+pal2);
-                                //pal2="";
-                                //System.out.println("AHORA ES: "+pal2);
-                                //luis walter val
-                                //ls.remove(pal2);
-                                
-                                //while(contK<listaK1.size()){
-                                    //int key=Integer.parseInt(listaK1.get(contK));
-                                    //System.out.println("MI LLAVE: "+key);
-                                
-                              
-                                
-                                //System.out.println("ESTE MIDE: "+cant);
-                                //LLave l1=new LLave();
-                                //l1.setLlave(key);
-                               // l1.setOffset(cant);
-                               // int cont4=0;
-                                //if(cont4==0){
-                                    
-                                    //ystem.out.println("LLEGUE A 1");
-                                   // tree.insert(l1);
-                                   // cont4=1;
-                               // }else{
-                                       // LLave l2=new LLave();
-                                        
-                                        //l2=tree.buscarLlave(tree.getRaiz(), key);
-                                        //if(l2==null){
-                                        //    tree.insert(l1);
-                                            
-                                       // }
-                                        
-
-                                  
-                               // }
-                              
-                               // System.out.println("TREE AGREGUE LLAVE: "+l1.getLlave());
-                                //System.out.println("TREE AGREGUE OOFSET: "+l1.getOffset());
-                               // contK++;
-                              
-                                cant=0;
-                                pal += "\n";
-                                ww+=pal;
-                                cont1 = 0;
-                                cant=0;
-                            }
-                            cant=0;
-                            cont1++;
-                            
-                            
-                            cont2++;
-                       
-                    }
-                 
-                ww="";
-                String pal22 = writeMD();
-                String pal3 = pal22 + pal;
-
-                ap.setName(nameArchivo);
-                System.out.println("NAME" + ap.getName());
-                ap.escribirArchivo(pal3);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex);
-            }
-            JOptionPane.showMessageDialog(this, "GUARDADO");
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
-        }
-        
-        }
-        catch(Exception e){
-            System.out.println("ERROR");
-            System.out.println(e);
-        }*/
-
-    }//GEN-LAST:event_B_GuardarRegistroActionPerformed
-
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
         if (boolGuardado) {
@@ -1713,6 +1576,53 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (boolRegistro) {
             //ya hay registros creados
+            try{
+                Registros r=new Registros();
+                String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
+                int key=Integer.parseInt(keys);
+                LLave l1=new LLave();
+                l1=tree.buscarLlave(tree.getRaiz(), key);
+                if(l1==null){
+                
+                }
+                else{
+                try {
+                    System.out.println("adentro");
+                    RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                    file_a.seek(l1.getOffset() + 1);//128
+                    String seek = file_a.readLine();
+                    //System.out.println("Soy el seek: " + seek);
+                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: "+seek);
+                    int rest=seek.length();
+                    
+                    //file_a.writeUTF("soy seek");
+                    // file_a.wr
+                    
+                    System.out.println("RESTA: "+rest);
+                    long offset = (l1.getOffset()+1);
+                    System.out.println("NEW OFF: "+offset);
+                    
+                    file_a.seek(offset);
+
+                    file_a.writeChars("*");
+                    //file_a.writeChars();
+                    
+                    LinkedList list=ap.getAvailList();
+                    list.add(offset);
+                    file_a.seek(donde2);
+                    String c=list.get(0)+"";
+                    file_a.writeChars(c);
+                    file_a.close();
+                    JOptionPane.showMessageDialog(null, "Funcionó");
+                } catch (Exception e) {
+                    System.out.println(e);
+
+                }
+
+                }
+                
+            }catch(Exception e){
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
         }
@@ -1746,8 +1656,9 @@ public class Main extends javax.swing.JFrame {
             esp += "\n";
         }
 
-        pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
-                + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+       // pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+              //  + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+              pal2=writeMD();
         ap.setName(nameArchivo);
         try {
             ap.escribirArchivo(pal2);
@@ -1779,7 +1690,10 @@ public class Main extends javax.swing.JFrame {
             //}
         }
         pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
-                + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+                +"\n"+ "NULL" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+        String hasta= Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+                +"\n" ;
+        donde2=hasta.length();
         return pal2;
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1797,25 +1711,52 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        int n = 0;
-        Scanner in = new Scanner(System.in);
-        System.out.println("Ingrese llave a Buscar: ");
-        n = in.nextInt();
-        LLave l1 = tree.buscarLlave(tree.raiz, n);
-        if (l1 == null) {
-            System.out.println("no ta");
-        } else {
-            System.out.println("OffSET: " + l1.getOffset());
-            System.out.println("LLAVE: " + l1.getLlave());
-            //
-            System.out.println("fuera");
-            try {
+        //insert 1,2,40,5,60,7,80
+       LLave l1=new LLave(12121,1);
+       LLave l2=new LLave(12121,2);
+       LLave l3=new LLave(12121,40);
+       LLave l4=new LLave(12121,5);
+       LLave l5=new LLave(12121,60);
+       LLave l6=new LLave(12121,7);
+       LLave l7=new LLave(12121,80);
+       Arbolb Bprueba=new Arbolb(6);
+       Bprueba.insert(l1);
+       Bprueba.insert(l2);
+       Bprueba.insert(l3);
+       Bprueba.insert(l4);
+       Bprueba.insert(l5);
+       Bprueba.insert(l6);
+       Bprueba.insert(l7);
+       //ver si esta el nodo a eliminar
+        System.out.println("INSERTE:  1,2,40,5,60,7,80");
+        System.out.println("");
+       System.out.println("ARBOL ANTES DE ELIMINAR");
+        Bprueba.Show();
+        System.out.println("");
+       Nodo s=Bprueba.buscarEliminado(Bprueba.getRaiz(), 40);
+       //si esta , lo vamos a aliminar
+       boolean sepudo=Bprueba.eliminar(Bprueba.getRaiz(), l3);
+        System.out.println("ELIMINAR 40");
+        System.out.println("");
+       System.out.println("ARBOL DESPUES DE ELIMINAR");
+        Bprueba.Show();
+        System.out.println("");
+       
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        //availist
+         try {
                 System.out.println("adentro");
                 RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                file_a.seek(l1.getOffset() + 1);//128
+                file_a.seek(donde2);//128
                 String seek = file_a.readLine();
                 System.out.println("Soy el seek: " + seek);
-                //file_a.writeUTF("soy seek");
+                long off=donde2;
+                off= file_a.getFilePointer();
+                file_a.writeChars("BUSCANDO");
                 // file_a.wr
                 JOptionPane.showMessageDialog(null, "Funcionó");
             } catch (Exception e) {
@@ -1824,8 +1765,55 @@ public class Main extends javax.swing.JFrame {
             }
             System.out.println("salgo");
 
-        }
-    }//GEN-LAST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        try{
+                Registros r=new Registros();
+                String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
+                int key=Integer.parseInt(keys);
+                LLave l1=new LLave();
+                l1=tree.buscarLlave(tree.getRaiz(), key);
+                if(l1==null){
+                
+                }
+                else{
+                try {
+                    System.out.println("adentro");
+                    RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                    file_a.seek(l1.getOffset() + 1);//128
+                    String seek = file_a.readLine();
+                    //System.out.println("Soy el seek: " + seek);
+                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: "+seek);
+                    int rest=seek.length();
+                    
+                    //file_a.writeUTF("soy seek");
+                    // file_a.wr
+                    JOptionPane.showMessageDialog(null, "Funcionó");
+                    System.out.println("RESTA: "+rest);
+                    long offset = (l1.getOffset()+1);
+                    System.out.println("NEW OFF: "+offset);
+                    
+                    file_a.seek(offset);
+                    
+                    file_a.writeChars("MIERDA|2|");
+                    
+                    //file_a.writeChars();
+                    file_a.close();
+                    
+                } catch (Exception e) {
+                    System.out.println(e);
+
+                }
+
+                }
+                
+            }catch(Exception e){
+            }
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1874,7 +1862,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_Eliminar;
     private javax.swing.JButton B_Exportar;
     private javax.swing.JButton B_GuardarArchivo;
-    private javax.swing.JButton B_GuardarRegistro;
     private javax.swing.JButton B_Index;
     private javax.swing.JButton B_ListarCampo;
     private javax.swing.JButton B_ModificarCampo;
@@ -1901,6 +1888,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
@@ -1960,6 +1950,7 @@ public class Main extends javax.swing.JFrame {
     }
     //variables globales
     boolean esta = false;
+    int donde2;
     int donde;
     int cc2, cc3;
     int mdsize;
