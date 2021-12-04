@@ -1424,7 +1424,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<String> ListaS = new ArrayList();
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
         */
-        ap.setName("NULL.txt");
+        
         Registros r = new Registros();
         Listac.clear();
         ListaS.clear();
@@ -1433,6 +1433,7 @@ public class Main extends javax.swing.JFrame {
         ListaKeyPos.clear();
         r.getListaCampo().clear();
         r.getListaString().clear();
+        ap.close(ap.getName());
         JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
         boolGuardado = true;
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
@@ -1656,9 +1657,9 @@ public class Main extends javax.swing.JFrame {
              System.out.println("fuera");
                     try {
                         System.out.println("adentro");
-                        RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
-                        file_a.seek(l1.getOffset());//128
-                        //String seek = file_a.readLine();
+                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                        file_a.seek(111);//128
+                       // String seek = file_a.readLine();
                         //System.out.println("Soy el seek: " + seek);
                         file_a.writeUTF("soy seek");
                         JOptionPane.showMessageDialog(null, "Funcionó");
