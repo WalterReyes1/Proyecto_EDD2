@@ -118,6 +118,7 @@ public class Main extends javax.swing.JFrame {
         B_Exportar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
@@ -613,6 +614,14 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
+        jButton6.setText("jButton6");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
 
@@ -986,6 +995,7 @@ public class Main extends javax.swing.JFrame {
         String valint = "";
         int value = 0;
         boolean valid2 = false;
+        String k="";
         for (int i = 0; i < r.getListaCampo().size(); i++) {
             
 
@@ -1004,11 +1014,15 @@ public class Main extends javax.swing.JFrame {
                 } while (pal.length() > r.getListaCampo().get(i).getSize());
                  if(i==donde){
                         listaK1.add(pal);
+                        k=pal;
                 
                 
                         System.out.println("LLAVE A LISTA: "+pal);
                     }
                 ListaS.add(pal);
+                mdsize=writeMD().length();
+                
+                
 
             } else {
 
@@ -1036,6 +1050,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 if(i==donde){
                         listaK1.add(value+"");
+                        k=value+"";
                 
                 
                         System.out.println("LLAVE A LISTA: "+value);
@@ -1047,8 +1062,29 @@ public class Main extends javax.swing.JFrame {
         }
         //System.out.println("Este es pal: " + pal);
         r.setListaString(ListaS);
+        ArrayList<String>ListaS1=new ArrayList();
+        ListaS1=ListaS;
         if (!valid2) {
+            
+            System.out.println("SIZE MD: "+mdsize);
+            String tot="";
+            for (int i = 0; i < ListaS.size(); i++) {
+                tot+=ListaS1.get(i)+ "|";
+                
+            }
+            System.out.println("PALABRA: "+tot);
+            System.out.println("LLAVE: "+k);
+            
+            System.out.println("CANT: "+tot.length());
+            LLave l1=new LLave();
+            int key=Integer.parseInt(k);
+            l1.setLlave(key);
+            l1.setOffset(tot.length()+mdsize);
+            tree.insert(l1);
+            k="";
+            key=0;
             JOptionPane.showMessageDialog(this, "CREADO");
+            
         }
 
         boolRegistro = true;
@@ -1574,13 +1610,18 @@ public class Main extends javax.swing.JFrame {
         }
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-        int diff = 10 - Listac.size();
         String pal2 = "";
         String esp = "";
-        for (int i = 0; i < diff; i++) {
+        int c=10;
+        while(c>Listac.size()){
+        int diff = 10 - Listac.size();
+       
+        //for (int i = 0; i < diff; i++) {
             esp += "\n";
+            c--;
+            //3,10
+        //}
         }
-
         pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
                 + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
         return pal2;
@@ -1598,6 +1639,37 @@ public class Main extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        int n=0;
+        Scanner in = new Scanner(System.in);
+        System.out.println("Ingrese llave a Buscar: ");
+        n=in.nextInt();
+        LLave l1=tree.buscarLlave(tree.raiz, n);
+        if(l1==null){
+            System.out.println("no ta");
+        }else{
+            System.out.println("OffSET: "+l1.getOffset());
+            System.out.println("LLAVE: "+l1.getLlave());
+            //
+             System.out.println("fuera");
+                    try {
+                        System.out.println("adentro");
+                        RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
+                        file_a.seek(l1.getOffset());//128
+                        //String seek = file_a.readLine();
+                        //System.out.println("Soy el seek: " + seek);
+                        file_a.writeUTF("soy seek");
+                        JOptionPane.showMessageDialog(null, "Funcionó");
+                    } catch (Exception e) {
+                        System.out.println(e);
+
+                    }
+                    System.out.println("salgo");
+            
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1672,6 +1744,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
@@ -1732,6 +1805,7 @@ public class Main extends javax.swing.JFrame {
     //variables globales
     boolean esta=false;
     int donde;
+    int mdsize;
     Arbolb tree = new Arbolb(6);
     //booleans de validaciones
     boolean boolArchivo = false;

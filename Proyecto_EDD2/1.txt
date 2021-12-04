@@ -1,5 +1,6 @@
-1
-name;String;1;true;
+2
+name;String;8;false;
+id;String;11;true;
 
 
 
@@ -8,8 +9,7 @@ name;String;1;true;
 
 
 
-
-Cantidad de Registros: 1 
+Cantidad de Registros: 2 
  AVAILIST HEAD: NULL  
 
 
@@ -18,3 +18,5 @@ Cantidad de Registros: 1
 
 
 _
+luis|1|
+walter|2|
