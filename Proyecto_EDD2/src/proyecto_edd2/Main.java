@@ -944,7 +944,7 @@ public class Main extends javax.swing.JFrame {
 
             }
             for (int i = 0; i < ListaKeyPos.size(); i++) {
-                donde=ListaKeyPos.get(i);
+                donde = ListaKeyPos.get(i);
                 System.out.println("La llave se encuentra en la pos: " + ListaKeyPos.get(i));
             }
             //actualizar table
@@ -994,19 +994,18 @@ public class Main extends javax.swing.JFrame {
         boolean valid = false;
         String pal = "";
         String valint = "";
-        String prim="";
+        String prim = "";
         int value = 0;
         boolean valid2 = false;
-        String k="";
-        ArrayList<String>ListaS1=new ArrayList();
-        ArrayList<String>ListaWR=new ArrayList();
+        String k = "";
+        ArrayList<String> ListaS1 = new ArrayList();
+        ArrayList<String> ListaWR = new ArrayList();
         //primera vez metes la llave aqui
         //meter si no se repite
         //donde//guarda donde esta llave
         //
-        int llave=0;
+        int llave = 0;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
-            
 
             if (r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char")) {
 
@@ -1018,23 +1017,44 @@ public class Main extends javax.swing.JFrame {
                     }
 
                     pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                   
+
                     valid = true;
                 } while (pal.length() > r.getListaCampo().get(i).getSize());
-                 if(i==donde){
+                if (i == donde) {
+                    if (pv) {
                         listaK1.add(pal);
-                        k=pal;
-                
-                        llave=Integer.parseInt(pal);
-                        System.out.println("LLAVE A LISTA: "+pal);
-                    }//meter si solo es la primera vez
+                        k = pal;
+
+                        llave = Integer.parseInt(pal);
+                        System.out.println("LLAVE A LISTA: " + pal);
+                        pv = false;
+                    } else {
+                        if (listaK1.contains(pal)) {
+                            do {
+                                JOptionPane.showMessageDialog(null, "Ya existe la llave");
+                                pal = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                            } while (listaK1.contains(pal));
+
+                            listaK1.add(pal);
+                            k = pal;
+
+                            llave = Integer.parseInt(pal);
+                            System.out.println("LLAVE A LISTA: " + pal);
+                        } else {
+                            listaK1.add(pal);
+                            k = pal;
+
+                            llave = Integer.parseInt(pal);
+                            System.out.println("LLAVE A LISTA: " + pal);
+                            pv = false;
+                        }
+                    }
+                }//meter si solo es la primera vez
                 ListaS.add(pal);
-                prim+=pal;
+                prim += pal;
                 ListaS1.add(pal);
                 //cc3+=pal.length();
-                mdsize=writeMD().length();
-                
-                
+                mdsize = writeMD().length();
 
             } else {
 
@@ -1045,13 +1065,13 @@ public class Main extends javax.swing.JFrame {
                         if (valid2) {
                             JOptionPane.showMessageDialog(null, "Se excede del tamaño de caracteres");
                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                            value=Integer.parseInt(valint);
+                            value = Integer.parseInt(valint);
                         } else {
-                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                              value=Integer.parseInt(valint);
+                            valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                            value = Integer.parseInt(valint);
                         }
                         valid2 = true;
-                       
+
                     } while (valint.length() > 4);
                     valid2 = false;
 
@@ -1060,16 +1080,39 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(e);
                     valid2 = true;
                 }
-                if(i==donde){
-                        listaK1.add(value+"");
-                        k=value+"";
-                        llave=value;
-                
-                        System.out.println("LLAVE A LISTA: "+value);
-                    }//meter si es primera vez
+                if (i == donde) {
+                    if (pv) {
+                        listaK1.add(value + "");
+                        k = value + "";
+                        llave = value;
+
+                        System.out.println("LLAVE A LISTA: " + value);
+                        pv = false;
+                    } else {
+                        if (listaK1.contains(value + "")) {
+                            do {
+                                JOptionPane.showMessageDialog(null, "Ya existe la llave");
+                                valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                                value = Integer.parseInt(valint);
+                            } while (listaK1.contains(value + ""));
+                            listaK1.add(value + "");
+                            k = value + "";
+                            llave = value;
+
+                            System.out.println("LLAVE A LISTA: " + value);
+                        } else {
+                            listaK1.add(value + "");
+                            k = value + "";
+                            llave = value;
+
+                            System.out.println("LLAVE A LISTA: " + value);
+                            pv = false;
+                        }
+                    }
+                }//meter si es primera vez
                 ListaS.add(value + "");
                 ListaS1.add(value + "");
-                prim+=value;
+                prim += value;
                 //cc3+=pal.length();
             }
             valid = false;
@@ -1082,43 +1125,41 @@ public class Main extends javax.swing.JFrame {
         //4,10
         //luis,12,val,14,walter,12
         r.setListaString(ListaS);
-        
-        
-        LLave l1=new LLave();
-        if (!valid2) {
-            String fin="";
-            String fin1="";
-            String fin2="";
-            String fin3="";
-            int w=0;
-           
-            
-                for (int i = 0; i < ListaS1.size(); i++) {
-                    fin=ListaS1.get(i);
-                    
-                    while(w<r.getListaCampo().size()){
-                        int l=ListaL.get(w);
-                        fin2=fixSpace(fin,l);
-                        fin3+=fin2+"|";
-                       
-                        break;
 
-                    }
-                    w++;
-                    
+        LLave l1 = new LLave();
+        if (!valid2) {
+            String fin = "";
+            String fin1 = "";
+            String fin2 = "";
+            String fin3 = "";
+            int w = 0;
+
+            for (int i = 0; i < ListaS1.size(); i++) {
+                fin = ListaS1.get(i);
+
+                while (w < r.getListaCampo().size()) {
+                    int l = ListaL.get(w);
+                    fin2 = fixSpace(fin, l);
+                    fin3 += fin2 + "|";
+
+                    break;
+
                 }
-                //fin1+=fin3+"\n";
-                //String pal22 = writeMD();
-               long offset=fin3.length();
-               ;
-                ap.setName(nameArchivo);
-                
+                w++;
+
+            }
+            //fin1+=fin3+"\n";
+            //String pal22 = writeMD();
+            long offset = fin3.length();
+            ;
+            ap.setName(nameArchivo);
+
             try {
                 RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
-                long md=writeMD().length();
+                long md = writeMD().length();
                 raf.seek(raf.length());
-                offset= raf.getFilePointer();
-                
+                offset = raf.getFilePointer();
+
                 raf.writeChars(fin3);
                 raf.writeChars("\n");
                 raf.close();
@@ -1130,11 +1171,10 @@ public class Main extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
-                
-                ListaS1.clear();
-                System.out.println("PALABRA: "+fin3);
-                    
-            
+
+            ListaS1.clear();
+            System.out.println("PALABRA: " + fin3);
+
             /*
             System.out.println("SIZE MD: "+mdsize);
             String tot="";
@@ -1187,8 +1227,6 @@ public class Main extends javax.swing.JFrame {
 
 
                 }*/
-            
-            
             JOptionPane.showMessageDialog(this, "CREADO");
         }
 
@@ -1246,7 +1284,7 @@ public class Main extends javax.swing.JFrame {
         boolGuardado = false;
 
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
-    
+
     private void B_GuardarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarRegistroActionPerformed
         // TODO add your handling code here:
         /*
@@ -1393,7 +1431,7 @@ public class Main extends javax.swing.JFrame {
             System.out.println("ERROR");
             System.out.println(e);
         }*/
-        
+
     }//GEN-LAST:event_B_GuardarRegistroActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -1520,8 +1558,8 @@ public class Main extends javax.swing.JFrame {
                 //ap.escribirArchivo(cc4, "prueba2.txt");
                 //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
                 String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
-                String fin4=writeMD();
-                String fin3 = fin2+ fin2.length() + "\n" + pal;
+                String fin4 = writeMD();
+                String fin3 = fin2 + fin2.length() + "\n" + pal;
                 ap2.escribirArchivo(fin3);
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -1539,8 +1577,8 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
-        */
-        
+         */
+
         Registros r = new Registros();
         Listac.clear();
         ListaS.clear();
@@ -1552,6 +1590,7 @@ public class Main extends javax.swing.JFrame {
         ap.close(ap.getName());
         JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
         boolGuardado = true;
+        pv = true;
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
@@ -1729,15 +1768,15 @@ public class Main extends javax.swing.JFrame {
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
         String pal2 = "";
         String esp = "";
-        int c=10;
-        while(c>Listac.size()){
-        int diff = 10 - Listac.size();
-       
-        //for (int i = 0; i < diff; i++) {
+        int c = 10;
+        while (c > Listac.size()) {
+            int diff = 10 - Listac.size();
+
+            //for (int i = 0; i < diff; i++) {
             esp += "\n";
             c--;
             //3,10
-        //}
+            //}
         }
         pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
                 + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
@@ -1745,8 +1784,7 @@ public class Main extends javax.swing.JFrame {
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //inserto NUMEROS 1,2,3,15,6,70,28,8
-        
-     
+
         // tree.print(tree.raiz);
         tree.Show();
         //search llave 28
@@ -1759,33 +1797,33 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        int n=0;
+        int n = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Ingrese llave a Buscar: ");
-        n=in.nextInt();
-        LLave l1=tree.buscarLlave(tree.raiz, n);
-        if(l1==null){
+        n = in.nextInt();
+        LLave l1 = tree.buscarLlave(tree.raiz, n);
+        if (l1 == null) {
             System.out.println("no ta");
-        }else{
-            System.out.println("OffSET: "+l1.getOffset());
-            System.out.println("LLAVE: "+l1.getLlave());
+        } else {
+            System.out.println("OffSET: " + l1.getOffset());
+            System.out.println("LLAVE: " + l1.getLlave());
             //
-             System.out.println("fuera");
-                    try {
-                        System.out.println("adentro");
-                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                        file_a.seek(l1.getOffset()+1);//128
-                        String seek = file_a.readLine();
-                        System.out.println("Soy el seek: " + seek);
-                        //file_a.writeUTF("soy seek");
-                      // file_a.wr
-                        JOptionPane.showMessageDialog(null, "Funcionó");
-                    } catch (Exception e) {
-                        System.out.println(e);
+            System.out.println("fuera");
+            try {
+                System.out.println("adentro");
+                RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                file_a.seek(l1.getOffset() + 1);//128
+                String seek = file_a.readLine();
+                System.out.println("Soy el seek: " + seek);
+                //file_a.writeUTF("soy seek");
+                // file_a.wr
+                JOptionPane.showMessageDialog(null, "Funcionó");
+            } catch (Exception e) {
+                System.out.println(e);
 
-                    }
-                    System.out.println("salgo");
-            
+            }
+            System.out.println("salgo");
+
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1901,7 +1939,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
-    ArrayList<String> listaK1=new ArrayList();
+    ArrayList<String> listaK1 = new ArrayList();
     ArrayList<Integer> ListaL = new ArrayList();
     ArrayList<Campos> Listac = new ArrayList();
     ArrayList<String> ListaS = new ArrayList();
@@ -1921,18 +1959,19 @@ public class Main extends javax.swing.JFrame {
 
     }
     //variables globales
-    boolean esta=false;
+    boolean esta = false;
     int donde;
-    int cc2,cc3;
+    int cc2, cc3;
     int mdsize;
     Arbolb tree = new Arbolb(6);
     //booleans de validaciones
-    boolean primeraVez=true;
+    boolean primeraVez = true;
     boolean boolArchivo = false;
     boolean boolCampos = false;
     boolean boolRegistro = false;
     boolean boolGuardado = false;
     boolean boolGuardarRegistro = false;
     boolean boolEntroRegistro = true;
+    boolean pv = true;
 
 }
