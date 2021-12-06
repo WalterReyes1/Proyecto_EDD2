@@ -196,20 +196,20 @@ public class Arbolb {
   //ELIMINAR
   public boolean eliminar(Nodo x, LLave llave) {
 
-        //encuentra el indice de la llave a eliminar adentro del nodo
+        //Busca en donde está la llave eliminar en el nodo
         int indice = x.indice(llave);
         //verifica si el nodo es una hoja
         if (indice != -1) {
             if (x.esHoja) {
-                //si el indice de la llave se ubica al final al reemplaza con un valor nulo
+                //si es hoja no está, entonces es null
                 if (indice == x.getLlaves().length - 1) {
                     x.getLlaves()[indice] = null;
                     x.setCant_llaves(x.getCant_llaves() - 1);
                     return true;
                 } else {
 
-                    //si el valor esta dentro del arreglo hace un corrimiento
-                    //eliminando la llave en el proceso
+                    //Si podemos encontrar adentro de las llaves
+                    //Buscamos hasta eliminarla
                     for (int j = indice; j < x.getLlaves().length - 1; j++) {
                         x.getLlaves()[j] = x.getLlaves()[j + 1];
                     }
@@ -217,18 +217,18 @@ public class Arbolb {
                     return true;
                 }
             }
-
+            //Caso 1, le encontramos perfectamente y eliminamos directamente
             //caso # 2
             if (!x.isEsHoja()) {
-                //Caso donde hijo predecesor tiene T llaves
-                //declaracion de un nuevo nodo
+                //Caso donde el hijo anterior tiene llaves igual que grado
                 Nodo p = x.hijos[indice];
-                //declaracion de llave predecesora
+                
                 LLave llaveP;
-                //valida que el nodo tenga arriba del minimo de llaves
+                //Hay que tener almenos el mínimo de llaves
                 if (p.getCant_llaves() >= T) {
 
-                    //busca en un for infinito la llave predecesora
+                    //Se busca en todo el array de llaves la llave anterior.
+                    //si o es hoja entonces no está.
                     for (;;) {
 
                         if (p.esHoja) {
@@ -240,30 +240,30 @@ public class Arbolb {
                         }
                     }
 
-                    //llamado recursivo al metodo de eliminar hasta dar al caso base
+                    //llamado recursivo para volver a otros casos. 
                     eliminar(p, llaveP);
                     x.llaves[indice] = llaveP;
                     return true;
                 }
 
-                //caso donde hijo sucesor tiene T llaves
+                //caso donde un padre tiene T llaves
                 //declaracion de un nodo sucesor
                 Nodo s= x.hijos[indice + 1];
 
-                //verifica que el nodo sucesor tenga mas del minimo de llaves
+                //verifica que el nodo padre tenga mas del minimo de llaves
                 if (s.cant_llaves >= T) {
 
                     LLave llaveA = s.llaves[0];
 
-                    //verifica si el nodo sucesor es hoja
+                    //Con tal no sea hoja
                     if (!s.esHoja) {
 
                         s = s.hijos[0];
 
-                        //for busca la llave sucesora dentro de los nodos sucesor
+                        //buscar hasta encontrar llave padre.
                         for (;;) {
 
-                            //valida si el nodo sucesor es hoja
+                            //valida si el nodo padre es hoja
                             if (s.esHoja) {
                                 llaveA= s.llaves[s.cant_llaves - 1];
                                 break;
@@ -274,12 +274,12 @@ public class Arbolb {
                         }
                     }
 
-                    //llamada recursiva a la funcion eliminar
+                    //Buscar otro caso
                     eliminar(s, llaveA);
                     x.llaves[indice] = llaveA;
                 }
 
-                //Caso #3 Merges y mas
+                //Caso #3 Combinar con merge para que funcione
                 int temp = p.cant_llaves + 1;
                 p.llaves[p.cant_llaves++] = x.llaves[indice];
 
@@ -294,16 +294,16 @@ public class Arbolb {
 
                 x.hijos[indice] = p;
 
-                //corrimiento de llaves
+                //dándole llaves e hijos al merge
                 for (int i = indice; i < x.cant_llaves; i++) {
 
-                    //si i es diferente que el numero que el grado menos 2
+                    
                     if (i != (2 * T - 2)) {
                         x.llaves[i] = x.llaves[i + 1];
                     }
                 }
 
-                //corrimiento en el arreglo de hijos
+                //movimiento en el arreglo de hijos
                 for (int i = indice + 1; i < x.cant_llaves + 1; i++) {
 
                     if (i != (2 * T - 1)) {
@@ -327,7 +327,7 @@ public class Arbolb {
 
             }
         } else {
-            //caso donde no encuentra la posicion de la llave a insertar
+            //En caso de no saber donde insertar
             for (indice = 0; indice < x.cant_llaves; indice++) {
 
                 if (x.llaves[indice].llave > llave.llave) {
@@ -448,28 +448,27 @@ public class Arbolb {
             }
         }
         return false;
-    }
+    }//Este método devuelve un boolean para saber si se podía eliminar
 
     public Nodo buscarEliminado(Nodo x, int llave) {
-        //Contador utilizado para evaluar indice de llaves y nodos hijo
+        //Con este método se buscará el nodo en donde vamos a retornar el nodo a ser eliminado.
         int contador = 0;
         Nodo nodo = x;
-        //Ciclo while que evalua si el indice es menor al numero de llaves
-        //y si la llave es mayor que la llave del indice del contador
+        //Este es un bucle en cual verificamos si nuestro índice es menor al numero de llaves existentes
+        //y también si existe una llave mayor al indíce.
         while (contador < nodo.getCant_llaves()&& llave > nodo.getLlaves()[contador].getLlave()) {
-            //incremento al contador
+            
             contador = contador + 1;
         }
-        //si el contador es menor que el numero de llaves y la llave 
-        //del indice es igual a la llave a buscar entonces devuelve true
+        
         if (contador < nodo.getCant_llaves() && llave == nodo.getLlaves()[contador].getLlave()) {
             return nodo;
         }
-        //si en caso el nodo es hoja significa que la llave no existe y devuelve false
+        //Si es hoja no existe por lo tanto será null
         if (nodo.esHoja) {
             return null;
         } else {
-            //caso recursivo que evaluara las llaves del hijo del nodo actual
+            //recursión. 
             return buscarEliminado(x.getHijos()[contador], llave);
         }
     }
