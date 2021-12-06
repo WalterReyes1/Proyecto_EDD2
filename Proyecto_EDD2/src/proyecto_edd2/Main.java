@@ -8,9 +8,13 @@ package proyecto_edd2;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -829,7 +833,7 @@ public class Main extends javax.swing.JFrame {
         } else if (boolArchivo == false) {
             JOptionPane.showMessageDialog(this, "Debe crear un archivo antes de ingresar a la opcion de campos");
         } else {
-            JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
+           JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
         }
 
         if (boolCampos) {
@@ -1299,7 +1303,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
-        if (boolGuardado) {
+       // if (boolGuardado) {
             int cont1 = 1;
             System.out.println("hola");
             String[] names = {"Sofia", "Camila", "Valentina",
@@ -1427,9 +1431,9 @@ public class Main extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
+        //} else {
             JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
-        }
+        //}
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -1441,7 +1445,9 @@ public class Main extends javax.swing.JFrame {
     ArrayList<String> ListaS = new ArrayList();
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
          */
-
+        //if (boolArchivo && boolEntroRegistro) {
+        boolArchivo=true;
+        boolEntroRegistro=true;
         Registros r = new Registros();
         Listac.clear();
         ListaS.clear();
@@ -1607,12 +1613,13 @@ public class Main extends javax.swing.JFrame {
                     file_a.writeChars("*");
                     //file_a.writeChars();
                     
-                    LinkedList list=ap.getAvailList();
-                    list.add(offset);
+                   
+                    ap.getAvailList().add(offset);
                     file_a.seek(donde2);
-                    String c=list.get(0)+"";
+                    String c=ap.getAvailList().get(0)+"";
                     file_a.writeChars(c);
                     file_a.close();
+                    
                     JOptionPane.showMessageDialog(null, "Funcionó");
                 } catch (Exception e) {
                     System.out.println(e);
@@ -1948,6 +1955,47 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
+     public void escribirArbol(Arbolb btree, String name) {
+
+        //Crear arbol si es la primera vez metiendo registros
+        File archivo_bin_arbol = new File(name);
+        FileOutputStream fw = null;
+        ObjectOutputStream bw = null;
+        try {
+            fw = new FileOutputStream(archivo_bin_arbol);
+            bw = new ObjectOutputStream(fw);
+            bw.writeObject(btree);
+            bw.flush();
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
+        }
+    }
+
+    public Arbolb cargarArbol(String nombre_archivo_bin) {
+
+        Arbolb btree_temp = null;
+
+        File cargar_bin = new File(nombre_archivo_bin);
+
+        try {
+            if (cargar_bin.exists()) {
+                FileInputStream entrada = new FileInputStream(cargar_bin);
+                ObjectInputStream objeto = new ObjectInputStream(entrada);
+                btree_temp = (Arbolb) objeto.readObject();
+                objeto.close();
+                entrada.close();
+            }
+        } catch (Exception e) {
+        }
+        return btree_temp;
+
+    
+}
     //variables globales
     boolean esta = false;
     int donde2;
