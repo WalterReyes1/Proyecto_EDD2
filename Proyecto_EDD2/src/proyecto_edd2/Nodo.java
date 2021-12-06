@@ -5,11 +5,13 @@
  */
 package proyecto_edd2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luis Carlos Flores
  */
-public class Nodo {
+public class Nodo implements Serializable {
     int cant_llaves;
     boolean esHoja;
     Nodo hijos[];

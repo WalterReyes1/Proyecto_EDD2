@@ -1032,6 +1032,7 @@ public class Main extends javax.swing.JFrame {
         //
         //try catch necesario
         int llave = 0;
+        
         for (int i = 0; i < r.getListaCampo().size(); i++) {
 
             if (r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char")) {
@@ -1145,18 +1146,18 @@ public class Main extends javax.swing.JFrame {
             valid = false;
 
         }
-        //System.out.println("Este es pal: " + pal);
-        //luis,flores,id
-        //name4,apell5,4
-        //name,id
-        //4,10
-        //luis,12,val,14,walter,12
+        
         r.setListaString(ListaS);
 
         LLave l1 = new LLave();
         if (!valid2) {
             if(ap.isPrimero()==false){
-                System.out.println("Primera Vez en: "+ap.getName());
+                //Nombres del archivo bin para cargar el arbol
+            int p = ap.getName().indexOf('.');
+            String nombre_archivob = "./" + ap.getName().substring(0, p) + ".bin";/////
+            Arbolb tree1=ap.getBtree();
+            
+            System.out.println("Primera Vez en: "+ap.getName());
                 //
             String fin = "";
             String fin1 = "";
@@ -1180,7 +1181,7 @@ public class Main extends javax.swing.JFrame {
             }
             
             long offset = fin3.length();
-            ;
+            //;
             ap.setName(nameArchivo);
 
             try {
@@ -1194,7 +1195,9 @@ public class Main extends javax.swing.JFrame {
                 raf.close();
                 l1.setOffset(offset);
                 l1.setLlave(llave);
-                tree.insert(l1);
+                tree1.insert(l1);
+                escribirArbol(tree1,nombre_archivob);//////
+                ap.setBtree(tree1);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
@@ -1227,7 +1230,7 @@ public class Main extends javax.swing.JFrame {
     }
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
         String camino = "";
-
+        
         File fichero = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -1257,6 +1260,8 @@ public class Main extends javax.swing.JFrame {
             System.out.println("NAME " + ap.getName());
             listaA.add(ap);
             boolArchivo = true;
+            Arbolb t=new Arbolb(6);
+            ap.setBtree(t);
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
@@ -1434,13 +1439,17 @@ public class Main extends javax.swing.JFrame {
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
        // if (boolGuardado) {
             JFileChooser fileChooser = new JFileChooser("./");
-
+            boolArchivo=true;
+            boolEntroRegistro=true;
+            boolArchivo = true;
+            boolCampos = true;
             int seleccion = fileChooser.showOpenDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
                     int cont = 0;
                 
 
                     File archivo = fileChooser.getSelectedFile();
+                    nameArchivo=archivo.getName();
                     ap.setArchivo(archivo);
                     ap.setName(archivo.getName());
                     RandomAccessFile file_a;
@@ -1455,7 +1464,66 @@ public class Main extends javax.swing.JFrame {
                     String add="";
                     file_a.seek(off+1);
                     int o=seek.length();
+                    Scanner sc = null;
+                    Scanner sc2 = null;
+                   
+                    ap.setArchivo(archivo);
+                    String file = "";
+
+                    sc = new Scanner(ap.getArchivo());
+
+                    file = sc.nextLine();
+                    file = "";
+                    while (cont < para) {
+
+                        file += sc.nextLine();
+                        cont++;
+
+                    }
+
+                    sc2 = new Scanner(file);
+                    System.out.println("Revisar: " + file);
+                    sc2.useDelimiter(";");
+                    //System.out.println(file);
+                    Registros r=new Registros();
+                    for (int i = 0; i < para; i++) {
+                        Campos c1=new Campos();
+                        c1.setNombre(sc2.next());
+                        c1.setData_type(sc2.next());
+                        c1.setSize(sc2.nextInt());
+                        c1.setIsKey(sc2.nextBoolean());
+                        r.getListaCampo().add(c1);
+                        
+                    }
+                    int size=0;
+                    for (int i = 0; i < r.getListaCampo().size(); i++) {
+                        Campos c4=r.getListaCampo().get(i);
+                        System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
+                        if(c4.isIsKey()==true){
+                            donde=i;
+                            
+                        }
+                        String tipo=c4.getData_type();
+                        size=c4.getSize();
+                        if (tipo.equals("Int")) {
+                            size = 4;
+                            ListaL.add(size);
+                        }
+                        if (tipo.equals("Char")) {
+                            size = 1;
+                            ListaL.add(size);
+                        }
+                        if (tipo.equals("String")) {
+                            ListaL.add(size);
+                        }
+                    }
+                    System.out.println("LLAVE ESTA EN: "+donde);
+                    Listac=r.getListaCampo();
+                    int p = ap.getName().indexOf('.');
+                    String nombre_archivob = "./" + ap.getName().substring(0, p) + ".bin";
                     
+                    Arbolb t1=cargarArbol(nombre_archivob);
+                    ap.setBtree(t1);
                     
                     
                 } catch (FileNotFoundException ex) {
@@ -1503,7 +1571,8 @@ public class Main extends javax.swing.JFrame {
                 String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
                 int key=Integer.parseInt(keys);
                 LLave l1=new LLave();
-                l1=tree.buscarLlave(tree.getRaiz(), key);
+                Arbolb tree1=ap.getBtree();
+                l1=tree1.buscarLlave(tree1.getRaiz(), key);
                 if(l1==null){
                 
                 }
@@ -1515,6 +1584,12 @@ public class Main extends javax.swing.JFrame {
                     String seek = file_a.readLine();
                     //System.out.println("Soy el seek: " + seek);
                     JOptionPane.showMessageDialog(this, "SE ELIMINARA: "+seek);
+                    Nodo s=tree1.buscarEliminado(tree1.getRaiz(), key);
+                    if(s==null){
+                    }
+                    else{
+                        boolean sepudo=tree1.eliminar(tree1.getRaiz(), l1);
+                    }
                     int rest=seek.length();
                     
                     //file_a.writeUTF("soy seek");
@@ -1623,7 +1698,9 @@ public class Main extends javax.swing.JFrame {
         //inserto NUMEROS 1,2,3,15,6,70,28,8
 
         // tree.print(tree.raiz);
-        tree.Show();
+        Registros r=new Registros();
+        Arbolb tree1=ap.getBtree();;
+        tree1.Show();
         //search llave 28
         // LLave mia=tree.buscarLlave(tree.raiz, 37);
         System.out.println("");
@@ -1657,7 +1734,6 @@ public class Main extends javax.swing.JFrame {
         Bprueba.Show();
         System.out.println("");
        Nodo s=Bprueba.buscarEliminado(Bprueba.getRaiz(), 40);
-       //si esta , lo vamos a aliminar
        boolean sepudo=Bprueba.eliminar(Bprueba.getRaiz(), l3);
         System.out.println("ELIMINAR 40");
         System.out.println("");
@@ -1698,7 +1774,8 @@ public class Main extends javax.swing.JFrame {
                 String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
                 int key=Integer.parseInt(keys);
                 LLave l1=new LLave();
-                l1=tree.buscarLlave(tree.getRaiz(), key);
+                Arbolb tree1=ap.getBtree();
+                l1=tree1.buscarLlave(tree1.getRaiz(), key);
                 if(l1==null){
                 
                 }
@@ -1883,7 +1960,7 @@ public class Main extends javax.swing.JFrame {
     }
      public void escribirArbol(Arbolb btree, String name) {
 
-        //Crear arbol si es la primera vez metiendo registros
+        
         File archivo_bin_arbol = new File(name);
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
@@ -1928,8 +2005,9 @@ public class Main extends javax.swing.JFrame {
     int donde;
     int cc2, cc3;
     int mdsize;
-    Arbolb tree = new Arbolb(6);
+    //Arbolb tree=new Arbolb(6);
     //booleans de validaciones
+    boolean primB=true;
     boolean primeraVez = true;
     boolean boolArchivo = false;
     boolean boolCampos = false;

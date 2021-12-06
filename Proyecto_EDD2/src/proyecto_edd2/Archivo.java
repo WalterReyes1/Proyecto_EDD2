@@ -20,6 +20,7 @@ public class Archivo {
 
     File archivo = null;
     String name;
+  
     boolean save;
     Registros r1;
     Arbolb btree;

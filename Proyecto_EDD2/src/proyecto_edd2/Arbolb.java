@@ -5,16 +5,25 @@
  */
 package proyecto_edd2;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luis Carlos Flores
  */
-public class Arbolb {
+public class Arbolb implements Serializable {
     Nodo raiz;
     int T;
 
+    public Arbolb() {
+    }
+
     
     public Arbolb(int T) {
+        this.T = T;
+        raiz = new Nodo(T);
+    }
+    public void create(int T){
         this.T = T;
         raiz = new Nodo(T);
     }
