@@ -22,8 +22,26 @@ public class Archivo {
     String name;
     boolean save;
     Registros r1;
+    Arbolb btree;
+    boolean primero;
     LinkedList availList = new LinkedList();
 
+    public Arbolb getBtree() {
+        return btree;
+    }
+
+    public void setBtree(Arbolb btree) {
+        this.btree = btree;
+    }
+
+    public boolean isPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(boolean primero) {
+        this.primero = primero;
+    }
+    
     public Archivo() {
     }
 
@@ -54,6 +72,7 @@ public class Archivo {
     }
 
     public void setName(String name) {
+        this.primero=false;
         this.name = name;
     }
 

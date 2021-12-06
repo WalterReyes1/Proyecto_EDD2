@@ -127,6 +127,7 @@ public class Main extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
@@ -639,6 +640,14 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
 
+        jButton10.setText("jButton10");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
 
@@ -1019,7 +1028,9 @@ public class Main extends javax.swing.JFrame {
         //primera vez metes la llave aqui
         //meter si no se repite
         //donde//guarda donde esta llave
+        
         //
+        //try catch necesario
         int llave = 0;
         for (int i = 0; i < r.getListaCampo().size(); i++) {
 
@@ -1144,6 +1155,9 @@ public class Main extends javax.swing.JFrame {
 
         LLave l1 = new LLave();
         if (!valid2) {
+            if(ap.isPrimero()==false){
+                System.out.println("Primera Vez en: "+ap.getName());
+                //
             String fin = "";
             String fin1 = "";
             String fin2 = "";
@@ -1164,8 +1178,7 @@ public class Main extends javax.swing.JFrame {
                 w++;
 
             }
-            //fin1+=fin3+"\n";
-            //String pal22 = writeMD();
+            
             long offset = fin3.length();
             ;
             ap.setName(nameArchivo);
@@ -1191,59 +1204,12 @@ public class Main extends javax.swing.JFrame {
             ListaS1.clear();
             System.out.println("PALABRA: " + fin3);
 
-            /*
-            System.out.println("SIZE MD: "+mdsize);
-            String tot="";
-            String ttot2="";
-            int cc=0;
-            int cc1;
-            int key=Integer.parseInt(k);
-            if(primeraVez==true){
-                
-                
-                System.out.println("PRIMERA VEZ");
-                System.out.println("OOFSET 1: "+mdsize);
-                 LLave l1=new LLave();
-                l1.setLlave(key);
-                l1.setOffset(mdsize-1);
-                tree.insert(l1);
-                k="";
-                key=0;
-                JOptionPane.showMessageDialog(this, "CREADO");
-               
-                primeraVez=false;
-            }else{
-                for (int i = 0; i < ListaS1.size(); i++) {
-                    
-                tot+=ListaS1.get(i)+ "|";//luis?12?1 
-
-                }
-                System.out.println("PALABRA: "+tot);
-                System.out.println("RECIEN Ingresada: "+prim);
-                cc2+=tot.length();
-        
-                System.out.println("SEGUNDA");
-           
-                
-                int v2=prim.length()+r.getListaCampo().size();
-                System.out.println("RESTANDO: "+v2);
-                
-                int m=tot.length()-v2;
-                //m+=r.getListaCampo().size();
-                System.out.println("OFFSET  : "+m);
-                 LLave l1=new LLave();
-                l1.setLlave(key);
-                l1.setOffset(m+mdsize);
-                tree.insert(l1);
-                prim="";
-                //cc3=0;
-                k="";
-                key=0;
-                
-
-
-                }*/
             JOptionPane.showMessageDialog(this, "CREADO");
+            }else{
+                ap.primero=true;
+                 System.out.println("NO ES Primera Vez en: "+ap.getName());
+            }
+            
         }
 
         boolRegistro = true;
@@ -1289,6 +1255,7 @@ public class Main extends javax.swing.JFrame {
             ap.setName(nameArchivo);
 
             System.out.println("NAME " + ap.getName());
+            listaA.add(ap);
             boolArchivo = true;
 
         } catch (IOException ex) {
@@ -1446,6 +1413,8 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
          */
         //if (boolArchivo && boolEntroRegistro) {
+        //4
+        //;
         boolArchivo=true;
         boolEntroRegistro=true;
         Registros r = new Registros();
@@ -1463,97 +1432,44 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
-        if (boolGuardado) {
+       // if (boolGuardado) {
             JFileChooser fileChooser = new JFileChooser("./");
 
             int seleccion = fileChooser.showOpenDialog(this);
             if (seleccion == JFileChooser.APPROVE_OPTION) {
-                int cont = 0;
-                try {
+                    int cont = 0;
+                
 
-                    Scanner sc = null;
-                    Scanner sc2 = null;
                     File archivo = fileChooser.getSelectedFile();
                     ap.setArchivo(archivo);
-                    String file = "";
-
-                    sc = new Scanner(ap.getArchivo());
-
-                    file = sc.nextLine();
-                    file = "";
-
-                    //System.out.println(file);
-                    while (cont < 4) {
-
-                        file += sc.nextLine();
-                        cont++;
-
-                    }
-
-                    sc2 = new Scanner(file);
-                    System.out.println("Revisar: " + file);
-                    sc2.useDelimiter(";");
-                    //System.out.println(file);
-
-                    Campos c1 = new Campos();
-                    c1.setNombre(sc2.next());
-                    c1.setData_type(sc2.next());
-                    c1.setSize(sc2.nextInt());
-                    c1.setIsKey(sc2.nextBoolean());
-
-                    System.out.println(c1.getNombre() + " " + c1.getData_type() + " " + c1.getSize() + " " + c1.isIsKey());
-
-                    Campos c2 = new Campos();
-                    c2.setNombre(sc2.next());
-                    c2.setData_type(sc2.next());
-                    c2.setSize(sc2.nextInt());
-                    c2.setIsKey(sc2.nextBoolean());
-
-                    System.out.println(c2.getNombre() + " " + c2.getData_type() + " " + c2.getSize() + " " + c2.isIsKey());
-
-                    Campos c3 = new Campos();
-                    c3.setNombre(sc2.next());
-                    c3.setData_type(sc2.next());
-                    c3.setSize(sc2.nextInt());
-                    c3.setIsKey(sc2.nextBoolean());
-
-                    System.out.println(c3.getNombre() + " " + c3.getData_type() + " " + c3.getSize() + " " + c3.isIsKey());
-
-                    Campos c4 = new Campos();
-                    c4.setNombre(sc2.next());
-                    c4.setData_type(sc2.next());
-                    c4.setSize(sc2.nextInt());
-                    c4.setIsKey(sc2.nextBoolean());
-
-                    System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
-
-                    Registros r = new Registros();
-                    r.getListaCampo().add(c1);
-                    r.getListaCampo().add(c2);
-                    r.getListaCampo().add(c3);
-                    r.getListaCampo().add(c4);
-                    ArrayList<String> lista_string = new ArrayList();
-                    System.out.println("fuera");
-                    try {
-                        System.out.println("adentro");
-                        RandomAccessFile file_a = new RandomAccessFile("prueba1.txt", "rw");
-                        file_a.seek(156);
-                        //String seek = file_a.readLine();
-                        //System.out.println("Soy el seek: " + seek);
-                        file_a.writeUTF("soy seek");
-                        JOptionPane.showMessageDialog(null, "Funcionó");
-                    } catch (Exception e) {
-                        System.out.println(e);
-
-                    }
-                    System.out.println("salgo");
-
-                } catch (Exception e) {
+                    ap.setName(archivo.getName());
+                    RandomAccessFile file_a;
+                try {
+                    file_a = new RandomAccessFile(ap.getName(), "rw");
+                    file_a.seek(0);//128
+                    String seek = file_a.readLine();
+                    System.out.println("CANTIDAD: "+seek);
+                    long off=seek.length();
+                    int para=Integer.parseInt(seek);
+                    ArrayList <String> listat=new ArrayList();
+                    String add="";
+                    file_a.seek(off+1);
+                    int o=seek.length();
+                    
+                    
+                    
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                    
+                    
 
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno nuevo");
+            
+        //} else {
+            
+        //}
         }
     }//GEN-LAST:event_B_AbrirArchivoActionPerformed
 
@@ -1822,6 +1738,14 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Cantidad Archivos: "+listaA.size());
+        for (int i = 0; i < listaA.size(); i++) {
+            System.out.println("Archivo : "+i+" "+listaA.get(i).getName());
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1890,6 +1814,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_TD1;
     private javax.swing.JComboBox<String> cb_borrarc;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1936,6 +1861,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Archivo> listaA = new ArrayList();
     ArrayList<String> listaK1 = new ArrayList();
     ArrayList<Integer> ListaL = new ArrayList();
     ArrayList<Campos> Listac = new ArrayList();
