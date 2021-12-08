@@ -6,7 +6,10 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -107,6 +110,7 @@ public class Main extends javax.swing.JFrame {
         B_AbrirArchivo = new javax.swing.JButton();
         B_GuardarArchivo = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jDialog_CrearRegistro = new javax.swing.JDialog();
@@ -464,17 +468,20 @@ public class Main extends javax.swing.JFrame {
                 B_GuardarArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 250, 50));
+        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, 50));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton5.setText("Archivos de Prueba");
+        jButton5.setText("Archivos de Prueba #1");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, 40));
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, 40));
+
+        jButton11.setText("Archivos de Prueba #2");
+        jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 240, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -530,6 +537,11 @@ public class Main extends javax.swing.JFrame {
         jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
 
         jButton8.setText("Modificar Registro");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel8.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 180, 40));
 
         jButton9.setText("jButton9");
@@ -842,7 +854,7 @@ public class Main extends javax.swing.JFrame {
         } else if (boolArchivo == false) {
             JOptionPane.showMessageDialog(this, "Debe crear un archivo antes de ingresar a la opcion de campos");
         } else {
-           JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
+            JOptionPane.showMessageDialog(this, "Ya no es posible ver campos en este archivo");
         }
 
         if (boolCampos) {
@@ -1015,6 +1027,7 @@ public class Main extends javax.swing.JFrame {
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
+        primA=true;
         r.setListaCampo(Listac);
         boolean valid = false;
         String pal = "";
@@ -1028,11 +1041,11 @@ public class Main extends javax.swing.JFrame {
         //primera vez metes la llave aqui
         //meter si no se repite
         //donde//guarda donde esta llave
-        
+
         //
         //try catch necesario
         int llave = 0;
-        
+
         for (int i = 0; i < r.getListaCampo().size(); i++) {
 
             if (r.getListaCampo().get(i).getData_type().equals("String") || r.getListaCampo().get(i).getData_type().equals("Char")) {
@@ -1146,73 +1159,75 @@ public class Main extends javax.swing.JFrame {
             valid = false;
 
         }
-        
+
         r.setListaString(ListaS);
 
         LLave l1 = new LLave();
         if (!valid2) {
-            if(ap.isPrimero()==false){
+            if (ap.isPrimero() == false) {
                 //Nombres del archivo bin para cargar el arbol
-            int p = ap.getName().indexOf('.');
-            String nombre_archivob = "./" + ap.getName().substring(0, p) + ".bin";/////
-            Arbolb tree1=ap.getBtree();
-            
-            System.out.println("Primera Vez en: "+ap.getName());
+                int p = ap.getName().indexOf('.');
+                String nombre_archivob = "./" + ap.getName() + ".bin";/////
+                Arbolb tree1 = ap.getBtree();
+
+                System.out.println("Primera Vez en: " + ap.getName());
                 //
-            String fin = "";
-            String fin1 = "";
-            String fin2 = "";
-            String fin3 = "";
-            int w = 0;
+                String fin = "";
+                String fin1 = "";
+                String fin2 = "";
+                String fin3 = "";
+                int w = 0;
 
-            for (int i = 0; i < ListaS1.size(); i++) {
-                fin = ListaS1.get(i);
+                for (int i = 0; i < ListaS1.size(); i++) {
+                    fin = ListaS1.get(i);
 
-                while (w < r.getListaCampo().size()) {
-                    int l = ListaL.get(w);
-                    fin2 = fixSpace(fin, l);
-                    fin3 += fin2 + "|";
+                    while (w < r.getListaCampo().size()) {
+                        int l = ListaL.get(w);
+                        fin2 = fixSpace(fin, l);
+                        fin3 += fin2 + "|";
 
-                    break;
+                        break;
+
+                    }
+                    w++;
 
                 }
-                w++;
 
+                long offset = fin3.length();
+                //;
+                ap.setName(nameArchivo);
+
+                try {
+                    RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                    long md = writeMD().length();
+                    raf.seek(raf.length());
+                    offset = raf.getFilePointer();
+
+                    raf.writeChars(fin3);
+                    raf.writeChars("\n");
+                    raf.close();
+                    l1.setOffset(offset);
+                    l1.setLlave(llave);
+                    tree1.insert(l1);
+//                tree1.write(tree1,nombre_archivob);
+
+                    writeB(namebin, tree1);
+                    ap.setBtree(tree1);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                ListaS1.clear();
+                System.out.println("PALABRA: " + fin3);
+
+                JOptionPane.showMessageDialog(this, "CREADO");
+            } else {
+                ap.primero = true;
+                System.out.println("NO ES Primera Vez en: " + ap.getName());
             }
-            
-            long offset = fin3.length();
-            //;
-            ap.setName(nameArchivo);
 
-            try {
-                RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
-                long md = writeMD().length();
-                raf.seek(raf.length());
-                offset = raf.getFilePointer();
-
-                raf.writeChars(fin3);
-                raf.writeChars("\n");
-                raf.close();
-                l1.setOffset(offset);
-                l1.setLlave(llave);
-                tree1.insert(l1);
-                escribirArbol(tree1,nombre_archivob);//////
-                ap.setBtree(tree1);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            ListaS1.clear();
-            System.out.println("PALABRA: " + fin3);
-
-            JOptionPane.showMessageDialog(this, "CREADO");
-            }else{
-                ap.primero=true;
-                 System.out.println("NO ES Primera Vez en: "+ap.getName());
-            }
-            
         }
 
         boolRegistro = true;
@@ -1230,7 +1245,7 @@ public class Main extends javax.swing.JFrame {
     }
     private void B_NuevoArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoArchivoActionPerformed
         String camino = "";
-        
+
         File fichero = null;
         FileReader fr = null;
         BufferedReader br = null;
@@ -1250,6 +1265,7 @@ public class Main extends javax.swing.JFrame {
         }
 
         try {
+            namebin = camino;
 
             //JOptionPane.showInputDialog(this, "NOMBRE DE ARCHIVO A CREAR");
             // nameArchivo += ".txt";
@@ -1260,8 +1276,10 @@ public class Main extends javax.swing.JFrame {
             System.out.println("NAME " + ap.getName());
             listaA.add(ap);
             boolArchivo = true;
-            Arbolb t=new Arbolb(6);
+            Arbolb t = new Arbolb(6);
             ap.setBtree(t);
+            System.out.println("CAMINO B:: " + namebin);
+            writeB(namebin, t);
 
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo crear Archivo");
@@ -1275,136 +1293,137 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
-       // if (boolGuardado) {
-            int cont1 = 1;
-            System.out.println("hola");
-            String[] names = {"Sofia", "Camila", "Valentina",
-                "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
-                "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
-                "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
-                "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
-                "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
-                "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
-                "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
-                "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
-            //person name , person age,city ID and person ID
+        // if (boolGuardado) {
+        int cont1 = 1;
+        System.out.println("hola");
+        String[] names = {"Sofia", "Camila", "Valentina",
+            "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
+            "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
+            "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
+            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
+            "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
+            "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
+            "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
+            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
+        //person name , person age,city ID and person ID
 
-            Campos c1 = new Campos("PersonName", "String", 12, false);
-            Campos c2 = new Campos("PersonAge", "String", 12, false);
-            Campos c3 = new Campos("CityId", "int", 8, false);
-            Campos c4 = new Campos("personId", "int", 8, false);
+        Campos c1 = new Campos("PersonName", "String", 12, false);
+        Campos c2 = new Campos("PersonAge", "String", 12, false);
+        Campos c3 = new Campos("CityId", "int", 8, false);
+        Campos c4 = new Campos("personId", "int", 8, false);
 
-            ArrayList<Integer> PersonalIDval = new ArrayList();
-            ArrayList<Integer> CityIDval = new ArrayList();
-            PersonalIDval.add(0);
-            CityIDval.add(0);
-            ArrayList<Campos> lc = new ArrayList();
-            ArrayList<String> ls = new ArrayList();
-            Registros re1 = new Registros();
-            lc.add(c1);
-            lc.add(c2);
-            lc.add(c3);
+        ArrayList<Integer> PersonalIDval = new ArrayList();
+        ArrayList<Integer> CityIDval = new ArrayList();
+        PersonalIDval.add(0);
+        CityIDval.add(0);
+        ArrayList<Campos> lc = new ArrayList();
+        ArrayList<String> ls = new ArrayList();
+        Registros re1 = new Registros();
+        lc.add(c1);
+        lc.add(c2);
+        lc.add(c3);
+        lc.add(c4);
+        String s1;
+        String s2;
+        String s3;
+        String s4;
+        re1.setListaCampo(lc);
+
+        for (int i = 0; i < 10000; i++) {
+            Random r1 = new Random();
+            Random r2 = new Random();
+            Random r3 = new Random();
+            Random r4 = new Random();
+            
+            int x1 = 0;
+            x1 += r1.nextInt(48);//nombres
+            int x2 = 0;
+            x2 += r2.nextInt(80);//edad
+            int x3 = -1;
+            int x4 = 0;
+
+            x3 = r3.nextInt(80000000);//person ID 
+            if (!PersonalIDval.contains(x3)) {
+                PersonalIDval.add(x3);
+            }
+
+            x4 = r4.nextInt(90000000);//City ID
+            //System.out.println("X1: "+x1);
+
+            s1 = names[x1];//agarro nombres
+            s4 = x4 + "";
             lc.add(c4);
-            String s1;
-            String s2;
-            String s3;
-            String s4;
-            re1.setListaCampo(lc);
+            ls.add(s4);
 
-            for (int i = 0; i < 10000; i++) {
-                Random r1 = new Random();
-                Random r2 = new Random();
-                Random r3 = new Random();
-                Random r4 = new Random();
+            //agregado primer campo
+            s2 = x2 + "";
+            lc.add(c1);
+            ls.add(s1);
 
-                int x1 = 0;
-                x1 += r1.nextInt(48);//nombres
-                int x2 = 0;
-                x2 += r2.nextInt(80);//edad
-                int x3 = -1;
-                int x4 = 0;
+            //agregando segundo campo
+            s3 = x3 + "";
+            lc.add(c2);
+            ls.add(s2);
 
-                x3 = r3.nextInt(80000000);//person ID 
-                if (!PersonalIDval.contains(x3)) {
-                    PersonalIDval.add(x3);
-                }
+            //agregado tercer campo
+            lc.add(c3);
+            ls.add(s3);
 
-                x4 = r4.nextInt(90000000);//City ID
-                //System.out.println("X1: "+x1);
+            //agregado cuarto campo
+        }
 
-                s1 = names[x1];//agarro nombres
-                s4 = x4 + "";
-                lc.add(c4);
-                ls.add(s4);
+        re1.setListaString(ls);
+        //COPIAR HASTA AQUI
+        //System.out.println("SIZE S"+re1.getListaString().size());
+        String pal = "";
+        //System.out.println("SIZE: "+re1.getListaCampo().size());
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+            //System.out.println("STRING: "+re1.getListaString().get(i));
+        }
 
-                //agregado primer campo
-                s2 = x2 + "";
-                lc.add(c1);
-                ls.add(s1);
-
-                //agregando segundo campo
-                s3 = x3 + "";
-                lc.add(c2);
-                ls.add(s2);
-
-                //agregado tercer campo
-                lc.add(c3);
-                ls.add(s3);
-
-                //agregado cuarto campo
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+            pal += re1.getListaString().get(i) + "|";
+            if (cont1 == 4) {
+                pal += "\n";
+                cont1 = 0;
             }
+            cont1++;
+        }
 
-            re1.setListaString(ls);
-            //System.out.println("SIZE S"+re1.getListaString().size());
-            String pal = "";
-            //System.out.println("SIZE: "+re1.getListaCampo().size());
-            for (int i = 0; i < re1.getListaString().size(); i++) {
-                //System.out.println("STRING: "+re1.getListaString().get(i));
-            }
+        try {
+            Archivo ap2 = new Archivo();
+            ap2.crearArchivo("Prueba1", "");
+            ap2.setName("Prueba1.txt");
+            ap2.escribirArchivo("4");
 
-            for (int i = 0; i < re1.getListaString().size(); i++) {
-                pal += re1.getListaString().get(i) + "|";
-                if (cont1 == 4) {
-                    pal += "\n";
-                    cont1 = 0;
-                }
-                cont1++;
-            }
+            String size4 = "" + c4.getSize();
+            String key4 = "" + c4.isIsKey();
+            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
+            //System.out.println("KEY"+cc1);
+            //ap.escribirArchivo(cc1, "prueba2.txt");
 
-            try {
-                Archivo ap2 = new Archivo();
-                ap2.crearArchivo("Prueba1", "");
-                ap2.setName("Prueba1.txt");
-                ap2.escribirArchivo("4");
+            String size1 = "" + c1.getSize();
+            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
+            //ap.escribirArchivo(cc2, "prueba2.txt");
+            String size2 = "" + c2.getSize();
+            String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
+            //ap.escribirArchivo(cc3, "prueba2.txt");
+            String size3 = "" + c3.getSize();
+            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
+                    + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
+            String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
 
-                String size4 = "" + c4.getSize();
-                String key4 = "" + c4.isIsKey();
-                String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
-                //System.out.println("KEY"+cc1);
-                //ap.escribirArchivo(cc1, "prueba2.txt");
-
-                String size1 = "" + c1.getSize();
-                String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
-                //ap.escribirArchivo(cc2, "prueba2.txt");
-                String size2 = "" + c2.getSize();
-                String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
-                //ap.escribirArchivo(cc3, "prueba2.txt");
-                String size3 = "" + c3.getSize();
-                String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
-                        + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
-                String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
-
-                //ap.escribirArchivo(cc4, "prueba2.txt");
-                //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-                String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
-                String fin4 = writeMD();
-                String fin3 = fin2 + fin2.length() + "\n" + pal;
-                ap2.escribirArchivo(fin3);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            //ap.escribirArchivo(cc4, "prueba2.txt");
+            //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
+            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
+            String fin4 = writeMD();
+            String fin3 = fin2 + fin2.length() + "\n" + pal;
+            ap2.escribirArchivo(fin3);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         //} else {
-            JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
+        JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
         //}
     }//GEN-LAST:event_jButton5MouseClicked
 
@@ -1420,9 +1439,12 @@ public class Main extends javax.swing.JFrame {
         //if (boolArchivo && boolEntroRegistro) {
         //4
         //;
-        boolArchivo=true;
-        boolEntroRegistro=true;
+
+        boolArchivo = true;
+        boolEntroRegistro = true;
         Registros r = new Registros();
+        Arbolb t = ap.getBtree();
+        writeB(namebin, ap.getBtree());
         Listac.clear();
         ListaS.clear();
         listaK1.clear();
@@ -1431,113 +1453,124 @@ public class Main extends javax.swing.JFrame {
         r.getListaCampo().clear();
         r.getListaString().clear();
         ap.close(ap.getName());
+        eliminarTabla();
         JOptionPane.showMessageDialog(this, "GUARDADO Y CERRADO EXITOSAMENTE");
         boolGuardado = true;
         pv = true;
     }//GEN-LAST:event_B_GuardarArchivoActionPerformed
 
     private void B_AbrirArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirArchivoActionPerformed
-       // if (boolGuardado) {
-            JFileChooser fileChooser = new JFileChooser("./");
-            boolArchivo=true;
-            boolEntroRegistro=true;
-            boolArchivo = true;
-            boolCampos = true;
-            int seleccion = fileChooser.showOpenDialog(this);
-            if (seleccion == JFileChooser.APPROVE_OPTION) {
-                    int cont = 0;
-                
+        // if (boolGuardado) {
+        JFileChooser fileChooser = new JFileChooser("./");
+        boolRegistro = true;
+        boolArchivo = true;
+        boolEntroRegistro = true;
+        boolArchivo = true;
+        boolCampos = true;
+        primA=false;
+        int seleccion = fileChooser.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            int cont = 0;
 
-                    File archivo = fileChooser.getSelectedFile();
-                    nameArchivo=archivo.getName();
-                    ap.setArchivo(archivo);
-                    ap.setName(archivo.getName());
-                    RandomAccessFile file_a;
-                try {
-                    file_a = new RandomAccessFile(ap.getName(), "rw");
-                    file_a.seek(0);//128
-                    String seek = file_a.readLine();
-                    System.out.println("CANTIDAD: "+seek);
-                    long off=seek.length();
-                    int para=Integer.parseInt(seek);
-                    ArrayList <String> listat=new ArrayList();
-                    String add="";
-                    file_a.seek(off+1);
-                    int o=seek.length();
-                    Scanner sc = null;
-                    Scanner sc2 = null;
-                   
-                    ap.setArchivo(archivo);
-                    String file = "";
+            File archivo = fileChooser.getSelectedFile();
+            nameArchivo = archivo.getName();
+            ap.setArchivo(archivo);
+            ap.setName(archivo.getName());
+            RandomAccessFile file_a;
+            try {
+                file_a = new RandomAccessFile(ap.getName(), "rw");
+                file_a.seek(0);//128
+                String seek = file_a.readLine();
+                System.out.println("CANTIDAD: " + seek);
+                long off = seek.length();
+                int para = Integer.parseInt(seek);
+                ArrayList<String> listat = new ArrayList();
+                String add = "";
+                file_a.seek(off + 1);
+                int o = seek.length();
+                Scanner sc = null;
+                Scanner sc2 = null;
 
-                    sc = new Scanner(ap.getArchivo());
+                ap.setArchivo(archivo);
+                String file = "";
 
-                    file = sc.nextLine();
-                    file = "";
-                    while (cont < para) {
+                sc = new Scanner(ap.getArchivo());
 
-                        file += sc.nextLine();
-                        cont++;
+                file = sc.nextLine();
+                file = "";
+                while (cont < para) {
 
-                    }
+                    file += sc.nextLine();
+                    cont++;
 
-                    sc2 = new Scanner(file);
-                    System.out.println("Revisar: " + file);
-                    sc2.useDelimiter(";");
-                    //System.out.println(file);
-                    Registros r=new Registros();
-                    for (int i = 0; i < para; i++) {
-                        Campos c1=new Campos();
-                        c1.setNombre(sc2.next());
-                        c1.setData_type(sc2.next());
-                        c1.setSize(sc2.nextInt());
-                        c1.setIsKey(sc2.nextBoolean());
-                        r.getListaCampo().add(c1);
-                        
-                    }
-                    int size=0;
-                    for (int i = 0; i < r.getListaCampo().size(); i++) {
-                        Campos c4=r.getListaCampo().get(i);
-                        System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
-                        if(c4.isIsKey()==true){
-                            donde=i;
-                            
-                        }
-                        String tipo=c4.getData_type();
-                        size=c4.getSize();
-                        if (tipo.equals("Int")) {
-                            size = 4;
-                            ListaL.add(size);
-                        }
-                        if (tipo.equals("Char")) {
-                            size = 1;
-                            ListaL.add(size);
-                        }
-                        if (tipo.equals("String")) {
-                            ListaL.add(size);
-                        }
-                    }
-                    System.out.println("LLAVE ESTA EN: "+donde);
-                    Listac=r.getListaCampo();
-                    int p = ap.getName().indexOf('.');
-                    String nombre_archivob = "./" + ap.getName().substring(0, p) + ".bin";
-                    
-                    Arbolb t1=cargarArbol(nombre_archivob);
-                    ap.setBtree(t1);
-                    
-                    
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    
-                    
 
-            
-        //} else {
-            
-        //}
+                sc2 = new Scanner(file);
+                System.out.println("Revisar: " + file);
+                sc2.useDelimiter(";");
+                //System.out.println(file);
+                Registros r = new Registros();
+                for (int i = 0; i < para; i++) {
+                    Campos c1 = new Campos();
+                    c1.setNombre(sc2.next());
+                    c1.setData_type(sc2.next());
+                    c1.setSize(sc2.nextInt());
+                    c1.setIsKey(sc2.nextBoolean());
+                    r.getListaCampo().add(c1);
+
+                }
+                int size = 0;
+                for (int i = 0; i < r.getListaCampo().size(); i++) {
+                    Campos c4 = r.getListaCampo().get(i);
+                    System.out.println(c4.getNombre() + " " + c4.getData_type() + " " + c4.getSize() + " " + c4.isIsKey());
+                    if (c4.isIsKey() == true) {
+                        donde = i;
+
+                    }
+                    String tipo = c4.getData_type();
+                    size = c4.getSize();
+                    if (tipo.equals("Int")) {
+                        size = 4;
+                        ListaL.add(size);
+                    }
+                    if (tipo.equals("Char")) {
+                        size = 1;
+                        ListaL.add(size);
+                    }
+                    if (tipo.equals("String")) {
+                        ListaL.add(size);
+                    }
+                }
+                System.out.println("LLAVE ESTA EN: " + donde);
+                Listac = r.getListaCampo();
+                int p = ap.getName().indexOf('.');
+                String nombre_archivob = "./" + ap.getName() + ".bin";
+
+                Arbolb t1;
+                //t1.load(nombre_archivob); 
+
+                String name = archivo.getName();
+                int iend = name.indexOf("."); //this finds the first occurrence of "." 
+
+                String subString = "";
+                if (iend != -1) {
+                    subString = name.substring(0, iend); //this will give abc
+                }
+                namebin = subString;
+                System.out.println("NEW NAME: " + namebin);
+                ap.setPrimero(false);
+                cargarArbol(namebin);
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //} else {
+            //}
         }
     }//GEN-LAST:event_B_AbrirArchivoActionPerformed
 
@@ -1566,60 +1599,82 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (boolRegistro) {
             //ya hay registros creados
-            try{
-                Registros r=new Registros();
-                String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
-                int key=Integer.parseInt(keys);
-                LLave l1=new LLave();
-                Arbolb tree1=ap.getBtree();
-                l1=tree1.buscarLlave(tree1.getRaiz(), key);
-                if(l1==null){
-                
-                }
-                else{
-                try {
-                    System.out.println("adentro");
-                    RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                    file_a.seek(l1.getOffset() + 1);//128
-                    String seek = file_a.readLine();
-                    //System.out.println("Soy el seek: " + seek);
-                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: "+seek);
-                    Nodo s=tree1.buscarEliminado(tree1.getRaiz(), key);
-                    if(s==null){
+            try {
+                Registros r = new Registros();
+                String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
+                int key = Integer.parseInt(keys);
+                LLave l1 = new LLave();
+                Arbolb tree1 = ap.getBtree();
+                l1 = tree1.buscarLlave(tree1.getRaiz(), key);
+                if (l1 == null) {
+
+                } else {
+                    try {
+                        System.out.println("adentro");
+                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                        file_a.seek(l1.getOffset() + 1);//128
+                        String seek = file_a.readLine();
+                        //System.out.println("Soy el seek: " + seek);
+                        JOptionPane.showMessageDialog(this, "SE ELIMINARA: " + seek);
+                        Nodo s = tree1.buscarEliminado(tree1.getRaiz(), key);
+                        if (s == null) {
+                        } else {
+                            boolean sepudo = tree1.eliminar(tree1.getRaiz(), l1);
+                            int p = ap.getName().indexOf('.');
+                            String nombre_archivob = "./" + ap.getName() + ".bin";/////
+
+                            //tree1.write(tree1, nombre_archivob);
+                        }
+                        int rest = seek.length();
+
+                        //file_a.writeUTF("soy seek");
+                        // file_a.wr
+                        System.out.println("RESTA: " + rest);
+                        long offset = (l1.getOffset() + 1);
+                        System.out.println("NEW OFF: " + offset);
+
+                        //file_a.writeChars();
+                        if (primA == true) {
+                            file_a.seek(offset);
+
+                            file_a.writeChars("*");
+                            ap.getAvailList().add(offset);
+                            file_a.seek(donde2);
+                            String c = ap.getAvailList().get(0) + "";
+                           int n=(int)offset;
+                           
+                            file_a.writeByte(n);
+                            
+                            
+                            file_a.close();
+                            writeB(namebin, tree1);
+                            primA=false;
+
+                        } else {
+                             file_a.seek(offset);
+
+                            file_a.writeChars("*");
+                            ap.getAvailList().add(offset);
+                            file_a.seek(donde2);
+                            String md=file_a.readLine();
+                            System.out.println("OFFSET MD: "+md);
+                            long w=Long.parseLong(md);
+                            file_a.seek(w);
+                            file_a.writeChars("*"+offset+"");
+                            file_a.close();
+                            writeB(namebin, tree1);
+
+                        }
+
+                        JOptionPane.showMessageDialog(null, "Funcionó");
+                    } catch (Exception e) {
+                        System.out.println(e);
+
                     }
-                    else{
-                        boolean sepudo=tree1.eliminar(tree1.getRaiz(), l1);
-                    }
-                    int rest=seek.length();
-                    
-                    //file_a.writeUTF("soy seek");
-                    // file_a.wr
-                    
-                    System.out.println("RESTA: "+rest);
-                    long offset = (l1.getOffset()+1);
-                    System.out.println("NEW OFF: "+offset);
-                    
-                    file_a.seek(offset);
-
-                    file_a.writeChars("*");
-                    //file_a.writeChars();
-                    
-                   
-                    ap.getAvailList().add(offset);
-                    file_a.seek(donde2);
-                    String c=ap.getAvailList().get(0)+"";
-                    file_a.writeChars(c);
-                    file_a.close();
-                    
-                    JOptionPane.showMessageDialog(null, "Funcionó");
-                } catch (Exception e) {
-                    System.out.println(e);
 
                 }
 
-                }
-                
-            }catch(Exception e){
+            } catch (Exception e) {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
@@ -1654,9 +1709,9 @@ public class Main extends javax.swing.JFrame {
             esp += "\n";
         }
 
-       // pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
-              //  + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
-              pal2=writeMD();
+        // pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+        //  + " \n AVAILIST HEAD: NULL  " + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+        pal2 = writeMD();
         ap.setName(nameArchivo);
         try {
             ap.escribirArchivo(pal2);
@@ -1688,18 +1743,17 @@ public class Main extends javax.swing.JFrame {
             //}
         }
         pal2 += Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
-                +"\n"+ "NULL" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
-        String hasta= Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
-                +"\n" ;
-        donde2=hasta.length();
+                + "\n" + "NULL" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+        String hasta = Listac.size() + "\n" + cc1 + esp + "Cantidad de Registros: " + Listac.size()
+                + "\n";
+        donde2 = hasta.length();
         return pal2;
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //inserto NUMEROS 1,2,3,15,6,70,28,8
 
         // tree.print(tree.raiz);
-        Registros r=new Registros();
-        Arbolb tree1=ap.getBtree();;
+        Arbolb tree1 = ap.getBtree();;
         tree1.Show();
         //search llave 28
         // LLave mia=tree.buscarLlave(tree.raiz, 37);
@@ -1712,116 +1766,201 @@ public class Main extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         //insert 1,2,40,5,60,7,80
-       LLave l1=new LLave(12121,1);
-       LLave l2=new LLave(12121,2);
-       LLave l3=new LLave(12121,40);
-       LLave l4=new LLave(12121,5);
-       LLave l5=new LLave(12121,60);
-       LLave l6=new LLave(12121,7);
-       LLave l7=new LLave(12121,80);
-       Arbolb Bprueba=new Arbolb(6);
-       Bprueba.insert(l1);
-       Bprueba.insert(l2);
-       Bprueba.insert(l3);
-       Bprueba.insert(l4);
-       Bprueba.insert(l5);
-       Bprueba.insert(l6);
-       Bprueba.insert(l7);
-       //ver si esta el nodo a eliminar
+        LLave l1 = new LLave(12121, 1);
+        LLave l2 = new LLave(12121, 2);
+        LLave l3 = new LLave(12121, 40);
+        LLave l4 = new LLave(12121, 5);
+        LLave l5 = new LLave(12121, 60);
+        LLave l6 = new LLave(12121, 7);
+        LLave l7 = new LLave(12121, 80);
+        Arbolb Bprueba = new Arbolb(6);
+        Bprueba.insert(l1);
+        Bprueba.insert(l2);
+        Bprueba.insert(l3);
+        Bprueba.insert(l4);
+        Bprueba.insert(l5);
+        Bprueba.insert(l6);
+        Bprueba.insert(l7);
+        //ver si esta el nodo a eliminar
         System.out.println("INSERTE:  1,2,40,5,60,7,80");
         System.out.println("");
-       System.out.println("ARBOL ANTES DE ELIMINAR");
+        System.out.println("ARBOL ANTES DE ELIMINAR");
         Bprueba.Show();
         System.out.println("");
-       Nodo s=Bprueba.buscarEliminado(Bprueba.getRaiz(), 40);
-       boolean sepudo=Bprueba.eliminar(Bprueba.getRaiz(), l3);
+        Nodo s = Bprueba.buscarEliminado(Bprueba.getRaiz(), 40);
+        boolean sepudo = Bprueba.eliminar(Bprueba.getRaiz(), l3);
         System.out.println("ELIMINAR 40");
         System.out.println("");
-       System.out.println("ARBOL DESPUES DE ELIMINAR");
+        System.out.println("ARBOL DESPUES DE ELIMINAR");
         Bprueba.Show();
         System.out.println("");
-       
-        
+
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         //availist
-         try {
-                System.out.println("adentro");
-                RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                file_a.seek(donde2);//128
-                String seek = file_a.readLine();
-                System.out.println("Soy el seek: " + seek);
-                long off=donde2;
-                off= file_a.getFilePointer();
-                file_a.writeChars("BUSCANDO");
-                // file_a.wr
-                JOptionPane.showMessageDialog(null, "Funcionó");
-            } catch (Exception e) {
-                System.out.println(e);
+        try {
+            System.out.println("adentro");
+            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+            file_a.seek(donde2);//128
+            String seek = file_a.readLine();
+            System.out.println("Soy el seek: " + seek);
+            long off = donde2;
+            off = file_a.getFilePointer();
+            file_a.writeChars("BUSCANDO");
+            // file_a.wr
+            JOptionPane.showMessageDialog(null, "Funcionó");
+        } catch (Exception e) {
+            System.out.println(e);
 
-            }
-            System.out.println("salgo");
+        }
+        System.out.println("salgo");
 
-        
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        try{
-                Registros r=new Registros();
-                String keys=JOptionPane.showInputDialog(this,"INGRESE LLAVE A ELIMINAR");
-                int key=Integer.parseInt(keys);
-                LLave l1=new LLave();
-                Arbolb tree1=ap.getBtree();
-                l1=tree1.buscarLlave(tree1.getRaiz(), key);
-                if(l1==null){
-                
-                }
-                else{
+        try {
+            Registros r = new Registros();
+            String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
+            int key = Integer.parseInt(keys);
+            LLave l1 = new LLave();
+            Arbolb tree1 = ap.getBtree();
+            l1 = tree1.buscarLlave(tree1.getRaiz(), key);
+            if (l1 == null) {
+
+            } else {
                 try {
                     System.out.println("adentro");
                     RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
                     file_a.seek(l1.getOffset() + 1);//128
                     String seek = file_a.readLine();
                     //System.out.println("Soy el seek: " + seek);
-                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: "+seek);
-                    int rest=seek.length();
-                    
+                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: " + seek);
+                    int rest = seek.length();
+
                     //file_a.writeUTF("soy seek");
                     // file_a.wr
                     JOptionPane.showMessageDialog(null, "Funcionó");
-                    System.out.println("RESTA: "+rest);
-                    long offset = (l1.getOffset()+1);
-                    System.out.println("NEW OFF: "+offset);
-                    
+                    System.out.println("RESTA: " + rest);
+                    long offset = (l1.getOffset() + 1);
+                    System.out.println("NEW OFF: " + offset);
+
                     file_a.seek(offset);
-                    
+
                     file_a.writeChars("MIERDA|2|");
-                    
+
                     //file_a.writeChars();
                     file_a.close();
-                    
+
                 } catch (Exception e) {
                     System.out.println(e);
 
                 }
 
-                }
-                
-            }catch(Exception e){
             }
-        
+
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        System.out.println("Cantidad Archivos: "+listaA.size());
+        System.out.println("Cantidad Archivos: " + listaA.size());
         for (int i = 0; i < listaA.size(); i++) {
-            System.out.println("Archivo : "+i+" "+listaA.get(i).getName());
+            System.out.println("Archivo : " + i + " " + listaA.get(i).getName());
         }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        if (boolRegistro) {
+            //ya hay registros creados
+            try {
+                Registros r = new Registros();
+                String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE DE REGISTRO");
+                int key = Integer.parseInt(keys);
+                LLave l1 = new LLave();
+                Arbolb tree1 = ap.getBtree();
+                l1 = tree1.buscarLlave(tree1.getRaiz(), key);
+                if (l1 == null) {
+
+                } else {
+                    try {
+
+                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                        file_a.seek(l1.getOffset() + 1);//128
+                        String seek = file_a.readLine();
+                        //System.out.println("Soy el seek: " + seek);
+                        JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
+                        Nodo s = tree1.buscarEliminado(tree1.getRaiz(), key);
+
+                        boolean sepudo = tree1.eliminar(tree1.getRaiz(), l1);
+                        int p = ap.getName().indexOf('.');
+                        String nombre_archivob = "./" + ap.getName() + ".bin";/////
+
+                        int rest = seek.length();
+
+                        //file_a.writeUTF("soy seek");
+                        // file_a.wr
+                        //System.out.println("RESTA: "+rest);
+                        long offset = (l1.getOffset() + 1);
+                        //System.out.println("NEW OFF: "+offset);
+
+                        file_a.seek(offset);
+                        String ss = "";
+                        String kk = "";
+                        String fin2 = "";
+                        String fin3 = "";
+                        r.setListaCampo(Listac);
+                        int w = 0;
+                        for (int i = 0; i < r.getListaCampo().size(); i++) {
+                            if (r.getListaCampo().get(i).isIsKey() == false) {
+                                ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
+                                while (w < r.getListaCampo().size()) {
+                                    int l = ListaL.get(w);
+                                    fin2 = fixSpace(ss, l);
+                                    fin3 += fin2 + "|";
+
+                                    break;
+
+                                }
+                                w++;
+                            } else {
+                                ss += l1.getLlave() + "|";
+
+                            }
+
+                        }
+                        System.out.println("SEEK: " + seek);
+                        RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                        long md = writeMD().length();
+                        raf.seek(l1.getOffset());
+
+                        raf.writeChars(fin3);
+                        //raf.writeChars("\n");
+                        raf.close();
+
+                        //file_a.writeChars("*");
+                        //file_a.writeChars();
+                        JOptionPane.showMessageDialog(null, "Funcionó");
+                    } catch (Exception e) {
+                        System.out.println(e);
+
+                    }
+
+                }
+
+            } catch (Exception e) {
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1892,6 +2031,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cb_borrarc;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1938,6 +2078,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
+    ArrayList<Arbolb> listaArbol = new ArrayList();
     ArrayList<Archivo> listaA = new ArrayList();
     ArrayList<String> listaK1 = new ArrayList();
     ArrayList<Integer> ListaL = new ArrayList();
@@ -1958,16 +2099,18 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-     public void escribirArbol(Arbolb btree, String name) {
 
-        
-        File archivo_bin_arbol = new File(name);
+    public void writeB(String name, Arbolb tree) {
+        File file = new File(name + ".bin");
+
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
-            fw = new FileOutputStream(archivo_bin_arbol);
+            fw = new FileOutputStream(file);
             bw = new ObjectOutputStream(fw);
-            bw.writeObject(btree);
+            // for (persona t : listaPersonas) {
+            bw.writeObject(tree);
+            //}
             bw.flush();
         } catch (Exception ex) {
         } finally {
@@ -1977,29 +2120,33 @@ public class Main extends javax.swing.JFrame {
             } catch (Exception ex) {
             }
         }
+        System.out.println("ESCRIBI BINARIO");
+
     }
 
-    public Arbolb cargarArbol(String nombre_archivo_bin) {
+    public void cargarArbol(String nombre) throws FileNotFoundException, IOException, ClassNotFoundException {
 
-        Arbolb btree_temp = null;
-
-        File cargar_bin = new File(nombre_archivo_bin);
-
+        FileInputStream fstream = new FileInputStream(nombre + ".bin");
         try {
-            if (cargar_bin.exists()) {
-                FileInputStream entrada = new FileInputStream(cargar_bin);
-                ObjectInputStream objeto = new ObjectInputStream(entrada);
-                btree_temp = (Arbolb) objeto.readObject();
-                objeto.close();
-                entrada.close();
+            ObjectInputStream ostream = new ObjectInputStream(fstream);
+            while (true) {
+                Arbolb obj;
+                try {
+                    obj = (Arbolb) ostream.readObject();
+                    ap.setBtree(obj);
+                    System.out.println("PUDE ");
+                } catch (EOFException e) {
+                    break;
+                }
+                // do something with obj
             }
-        } catch (Exception e) {
+        } finally {
+            fstream.close();
         }
-        return btree_temp;
+    }
 
-    
-}
     //variables globales
+    String namebin;
     boolean esta = false;
     int donde2;
     int donde;
@@ -2007,7 +2154,8 @@ public class Main extends javax.swing.JFrame {
     int mdsize;
     //Arbolb tree=new Arbolb(6);
     //booleans de validaciones
-    boolean primB=true;
+    boolean primA=true;
+    boolean primB = true;
     boolean primeraVez = true;
     boolean boolArchivo = false;
     boolean boolCampos = false;

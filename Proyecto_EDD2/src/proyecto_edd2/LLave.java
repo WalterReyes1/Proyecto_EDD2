@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto_edd2;
+
+import java.io.Serializable;
 
 /**
  *
  * @author Luis Carlos Flores
  */
-public class LLave {
+public class LLave implements Serializable  {
+    private static final long SerialVersionUID=777L;
     long offset;
     int llave;
 
@@ -17,7 +15,7 @@ public class LLave {
     }
     //luis,12
     //walter,12
-
+    ;
     public LLave(long offset, int llave) {
         this.offset = offset;
         this.llave = llave; 

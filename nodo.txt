@@ -6,8 +6,7 @@ import java.io.Serializable;
  *
  * @author Luis Carlos Flores
  */
-public class Nodo implements Serializable  {
-    private static final long SerialVersionUID=777L;
+public class Nodo implements Serializable {
     int cant_llaves;
     boolean esHoja;
     Nodo hijos[];
@@ -24,7 +23,7 @@ public class Nodo implements Serializable  {
         
     }
     
-   
+    
 
     public int getCant_llaves() {
         return cant_llaves;
