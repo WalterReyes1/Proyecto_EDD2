@@ -481,6 +481,11 @@ public class Main extends javax.swing.JFrame {
         jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, 40));
 
         jButton11.setText("Archivos de Prueba #2");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 240, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
@@ -1027,7 +1032,7 @@ public class Main extends javax.swing.JFrame {
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
-        primA=true;
+        primA = true;
         r.setListaCampo(Listac);
         boolean valid = false;
         String pal = "";
@@ -1294,6 +1299,7 @@ public class Main extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:}
         // if (boolGuardado) {
+
         int cont1 = 1;
         System.out.println("hola");
         String[] names = {"Sofia", "Camila", "Valentina",
@@ -1334,7 +1340,7 @@ public class Main extends javax.swing.JFrame {
             Random r2 = new Random();
             Random r3 = new Random();
             Random r4 = new Random();
-            
+
             int x1 = 0;
             x1 += r1.nextInt(48);//nombres
             int x2 = 0;
@@ -1467,7 +1473,7 @@ public class Main extends javax.swing.JFrame {
         boolEntroRegistro = true;
         boolArchivo = true;
         boolCampos = true;
-        primA=false;
+        primA = false;
         int seleccion = fileChooser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             int cont = 0;
@@ -1641,26 +1647,25 @@ public class Main extends javax.swing.JFrame {
                             ap.getAvailList().add(offset);
                             file_a.seek(donde2);
                             String c = ap.getAvailList().get(0) + "";
-                           int n=(int)offset;
-                           
+                            int n = (int) offset;
+
                             file_a.writeByte(n);
-                            
-                            
+
                             file_a.close();
                             writeB(namebin, tree1);
-                            primA=false;
+                            primA = false;
 
                         } else {
-                             file_a.seek(offset);
+                            file_a.seek(offset);
 
                             file_a.writeChars("*");
                             ap.getAvailList().add(offset);
                             file_a.seek(donde2);
-                            String md=file_a.readLine();
-                            System.out.println("OFFSET MD: "+md);
-                            long w=Long.parseLong(md);
+                            String md = file_a.readLine();
+                            System.out.println("OFFSET MD: " + md);
+                            long w = Long.parseLong(md);
                             file_a.seek(w);
-                            file_a.writeChars("*"+offset+"");
+                            file_a.writeChars("*" + offset + "");
                             file_a.close();
                             writeB(namebin, tree1);
 
@@ -1962,6 +1967,161 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        int cont1 = 1;
+        System.out.println("hola");
+        String[] names = {"Sofia", "Camila", "Valentina",
+            "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
+            "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
+            "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
+            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
+            "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
+            "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
+            "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
+            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
+        //person name , person age,city ID and person ID
+
+        Campos c1 = new Campos("PersonName", "String", 12, false);
+        Campos c2 = new Campos("PersonAge", "String", 12, false);
+        Campos c3 = new Campos("CityId", "String", 8, false);
+        Campos c4 = new Campos("personId", "String", 8, false);
+
+        ArrayList<Integer> PersonalIDval = new ArrayList();
+        ArrayList<Integer> CityIDval = new ArrayList();
+        PersonalIDval.add(0);
+        CityIDval.add(0);
+        ArrayList<Campos> lc = new ArrayList();
+        
+        ArrayList<String> ls = new ArrayList();
+        Registros re1 = new Registros();
+        lc.add(c3);
+        lc.add(c1);
+        lc.add(c2);
+        lc.add(c4);
+
+        
+        String s1;
+        String s2;
+        String s3;
+        String s4;
+        re1.setListaCampo(lc);
+
+        for (int i = 0; i < 10000; i++) {
+            Random r1 = new Random();
+            Random r2 = new Random();
+            Random r3 = new Random();
+            Random r4 = new Random();
+
+            int x1 = 0;
+            x1 += r1.nextInt(48);//nombres
+            int x2 = 0;
+            x2 += r2.nextInt(80);//edad
+            int x3 = -1;
+            int x4 = 0;
+
+            x3 = r3.nextInt(80000000);//person ID 
+            if (!PersonalIDval.contains(x3)) {
+                PersonalIDval.add(x3);
+            }
+
+            x4 = r4.nextInt(90000000);//City ID
+            //System.out.println("X1: "+x1);
+
+            s1 = names[x1];//agarro nombres
+            s4 = x4 + "";
+            lc.add(c4);
+            ls.add(s4);
+
+            //agregado primer campo
+            s2 = x2 + "";
+            lc.add(c1);
+            ls.add(s1);
+
+            //agregando segundo campo
+            s3 = x3 + "";
+            lc.add(c2);
+            ls.add(s2);
+
+            //agregado tercer campo
+            lc.add(c3);
+            ls.add(s3);
+
+            //agregado cuarto campo
+        }
+        re1.setListaString(ls);
+
+        String pal = "";
+        //System.out.println("SIZE: "+re1.getListaCampo().size());
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+            //System.out.println("STRING: "+re1.getListaString().get(i));
+        }
+        String fin5 = "";
+        String fin6 = "";
+        String fin7 = "";
+        int w = 0;
+        int cont = 0;
+        for (int i = 0; i < re1.getListaString().size(); i++) {
+            if (cont <= 10000) {
+                fin5 = re1.getListaString().get(cont);
+
+                while (w <= 4) {
+                    
+                    if (w == 4) {
+                        fin7 += "\n";
+                        
+                    } else {
+                        fin5 = re1.getListaString().get(cont);
+                        int l = re1.getListaCampo().get(w).getSize();
+                        fin6 = fixSpace(fin5, l);
+                        fin7 += fin6 + "|";
+                        cont++;
+                    }
+
+                    w++;
+                }
+                w = 0;
+            }
+
+        }
+
+        try {
+            Archivo ap2 = new Archivo();
+            ap2.crearArchivo("Prueba2", "");
+            ap2.setName("Prueba2.txt");
+            ap2.escribirArchivo("4");
+
+            String size4 = "" + c4.getSize();
+            String key4 = "" + c4.isIsKey();
+            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
+            //System.out.println("KEY"+cc1);
+            //ap.escribirArchivo(cc1, "prueba2.txt");
+
+            String size1 = "" + c1.getSize();
+            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
+            //ap.escribirArchivo(cc2, "prueba2.txt");
+            String size2 = "" + c2.getSize();
+            String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
+            //ap.escribirArchivo(cc3, "prueba2.txt");
+            String size3 = "" + c3.getSize();
+            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n\n\n\n\n\n\n"
+                    + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
+            String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
+
+            //ap.escribirArchivo(cc4, "prueba2.txt");
+            //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
+            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
+            String fin4 = writeMD();
+            String fin3 = fin2 + fin2.length() + "\n" + fin7;
+            ap2.escribirArchivo(fin3);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //"CAMPOS: 4 "+"\n"+
+        //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2154,7 +2314,7 @@ public class Main extends javax.swing.JFrame {
     int mdsize;
     //Arbolb tree=new Arbolb(6);
     //booleans de validaciones
-    boolean primA=true;
+    boolean primA = true;
     boolean primB = true;
     boolean primeraVez = true;
     boolean boolArchivo = false;
