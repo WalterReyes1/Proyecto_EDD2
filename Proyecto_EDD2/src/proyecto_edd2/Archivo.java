@@ -112,7 +112,7 @@ public class Archivo {
             FileWriter myWriter = new FileWriter(this.name);
             myWriter.write(word);
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            //System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

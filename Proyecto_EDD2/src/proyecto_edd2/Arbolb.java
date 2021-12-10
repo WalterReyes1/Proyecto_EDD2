@@ -161,7 +161,7 @@ public class Arbolb implements Serializable {
         x.llaves[i] = y.llaves[(T - 1)];
         //aumento en el numero de llaves de x, para saber que ocurre split
         x.cant_llaves++;
-        System.out.println("SPLIT OCURRIO");
+        //System.out.println("SPLIT OCURRIO");
     }
     
    
