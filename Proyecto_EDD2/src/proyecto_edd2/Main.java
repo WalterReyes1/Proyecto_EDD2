@@ -1730,48 +1730,32 @@ public class Main extends javax.swing.JFrame {
         if (boolRegistro) {
             //ya hay registros creados
             try {
-                Registros r = new Registros();
+               
                 String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
                 int key = Integer.parseInt(keys);
                 LLave l1 = new LLave();
                 Arbolb tree1 = ap.getBtree();
                 l1 = tree1.buscarLlave(tree1.getRaiz(), key);
                 if (l1 == null) {
+                    System.out.println("NO ESTA");
 
                 } else {
                     //try {
-                        System.out.println("adentro");
-                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                        System.out.println("SI ESTA LLAVE");
                        
-                        
-                        Nodo s = tree1.buscarEliminado(tree1.getRaiz(), key);
-                        if (s == null) {
-                        } else {
                             boolean sepudo = tree1.eliminar(tree1.getRaiz(), l1);
-                            int p = ap.getName().indexOf('.');
-                            String nombre_archivob = "./" + ap.getName() + ".bin";/////
-
-                            //tree1.write(tree1, nombre_archivob);
-                        }
+                            System.out.println("SI SE PUDO ELIMINAR");
                         
-                        long offset = (l1.getOffset());
-                        System.out.println("NEW OFF: " + offset);
-
-                        String esp="";
                         
-                            file_a.seek(offset);
+                       
+                        RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                      
+                        raf.seek(l1.getOffset());
 
-                            file_a.writeChars("\n"+"*");
-                            ap.getAvailList().add(offset);
-                            //file_a.seek(donde2);
-                            String c = ap.getAvailList().get(0) + "";
-                            int n = (int) offset;
-
-                            //file_a.writeByte(n);
-
-                            file_a.close();
-                            writeB(namebin, tree1);
-                            primA = false;
+                        raf.writeChars("*");
+                        System.out.println("SE ELIMINO");
+                        //raf.writeChars("\n");
+                        raf.close();
 
 
                         JOptionPane.showMessageDialog(null, "Funcionó");
@@ -1881,6 +1865,11 @@ public class Main extends javax.swing.JFrame {
         LLave l5 = new LLave(12121, 60);
         LLave l6 = new LLave(12121, 7);
         LLave l7 = new LLave(12121, 80);
+        LLave l8 = new LLave(12121, 4310);
+        LLave l9 = new LLave(12121, 1315);
+        LLave l10 = new LLave(12121, 6130);
+        LLave l11 = new LLave(12121, 7133);
+        LLave l12 = new LLave(12121, 8130);
         Arbolb Bprueba = new Arbolb(6);
         Bprueba.insert(l1);
         Bprueba.insert(l2);
@@ -1889,19 +1878,28 @@ public class Main extends javax.swing.JFrame {
         Bprueba.insert(l5);
         Bprueba.insert(l6);
         Bprueba.insert(l7);
+         Bprueba.insert(l8);
+        Bprueba.insert(l9);
+        Bprueba.insert(l10);
+        Bprueba.insert(l11);
+        Bprueba.insert(l12);
         //ver si esta el nodo a eliminar
         System.out.println("INSERTE:  1,2,40,5,60,7,80");
         System.out.println("");
         System.out.println("ARBOL ANTES DE ELIMINAR");
         Bprueba.Show();
         System.out.println("");
-        Nodo s = Bprueba.buscarEliminado(Bprueba.getRaiz(), 40);
+        Nodo n=Bprueba.buscarEliminado(Bprueba.getRaiz(), l3.getLlave());
         boolean sepudo = Bprueba.eliminar(Bprueba.getRaiz(), l3);
-        System.out.println("ELIMINAR 40");
+        if(sepudo==true){
+            System.out.println("ELIMINAR 40");
         System.out.println("");
         System.out.println("ARBOL DESPUES DE ELIMINAR");
         Bprueba.Show();
         System.out.println("");
+            
+        }
+        
 
 
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -2144,7 +2142,7 @@ public class Main extends javax.swing.JFrame {
         int cont2 = 0;
         int con=writeMD().length();
         int e=writeMD().length();
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 44; i++) {
             Random r1 = new Random();
             Random r2 = new Random();
             Random r3 = new Random();
@@ -2183,7 +2181,7 @@ public class Main extends javax.swing.JFrame {
             //agregado tercer campo
             //lc.add(c3);
             ls.add(s4);
-            if (cont <= 40) {
+            if (cont <= 44) {
                 LLave l1 = new LLave();
                 fin5 = re1.getListaString().get(cont);
                 int k = 0;
@@ -2229,7 +2227,7 @@ public class Main extends javax.swing.JFrame {
                             if (ll1 == null) {
                                 //System.out.println("PALABRA: "+fin10);
                                
-                                con+=89;
+                                con+=90;
                                 System.out.println("OFFSET: "+con);
                                 
                                 //System.out.println("OFFSET: "+e);
