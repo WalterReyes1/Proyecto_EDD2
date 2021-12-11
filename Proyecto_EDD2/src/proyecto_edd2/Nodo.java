@@ -71,7 +71,7 @@ public class Nodo implements Serializable  {
     }
      public int indice(LLave llave) {
 
-        for (int i = 0; i < llaves.length; i++) {
+        for (int i = 0; i < cant_llaves; i++) {
 
             if (llaves[i].getLlave() == llave.getLlave()) {
                 return i;

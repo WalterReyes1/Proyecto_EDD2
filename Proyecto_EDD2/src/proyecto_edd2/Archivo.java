@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -20,12 +21,13 @@ public class Archivo {
 
     File archivo = null;
     String name;
-  
+
     boolean save;
     Registros r1;
     Arbolb btree;
     boolean primero;
     LinkedList availList = new LinkedList();
+    ArrayList<Integer> avail1 = new ArrayList();
 
     public Arbolb getBtree() {
         return btree;
@@ -42,7 +44,7 @@ public class Archivo {
     public void setPrimero(boolean primero) {
         this.primero = primero;
     }
-    
+
     public Archivo() {
     }
 
@@ -52,10 +54,18 @@ public class Archivo {
 
     }
 
+    public ArrayList<Integer> getAvail1() {
+        return avail1;
+    }
+
+    public void setAvail1(ArrayList<Integer> avail1) {
+        this.avail1 = avail1;
+    }
+
     public Registros getR1() {
         return r1;
     }
-    
+
     public void setR1(Registros r1) {
         this.r1 = r1;
     }
@@ -73,7 +83,7 @@ public class Archivo {
     }
 
     public void setName(String name) {
-        this.primero=false;
+        this.primero = false;
         this.name = name;
     }
 
@@ -93,9 +103,9 @@ public class Archivo {
         this.availList = availList;
     }
 
-   public void crearArchivo(String path,String name) throws IOException {
+    public void crearArchivo(String path, String name) throws IOException {
         try {
-            this.archivo= new File(path+".txt");
+            this.archivo = new File(path + ".txt");
             if (this.archivo.createNewFile()) {
                 System.out.println("File created: " + this.archivo.getName());
             } else {
@@ -107,8 +117,10 @@ public class Archivo {
         }
 
     }
+
     public void escribirArchivo(String word) throws IOException {
         try {
+
             FileWriter myWriter = new FileWriter(this.name);
             myWriter.write(word);
             myWriter.close();
@@ -118,7 +130,23 @@ public class Archivo {
             e.printStackTrace();
         }
     }
-    public void close(String name){
-        
+
+    public void close(String name) {
+
     }
+
+    public void escribirArchivo2(String word) throws IOException {
+
+        try {
+
+            FileWriter fileWriter = new FileWriter(this.name, true);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(word);
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("COULD NOT LOG!!");
+        }
+    }
+    
 }
