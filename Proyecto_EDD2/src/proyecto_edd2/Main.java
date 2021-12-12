@@ -1358,12 +1358,12 @@ public class Main extends javax.swing.JFrame {
                         System.out.println("OFF: " + o);
 
                         n = ap.getAvail1().get(0);
-                        int nn=Integer.parseInt(o);
+                        int nn = Integer.parseInt(o);
                         raf.seek(nn);
 
                         raf.writeChars(fin3);
                         raf.writeChars("\n");
-                        raf.close();
+
                         l1.setOffset(nn);
                         l1.setLlave(llave);
                         tree1.insert(l1);
@@ -1371,9 +1371,25 @@ public class Main extends javax.swing.JFrame {
 
                         writeB(namebin, tree1);
                         ap.setBtree(tree1);
-                       
-                        // ap.getAvailList().remove(offset);
 
+                        ap.getAvailList().remove(ap.getAvailList().get(0));
+
+                        System.out.println("SIZE: " + ap.getAvailList().size());
+                        raf.seek(donde2);
+                        
+                        if (ap.getAvailList().isEmpty()) {
+                                raf.writeBytes("N");
+
+                        }
+                        for (int i = 0; i < ap.getAvailList().size(); i++) {
+                             
+                                System.out.println("AVAIL new: " + ap.getAvailList().get(i));
+                                raf.writeBytes(ap.getAvailList().get(i) + ";");
+                            
+
+                        }
+                        raf.writeBytes("                                                                                                                      ");
+                        raf.close();
                     }
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -1659,9 +1675,7 @@ public class Main extends javax.swing.JFrame {
                 String fal = writeMD();
                 file_a.close();
 
-                
                 //ss="HOLA COMO ESTAS";
-
                 String file = "";
 
                 sc = new Scanner(ap.getArchivo());
@@ -1676,7 +1690,7 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 sc2 = new Scanner(file);
-                String re=file;
+                String re = file;
                 System.out.println("Revisar: " + re);
                 sc2.useDelimiter(";");
                 //System.out.println(file);
@@ -1731,17 +1745,17 @@ public class Main extends javax.swing.JFrame {
                 System.out.println("NEW NAME: " + namebin);
                 ap.setPrimero(false);
                 cargarArbol(namebin);
-                int cam=Listac.size();
-                int fals=10-cam;
-                re+=seek+"\n";
+                int cam = Listac.size();
+                int fals = 10 - cam;
+                re += seek + "\n";
                 for (int i = 0; i < 10; i++) {
-                    re+="\n";
-                    
+                    re += "\n";
+
                 }
-                re+="TIPO ARCHIVO: .txt"+"\n";
-                System.out.println("RE S: "+re);
-                System.out.println("RE: "+re.length());
-                donde2=re.length();
+                re += "TIPO ARCHIVO: .txt" + "\n";
+                System.out.println("RE S: " + re);
+                System.out.println("RE: " + re.length());
+                donde2 = re.length();
                 file_a = new RandomAccessFile(ap.getName(), "rw");
                 file_a.seek(donde2);
                 String ss = "";
@@ -1751,9 +1765,11 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(ss);
                     String tok[] = ss.split(";");
                     for (int i = 0; i < tok.length; i++) {
-                        int l = Integer.parseInt(tok[i]);
-                        ap.getAvail1().add(l);
-                        ap.getAvailList().add(tok[i]);
+                        if (!tok[i].contains(" ")) {
+                            int l = Integer.parseInt(tok[i]);
+                            ap.getAvail1().add(l);
+                            ap.getAvailList().add(tok[i]);
+                        }
                     }
                     System.out.println("CANTIDAD EN AV: " + ap.getAvailList().size());
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
@@ -1764,8 +1780,6 @@ public class Main extends javax.swing.JFrame {
                     ap.getAvailList().removeAll(ap.getAvailList());
                     System.out.println("AVAIL VACIA");
                 }
-                
-                
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -1832,19 +1846,20 @@ public class Main extends javax.swing.JFrame {
                     ap.getAvail1().add(n2);
                     System.out.println("SE ELIMINO");
                     raf.seek(donde2);
-                    System.out.println("DONDE2: "+donde2);
-                    
-                    String dp="";
+                    System.out.println("DONDE2: " + donde2);
+
+                    String dp = "";
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
 
                         //raf.writeChars(ap.getAvailList().get(i)+";");
-                        raf.writeBytes(ap.getAvailList().get(i)+";");
+                        raf.writeBytes(ap.getAvailList().get(i) + ";");
                         //dp+=ap.getAvailList().get(i)+";";
                         // raf.writeInt(n2);
 
                     }
+                    //raf.writeBytes("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" );
                     raf.close();
-                    
+
                     JOptionPane.showMessageDialog(null, "Funcionó");
 
                 }
@@ -1919,7 +1934,7 @@ public class Main extends javax.swing.JFrame {
         }
         pal2 += Listac.size() + "\n" + cc1 + esp + "TIPO ARCHIVO: .txt"
                 + "\n"
-                + "N"
+                + "N                                                                                                                                                                 "
                 + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
         String hasta = Listac.size() + "\n" + cc1 + esp + "TIPO ARCHIVO: .txt"
                 + "\n";
