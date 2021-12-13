@@ -2155,7 +2155,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        if (boolRegistro) {
+      if (boolRegistro) {
             //ya hay registros creados
             try {
                 Registros r = new Registros();
@@ -2168,65 +2168,149 @@ public class Main extends javax.swing.JFrame {
 
                 } else {
                     try {
-                        if(nameArchivo.equals("Prueba1.txt")||nameArchivo.equals("Prueba2.txt")){
+                        if (nameArchivo.equals("Prueba1.txt") || nameArchivo.equals("Prueba2.txt")) {
+                            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                            file_a.seek(l1.getOffset() + 1);//128
+                            String seek = file_a.readLine();
+                            //System.out.println("Soy el seek: " + seek);
+                            JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
+                           
 
-                        RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                        file_a.seek(l1.getOffset() + 1);//128
-                        String seek = file_a.readLine();
-                        //System.out.println("Soy el seek: " + seek);
-                        JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
-                        Nodo s = tree1.buscarEliminado(tree1.getRaiz(), key);
+                          
+                            int p = ap.getName().indexOf('.');
+                            String nombre_archivob = "./" + ap.getName() + ".bin";/////
 
-                        boolean sepudo = tree1.eliminar(tree1.getRaiz(), l1);
-                        int p = ap.getName().indexOf('.');
-                        String nombre_archivob = "./" + ap.getName() + ".bin";/////
+                            int rest = seek.length();
 
-                        int rest = seek.length();
+                            long offset = (l1.getOffset() + 1);
+                            //System.out.println("NEW OFF: "+offset);
 
-                        
-                        long offset = (l1.getOffset() + 1);
-                        //System.out.println("NEW OFF: "+offset);
+                            file_a.seek(offset);
+                            String ss = "";
+                            String kk = "";
+                            String fin2 = "";
+                            String fin3 = "";
+                            String fin4 = "";
+                            String com1 = "";
+                            String com2 = "";
+                            String com3 = "";
 
-                        file_a.seek(offset);
-                        String ss = "";
-                        String kk = "";
-                        String fin2 = "";
-                        String fin3 = "";
-                        String fin4 = "";
-                        r.setListaCampo(Listac);
-                        int w = 0;
-                        
-                        for (int i = 0; i < r.getListaCampo().size(); i++) {
-                            if (r.getListaCampo().get(i).isIsKey() == false) {
-                                ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
-                                while (w < r.getListaCampo().size()) {
-                                    int l = ListaL.get(w);
-                                    fin2 = fixSpace(ss, l);
-                                    fin3 += fin2 + "|";
+                            r.setListaCampo(Listac);
+                            int w = 1;
+                            //1212,luis,13,1313
+                            //2121|
+                            //Walter,23,4242
+                            for (int i = 0; i < r.getListaCampo().size(); i++) {
+                                if(r.getListaCampo().get(i).isIsKey()==true){
+                                    donde=i;
+                                    
+                                }
+                                
+                            }
+                            System.out.println("DONDE: "+donde);
+                            for (int i = 0; i < r.getListaCampo().size(); i++) {
+                                if (r.getListaCampo().get(i).isIsKey() == false) {
+                                    ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
+                                    while (w < r.getListaCampo().size()) {
+                                        //if (donde != w) {
+                                            int l = ListaL.get(w);
+                                            fin2 = fixSpace(ss, l);
+                                            fin3 += fin2 + "|";
+                                            com1 += fin2 + "|";
+                                        //}
 
-                                    break;
+                                        break;
+
+                                    }
+                                    w++;
+                                } else {
+                                    while (w < r.getListaCampo().size()) {
+                                        int l = ListaL.get(donde);
+                                        com2 = fixSpace(l1.getLlave() + "", l);
+                                        com3 += com2 + "|";
+
+                                        break;
+
+                                    }
 
                                 }
-                                w++;
-                            } else {
-                                ss += l1.getLlave() + "|";
 
                             }
+                            System.out.println("1: "+com1);
+                            System.out.println("2: "+com2);
+                            String m = com3 + com1;
+                            System.out.println("SEEK: " + seek);
+                            RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                            long md = writeMD().length();
+                            raf.seek(l1.getOffset());
 
-                        }
-                        System.out.println("SEEK: " + seek);
-                        RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
-                        long md = writeMD().length();
-                        raf.seek(l1.getOffset());
+                            raf.writeChars(m);
+                            //raf.writeChars("\n");
+                            raf.close();
+
+                            //file_a.writeChars("*");
+                            //file_a.writeChars();
+                            JOptionPane.showMessageDialog(null, "Funcionó");
+
+                        } else {
+                            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                            file_a.seek(l1.getOffset() + 1);//128
+                            String seek = file_a.readLine();
+                            //System.out.println("Soy el seek: " + seek);
+                            JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
+                           
+                            int p = ap.getName().indexOf('.');
+                            String nombre_archivob = "./" + ap.getName() + ".bin";/////
+
+                            int rest = seek.length();
+
+                            long offset = (l1.getOffset() + 1);
+                            //System.out.println("NEW OFF: "+offset);
+
+                            file_a.seek(offset);
+                            String ss = "";
+                            String kk = "";
+                            String fin2 = "";
+                            String fin3 = "";
+                            String fin4 = "";
+                            r.setListaCampo(Listac);
+                            int w = 0;
+
+                            for (int i = 0; i < r.getListaCampo().size(); i++) {
+                                if (r.getListaCampo().get(i).isIsKey() == false) {
+                                    ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
+                                    while (w < r.getListaCampo().size()) {
+                                        int l = ListaL.get(w);
+                                        fin2 = fixSpace(ss, l);
+                                        fin3 += fin2 + "|";
+
+                                        break;
+
+                                    }
+                                    w++;
+                                } else {
+                                    ss += l1.getLlave() + "|";
+
+                                }
+
+                            }
+                            System.out.println("SEEK: " + seek);
+                            RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                            long md = writeMD().length();
+                            raf.seek(l1.getOffset());
+
+                            raf.writeChars(fin3);
+                            //raf.writeChars("\n");
+                            raf.close();
+
+                            //file_a.writeChars("*");
+                            //file_a.writeChars();
+                            JOptionPane.showMessageDialog(null, "Funcionó");
+
+                        }/*
                         
-                        raf.writeChars(fin3);
-                        //raf.writeChars("\n");
-                        raf.close();
-
-                        //file_a.writeChars("*");
-                        //file_a.writeChars();
-                        JOptionPane.showMessageDialog(null, "Funcionó");
-                        }
+                            
+                         */
                     } catch (Exception e) {
                         System.out.println(e);
 
