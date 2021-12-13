@@ -485,7 +485,7 @@ public class Main extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton5.setText("Archivos de Prueba #1");
+        jButton5.setText("Archivos de Prueba #2");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
@@ -496,15 +496,15 @@ public class Main extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, 40));
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 230, 40));
 
-        jButton11.setText("Archivos de Prueba #2");
+        jButton11.setText("Archivos de Prueba #1");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 240, 40));
+        jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 240, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -1511,15 +1511,15 @@ public class Main extends javax.swing.JFrame {
 
         Arbolb t = new Arbolb(6);
         ap.setBtree(t);
-        namebin = "CityId";
+        namebin = "Prueba2";
         writeB(namebin, t);
         try {
-            ap.crearArchivo("CityId", "");
+            ap.crearArchivo("Prueba2", "");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ap.setName("CityId.txt");
+        ap.setName("Prueba2.txt");
         try {
             ap.escribirArchivo(writeMD());
         } catch (IOException ex) {
@@ -2168,6 +2168,7 @@ public class Main extends javax.swing.JFrame {
 
                 } else {
                     try {
+                        if(nameArchivo.equals("Prueba1.txt")||nameArchivo.equals("Prueba2.txt")){
 
                         RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
                         file_a.seek(l1.getOffset() + 1);//128
@@ -2182,9 +2183,7 @@ public class Main extends javax.swing.JFrame {
 
                         int rest = seek.length();
 
-                        //file_a.writeUTF("soy seek");
-                        // file_a.wr
-                        //System.out.println("RESTA: "+rest);
+                        
                         long offset = (l1.getOffset() + 1);
                         //System.out.println("NEW OFF: "+offset);
 
@@ -2193,8 +2192,10 @@ public class Main extends javax.swing.JFrame {
                         String kk = "";
                         String fin2 = "";
                         String fin3 = "";
+                        String fin4 = "";
                         r.setListaCampo(Listac);
                         int w = 0;
+                        
                         for (int i = 0; i < r.getListaCampo().size(); i++) {
                             if (r.getListaCampo().get(i).isIsKey() == false) {
                                 ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
@@ -2217,7 +2218,7 @@ public class Main extends javax.swing.JFrame {
                         RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                         long md = writeMD().length();
                         raf.seek(l1.getOffset());
-
+                        
                         raf.writeChars(fin3);
                         //raf.writeChars("\n");
                         raf.close();
@@ -2225,6 +2226,7 @@ public class Main extends javax.swing.JFrame {
                         //file_a.writeChars("*");
                         //file_a.writeChars();
                         JOptionPane.showMessageDialog(null, "Funcionó");
+                        }
                     } catch (Exception e) {
                         System.out.println(e);
 
@@ -2289,12 +2291,12 @@ public class Main extends javax.swing.JFrame {
         namebin = "Prueba2";
         writeB(namebin, t);
         try {
-            ap.crearArchivo("Prueba2", "");
+            ap.crearArchivo("Prueba1", "");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ap.setName("Prueba2.txt");
-        nameArchivo = "Prueba2.txt";
+        ap.setName("Prueba1.txt");
+        nameArchivo = "Prueba1.txt";
         try {
             ap.escribirArchivo(writeMD());
         } catch (IOException ex) {
