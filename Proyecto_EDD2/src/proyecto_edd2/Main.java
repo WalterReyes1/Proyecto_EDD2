@@ -1334,6 +1334,7 @@ public class Main extends javax.swing.JFrame {
                 try {
                     int n;
                     if (ap.getAvailList().isEmpty()) {
+                        System.out.println("NAME: " + ap.getName());
                         RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                         long md = writeMD().length();
                         raf.seek(raf.length());
@@ -1376,16 +1377,15 @@ public class Main extends javax.swing.JFrame {
 
                         System.out.println("SIZE: " + ap.getAvailList().size());
                         raf.seek(donde2);
-                        
+
                         if (ap.getAvailList().isEmpty()) {
-                                raf.writeBytes("N");
+                            raf.writeBytes("N");
 
                         }
                         for (int i = 0; i < ap.getAvailList().size(); i++) {
-                             
-                                System.out.println("AVAIL new: " + ap.getAvailList().get(i));
-                                raf.writeBytes(ap.getAvailList().get(i) + ";");
-                            
+
+                            System.out.println("AVAIL new: " + ap.getAvailList().get(i));
+                            raf.writeBytes(ap.getAvailList().get(i) + ";");
 
                         }
                         raf.writeBytes("                                                                                                                      ");
@@ -1470,140 +1470,207 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_NuevoArchivoActionPerformed
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        // TODO add your handling code here:}
-        // if (boolGuardado) {
-
         int cont1 = 1;
-        System.out.println("hola");
-        String[] names = {"Sofia", "Camila", "Valentina",
-            "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
-            "Ximena", "Andrea", "Natalia", "Martina", "Andrea", "Camila", "Natalia",
-            "Mia", "Martina", "Lucia", "Samantha", "Maria", "Nicole", "Alejandra",
-            "Paula", "Emily", "Fernanda", "Regina", "Santiago", "Sebastian", "Diego", "Nicolas",
-            "Samuel", "Alejandro", "Daniel", "Mateo", "Angel", "Matias", "Gabriel",
-            "Tomas", "David", "Emiliano", "Andres", "Joaquin", "Carlos", "Alexander", "Adrian",
-            "Lucas", "Benjamin", "Leonardo", "Rodrigo", "Felipe", "Francisco", "Pablo", "Martin", "Fernando", "Isaac",
-            "Manuel", "Juan Pablo", "Emmanuel", "Emilio", "Vicente", "Eduardo", "Juan", "Javier", "Luis", "Lucas", "Mateo", "Walter", "Tyler", "Obdulio"};
+        boolRegistro = true;
+        boolArchivo = true;
+        boolCampos = true;
+        System.out.println("hola1");
+        String[] names = {"Venecia", "Sevilla", "Nueva York",
+            "Lhasa", "Londres", "Marrakech", "Petra", "Roma", "Varanasi", "Florencia",
+            "La habana", "Kyoto", "Jersualen", "Paris", "Beijing", "Lalibela", "Granada",
+            "Atenas", "Bagan", "Katmandú", "Vaticano", "Lisboa", "Tokio", "Estambul",
+            "Hoi An", "Amsterdam", "Luxor", "Berlin", "Santiago", "Jaipur", "Lyon", "Oia",
+            "Siem Reap", "Viena", "Cuzco", "Cartagena", "Zanzíbar", "Puebla", "Singapur",
+            "Las vegas", "Samarkand", "Sydney", "Nacaome", "Dubrovnik", "Bangkok", "Antigua", "Praga",
+            "Budapest", "Amsterdam", "Barcelona", "Turin", "Beirut", "Brujas", "Budapest", "Cartagena", "Copenhague", "Cuzco",
+            "Doha", "Edimburgo", "Florencia", "Hanoi", "Hawaii", "Hong Kong", "Estambul", "Jaipur", "Mascate", "Oporto", "Quito", "Tallin", "La valeta", "Choluteca"};
         //person name , person age,city ID and person ID
 
-        Campos c1 = new Campos("PersonName", "String", 12, false);
-        Campos c2 = new Campos("PersonAge", "String", 12, false);
-        Campos c3 = new Campos("CityId", "int", 8, false);
-        Campos c4 = new Campos("personId", "int", 8, false);
+        Campos c1 = new Campos("City Id", "String", 12, true);
+        Campos c2 = new Campos("City Name", "String", 12, false);
+        ListaL.add(12);
+        ListaL.add(12);
 
-        ArrayList<Integer> PersonalIDval = new ArrayList();
         ArrayList<Integer> CityIDval = new ArrayList();
-        PersonalIDval.add(0);
+
         CityIDval.add(0);
         ArrayList<Campos> lc = new ArrayList();
+
         ArrayList<String> ls = new ArrayList();
         Registros re1 = new Registros();
+
         lc.add(c1);
         lc.add(c2);
-        lc.add(c3);
-        lc.add(c4);
+
         String s1;
         String s2;
         String s3;
         String s4;
         re1.setListaCampo(lc);
+        Listac = re1.getListaCampo();
 
-        for (int i = 0; i < 10000; i++) {
+        Arbolb t = new Arbolb(6);
+        ap.setBtree(t);
+        namebin = "CityId";
+        writeB(namebin, t);
+        try {
+            ap.crearArchivo("CityId", "");
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ap.setName("CityId.txt");
+        try {
+            ap.escribirArchivo(writeMD());
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        re1.setListaString(ls);
+
+        String pal = "";
+        //System.out.println("SIZE: "+re1.getListaCampo().size());
+
+        String fin5 = "";
+        String fin6 = "";
+        String fin7 = "";
+        String fin8 = "";
+        String fin9 = "";
+        String fin10 = "";
+        int w = 0;
+        int cont = 0;
+        int cont2 = 0;
+        int con = writeMD().length();
+        int e = writeMD().length();
+        for (int i = 0; i < 1000; i++) {
             Random r1 = new Random();
             Random r2 = new Random();
             Random r3 = new Random();
-            Random r4 = new Random();
 
             int x1 = 0;
             x1 += r1.nextInt(48);//nombres
             int x2 = 0;
-            x2 += r2.nextInt(80);//edad
+
             int x3 = -1;
             int x4 = 0;
 
-            x3 = r3.nextInt(80000000);//person ID 
-            if (!PersonalIDval.contains(x3)) {
-                PersonalIDval.add(x3);
+            x3 = r3.nextInt(80000000);//City ID 
+            if (!CityIDval.contains(x3)) {
+                CityIDval.add(x3);
+                //System.out.println("ID: "+x3);
             }
 
-            x4 = r4.nextInt(90000000);//City ID
-            //System.out.println("X1: "+x1);
-
+            s3 = x3 + "";
             s1 = names[x1];//agarro nombres
             s4 = x4 + "";
-            lc.add(c4);
-            ls.add(s4);
+            //lc.add(c4);
+            ls.add(s3);
 
             //agregado primer campo
             s2 = x2 + "";
-            lc.add(c1);
+            //lc.add(c1);
             ls.add(s1);
 
-            //agregando segundo campo
-            s3 = x3 + "";
-            lc.add(c2);
-            ls.add(s2);
+            if (cont <= 1000) {
+                LLave l1 = new LLave();
+                fin5 = re1.getListaString().get(cont);
+                int k = 0;
+                while (w <= 2) {
 
-            //agregado tercer campo
-            lc.add(c3);
-            ls.add(s3);
+                    if (w == 2) {
+                        //luis,m232,323,32
+                        //weawe.34343.4343
+                        //System.out.println("OFFSET: "+fin9.length());
 
-            //agregado cuarto campo
-        }
+                        RandomAccessFile raf;
+                        try {
 
-        re1.setListaString(ls);
-        //COPIAR HASTA AQUI
-        //System.out.println("SIZE S"+re1.getListaString().size());
-        String pal = "";
-        //System.out.println("SIZE: "+re1.getListaCampo().size());
-        for (int i = 0; i < re1.getListaString().size(); i++) {
-            //System.out.println("STRING: "+re1.getListaString().get(i));
-        }
+                            raf = new RandomAccessFile(ap.getName(), "rw");
+                            long md = writeMD().length();
+                            ap.escribirArchivo(writeMD());
+                            raf.seek(writeMD().length());
 
-        for (int i = 0; i < re1.getListaString().size(); i++) {
-            pal += re1.getListaString().get(i) + "|";
-            if (cont1 == 4) {
-                pal += "\n";
-                cont1 = 0;
+                            raf.writeChars(fin7);
+                            raf.writeChars("\n");
+                            raf.close();
+
+                        } catch (FileNotFoundException ex) {
+                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        if (prim1 == true) {
+                            System.out.println("PRIMERA: " + writeMD().length());
+
+                            l1.setOffset(writeMD().length());
+
+                            t.insert(l1);
+                            writeB(namebin, ap.getBtree());
+                            prim1 = false;
+                            fin9 = "";
+
+                        } else {
+
+                            LLave ll1 = t.buscarLlave(t.getRaiz(), k);
+                            if (ll1 == null) {
+                                //System.out.println("PALABRA: "+fin10);
+
+                                con += 54;
+                                System.out.println("OFFSET: " + con);
+
+                                //System.out.println("OFFSET: "+e);
+                                l1.setOffset(con);
+                                fin10 = "";
+
+                                t.insert(l1);
+                                writeB(namebin, ap.getBtree());
+                                fin9 = "";
+
+                            } else {
+                                cont2++;
+
+                            }
+                        }
+                        fin7 += "\n";
+
+                    } else {
+
+                        if (w == 0) {
+
+                            fin5 = re1.getListaString().get(cont);
+                            //System.out.println("LLAVE A AGREGAR: "+fin5);
+                            k = Integer.parseInt(fin5);
+                            l1.setLlave(k);
+
+                        }
+
+                        fin5 = re1.getListaString().get(cont);
+                        int l = re1.getListaCampo().get(w).getSize();
+                        fin6 = fixSpace(fin5, l);
+                        fin7 += fin6 + "|";
+                        fin8 += fin7;
+                        fin9 += fin6 + "|";
+                        fin10 += fin6 + "|";
+                        cont++;
+                    }
+
+                    w++;
+                }
+                w = 0;
             }
-            cont1++;
+
         }
 
-        try {
-            Archivo ap2 = new Archivo();
-            ap2.crearArchivo("Prueba1", "");
-            ap2.setName("Prueba1.txt");
-            ap2.escribirArchivo("4");
+        ap.setBtree(t);
 
-            String size4 = "" + c4.getSize();
-            String key4 = "" + c4.isIsKey();
-            String cc4 = c4.getNombre() + ";" + c4.getData_type() + ";" + size4 + ";" + key4 + ";";
-            //System.out.println("KEY"+cc1);
-            //ap.escribirArchivo(cc1, "prueba2.txt");
+        System.out.println("VECES REPETIDAS: " + cont2);
+        //System.out.println("ARBOL: ");
+        System.out.println("AVAIL OFF: " + donde2);
 
-            String size1 = "" + c1.getSize();
-            String cc1 = c1.getNombre() + ";" + c1.getData_type() + ";" + size1 + ";" + c1.isIsKey() + ";";
-            //ap.escribirArchivo(cc2, "prueba2.txt");
-            String size2 = "" + c2.getSize();
-            String cc2 = c2.getNombre() + ";" + c2.getData_type() + ";" + size2 + ";" + c2.isIsKey() + ";";
-            //ap.escribirArchivo(cc3, "prueba2.txt");
-            String size3 = "" + c3.getSize();
-            String cc3 = c3.getNombre() + ";" + c3.getData_type() + ";" + size3 + ";" + c3.isIsKey() + ";" + "\n"
-                    + "CANTIDAD DE REGISTROS: " + re1.getListaString().size() / 4;
-            String fin = cc4 + "\n" + cc1 + "\n" + cc2 + "\n" + cc3;
+        //"CAMPOS: 4 "+"\n"+
+        //+"\n"+"AVAILIST HEAD: NULL "+"\n";
 
-            //ap.escribirArchivo(cc4, "prueba2.txt");
-            //ap.escribirArchivo("CABEZA DE AVAILIST: NULL","prueba2.txt");
-            String fin2 = "4" + "\n" + fin + "\n" + "CABEZA DE AVAILIST:NULL" + "\n" + "_" + "\n";
-            String fin4 = writeMD();
-            String fin3 = fin2 + fin2.length() + "\n" + pal;
-            ap2.escribirArchivo(fin3);
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //} else {
-        JOptionPane.showMessageDialog(this, "Debe guardar y cerrar el archivo actual antes de abrir uno de prueba");
-        //}
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -2176,6 +2243,7 @@ public class Main extends javax.swing.JFrame {
         int cont1 = 1;
         boolArchivo = true;
         boolCampos = true;
+        boolRegistro = true;
         System.out.println("hola");
         String[] names = {"Sofia", "Camila", "Valentina",
             "Isabella", "Valeria", "Daniela", "Mariana", "Sara", "Victoria", "Gabriela",
@@ -2192,6 +2260,10 @@ public class Main extends javax.swing.JFrame {
         Campos c2 = new Campos("PersonAge", "String", 12, false);
         Campos c3 = new Campos("CityId", "String", 8, false);
         Campos c4 = new Campos("personId", "String", 8, true);
+        ListaL.add(8);
+        ListaL.add(12);
+        ListaL.add(12);
+        ListaL.add(8);
 
         ArrayList<Integer> PersonalIDval = new ArrayList();
         ArrayList<Integer> CityIDval = new ArrayList();
@@ -2222,6 +2294,7 @@ public class Main extends javax.swing.JFrame {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         ap.setName("Prueba2.txt");
+        nameArchivo = "Prueba2.txt";
         try {
             ap.escribirArchivo(writeMD());
         } catch (IOException ex) {
@@ -2375,6 +2448,7 @@ public class Main extends javax.swing.JFrame {
         }
 
         ap.setBtree(t);
+        int size;
 
         System.out.println("VECES REPETIDAS: " + cont2);
         //System.out.println("ARBOL: ");
