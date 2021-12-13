@@ -1,0 +1,20 @@
+2
+Id;String;10;false;
+Name;String;10;false;
+
+
+
+
+
+
+
+
+TIPO ARCHIVO: .txt
+N                                                                                                                                                                 
+
+
+
+
+
+
+_

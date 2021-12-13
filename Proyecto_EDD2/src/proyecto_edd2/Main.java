@@ -901,7 +901,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ya existe una llave primaria");
         }
         while (llave1 == false) {
-            int size = (Integer) longS.getValue();
+            int size = (Integer) jSpinner2.getValue();
             try {
                 String name = Nombre_Campo1.getText();
                 String tipo = "";
@@ -2288,7 +2288,7 @@ public class Main extends javax.swing.JFrame {
         Listac = re1.getListaCampo();
         Arbolb t = new Arbolb(6);
         ap.setBtree(t);
-        namebin = "Prueba2";
+        namebin = "Prueba1";
         writeB(namebin, t);
         try {
             ap.crearArchivo("Prueba1", "");
