@@ -1,6 +1,7 @@
 package proyecto_edd2;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -478,6 +479,22 @@ public class Arbolb implements Serializable {
         }
     }
   
+    public void getRegistersOffsets(ArrayList<Object> offsets, Nodo x, int contador) {
 
+        int i = 0;
+
+        for (i = 0; i < x.cant_llaves; i++) {
+
+            if (!x.esHoja) {
+                getRegistersOffsets(offsets, x.getHijos()[i], contador);
+            }
+
+            offsets.add(x.getLlaves()[i].getOffset());
+        }
+
+        if (!x.esHoja) {
+            getRegistersOffsets(offsets, x.getHijos()[i], contador);
+        }
+    }
     
 }

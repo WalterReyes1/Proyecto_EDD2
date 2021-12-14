@@ -134,6 +134,16 @@ public class Main extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         background1 = new javax.swing.JLabel();
+        jDialog_Indexar = new javax.swing.JDialog();
+        jPanel9 = new javax.swing.JPanel();
+        B_Crear_Indice = new javax.swing.JButton();
+        B_Reindexar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        Indexar = new javax.swing.JDialog();
+        jPanel10 = new javax.swing.JPanel();
+        Cb_Indexar = new javax.swing.JComboBox<>();
+        jButton16 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -704,6 +714,83 @@ public class Main extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        jPanel9.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        B_Crear_Indice.setBackground(new java.awt.Color(255, 255, 255));
+        B_Crear_Indice.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Crear_Indice.setText("Crear Índice");
+        B_Crear_Indice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Crear_IndiceActionPerformed(evt);
+            }
+        });
+        jPanel9.add(B_Crear_Indice, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
+
+        B_Reindexar.setBackground(new java.awt.Color(255, 255, 255));
+        B_Reindexar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Reindexar.setText("Reindexar");
+        B_Reindexar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_ReindexarActionPerformed(evt);
+            }
+        });
+        jPanel9.add(B_Reindexar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel9.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
+
+        javax.swing.GroupLayout jDialog_IndexarLayout = new javax.swing.GroupLayout(jDialog_Indexar.getContentPane());
+        jDialog_Indexar.getContentPane().setLayout(jDialog_IndexarLayout);
+        jDialog_IndexarLayout.setHorizontalGroup(
+            jDialog_IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(jDialog_IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jDialog_IndexarLayout.setVerticalGroup(
+            jDialog_IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jDialog_IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel10.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Cb_Indexar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cb_IndexarActionPerformed(evt);
+            }
+        });
+        jPanel10.add(Cb_Indexar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 110, 40));
+
+        jButton16.setText("Verificar e Indexar");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        jPanel10.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(71, 220, 190, 40));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel10.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
+
+        javax.swing.GroupLayout IndexarLayout = new javax.swing.GroupLayout(Indexar.getContentPane());
+        Indexar.getContentPane().setLayout(IndexarLayout);
+        IndexarLayout.setHorizontalGroup(
+            IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        IndexarLayout.setVerticalGroup(
+            IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(IndexarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
 
@@ -865,6 +952,10 @@ public class Main extends javax.swing.JFrame {
         c = (Campos) cb_borrarc.getSelectedItem();
         r.getListaCampo().remove(c);
         cb_borrarc.removeItem(c);
+
+        DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
+        Cb_Indexar.setModel(modelo3);
+        modelo3.removeElement(c);
         //actualizar table
         if (boolCampos) {
             eliminarTabla();
@@ -970,7 +1061,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_ExportarActionPerformed
 
     private void B_IndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IndexActionPerformed
-        // TODO add your handling code here:
+        jDialog_Indexar.pack();
+        jDialog_Indexar.setLocationRelativeTo(this);
+        jDialog_Indexar.setVisible(true);
     }//GEN-LAST:event_B_IndexActionPerformed
 
     private void B_RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_RegistroActionPerformed
@@ -1038,7 +1131,8 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (cb_TD.getSelectedIndex() == 2) {
                     tipo = "Int";
-                    size = 4;
+                    size = 10;
+                    
                 }
 
                 boolean llave;
@@ -1048,7 +1142,7 @@ public class Main extends javax.swing.JFrame {
                     llave = false;
                 }
                 if (tipo.equals("Int")) {
-                    size = 4;
+                    size = 9;
                     ListaL.add(size);
                 }
                 if (tipo.equals("Char")) {
@@ -1097,6 +1191,10 @@ public class Main extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo2 = (DefaultComboBoxModel) Cb_editarCampo.getModel();
                 Cb_editarCampo.setModel(modelo2);
                 modelo2.addElement(c1);
+
+                DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
+                Cb_Indexar.setModel(modelo3);
+                modelo3.addElement(c1);
 
                 boolCampos = true;
 
@@ -1162,6 +1260,7 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
         primA = true;
+        boolean val =true;
         r.setListaCampo(Listac);
         boolean valid = false;
         String pal = "";
@@ -1232,7 +1331,7 @@ public class Main extends javax.swing.JFrame {
                 mdsize = writeMD().length();
 
             } else {
-
+                
                 try {
 
                     valid2 = false;
@@ -1242,12 +1341,24 @@ public class Main extends javax.swing.JFrame {
                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
                             value = Integer.parseInt(valint);
                         } else {
+                            
+                            try{
                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+          
                             value = Integer.parseInt(valint);
+                            val = true;
+                            }catch(NumberFormatException e){
+                                val = false;
+                                JOptionPane.showMessageDialog(this,"No es un Número.");
+                            }
+                           
                         }
-                        valid2 = true;
+                        if(valint.length() >9){
+                          valid2 = true;  
+                        }
+                        
 
-                    } while (valint.length() > 4);
+                    } while (valint.length() > 9 || !val);
                     valid2 = false;
 
                 } catch (Exception e) {
@@ -1265,11 +1376,24 @@ public class Main extends javax.swing.JFrame {
                         pv = false;
                     } else {
                         if (listaK1.contains(value + "")) {
+                            
                             do {
-                                JOptionPane.showMessageDialog(null, "Ya existe la llave");
-                                valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                                value = Integer.parseInt(valint);
-                            } while (listaK1.contains(value + ""));
+                               
+                                if(listaK1.contains(value+"")){
+                                    JOptionPane.showMessageDialog(null, "Ya existe la llave");
+                                }
+                                try{
+                                     valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                                     value = Integer.parseInt(valint);
+                                     val=true;
+                                }catch(NumberFormatException e){
+                                     val = false;
+                                     JOptionPane.showMessageDialog(this,"No es un Número.");
+                                }
+                                if(valint.length()>9){
+                                    JOptionPane.showMessageDialog(this,"Excede el tamaño");
+                                }
+                            } while (listaK1.contains(value + "") || !val || valint.length()>9);
                             listaK1.add(value + "");
                             k = value + "";
                             llave = value;
@@ -1486,9 +1610,9 @@ public class Main extends javax.swing.JFrame {
             "Doha", "Edimburgo", "Florencia", "Hanoi", "Hawaii", "Hong Kong", "Estambul", "Jaipur", "Mascate", "Oporto", "Quito", "Tallin", "La valeta", "Choluteca"};
         //person name , person age,city ID and person ID
 
-        Campos c1 = new Campos("City Id", "String", 12, true);
+        Campos c1 = new Campos("City Id", "Int", 8, true);
         Campos c2 = new Campos("City Name", "String", 12, false);
-        ListaL.add(12);
+        ListaL.add(8);
         ListaL.add(12);
 
         ArrayList<Integer> CityIDval = new ArrayList();
@@ -1685,7 +1809,7 @@ public class Main extends javax.swing.JFrame {
         //if (boolArchivo && boolEntroRegistro) {
         //4
         //;
-
+        Cb_Indexar.removeAllItems();
         boolArchivo = true;
         boolEntroRegistro = true;
         Registros r = new Registros();
@@ -1769,7 +1893,9 @@ public class Main extends javax.swing.JFrame {
                     c1.setSize(sc2.nextInt());
                     c1.setIsKey(sc2.nextBoolean());
                     r.getListaCampo().add(c1);
-
+                    DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
+                    Cb_Indexar.setModel(modelo3);
+                    modelo3.addElement(c1);
                 }
                 int size = 0;
                 for (int i = 0; i < r.getListaCampo().size(); i++) {
@@ -1782,7 +1908,7 @@ public class Main extends javax.swing.JFrame {
                     String tipo = c4.getData_type();
                     size = c4.getSize();
                     if (tipo.equals("Int")) {
-                        size = 4;
+                        size = 9;
                         ListaL.add(size);
                     }
                     if (tipo.equals("Char")) {
@@ -2155,7 +2281,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-      if (boolRegistro) {
+        if (boolRegistro) {
             //ya hay registros creados
             try {
                 Registros r = new Registros();
@@ -2174,9 +2300,7 @@ public class Main extends javax.swing.JFrame {
                             String seek = file_a.readLine();
                             //System.out.println("Soy el seek: " + seek);
                             JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
-                           
 
-                          
                             int p = ap.getName().indexOf('.');
                             String nombre_archivob = "./" + ap.getName() + ".bin";/////
 
@@ -2201,22 +2325,22 @@ public class Main extends javax.swing.JFrame {
                             //2121|
                             //Walter,23,4242
                             for (int i = 0; i < r.getListaCampo().size(); i++) {
-                                if(r.getListaCampo().get(i).isIsKey()==true){
-                                    donde=i;
-                                    
+                                if (r.getListaCampo().get(i).isIsKey() == true) {
+                                    donde = i;
+
                                 }
-                                
+
                             }
-                            System.out.println("DONDE: "+donde);
+                            System.out.println("DONDE: " + donde);
                             for (int i = 0; i < r.getListaCampo().size(); i++) {
                                 if (r.getListaCampo().get(i).isIsKey() == false) {
                                     ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
                                     while (w < r.getListaCampo().size()) {
                                         //if (donde != w) {
-                                            int l = ListaL.get(w);
-                                            fin2 = fixSpace(ss, l);
-                                            fin3 += fin2 + "|";
-                                            com1 += fin2 + "|";
+                                        int l = ListaL.get(w);
+                                        fin2 = fixSpace(ss, l);
+                                        fin3 += fin2 + "|";
+                                        com1 += fin2 + "|";
                                         //}
 
                                         break;
@@ -2236,8 +2360,8 @@ public class Main extends javax.swing.JFrame {
                                 }
 
                             }
-                            System.out.println("1: "+com1);
-                            System.out.println("2: "+com2);
+                            System.out.println("1: " + com1);
+                            System.out.println("2: " + com2);
                             String m = com3 + com1;
                             System.out.println("SEEK: " + seek);
                             RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
@@ -2258,7 +2382,7 @@ public class Main extends javax.swing.JFrame {
                             String seek = file_a.readLine();
                             //System.out.println("Soy el seek: " + seek);
                             JOptionPane.showMessageDialog(this, "SE MODIFICARA: " + seek);
-                           
+
                             int p = ap.getName().indexOf('.');
                             String nombre_archivob = "./" + ap.getName() + ".bin";/////
 
@@ -2343,9 +2467,15 @@ public class Main extends javax.swing.JFrame {
         //person name , person age,city ID and person ID
 
         Campos c1 = new Campos("PersonName", "String", 12, false);
-        Campos c2 = new Campos("PersonAge", "String", 12, false);
-        Campos c3 = new Campos("CityId", "String", 8, false);
-        Campos c4 = new Campos("personId", "String", 8, true);
+        Campos c2 = new Campos("PersonAge", "Int", 12, false);
+        Campos c3 = new Campos("CityId", "Int", 8, false);
+        Campos c4 = new Campos("personId", "Int", 8, true);
+        DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
+        Cb_Indexar.setModel(modelo3);
+        modelo3.addElement(c1);
+        modelo3.addElement(c2);
+        modelo3.addElement(c3);
+        modelo3.addElement(c4);
         ListaL.add(8);
         ListaL.add(12);
         ListaL.add(12);
@@ -2582,6 +2712,41 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void B_Crear_IndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Crear_IndiceActionPerformed
+        Indexar.pack();
+        Indexar.setLocationRelativeTo(this);
+        Indexar.setVisible(true);
+
+    }//GEN-LAST:event_B_Crear_IndiceActionPerformed
+
+    private void B_ReindexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ReindexarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_ReindexarActionPerformed
+
+    private void Cb_IndexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_IndexarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cb_IndexarActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        Campos c = (Campos) Cb_Indexar.getSelectedItem();
+        if (ap.getName().equals("Prueba1.txt")) {
+            if (c.getNombre().equals("PersonName") || c.getNombre().equals("PersonAge")) {
+                JOptionPane.showMessageDialog(this, c.getNombre() + " No es un campo valido.");
+            }else{
+                if(c.isIsKey()){
+                    JOptionPane.showMessageDialog(this, c.getNombre() + " ya es una llave primaria");
+                }else{
+                  Arbolb b = new Arbolb(6);
+                   ArrayList<Object> offsets = new ArrayList();
+                   Arbolb Primario =  ap.getBtree();
+                   Primario.getRegistersOffsets(offsets, Primario.getRaiz(),0);
+                   RandomAccessFile raf;
+                   
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2627,6 +2792,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_Campo1;
     private javax.swing.JButton B_CerrarRegistro;
     private javax.swing.JButton B_CrearCampo;
+    private javax.swing.JButton B_Crear_Indice;
     private javax.swing.JButton B_Eliminar;
     private javax.swing.JButton B_Exportar;
     private javax.swing.JButton B_Exportar1;
@@ -2639,8 +2805,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_NuevoRegistro1;
     private javax.swing.JButton B_Registro;
     private javax.swing.JButton B_Registro1;
+    private javax.swing.JButton B_Reindexar;
+    private javax.swing.JComboBox<String> Cb_Indexar;
     private javax.swing.JComboBox<String> Cb_editarCampo;
     private javax.swing.JButton GuardarCampos;
+    private javax.swing.JDialog Indexar;
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
@@ -2663,6 +2832,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2677,6 +2847,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog_CrearCampos;
     private javax.swing.JDialog jDialog_CrearRegistro;
     private javax.swing.JDialog jDialog_EditarCampos;
+    private javax.swing.JDialog jDialog_Indexar;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
@@ -2686,6 +2857,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_CrearCampo;
     private javax.swing.JLabel jLabel_CrearCampo1;
     private javax.swing.JLabel jLabel_CrearCampo10;
@@ -2698,6 +2871,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_CrearCampo8;
     private javax.swing.JLabel jLabel_CrearCampo9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2705,6 +2879,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner2;
@@ -2791,6 +2966,9 @@ public class Main extends javax.swing.JFrame {
     boolean prim1 = true;
     boolean primB = true;
     boolean primeraVez = true;
+
+    //Arbolb tree=new Arbolb(6);
+    //booleans de validaciones
     boolean boolArchivo = false;
     boolean boolCampos = false;
     boolean boolRegistro = false;
