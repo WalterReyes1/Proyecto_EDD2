@@ -500,6 +500,9 @@ public class Main extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton5MouseEntered(evt);
+            }
         });
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1131,8 +1134,8 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (cb_TD.getSelectedIndex() == 2) {
                     tipo = "Int";
-                    size = 10;
-                    
+                    size = 8;
+
                 }
 
                 boolean llave;
@@ -1142,7 +1145,7 @@ public class Main extends javax.swing.JFrame {
                     llave = false;
                 }
                 if (tipo.equals("Int")) {
-                    size = 9;
+                    size = 8;
                     ListaL.add(size);
                 }
                 if (tipo.equals("Char")) {
@@ -1260,7 +1263,7 @@ public class Main extends javax.swing.JFrame {
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
         Registros r = new Registros();
         primA = true;
-        boolean val =true;
+        boolean val = true;
         r.setListaCampo(Listac);
         boolean valid = false;
         String pal = "";
@@ -1331,7 +1334,7 @@ public class Main extends javax.swing.JFrame {
                 mdsize = writeMD().length();
 
             } else {
-                
+
                 try {
 
                     valid2 = false;
@@ -1341,24 +1344,23 @@ public class Main extends javax.swing.JFrame {
                             valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
                             value = Integer.parseInt(valint);
                         } else {
-                            
-                            try{
-                            valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-          
-                            value = Integer.parseInt(valint);
-                            val = true;
-                            }catch(NumberFormatException e){
-                                val = false;
-                                JOptionPane.showMessageDialog(this,"No es un Número.");
-                            }
-                           
-                        }
-                        if(valint.length() >9){
-                          valid2 = true;  
-                        }
-                        
 
-                    } while (valint.length() > 9 || !val);
+                            try {
+                                valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+
+                                value = Integer.parseInt(valint);
+                                val = true;
+                            } catch (NumberFormatException e) {
+                                val = false;
+                                JOptionPane.showMessageDialog(this, "No es un Número.");
+                            }
+
+                        }
+                        if (valint.length() > 8) {
+                            valid2 = true;
+                        }
+
+                    } while (valint.length() > 8 || !val);
                     valid2 = false;
 
                 } catch (Exception e) {
@@ -1376,24 +1378,24 @@ public class Main extends javax.swing.JFrame {
                         pv = false;
                     } else {
                         if (listaK1.contains(value + "")) {
-                            
+
                             do {
-                               
-                                if(listaK1.contains(value+"")){
+
+                                if (listaK1.contains(value + "")) {
                                     JOptionPane.showMessageDialog(null, "Ya existe la llave");
                                 }
-                                try{
-                                     valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
-                                     value = Integer.parseInt(valint);
-                                     val=true;
-                                }catch(NumberFormatException e){
-                                     val = false;
-                                     JOptionPane.showMessageDialog(this,"No es un Número.");
+                                try {
+                                    valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
+                                    value = Integer.parseInt(valint);
+                                    val = true;
+                                } catch (NumberFormatException e) {
+                                    val = false;
+                                    JOptionPane.showMessageDialog(this, "No es un Número.");
                                 }
-                                if(valint.length()>9){
-                                    JOptionPane.showMessageDialog(this,"Excede el tamaño");
+                                if (valint.length() > 8) {
+                                    JOptionPane.showMessageDialog(this, "Excede el tamaño");
                                 }
-                            } while (listaK1.contains(value + "") || !val || valint.length()>9);
+                            } while (listaK1.contains(value + "") || !val || valint.length() > 9);
                             listaK1.add(value + "");
                             k = value + "";
                             llave = value;
@@ -1610,8 +1612,8 @@ public class Main extends javax.swing.JFrame {
             "Doha", "Edimburgo", "Florencia", "Hanoi", "Hawaii", "Hong Kong", "Estambul", "Jaipur", "Mascate", "Oporto", "Quito", "Tallin", "La valeta", "Choluteca"};
         //person name , person age,city ID and person ID
 
-        Campos c1 = new Campos("City Id", "Int", 8, true);
-        Campos c2 = new Campos("City Name", "String", 12, false);
+        Campos c1 = new Campos("CityId", "Int", 8, true);
+        Campos c2 = new Campos("CityName", "String", 12, false);
         ListaL.add(8);
         ListaL.add(12);
 
@@ -1644,6 +1646,8 @@ public class Main extends javax.swing.JFrame {
         }
 
         ap.setName("Prueba2.txt");
+        nameArchivo="Prueba2.txt";
+        
         try {
             ap.escribirArchivo(writeMD());
         } catch (IOException ex) {
@@ -1672,7 +1676,7 @@ public class Main extends javax.swing.JFrame {
             Random r3 = new Random();
 
             int x1 = 0;
-            x1 += r1.nextInt(48);//nombres
+            x1 += r1.nextInt(46);//nombres
             int x2 = 0;
 
             int x3 = -1;
@@ -1740,7 +1744,7 @@ public class Main extends javax.swing.JFrame {
                             if (ll1 == null) {
                                 //System.out.println("PALABRA: "+fin10);
 
-                                con += 54;
+                                con += 46;
                                 System.out.println("OFFSET: " + con);
 
                                 //System.out.println("OFFSET: "+e);
@@ -1846,6 +1850,7 @@ public class Main extends javax.swing.JFrame {
 
             File archivo = fileChooser.getSelectedFile();
             nameArchivo = archivo.getName();
+            System.out.println("name: "+nameArchivo);
             ap.setArchivo(archivo);
             ap.setName(archivo.getName());
             RandomAccessFile file_a;
@@ -1870,8 +1875,9 @@ public class Main extends javax.swing.JFrame {
                 String file = "";
 
                 sc = new Scanner(ap.getArchivo());
-
+                System.out.println("1");
                 file = sc.nextLine();
+                System.out.println("2");
                 file = "";
                 while (cont < para) {
 
@@ -1884,6 +1890,7 @@ public class Main extends javax.swing.JFrame {
                 String re = file;
                 System.out.println("Revisar: " + re);
                 sc2.useDelimiter(";");
+                System.out.println("file 1: " + file);
                 //System.out.println(file);
                 Registros r = new Registros();
                 for (int i = 0; i < para; i++) {
@@ -1908,7 +1915,7 @@ public class Main extends javax.swing.JFrame {
                     String tipo = c4.getData_type();
                     size = c4.getSize();
                     if (tipo.equals("Int")) {
-                        size = 9;
+
                         ListaL.add(size);
                     }
                     if (tipo.equals("Char")) {
@@ -1918,6 +1925,10 @@ public class Main extends javax.swing.JFrame {
                     if (tipo.equals("String")) {
                         ListaL.add(size);
                     }
+                }
+                for (int i = 0; i < ListaL.size(); i++) {
+                    System.out.println("LISTAL: " + ListaL.get(i));
+
                 }
                 System.out.println("LLAVE ESTA EN: " + donde);
                 Listac = r.getListaCampo();
@@ -2012,6 +2023,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (boolRegistro) {
             //ya hay registros creados
+          
             try {
 
                 String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
@@ -2467,7 +2479,7 @@ public class Main extends javax.swing.JFrame {
         //person name , person age,city ID and person ID
 
         Campos c1 = new Campos("PersonName", "String", 12, false);
-        Campos c2 = new Campos("PersonAge", "Int", 12, false);
+        Campos c2 = new Campos("PersonAge", "Int", 8, false);
         Campos c3 = new Campos("CityId", "Int", 8, false);
         Campos c4 = new Campos("personId", "Int", 8, true);
         DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
@@ -2478,7 +2490,7 @@ public class Main extends javax.swing.JFrame {
         modelo3.addElement(c4);
         ListaL.add(8);
         ListaL.add(12);
-        ListaL.add(12);
+        ListaL.add(8);
         ListaL.add(8);
 
         ArrayList<Integer> PersonalIDval = new ArrayList();
@@ -2617,7 +2629,7 @@ public class Main extends javax.swing.JFrame {
                             if (ll1 == null) {
                                 //System.out.println("PALABRA: "+fin10);
 
-                                con += 90;
+                                con += 82;
                                 System.out.println("OFFSET: " + con);
 
                                 //System.out.println("OFFSET: "+e);
@@ -2732,20 +2744,24 @@ public class Main extends javax.swing.JFrame {
         if (ap.getName().equals("Prueba1.txt")) {
             if (c.getNombre().equals("PersonName") || c.getNombre().equals("PersonAge")) {
                 JOptionPane.showMessageDialog(this, c.getNombre() + " No es un campo valido.");
-            }else{
-                if(c.isIsKey()){
+            } else {
+                if (c.isIsKey()) {
                     JOptionPane.showMessageDialog(this, c.getNombre() + " ya es una llave primaria");
-                }else{
-                  Arbolb b = new Arbolb(6);
-                   ArrayList<Object> offsets = new ArrayList();
-                   Arbolb Primario =  ap.getBtree();
-                   Primario.getRegistersOffsets(offsets, Primario.getRaiz(),0);
-                   RandomAccessFile raf;
-                   
+                } else {
+                    Arbolb b = new Arbolb(6);
+                    ArrayList<Object> offsets = new ArrayList();
+                    Arbolb Primario = ap.getBtree();
+                    Primario.getRegistersOffsets(offsets, Primario.getRaiz(), 0);
+                    RandomAccessFile raf;
+
                 }
             }
         }
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseEntered
 
     /**
      * @param args the command line arguments
