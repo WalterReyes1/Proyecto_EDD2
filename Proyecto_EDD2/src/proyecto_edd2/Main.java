@@ -1646,8 +1646,8 @@ public class Main extends javax.swing.JFrame {
         }
 
         ap.setName("Prueba2.txt");
-        nameArchivo="Prueba2.txt";
-        
+        nameArchivo = "Prueba2.txt";
+
         try {
             ap.escribirArchivo(writeMD());
         } catch (IOException ex) {
@@ -1850,7 +1850,7 @@ public class Main extends javax.swing.JFrame {
 
             File archivo = fileChooser.getSelectedFile();
             nameArchivo = archivo.getName();
-            System.out.println("name: "+nameArchivo);
+            System.out.println("name: " + nameArchivo);
             ap.setArchivo(archivo);
             ap.setName(archivo.getName());
             RandomAccessFile file_a;
@@ -1871,12 +1871,13 @@ public class Main extends javax.swing.JFrame {
                 String fal = writeMD();
                 file_a.close();
 
-                //ss="HOLA COMO ESTAS";
                 String file = "";
 
                 sc = new Scanner(ap.getArchivo());
                 System.out.println("1");
+
                 file = sc.nextLine();
+
                 System.out.println("2");
                 file = "";
                 while (cont < para) {
@@ -2023,7 +2024,7 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (boolRegistro) {
             //ya hay registros creados
-          
+
             try {
 
                 String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
@@ -2032,7 +2033,7 @@ public class Main extends javax.swing.JFrame {
                 Arbolb tree1 = ap.getBtree();
                 l1 = tree1.buscarLlave(tree1.getRaiz(), key);
                 if (l1 == null) {
-                    System.out.println("NO ESTA");
+                    JOptionPane.showMessageDialog(this, "INGRESE LLAVE DE NUEVO");
 
                 } else {
                     //try {
@@ -2303,6 +2304,7 @@ public class Main extends javax.swing.JFrame {
                 Arbolb tree1 = ap.getBtree();
                 l1 = tree1.buscarLlave(tree1.getRaiz(), key);
                 if (l1 == null) {
+                    JOptionPane.showMessageDialog(this, "INGRESE LLAVE DE NUEVO");
 
                 } else {
                     try {
@@ -2402,7 +2404,7 @@ public class Main extends javax.swing.JFrame {
 
                             long offset = (l1.getOffset() + 1);
                             //System.out.println("NEW OFF: "+offset);
-
+                            //luis,1,20
                             file_a.seek(offset);
                             String ss = "";
                             String kk = "";
@@ -2411,14 +2413,26 @@ public class Main extends javax.swing.JFrame {
                             String fin4 = "";
                             r.setListaCampo(Listac);
                             int w = 0;
+                            for (int i = 0; i < r.getListaCampo().size(); i++) {
+                                if (r.getListaCampo().get(i).isIsKey() == true) {
+                                    donde = i;
 
+                                }
+
+                            }
+                            ArrayList<String> listam = new ArrayList();
                             for (int i = 0; i < r.getListaCampo().size(); i++) {
                                 if (r.getListaCampo().get(i).isIsKey() == false) {
                                     ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
                                     while (w < r.getListaCampo().size()) {
-                                        int l = ListaL.get(w);
-                                        fin2 = fixSpace(ss, l);
-                                        fin3 += fin2 + "|";
+                                            if(w==donde){
+                                                w+=1;
+                                            }
+                                            int l = ListaL.get(w);
+                                            fin2 = fixSpace(ss, l);
+                                            fin3 += fin2 + "|";
+                                            listam.add(fin2 + "|");
+                                        
 
                                         break;
 
@@ -2426,16 +2440,23 @@ public class Main extends javax.swing.JFrame {
                                     w++;
                                 } else {
                                     ss += l1.getLlave() + "|";
+                                    String a = fixSpace(l1.getLlave() + "", ListaL.get(donde));
+                                    listam.add(a + "|");
 
                                 }
 
                             }
-                            System.out.println("SEEK: " + seek);
+                            String col = "";
+                            for (int i = 0; i < listam.size(); i++) {
+                                System.out.println("STRING: " + listam.get(i));
+                                col += listam.get(i);
+                            }
+
                             RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                             long md = writeMD().length();
                             raf.seek(l1.getOffset());
 
-                            raf.writeChars(fin3);
+                            raf.writeChars(col);
                             //raf.writeChars("\n");
                             raf.close();
 
