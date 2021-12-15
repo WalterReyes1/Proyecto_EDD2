@@ -2309,7 +2309,7 @@ public class Main extends javax.swing.JFrame {
                 } else {
                     try {
                         if (nameArchivo.equals("Prueba1.txt") || nameArchivo.equals("Prueba2.txt")) {
-                            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                          RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
                             file_a.seek(l1.getOffset() + 1);//128
                             String seek = file_a.readLine();
                             //System.out.println("Soy el seek: " + seek);
@@ -2322,22 +2322,15 @@ public class Main extends javax.swing.JFrame {
 
                             long offset = (l1.getOffset() + 1);
                             //System.out.println("NEW OFF: "+offset);
-
+                            //luis,1,20
                             file_a.seek(offset);
                             String ss = "";
                             String kk = "";
                             String fin2 = "";
                             String fin3 = "";
                             String fin4 = "";
-                            String com1 = "";
-                            String com2 = "";
-                            String com3 = "";
-
                             r.setListaCampo(Listac);
-                            int w = 1;
-                            //1212,luis,13,1313
-                            //2121|
-                            //Walter,23,4242
+                            int w = 0;
                             for (int i = 0; i < r.getListaCampo().size(); i++) {
                                 if (r.getListaCampo().get(i).isIsKey() == true) {
                                     donde = i;
@@ -2345,50 +2338,50 @@ public class Main extends javax.swing.JFrame {
                                 }
 
                             }
-                            System.out.println("DONDE: " + donde);
+                            ArrayList<String> listam = new ArrayList();
                             for (int i = 0; i < r.getListaCampo().size(); i++) {
                                 if (r.getListaCampo().get(i).isIsKey() == false) {
                                     ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
                                     while (w < r.getListaCampo().size()) {
-                                        //if (donde != w) {
+                                        if (w == donde) {
+                                            w += 1;
+                                        }
                                         int l = ListaL.get(w);
                                         fin2 = fixSpace(ss, l);
                                         fin3 += fin2 + "|";
-                                        com1 += fin2 + "|";
-                                        //}
+                                        listam.add(fin2 + "|");
 
                                         break;
 
                                     }
                                     w++;
                                 } else {
-                                    while (w < r.getListaCampo().size()) {
-                                        int l = ListaL.get(donde);
-                                        com2 = fixSpace(l1.getLlave() + "", l);
-                                        com3 += com2 + "|";
-
-                                        break;
-
-                                    }
+                                    ss += l1.getLlave() + "|";
+                                    String a = fixSpace(l1.getLlave() + "", ListaL.get(donde));
+                                    listam.add(a + "|");
 
                                 }
 
                             }
-                            System.out.println("1: " + com1);
-                            System.out.println("2: " + com2);
-                            String m = com3 + com1;
-                            System.out.println("SEEK: " + seek);
+                            String col = "";
+                            for (int i = 0; i < listam.size(); i++) {
+                                System.out.println("STRING: " + listam.get(i));
+                                col += listam.get(i);
+                            }
+
                             RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                             long md = writeMD().length();
                             raf.seek(l1.getOffset());
 
-                            raf.writeChars(m);
+                            raf.writeChars(col);
                             //raf.writeChars("\n");
                             raf.close();
 
                             //file_a.writeChars("*");
                             //file_a.writeChars();
                             JOptionPane.showMessageDialog(null, "Funcionó");
+
+                         
 
                         } else {
                             RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
@@ -2425,14 +2418,13 @@ public class Main extends javax.swing.JFrame {
                                 if (r.getListaCampo().get(i).isIsKey() == false) {
                                     ss = JOptionPane.showInputDialog(this, "Ingrese: " + r.getListaCampo().get(i).getNombre());
                                     while (w < r.getListaCampo().size()) {
-                                            if(w==donde){
-                                                w+=1;
-                                            }
-                                            int l = ListaL.get(w);
-                                            fin2 = fixSpace(ss, l);
-                                            fin3 += fin2 + "|";
-                                            listam.add(fin2 + "|");
-                                        
+                                        if (w == donde) {
+                                            w += 1;
+                                        }
+                                        int l = ListaL.get(w);
+                                        fin2 = fixSpace(ss, l);
+                                        fin3 += fin2 + "|";
+                                        listam.add(fin2 + "|");
 
                                         break;
 
@@ -2505,10 +2497,10 @@ public class Main extends javax.swing.JFrame {
         Campos c4 = new Campos("personId", "Int", 8, true);
         DefaultComboBoxModel modelo3 = (DefaultComboBoxModel) Cb_Indexar.getModel();
         Cb_Indexar.setModel(modelo3);
+        modelo3.addElement(c4);
         modelo3.addElement(c1);
         modelo3.addElement(c2);
         modelo3.addElement(c3);
-        modelo3.addElement(c4);
         ListaL.add(8);
         ListaL.add(12);
         ListaL.add(8);
@@ -2762,6 +2754,9 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         Campos c = (Campos) Cb_Indexar.getSelectedItem();
+       
+        int index = Cb_Indexar.getSelectedIndex();
+        System.out.println("index campo: " + index);
         if (ap.getName().equals("Prueba1.txt")) {
             if (c.getNombre().equals("PersonName") || c.getNombre().equals("PersonAge")) {
                 JOptionPane.showMessageDialog(this, c.getNombre() + " No es un campo valido.");
@@ -2769,14 +2764,68 @@ public class Main extends javax.swing.JFrame {
                 if (c.isIsKey()) {
                     JOptionPane.showMessageDialog(this, c.getNombre() + " ya es una llave primaria");
                 } else {
+                    for (int i = 0; i < Listac.size(); i++) {
+                        Listac.get(index).setIsKey(true);
+                        Listac.get(0).setIsKey(false);
+                    }
+                    Registros r = new Registros();
+                    r.setListaCampo(Listac);
+                    System.out.println("Entré");
                     Arbolb b = new Arbolb(6);
                     ArrayList<Object> offsets = new ArrayList();
                     Arbolb Primario = ap.getBtree();
                     Primario.getRegistersOffsets(offsets, Primario.getRaiz(), 0);
                     RandomAccessFile raf;
+                    verificarRepetidos(offsets);
+                    try {
+                        raf = new RandomAccessFile(ap.getArchivo(), "rw");
+
+                        LLave l1 = new LLave();
+                        Arbolb b2=new Arbolb(6);
+                        System.out.println("Antes for");
+                        System.out.println("Ofsset.size: "+offsets.size());
+                        
+                        for (int i = 0; i < offsets.size(); i++) {
+                            raf.seek((long) offsets.get(i) +1);
+                            System.out.println("Ofsset.geti i: "+offsets.get(i));
+                            String prueba = raf.readLine();
+                            System.out.println("Prueba: "+prueba);
+                            int valor = getSegunda(prueba, index);
+                            System.out.println("Valor: "+valor);
+                         //   l1=b2.buscarLlave(b2.getRaiz(), valor);
+                                
+                                l1.setOffset((long)offsets.get(i));
+                                long off = (long)offsets.get(i);
+                                LLave l2 = new LLave(off,valor);
+                                
+                                b2.insert(l2);
+                                System.out.println("Inserte ");
+                        }
+                        
+                        System.out.println("despues for");
+                        ap.setBtree(b2);
+                        System.out.println("seteo arbol");
+                        writeB("Prueba1",b2);
+                        System.out.println("Escribo arbol");
+                        System.out.println("Arbol: ");
+                        b2.Show();
+
+                    } catch (Exception e) {
+
+                    }
 
                 }
             }
+        }
+        try {
+            RandomAccessFile raf = new RandomAccessFile(ap.getName(),"rw");
+            raf.seek(0);
+            raf.writeBytes(writeMD());
+            
+           raf.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -3013,5 +3062,53 @@ public class Main extends javax.swing.JFrame {
     boolean boolGuardarRegistro = false;
     boolean boolEntroRegistro = true;
     boolean pv = true;
+
+    public void verificarRepetidos(ArrayList<Object> offsets) {
+
+        for (int i = 0; i < offsets.size(); i++) {
+
+            for (int j = i + 1; j < offsets.size(); j++) {
+
+                if (offsets.get(i).equals(offsets.get(j))) {
+                    System.out.println(offsets.get(i) + "== " + offsets.get(j));
+                }
+            }
+        }
+    }
+
+    public int getSegunda(String registro, int campo_index) {
+
+        registro = registro.replace('\0', ' ');
+        registro = registro.replaceAll("\\s+", "");
+
+        int flag = 0;
+
+        String resultante = "";
+
+        for (int i = 0; i < registro.length(); i++) {
+
+            char x = registro.charAt(i);
+
+            if (x == '|') {
+                flag++;
+            }
+
+            if (flag == campo_index && x != '|') {
+                resultante += x;
+            }
+        }
+
+        int num = 0;
+
+        try {
+            num = Integer.parseInt(resultante);
+
+        } catch (NumberFormatException e) {
+            num = -1;
+        }
+
+        return num;
+
+    }
 
 }
