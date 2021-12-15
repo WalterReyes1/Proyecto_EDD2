@@ -144,6 +144,12 @@ public class Main extends javax.swing.JFrame {
         Cb_Indexar = new javax.swing.JComboBox<>();
         jButton16 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
+        Mostrar = new javax.swing.JDialog();
+        jPanel11 = new javax.swing.JPanel();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -794,6 +800,37 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel11.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
+        jTextArea1.setRows(5);
+        jPanel11.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 460, 260));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel11.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 840, 410));
+        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+
+        javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar.getContentPane());
+        Mostrar.getContentPane().setLayout(MostrarLayout);
+        MostrarLayout.setHorizontalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 528, Short.MAX_VALUE)
+            .addGroup(MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(MostrarLayout.createSequentialGroup()
+                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        MostrarLayout.setVerticalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
 
@@ -1261,7 +1298,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
-        Registros r = new Registros();
+       Registros r = new Registros();
         primA = true;
         boolean val = true;
         r.setListaCampo(Listac);
@@ -1377,25 +1414,37 @@ public class Main extends javax.swing.JFrame {
                         System.out.println("LLAVE A LISTA: " + value);
                         pv = false;
                     } else {
-                        if (listaK1.contains(value + "")) {
+                        LLave ll1 = new LLave();
+                        try {
+                            ll1 = ap.getBtree().buscarLlave(ap.getBtree().getRaiz(), value);
+                            System.out.println("Busca en el arbol: " + ll1.getLlave());
+                        } catch (Exception e) {
+
+                        }
+
+                        if (listaK1.contains(value + "") || ll1 != null) {
 
                             do {
 
-                                if (listaK1.contains(value + "")) {
+                                if (listaK1.contains(value + "") || ll1 != null) {
                                     JOptionPane.showMessageDialog(null, "Ya existe la llave");
                                 }
                                 try {
                                     valint = JOptionPane.showInputDialog(r.getListaCampo().get(i).getNombre());
                                     value = Integer.parseInt(valint);
                                     val = true;
+                                    ll1 = ap.getBtree().buscarLlave(ap.getBtree().getRaiz(), value);
+
                                 } catch (NumberFormatException e) {
                                     val = false;
                                     JOptionPane.showMessageDialog(this, "No es un Número.");
+                                }catch (NullPointerException e) {
+                                    
                                 }
                                 if (valint.length() > 8) {
                                     JOptionPane.showMessageDialog(this, "Excede el tamaño");
                                 }
-                            } while (listaK1.contains(value + "") || !val || valint.length() > 9);
+                            } while (listaK1.contains(value + "") || !val || valint.length() > 8 || ll1 != null);
                             listaK1.add(value + "");
                             k = value + "";
                             llave = value;
@@ -1535,6 +1584,7 @@ public class Main extends javax.swing.JFrame {
         }
 
         boolRegistro = true;
+
 
     }//GEN-LAST:event_B_NuevoRegistro1ActionPerformed
     public String fixSpace(String registro, int longitud) {
@@ -1844,6 +1894,7 @@ public class Main extends javax.swing.JFrame {
         boolArchivo = true;
         boolCampos = true;
         primA = false;
+        pv=false;
         int seleccion = fileChooser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             int cont = 0;
@@ -2010,14 +2061,43 @@ public class Main extends javax.swing.JFrame {
 
     private void B_AbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirRegistroActionPerformed
         // TODO add your handling code here:
-        if (boolRegistro && boolGuardarRegistro) {
-            //ya hay registros creados
-        } else if (boolRegistro == false) {
-            JOptionPane.showMessageDialog(this, "Debe haber creado al menos un registro para ingresar a esta opcion");
-        } else if (boolGuardarRegistro == false) {
-            JOptionPane.showMessageDialog(this, "Debe guardar el registro antes de abrirlo");
-        }
+        Registros f = new Registros();
+        //if (f.getListaString().size()>0) {
+            ArrayList<Object> offsetts = new ArrayList();
+            ap.getBtree().getRegistersOffsets(offsetts, ap.getBtree().getRaiz(), 0);
+            int x = 0;
+            String s = "";
 
+            for (int i = 0; i < Listac.size(); i++) {
+                Campos c = Listac.get(i);
+                s += c.getNombre() + "       ";
+
+            }
+            s += "\n";
+            jTextArea1.append(s);
+            try {
+                RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                for (int i = 0; i < 10; i++) {
+                    Random r = new Random();
+                    x = 1 + r.nextInt(offsetts.size());
+                    long y = (long) offsetts.get(x);
+                    raf.seek(y + 1);
+                    s += raf.readLine() + "\n";
+
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            Mostrar.pack();
+            Mostrar.setLocationRelativeTo(this);
+            Mostrar.setVisible(true); //ya hay registros creados 123
+     /*   }else {
+            JOptionPane.showMessageDialog(this, "Debe guardar el registro antes de abrirlo");
+        
+        }*/
     }//GEN-LAST:event_B_AbrirRegistroActionPerformed
 
     private void B_CerrarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_CerrarRegistroActionPerformed
@@ -2293,7 +2373,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+
         if (boolRegistro) {
             //ya hay registros creados
             try {
@@ -2309,7 +2389,7 @@ public class Main extends javax.swing.JFrame {
                 } else {
                     try {
                         if (nameArchivo.equals("Prueba1.txt") || nameArchivo.equals("Prueba2.txt")) {
-                          RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
+                            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
                             file_a.seek(l1.getOffset() + 1);//128
                             String seek = file_a.readLine();
                             //System.out.println("Soy el seek: " + seek);
@@ -2380,8 +2460,6 @@ public class Main extends javax.swing.JFrame {
                             //file_a.writeChars("*");
                             //file_a.writeChars();
                             JOptionPane.showMessageDialog(null, "Funcionó");
-
-                         
 
                         } else {
                             RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
@@ -2754,7 +2832,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         Campos c = (Campos) Cb_Indexar.getSelectedItem();
-       
+
         int index = Cb_Indexar.getSelectedIndex();
         System.out.println("index campo: " + index);
         if (ap.getName().equals("Prueba1.txt")) {
@@ -2781,31 +2859,31 @@ public class Main extends javax.swing.JFrame {
                         raf = new RandomAccessFile(ap.getArchivo(), "rw");
 
                         LLave l1 = new LLave();
-                        Arbolb b2=new Arbolb(6);
+                        Arbolb b2 = new Arbolb(6);
                         System.out.println("Antes for");
-                        System.out.println("Ofsset.size: "+offsets.size());
-                        
+                        System.out.println("Ofsset.size: " + offsets.size());
+
                         for (int i = 0; i < offsets.size(); i++) {
-                            raf.seek((long) offsets.get(i) +1);
-                            System.out.println("Ofsset.geti i: "+offsets.get(i));
+                            raf.seek((long) offsets.get(i) + 1);
+                            System.out.println("Ofsset.geti i: " + offsets.get(i));
                             String prueba = raf.readLine();
-                            System.out.println("Prueba: "+prueba);
+                            System.out.println("Prueba: " + prueba);
                             int valor = getSegunda(prueba, index);
-                            System.out.println("Valor: "+valor);
-                         //   l1=b2.buscarLlave(b2.getRaiz(), valor);
-                                
-                                l1.setOffset((long)offsets.get(i));
-                                long off = (long)offsets.get(i);
-                                LLave l2 = new LLave(off,valor);
-                                
-                                b2.insert(l2);
-                                System.out.println("Inserte ");
+                            System.out.println("Valor: " + valor);
+                            //   l1=b2.buscarLlave(b2.getRaiz(), valor);
+
+                            l1.setOffset((long) offsets.get(i));
+                            long off = (long) offsets.get(i);
+                            LLave l2 = new LLave(off, valor);
+
+                            b2.insert(l2);
+                            System.out.println("Inserte ");
                         }
-                        
+
                         System.out.println("despues for");
                         ap.setBtree(b2);
                         System.out.println("seteo arbol");
-                        writeB("Prueba1",b2);
+                        writeB("Prueba1", b2);
                         System.out.println("Escribo arbol");
                         System.out.println("Arbol: ");
                         b2.Show();
@@ -2818,12 +2896,12 @@ public class Main extends javax.swing.JFrame {
             }
         }
         try {
-            RandomAccessFile raf = new RandomAccessFile(ap.getName(),"rw");
+            RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
             raf.seek(0);
             raf.writeBytes(writeMD());
-            
-           raf.close();
-            
+
+            raf.close();
+
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2896,6 +2974,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Cb_editarCampo;
     private javax.swing.JButton GuardarCampos;
     private javax.swing.JDialog Indexar;
+    private javax.swing.JDialog Mostrar;
     private javax.swing.JRadioButton No1;
     private javax.swing.JTextField Nombre_Campo;
     private javax.swing.JTextField Nombre_Campo1;
@@ -2937,6 +3016,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2958,6 +3038,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_CrearCampo9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2967,9 +3048,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JSpinner longS;
     // End of variables declaration//GEN-END:variables
     ArrayList<Arbolb> listaArbol = new ArrayList();
