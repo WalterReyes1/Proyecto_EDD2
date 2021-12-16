@@ -30,6 +30,20 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
 
 /**
  *
@@ -150,6 +164,11 @@ public class Main extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
+        Exportar = new javax.swing.JDialog();
+        jPanel12 = new javax.swing.JPanel();
+        Excel = new javax.swing.JButton();
+        xmls = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -162,6 +181,8 @@ public class Main extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
+        B_Index2 = new javax.swing.JButton();
+        B_Index3 = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 102));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -366,6 +387,11 @@ public class Main extends javax.swing.JFrame {
         jPanel4.add(jLabel_CrearCampo7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 107, -1, -1));
 
         cb_TD1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "String", "Char", "Int" }));
+        cb_TD1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_TD1ItemStateChanged(evt);
+            }
+        });
         jPanel4.add(cb_TD1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 110, 87, -1));
 
         jLabel_CrearCampo8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -831,6 +857,45 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel12.setBackground(new java.awt.Color(255, 102, 51));
+        jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Excel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Excel.setText("Excel");
+        Excel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcelActionPerformed(evt);
+            }
+        });
+        jPanel12.add(Excel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 190, 40));
+
+        xmls.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        xmls.setText("XML");
+        xmls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xmlsActionPerformed(evt);
+            }
+        });
+        jPanel12.add(xmls, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 190, 40));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        jPanel12.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
+
+        javax.swing.GroupLayout ExportarLayout = new javax.swing.GroupLayout(Exportar.getContentPane());
+        Exportar.getContentPane().setLayout(ExportarLayout);
+        ExportarLayout.setHorizontalGroup(
+            ExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 350, Short.MAX_VALUE)
+            .addGroup(ExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        ExportarLayout.setVerticalGroup(
+            ExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(ExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
 
@@ -840,12 +905,12 @@ public class Main extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setText("File Manager");
-        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, -1, -1));
 
         Titulo1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         Titulo1.setForeground(new java.awt.Color(255, 255, 255));
         Titulo1.setText("Standard");
-        jPanel1.add(Titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+        jPanel1.add(Titulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, -1, -1));
 
         B_Campo.setBackground(new java.awt.Color(255, 255, 255));
         B_Campo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -855,7 +920,7 @@ public class Main extends javax.swing.JFrame {
                 B_CampoActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 160, 50));
+        jPanel1.add(B_Campo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 160, 50));
 
         B_Registro.setBackground(new java.awt.Color(255, 255, 255));
         B_Registro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -865,7 +930,7 @@ public class Main extends javax.swing.JFrame {
                 B_RegistroActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, 50));
+        jPanel1.add(B_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 160, 50));
 
         B_Index.setBackground(new java.awt.Color(255, 255, 255));
         B_Index.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -875,7 +940,7 @@ public class Main extends javax.swing.JFrame {
                 B_IndexActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Index, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 160, 50));
+        jPanel1.add(B_Index, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 160, 50));
 
         B_Exportar.setBackground(new java.awt.Color(255, 255, 255));
         B_Exportar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -885,7 +950,7 @@ public class Main extends javax.swing.JFrame {
                 B_ExportarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 160, 50));
+        jPanel1.add(B_Exportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 160, 50));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -895,7 +960,7 @@ public class Main extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 50));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 160, 50));
 
         jButton4.setText("jButton4");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -903,7 +968,7 @@ public class Main extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
 
         jButton6.setText("jButton6");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -911,7 +976,7 @@ public class Main extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
 
         jButton10.setText("jButton10");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -919,10 +984,30 @@ public class Main extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
+
+        B_Index2.setBackground(new java.awt.Color(255, 255, 255));
+        B_Index2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Index2.setText("Index");
+        B_Index2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Index2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(B_Index2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 160, 50));
+
+        B_Index3.setBackground(new java.awt.Color(255, 255, 255));
+        B_Index3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        B_Index3.setText("Index");
+        B_Index3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Index3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(B_Index3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 160, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1097,7 +1182,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void B_ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ExportarActionPerformed
-        // TODO add your handling code here:
+        Exportar.pack();
+        Exportar.setLocationRelativeTo(this);
+        Exportar.setVisible(true);
     }//GEN-LAST:event_B_ExportarActionPerformed
 
     private void B_IndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_IndexActionPerformed
@@ -1687,16 +1774,16 @@ public class Main extends javax.swing.JFrame {
 
         Arbolb t = new Arbolb(6);
         ap.setBtree(t);
-        namebin = "Prueba2";
+        namebin = "CityFile";
         writeB(namebin, t);
         try {
-            ap.crearArchivo("Prueba2", "");
+            ap.crearArchivo("CityFile", "");
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        ap.setName("Prueba2.txt");
-        nameArchivo = "Prueba2.txt";
+        ap.setName("CityFile.txt");
+        nameArchivo = "CityFile.txt";
 
         try {
             ap.escribirArchivo(writeMD());
@@ -2388,7 +2475,7 @@ public class Main extends javax.swing.JFrame {
 
                 } else {
                     try {
-                        if (nameArchivo.equals("Prueba1.txt") || nameArchivo.equals("Prueba2.txt")) {
+                        if (nameArchivo.equals("Prueba1.txt") || nameArchivo.equals("CityFile.txt")) {
                             RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
                             file_a.seek(l1.getOffset() + 1);//128
                             String seek = file_a.readLine();
@@ -2911,6 +2998,34 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5MouseEntered
 
+    private void cb_TD1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TD1ItemStateChanged
+          if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
+            jLabel_CrearCampo8.setVisible(false);
+            jSpinner2.setVisible(false);
+        } else {
+            jLabel_CrearCampo8.setVisible(true);
+            jSpinner2.setVisible(true);
+        }
+    }//GEN-LAST:event_cb_TD1ItemStateChanged
+
+    private void B_Index2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Index2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_Index2ActionPerformed
+
+    private void B_Index3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Index3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_B_Index3ActionPerformed
+
+    private void ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ExcelActionPerformed
+
+    private void xmlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlsActionPerformed
+        CrearXml();
+        CrearXSLT();
+        JOptionPane.showMessageDialog(this, "Exportado con exito");
+    }//GEN-LAST:event_xmlsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2963,6 +3078,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_GuardarArchivo;
     private javax.swing.JButton B_Index;
     private javax.swing.JButton B_Index1;
+    private javax.swing.JButton B_Index2;
+    private javax.swing.JButton B_Index3;
     private javax.swing.JButton B_ListarCampo;
     private javax.swing.JButton B_ModificarCampo;
     private javax.swing.JButton B_NuevoArchivo;
@@ -2972,6 +3089,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_Reindexar;
     private javax.swing.JComboBox<String> Cb_Indexar;
     private javax.swing.JComboBox<String> Cb_editarCampo;
+    private javax.swing.JButton Excel;
+    private javax.swing.JDialog Exportar;
     private javax.swing.JButton GuardarCampos;
     private javax.swing.JDialog Indexar;
     private javax.swing.JDialog Mostrar;
@@ -3017,6 +3136,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3039,6 +3159,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -3055,6 +3176,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JSpinner longS;
+    private javax.swing.JButton xmls;
     // End of variables declaration//GEN-END:variables
     ArrayList<Arbolb> listaArbol = new ArrayList();
     ArrayList<Archivo> listaA = new ArrayList();
@@ -3192,6 +3314,136 @@ public class Main extends javax.swing.JFrame {
         }
 
         return num;
+
+    }
+    public void CrearXml() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            DOMImplementation implementation = builder.getDOMImplementation();
+            //int intancia_punto = archivo_actual.getNombre_archivo().indexOf('.');
+            
+            String g ="";
+            for (int i = 0; i < ap.getName().length()-4; i++) {
+                g+=nameArchivo.charAt(i);
+            }
+            //System.out.println("Nombre: ");
+
+            Document documento = implementation.createDocument(null, "Campos", null);
+            documento.setXmlVersion("1.0");
+
+            Element Campos = documento.createElement("Campos");
+         //   System.out.println("Antes del for");
+            for (int i = 0; i < Listac.size(); i++) {
+                Element Campo = documento.createElement("Campo");
+                String NC = Listac.get(i).getNombre();
+                String TD = Listac.get(i).getData_type();
+                String LG = Integer.toString(Listac.get(i).getSize());
+                String LP = Boolean.toString(Listac.get(i).isIsKey());
+
+                Element NombreCampo = documento.createElement("NombreDelCampo");
+                Text txtNombre = documento.createTextNode(NC);
+                NombreCampo.appendChild(txtNombre);
+
+                Element TipoDato = documento.createElement("Tipo");
+                Text txtTDato = documento.createTextNode(TD);
+                TipoDato.appendChild(txtTDato);
+
+                Element Longitud = documento.createElement("Size");
+                Text txtLong = documento.createTextNode(LG);
+                Longitud.appendChild(txtLong);
+
+                Element isKey = documento.createElement("EsLlavePrimaria");
+                Text txtisKey = documento.createTextNode(LP);
+                isKey.appendChild(txtisKey);
+                Campo.appendChild(NombreCampo);
+                Campo.appendChild(TipoDato);
+                Campo.appendChild(Longitud);
+                Campo.appendChild(isKey);
+                Campos.appendChild(Campo);
+            }
+           // System.out.println("Despues del for");
+            
+            documento.getDocumentElement().appendChild(Campos);
+            Source source = new DOMSource(documento);
+            Result result = new StreamResult(new File("Campos" + ".xml"));
+            //System.out.println("despues del error");
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | TransformerException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+    public void CrearXSLT() {
+        String g ="";
+           for (int i = 0; i < ap.getName().length()-4; i++) {
+                g+=nameArchivo.charAt(i);
+            }
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            DOMImplementation implementation = builder.getDOMImplementation();
+          
+
+            Document documento = implementation.createDocument(null, "Campos", null);
+            documento.setXmlVersion("1.0");
+
+            Element stylesh = documento.createElement("xsl:stylesheet");
+            stylesh.setAttribute("xmlns:xsl", "http://www.w3.org/1999/XSL/Transform");
+            stylesh.setAttribute("version", "1.0");
+            Element templ = documento.createElement("xsl:template");
+            templ.setAttribute("match", "/");
+
+            Element Ehtml = documento.createElement("html");
+            Element Ehead = documento.createElement("head");
+            Element Etitle = documento.createElement("title");
+            Text txtTitle = documento.createTextNode("Campos");
+            Etitle.appendChild(txtTitle);
+            Ehead.appendChild(Etitle);
+            Element Ebody = documento.createElement("body");
+            Element Etable = documento.createElement("table");
+            Etable.setAttribute("border", "1");
+            Element Etr1 = documento.createElement("tr");
+
+            for (int i = 0; i < Listac.size(); i++) {
+                Element Eth = documento.createElement("th");
+                Text txtth = documento.createTextNode(Listac.get(i).getNombre());
+                Eth.appendChild(txtth);
+                Etr1.appendChild(Eth);
+            }
+            Etable.appendChild(Etr1);
+            Element HeadData = documento.createElement("xsl:for-each");
+            HeadData.setAttribute("select", "campos/campo");
+            Element Etr2 = documento.createElement("tr");
+
+            for (int i = 0; i < Listac.size(); i++) {
+                Element Etd = documento.createElement("td");
+                Element Value = documento.createElement("xsl:value-of");
+                Value.setAttribute("select", Listac.get(i).getNombre());
+                Text txtth = documento.createTextNode(Listac.get(i).getNombre());
+                Etd.appendChild(Value);
+                Etr2.appendChild(Etd);
+            }
+            HeadData.appendChild(Etr2);
+            Etable.appendChild(HeadData);
+            Ebody.appendChild(Etable);
+            Ehtml.appendChild(Ebody);
+            templ.appendChild(Ehtml);
+            stylesh.appendChild(templ);
+
+            documento.getDocumentElement().appendChild(stylesh);
+            Source source = new DOMSource(documento);
+            Result result = new StreamResult(new File("Campos"+ ".xsl"));
+
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.transform(source, result);
+
+        } catch (ParserConfigurationException | TransformerException ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 
