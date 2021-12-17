@@ -6,6 +6,7 @@
 package proyecto_edd2;
 
 import static java.awt.Frame.MAXIMIZED_BOTH;
+
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -18,6 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -40,10 +42,15 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+
 
 /**
  *
@@ -134,6 +141,7 @@ public class Main extends javax.swing.JFrame {
         B_CerrarRegistro = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jFrame1 = new javax.swing.JFrame();
         jPanel7 = new javax.swing.JPanel();
@@ -159,16 +167,21 @@ public class Main extends javax.swing.JFrame {
         jButton16 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         Mostrar = new javax.swing.JDialog();
-        jPanel11 = new javax.swing.JPanel();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel10 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        Random_R = new javax.swing.JButton();
+        jTable2 = new javax.swing.JTable();
+        jLabel12 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         Exportar = new javax.swing.JDialog();
         jPanel12 = new javax.swing.JPanel();
         Excel = new javax.swing.JButton();
         xmls = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        Buscar = new javax.swing.JDialog();
+        Random_R1 = new javax.swing.JButton();
+        jTable3 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         Titulo = new javax.swing.JLabel();
         Titulo1 = new javax.swing.JLabel();
@@ -592,7 +605,7 @@ public class Main extends javax.swing.JFrame {
                 B_AbrirRegistroActionPerformed(evt);
             }
         });
-        jPanel8.add(B_AbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 176, 35));
+        jPanel8.add(B_AbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 176, 35));
 
         B_CerrarRegistro.setBackground(new java.awt.Color(255, 255, 255));
         B_CerrarRegistro.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -602,8 +615,9 @@ public class Main extends javax.swing.JFrame {
                 B_CerrarRegistroActionPerformed(evt);
             }
         });
-        jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 176, 35));
+        jPanel8.add(B_CerrarRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, 176, 35));
 
+        jButton8.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton8.setText("Modificar Registro");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,6 +633,15 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel8.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
+
+        jButton17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton17.setText("Buscar Registro");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 170, 40));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel8.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -826,36 +849,31 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel11.setBackground(new java.awt.Color(255, 102, 51));
-        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Mostrar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 3, 18)); // NOI18N
-        jTextArea1.setRows(5);
-        jPanel11.add(jTextArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 460, 260));
+        Random_R.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Random_R.setText("Mostrar");
+        Random_R.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Random_RActionPerformed(evt);
+            }
+        });
+        Mostrar.getContentPane().add(Random_R, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, 120, 40));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
-        jPanel11.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-190, 0, 840, 410));
-        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
-        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, -1, -1));
+        jTable2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar.getContentPane());
-        Mostrar.getContentPane().setLayout(MostrarLayout);
-        MostrarLayout.setHorizontalGroup(
-            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 528, Short.MAX_VALUE)
-            .addGroup(MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(MostrarLayout.createSequentialGroup()
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        MostrarLayout.setVerticalGroup(
-            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
-            .addGroup(MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+            },
+            new String [] {
+
+            }
+        ));
+        Mostrar.getContentPane().add(jTable2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 560, 320));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        Mostrar.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 800, 440));
+        Mostrar.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel12.setBackground(new java.awt.Color(255, 102, 51));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -895,6 +913,39 @@ public class Main extends javax.swing.JFrame {
             .addGroup(ExportarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        Buscar.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Random_R1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Random_R1.setText("Buscar Llave");
+        Random_R1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Random_R1ActionPerformed(evt);
+            }
+        });
+        Buscar.getContentPane().add(Random_R1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 200, 40));
+
+        jTable3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        Buscar.getContentPane().add(jTable3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 560, 90));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        Buscar.getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 120, 30));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
+        Buscar.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, 0, 780, 270));
+        Buscar.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(300, 700));
@@ -1385,7 +1436,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void B_NuevoRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_NuevoRegistro1ActionPerformed
-       Registros r = new Registros();
+        Registros r = new Registros();
         primA = true;
         boolean val = true;
         r.setListaCampo(Listac);
@@ -1525,8 +1576,8 @@ public class Main extends javax.swing.JFrame {
                                 } catch (NumberFormatException e) {
                                     val = false;
                                     JOptionPane.showMessageDialog(this, "No es un Número.");
-                                }catch (NullPointerException e) {
-                                    
+                                } catch (NullPointerException e) {
+
                                 }
                                 if (valint.length() > 8) {
                                     JOptionPane.showMessageDialog(this, "Excede el tamaño");
@@ -1981,7 +2032,7 @@ public class Main extends javax.swing.JFrame {
         boolArchivo = true;
         boolCampos = true;
         primA = false;
-        pv=false;
+        pv = false;
         int seleccion = fileChooser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             int cont = 0;
@@ -2148,40 +2199,15 @@ public class Main extends javax.swing.JFrame {
 
     private void B_AbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_AbrirRegistroActionPerformed
         // TODO add your handling code here:
-        Registros f = new Registros();
-        //if (f.getListaString().size()>0) {
-            ArrayList<Object> offsetts = new ArrayList();
-            ap.getBtree().getRegistersOffsets(offsetts, ap.getBtree().getRaiz(), 0);
-            int x = 0;
-            String s = "";
+        //Registros f = new Registros();
 
-            for (int i = 0; i < Listac.size(); i++) {
-                Campos c = Listac.get(i);
-                s += c.getNombre() + "       ";
+        Mostrar.pack();
 
-            }
-            s += "\n";
-            jTextArea1.append(s);
-            try {
-                RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
-                for (int i = 0; i < 10; i++) {
-                    Random r = new Random();
-                    x = 1 + r.nextInt(offsetts.size());
-                    long y = (long) offsetts.get(x);
-                    raf.seek(y + 1);
-                    s += raf.readLine() + "\n";
+        Mostrar.setLocationRelativeTo(this);
+        Mostrar.setVisible(true);
 
-                }
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            Mostrar.pack();
-            Mostrar.setLocationRelativeTo(this);
-            Mostrar.setVisible(true); //ya hay registros creados 123
-     /*   }else {
+        //ya hay registros creados 123
+        /*   }else {
             JOptionPane.showMessageDialog(this, "Debe guardar el registro antes de abrirlo");
         
         }*/
@@ -2999,7 +3025,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void cb_TD1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TD1ItemStateChanged
-          if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
+        if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
             jLabel_CrearCampo8.setVisible(false);
             jSpinner2.setVisible(false);
         } else {
@@ -3017,7 +3043,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_Index3ActionPerformed
 
     private void ExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcelActionPerformed
-        // TODO add your handling code here:
+        try {
+            //try{
+            CrearExcel();
+            // JOptionPane.showMessageDialog(this,"Exportar finalizado ");
+            // }catch(Exception e){
+            //System.out.println(e);
+            //JOptionPane.showMessageDialog(this,"Error de exportación");
+            // }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ExcelActionPerformed
 
     private void xmlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlsActionPerformed
@@ -3025,6 +3061,185 @@ public class Main extends javax.swing.JFrame {
         CrearXSLT();
         JOptionPane.showMessageDialog(this, "Exportado con exito");
     }//GEN-LAST:event_xmlsActionPerformed
+
+    private void Random_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Random_RActionPerformed
+        String[] columns = new String[Listac.size()];
+        System.out.println("Size: " + Listac.size());
+        for (int i = 0; i < Listac.size(); i++) {
+
+            columns[i] = Listac.get(i).getNombre();
+
+        }
+        System.out.println("Columnas: " + columns[0]);
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+        model.addRow(columns);
+
+        ArrayList<Object> offsetts = new ArrayList();
+        ap.getBtree().getRegistersOffsets(offsetts, ap.getBtree().getRaiz(), 0);
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(ap.getArchivo(), "rw");
+            int cont = 0;
+            int x = 0;
+            for (int i = 0; i < 20; i++) {
+
+                Random r = new Random();
+                x = 1 + r.nextInt(offsetts.size() - 1);
+                long y = (long) offsetts.get(x);
+
+                raf.seek(y + 1);
+
+                String s = raf.readLine();
+                String s2 = s.replace("|", ";");
+                String s3 = s2.replace("\0", "");
+
+                System.out.println("Probando: " + s3);
+
+                String[] s1 = new String[80];
+                Scanner sc1 = new Scanner(s3);
+                sc1.useDelimiter(";");
+
+                while (sc1.hasNext()) {
+                    if (cont < Listac.size()) {
+                        s1[cont] = sc1.next();
+                        cont++;
+                        System.out.println("Sigo");
+                    }
+                    if (cont == Listac.size()) {
+                        cont = 0;
+                        break;
+                    }
+                }
+
+                model.addRow(s1);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        jTable2.setModel(model);
+
+        /*for (int i = 0; i < Listac; i++) {
+            
+        }*//*
+        jTable2.setModel(model);
+        
+                //columns);
+
+       
+         */
+
+        //if (f.getListaString().size()>0) {
+        /* int x = 0;
+            String s = "";
+
+            for (int i = 0; i < Listac.size(); i++) {
+                Campos c = Listac.get(i);
+                s += c.getNombre() + "       ";
+
+            }
+            s += "\n";
+            
+            try {
+                RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
+                int cont =0;
+                for (int i = 0; i < 10 ; i++) {
+                    
+                    s += raf.readLine() +"\n";
+                    //for()
+
+                }
+                String s2="";
+                s2=s.replace(" ","");
+                s2 = s.replace("\0", "");
+               
+              
+                //Quitar caracteres null
+//                //System.out.println("Regis:" + registro);
+              
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
+    }//GEN-LAST:event_Random_RActionPerformed
+
+    @SuppressWarnings("empty-statement")
+    private void Random_R1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Random_R1ActionPerformed
+        int cont = 0;
+        int x = 0;
+        try {
+            x = Integer.parseInt(jTextField1.getText());
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No es numero");
+        }
+        LLave key1 = new LLave();
+
+        key1 = ap.getBtree().buscarLlave(ap.getBtree().getRaiz(), x);
+        if (key1 != null) {
+            String[] columns = new String[Listac.size()];
+            System.out.println("Size: " + Listac.size());
+            for (int i = 0; i < Listac.size(); i++) {
+
+                columns[i] = Listac.get(i).getNombre();
+
+            }
+
+            DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+            model.addRow(columns);
+            try {
+                RandomAccessFile raf = new RandomAccessFile(ap.getArchivo(), "rw");
+                raf.seek(key1.getOffset() + 1);
+                String s = raf.readLine();
+                String s2 = s.replace("|", ";");
+                String s3 = s2.replace("\0", "");
+                String[] s1 = new String[80];
+                Scanner sc1 = new Scanner(s3);
+                sc1.useDelimiter(";");
+
+                while (sc1.hasNext()) {
+                    if (cont < Listac.size()) {
+                        s1[cont] = sc1.next();
+                        cont++;
+                        System.out.println("Sigo");
+                    }
+                    if (cont == Listac.size()) {
+                        cont = 0;
+                        break;
+                    }
+                }
+
+                model.addRow(s1);
+                jTable3.setModel(model);
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No existe la llave ingresada");
+        }
+
+
+    }//GEN-LAST:event_Random_R1ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        Buscar.pack();
+        Buscar.setLocationRelativeTo(this);
+        Buscar.setVisible(true);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3087,6 +3302,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_Registro;
     private javax.swing.JButton B_Registro1;
     private javax.swing.JButton B_Reindexar;
+    private javax.swing.JDialog Buscar;
     private javax.swing.JComboBox<String> Cb_Indexar;
     private javax.swing.JComboBox<String> Cb_editarCampo;
     private javax.swing.JButton Excel;
@@ -3099,6 +3315,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField Nombre_Campo1;
     private javax.swing.JRadioButton RB1;
     private javax.swing.JRadioButton RB2;
+    private javax.swing.JButton Random_R;
+    private javax.swing.JButton Random_R1;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
     private javax.swing.JLabel Titulo2;
@@ -3117,6 +3335,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -3135,8 +3354,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -3158,7 +3378,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_CrearCampo9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -3169,12 +3388,14 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JSpinner longS;
     private javax.swing.JButton xmls;
     // End of variables declaration//GEN-END:variables
@@ -3187,6 +3408,7 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
     Archivo ap = new Archivo();
     String nameArchivo;
+    
 
     public void eliminarTabla() {
         //---------------------------------------------------//
@@ -3252,6 +3474,7 @@ public class Main extends javax.swing.JFrame {
     int donde;
     int cc2, cc3;
     int mdsize;
+    
     //Arbolb tree=new Arbolb(6);
     //booleans de validaciones
     boolean primA = true;
@@ -3316,6 +3539,7 @@ public class Main extends javax.swing.JFrame {
         return num;
 
     }
+
     public void CrearXml() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -3323,10 +3547,10 @@ public class Main extends javax.swing.JFrame {
             DocumentBuilder builder = factory.newDocumentBuilder();
             DOMImplementation implementation = builder.getDOMImplementation();
             //int intancia_punto = archivo_actual.getNombre_archivo().indexOf('.');
-            
-            String g ="";
-            for (int i = 0; i < ap.getName().length()-4; i++) {
-                g+=nameArchivo.charAt(i);
+
+            String g = "";
+            for (int i = 0; i < ap.getName().length() - 4; i++) {
+                g += nameArchivo.charAt(i);
             }
             //System.out.println("Nombre: ");
 
@@ -3334,7 +3558,7 @@ public class Main extends javax.swing.JFrame {
             documento.setXmlVersion("1.0");
 
             Element Campos = documento.createElement("Campos");
-         //   System.out.println("Antes del for");
+            //   System.out.println("Antes del for");
             for (int i = 0; i < Listac.size(); i++) {
                 Element Campo = documento.createElement("Campo");
                 String NC = Listac.get(i).getNombre();
@@ -3363,8 +3587,8 @@ public class Main extends javax.swing.JFrame {
                 Campo.appendChild(isKey);
                 Campos.appendChild(Campo);
             }
-           // System.out.println("Despues del for");
-            
+            // System.out.println("Despues del for");
+
             documento.getDocumentElement().appendChild(Campos);
             Source source = new DOMSource(documento);
             Result result = new StreamResult(new File("Campos" + ".xml"));
@@ -3377,16 +3601,16 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-    public void CrearXSLT() {
-        String g ="";
-           for (int i = 0; i < ap.getName().length()-4; i++) {
-                g+=nameArchivo.charAt(i);
-            }
+    
+     public void CrearXSLT() {
+        String g = "";
+        for (int i = 0; i < ap.getName().length() - 4; i++) {
+            g += nameArchivo.charAt(i);
+        }
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             DOMImplementation implementation = builder.getDOMImplementation();
-          
 
             Document documento = implementation.createDocument(null, "Campos", null);
             documento.setXmlVersion("1.0");
@@ -3436,7 +3660,7 @@ public class Main extends javax.swing.JFrame {
 
             documento.getDocumentElement().appendChild(stylesh);
             Source source = new DOMSource(documento);
-            Result result = new StreamResult(new File("Campos"+ ".xsl"));
+            Result result = new StreamResult(new File("Campos" + ".xsl"));
 
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(source, result);
@@ -3446,5 +3670,82 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
+    public void CrearExcel() throws FileNotFoundException{
+        RandomAccessFile raf = new RandomAccessFile(ap.getArchivo(),"rw");
+        ArrayList<Object> offsets = new ArrayList();
+        try {
+            OutputStream fileOut = new FileOutputStream("Prueba1.xlsx");
+            FileInputStream fstream = new FileInputStream("Prueba1.xlsx");
+            
+            XSSFWorkbook libro = new XSSFWorkbook(fstream);
+            System.out.println("por lo menos entra al try");
+            XSSFSheet hoja = libro.createSheet("Registro");
+            
+            //agregar la info
+            
+            //titulo de las columnas
+            String[] header = new String [Listac.size()];
+            for (int i = 0; i < Listac.size()-1; i++) {
+                Campos campo = new Campos();
+                campo = Listac.get(i);
+                String aux = campo.getNombre();
+                header[i]= aux;
+            }
+            //contenido de las columnas con el offset size
+            String [][] documento = new String[offsets.size()][Listac.size()];
+            for (int i = 0; i < offsets.size(); i++){
+                raf.seek((long) offsets.get(i) + 1);
+                String aux = raf.readLine();
+                for (int j = 0; j < Listac.size()-1; j++) {
+                    //separar los delimitadores
+                    for (int k = 0; k < aux.length()-1; k++) {
+                        String auxLlave = "";
+                        char current = aux.charAt(k);
+                        if(current == '|'){
+                            documento[i][j]=auxLlave;
+                            auxLlave = "";                           
+                        }else{
+                            auxLlave+=current;
+                        }
+                    }
+                }
+            }
+            
+            //Generar los datos para el documento
+            for (int i = 0; i < documento.length; i++) {
+                XSSFRow row = hoja.createRow(i);
+                for (int j = 0; j < header.length; j++) {
+                    if(i==0){
+                        XSSFCell cell = row.createCell(j);
+                        cell.setCellValue(header[j]);
+                    }else{
+                        XSSFCell cell = row.createCell(j);
+                        cell.setCellValue(documento[i-1][j]);
+                    }
+                }
+            }
+            
+            //Crear el archivo
+            /*
+            try(OutputStream fileOut = new FileOutputStream("Prueba1.xlsx")){
+                System.out.println("se creo el excel");
+                libro.write(fileOut);
+            }catch(IOException e){
+                System.out.println("Aqui1");
+                e.printStackTrace();
+            }*/
+            libro.write(fileOut);
+            
+            
+        } catch (FileNotFoundException ex) {
+            System.out.println("Aqui2");
+            System.out.println(ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("Aqui3");
+            System.out.println(ex.getMessage());
+        }
+    }
+
+   
 
 }
