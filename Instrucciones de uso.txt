@@ -1,0 +1,14 @@
+1. Se debe crear un nuevo archivo dependiendo a lo que desea registrar(StudentsFiles Puede ser un ejemplo)
+2.Crear campos según su criterio.
+3.Si quiere guardar los campos en la metadata, de click a guardar campos. O antes puede listar, eliminar o modificar los campos siempre y cuando no existan registros.
+Se recomienda guardas los campos siempre antes de comenzar a crear registros.
+4.Puede crear un nuevo registro dependiendo de los campos que ingresó anteriormente. 
+5.Cerrar y guardar archivo. Siguiente paso recomendado es probar el botón de archivo de prueba 1.
+6.Probar todas las funciones de registros y estar viendo los archivos de prueba txt para ver que si funciona.
+7.Reindexar el personfile según su llave secundaria(CITY ID).
+8.Buscar llave según City Id.
+9. Exportar XML y Excel.
+10.Cerrar y guardar archivo.
+11.Salirse del programa.
+
+

@@ -1,0 +1,18 @@
+Bienvenido al programa Standar File Manager, Desarrollado por Luis Flores, Valeria Cabrera y Walter Reyes.
+Con esta herramienta usted podrá almacenar sus registros de la manera en la que a usted le beneficie.
+Puede llevar registro de estudiantes, de inventario,de ciudades, de todo lo que usted desee.
+
+
+
+-----------------Instrucciones--------------
+Si es primera vez usando este programa lo primero que deberá hacer es irse al apartado de archivos y darle click a crear un nuevo archivo.
+Elije la carpeta en la cual desea crear archivo. Una vez haga este paso debe pensar muy bien que campos ingresará ya que en un futuro no se 
+le dejará modificar los campos debido a que puede existir una mal interpretación de datos por estar cambiando los archivos ya dados desde 
+un inicio. Recuerde darle guardar campos cuando esté seguro que no necesitará entrar a ese apartado después.
+
+Al momento de crear registros debemos ir al Botón "Crear Registros" Ahí el programa le pedirá ingresar sus datos. 
+Con los registros usted podrá ir guardandolos, modificandolos, o borrandolos como se de la situación. 
+El programa guardará de manera predeterminada los datos en un txt. Si usted desea exportar los registros a un archivo Excel lo podrá hacer sin ningún problema.
+Puede Buscar los registros con una clave primaria que jamás se deberá repetir. Puede ser un número de telefono o una Identidad dependiendo del archivo.
+Si es necesario usted puede hacer busqueda con otro campo, pero este debe cumplir con el requisito de que no puede repetirse en ningún momento algún registro.
+Siempre al salir del programa derle en guardar y salir. 

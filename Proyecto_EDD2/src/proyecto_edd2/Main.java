@@ -31,6 +31,7 @@ import javafx.stage.FileChooser;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,6 +43,10 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -86,7 +91,6 @@ public class Main extends javax.swing.JFrame {
         B_ListarCampo = new javax.swing.JButton();
         B_ModificarCampo = new javax.swing.JButton();
         B_BorrarCampo = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jDialog_CrearCampos = new javax.swing.JDialog();
         jPanel3 = new javax.swing.JPanel();
@@ -140,22 +144,8 @@ public class Main extends javax.swing.JFrame {
         B_AbrirRegistro = new javax.swing.JButton();
         B_CerrarRegistro = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jFrame1 = new javax.swing.JFrame();
-        jPanel7 = new javax.swing.JPanel();
-        Titulo2 = new javax.swing.JLabel();
-        Titulo3 = new javax.swing.JLabel();
-        B_Campo1 = new javax.swing.JButton();
-        B_Registro1 = new javax.swing.JButton();
-        B_Index1 = new javax.swing.JButton();
-        B_Exportar1 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        background1 = new javax.swing.JLabel();
         jDialog_Indexar = new javax.swing.JDialog();
         jPanel9 = new javax.swing.JPanel();
         B_Crear_Indice = new javax.swing.JButton();
@@ -190,9 +180,6 @@ public class Main extends javax.swing.JFrame {
         B_Index = new javax.swing.JButton();
         B_Exportar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         background = new javax.swing.JLabel();
         B_Index2 = new javax.swing.JButton();
         B_Index3 = new javax.swing.JButton();
@@ -239,7 +226,7 @@ public class Main extends javax.swing.JFrame {
                 B_ListarCampoActionPerformed(evt);
             }
         });
-        jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 126, -1));
+        jPanel2.add(B_ListarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 130, -1));
 
         B_ModificarCampo.setBackground(new java.awt.Color(255, 255, 255));
         B_ModificarCampo.setText("Modificar Campo");
@@ -248,7 +235,7 @@ public class Main extends javax.swing.JFrame {
                 B_ModificarCampoActionPerformed(evt);
             }
         });
-        jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 120, -1));
+        jPanel2.add(B_ModificarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 130, -1));
 
         B_BorrarCampo.setBackground(new java.awt.Color(255, 255, 255));
         B_BorrarCampo.setText("Borrar Campo");
@@ -257,15 +244,7 @@ public class Main extends javax.swing.JFrame {
                 B_BorrarCampoActionPerformed(evt);
             }
         });
-        jPanel2.add(B_BorrarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 126, -1));
-
-        jButton7.setText("jButton7");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 340, -1, -1));
+        jPanel2.add(B_BorrarCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 130, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 400));
@@ -516,7 +495,7 @@ public class Main extends javax.swing.JFrame {
                 B_NuevoArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 200, 35));
+        jPanel6.add(B_NuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 250, 35));
 
         B_AbrirArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_AbrirArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -526,7 +505,7 @@ public class Main extends javax.swing.JFrame {
                 B_AbrirArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 200, 35));
+        jPanel6.add(B_AbrirArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 35));
 
         B_GuardarArchivo.setBackground(new java.awt.Color(255, 255, 255));
         B_GuardarArchivo.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -536,7 +515,7 @@ public class Main extends javax.swing.JFrame {
                 B_GuardarArchivoActionPerformed(evt);
             }
         });
-        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 250, 50));
+        jPanel6.add(B_GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 250, 50));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -554,15 +533,16 @@ public class Main extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 230, 40));
+        jPanel6.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 250, 40));
 
+        jButton11.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton11.setText("Archivos de Prueba #1");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 240, 40));
+        jPanel6.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 250, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel6.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 0, 660, 400));
@@ -626,14 +606,6 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel8.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 180, 40));
 
-        jButton9.setText("jButton9");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
-            }
-        });
-        jPanel8.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, -1, -1));
-
         jButton17.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jButton17.setText("Buscar Registro");
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -659,117 +631,6 @@ public class Main extends javax.swing.JFrame {
             .addGap(0, 400, Short.MAX_VALUE)
             .addGroup(jDialog_CrearRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel7.setBackground(new java.awt.Color(255, 102, 51));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Titulo2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        Titulo2.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo2.setText("File Manager");
-        jPanel7.add(Titulo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, -1, -1));
-
-        Titulo3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        Titulo3.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo3.setText("Standard");
-        jPanel7.add(Titulo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
-
-        B_Campo1.setBackground(new java.awt.Color(255, 255, 255));
-        B_Campo1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Campo1.setText("Campos");
-        B_Campo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Campo1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(B_Campo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 160, 50));
-
-        B_Registro1.setBackground(new java.awt.Color(255, 255, 255));
-        B_Registro1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Registro1.setText("Archivo");
-        B_Registro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Registro1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(B_Registro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 160, 50));
-
-        B_Index1.setBackground(new java.awt.Color(255, 255, 255));
-        B_Index1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Index1.setText("Index");
-        B_Index1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Index1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(B_Index1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 160, 50));
-
-        B_Exportar1.setBackground(new java.awt.Color(255, 255, 255));
-        B_Exportar1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        B_Exportar1.setText("Exportar");
-        B_Exportar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Exportar1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(B_Exportar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, 160, 50));
-
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
-        jButton12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jButton12.setText("Registro");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 160, 50));
-
-        jButton13.setText("jButton4");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
-
-        jButton14.setText("jButton6");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 290, -1, -1));
-
-        jButton15.setText("jButton10");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
-
-        background1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
-        jPanel7.add(background1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
-            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame1Layout.createSequentialGroup()
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-            .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jFrame1Layout.createSequentialGroup()
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 102, 51));
@@ -1012,30 +873,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 160, 50));
-
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
-
-        jButton6.setText("jButton6");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, -1, -1));
-
-        jButton10.setText("jButton10");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/background2.jpg"))); // NOI18N
         jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(-280, 0, 700, 530));
@@ -1333,6 +1170,7 @@ public class Main extends javax.swing.JFrame {
 
                 Campos c1 = new Campos(name, tipo, size, llave);
                 Listac.add(c1);
+                JOptionPane.showMessageDialog(this,"Campo Guardado");
                 boolean key = false;
 
                 for (int i = 0; i < Listac.size(); i++) {
@@ -1375,6 +1213,7 @@ public class Main extends javax.swing.JFrame {
                 modelo3.addElement(c1);
 
                 boolCampos = true;
+                
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al crear");
@@ -1413,8 +1252,9 @@ public class Main extends javax.swing.JFrame {
             }
             llave1 = true;
         }
-        llave1 = false;
-
+        
+                llave1 = false;
+        ;
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -1478,7 +1318,7 @@ public class Main extends javax.swing.JFrame {
                         k = pal;
 
                         llave = Integer.parseInt(pal);
-                        System.out.println("LLAVE A LISTA: " + pal);
+                       // System.out.println("LLAVE A LISTA: " + pal);
                         pv = false;
                     } else {
                         if (listaK1.contains(pal)) {
@@ -1491,13 +1331,13 @@ public class Main extends javax.swing.JFrame {
                             k = pal;
 
                             llave = Integer.parseInt(pal);
-                            System.out.println("LLAVE A LISTA: " + pal);
+                          //  System.out.println("LLAVE A LISTA: " + pal);
                         } else {
                             listaK1.add(pal);
                             k = pal;
 
                             llave = Integer.parseInt(pal);
-                            System.out.println("LLAVE A LISTA: " + pal);
+                          //  System.out.println("LLAVE A LISTA: " + pal);
                             pv = false;
                         }
                     }
@@ -1549,13 +1389,13 @@ public class Main extends javax.swing.JFrame {
                         k = value + "";
                         llave = value;
 
-                        System.out.println("LLAVE A LISTA: " + value);
+                      //  System.out.println("LLAVE A LISTA: " + value);
                         pv = false;
                     } else {
                         LLave ll1 = new LLave();
                         try {
                             ll1 = ap.getBtree().buscarLlave(ap.getBtree().getRaiz(), value);
-                            System.out.println("Busca en el arbol: " + ll1.getLlave());
+                         //   System.out.println("Busca en el arbol: " + ll1.getLlave());
                         } catch (Exception e) {
 
                         }
@@ -1617,7 +1457,7 @@ public class Main extends javax.swing.JFrame {
                 String nombre_archivob = "./" + ap.getName() + ".bin";/////
                 Arbolb tree1 = ap.getBtree();
 
-                System.out.println("Primera Vez en: " + ap.getName());
+               // System.out.println("Primera Vez en: " + ap.getName());
                 //
                 String fin = "";
                 String fin1 = "";
@@ -1647,7 +1487,7 @@ public class Main extends javax.swing.JFrame {
                 try {
                     int n;
                     if (ap.getAvailList().isEmpty()) {
-                        System.out.println("NAME: " + ap.getName());
+                     //   System.out.println("NAME: " + ap.getName());
                         RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                         long md = writeMD().length();
                         raf.seek(raf.length());
@@ -1711,12 +1551,12 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 ListaS1.clear();
-                System.out.println("PALABRA: " + fin3);
+               // System.out.println("PALABRA: " + fin3);
 
                 JOptionPane.showMessageDialog(this, "CREADO");
             } else {
                 ap.primero = true;
-                System.out.println("NO ES Primera Vez en: " + ap.getName());
+               // System.out.println("NO ES Primera Vez en: " + ap.getName());
             }
 
         }
@@ -1917,7 +1757,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                         if (prim1 == true) {
-                            System.out.println("PRIMERA: " + writeMD().length());
+                           // System.out.println("PRIMERA: " + writeMD().length());
 
                             l1.setOffset(writeMD().length());
 
@@ -1980,13 +1820,13 @@ public class Main extends javax.swing.JFrame {
 
         ap.setBtree(t);
 
-        System.out.println("VECES REPETIDAS: " + cont2);
+       // System.out.println("VECES REPETIDAS: " + cont2);
         //System.out.println("ARBOL: ");
-        System.out.println("AVAIL OFF: " + donde2);
+       // System.out.println("AVAIL OFF: " + donde2);
 
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-
+        JOptionPane.showMessageDialog(this,"Archivo creado");
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -2063,7 +1903,7 @@ public class Main extends javax.swing.JFrame {
                 String file = "";
 
                 sc = new Scanner(ap.getArchivo());
-                System.out.println("1");
+               // System.out.println("1");
 
                 file = sc.nextLine();
 
@@ -2078,9 +1918,9 @@ public class Main extends javax.swing.JFrame {
 
                 sc2 = new Scanner(file);
                 String re = file;
-                System.out.println("Revisar: " + re);
+               // System.out.println("Revisar: " + re);
                 sc2.useDelimiter(";");
-                System.out.println("file 1: " + file);
+                //System.out.println("file 1: " + file);
                 //System.out.println(file);
                 Registros r = new Registros();
                 for (int i = 0; i < para; i++) {
@@ -2147,8 +1987,8 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 re += "TIPO ARCHIVO: .txt" + "\n";
-                System.out.println("RE S: " + re);
-                System.out.println("RE: " + re.length());
+            //    System.out.println("RE S: " + re);
+            //    System.out.println("RE: " + re.length());
                 donde2 = re.length();
                 file_a = new RandomAccessFile(ap.getName(), "rw");
                 file_a.seek(donde2);
@@ -2165,9 +2005,9 @@ public class Main extends javax.swing.JFrame {
                             ap.getAvailList().add(tok[i]);
                         }
                     }
-                    System.out.println("CANTIDAD EN AV: " + ap.getAvailList().size());
+                  //  System.out.println("CANTIDAD EN AV: " + ap.getAvailList().size());
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
-                        System.out.println("AVAIL: " + ap.getAvailList().get(i));
+                      //  System.out.println("AVAIL: " + ap.getAvailList().get(i));
                     }
 
                 } else {
@@ -2193,6 +2033,13 @@ public class Main extends javax.swing.JFrame {
         c = (Campos) Cb_editarCampo.getSelectedItem();
         Nombre_Campo1.setText(c.getNombre());
         jSpinner2.setValue(c.getSize());
+        if(c.getData_type().equals("Int")){
+            jSpinner2.setVisible(false);
+            jLabel_CrearCampo8.setVisible(false);
+        }else{
+            jSpinner2.setVisible(true);
+            jLabel_CrearCampo8.setVisible(true);
+        }
 
 
     }//GEN-LAST:event_Cb_editarCampoItemStateChanged
@@ -2243,9 +2090,9 @@ public class Main extends javax.swing.JFrame {
                     ap.getAvailList().add(l1.getOffset() + "");
                     int n2 = (int) l1.getOffset();
                     ap.getAvail1().add(n2);
-                    System.out.println("SE ELIMINO");
+                   // System.out.println("SE ELIMINO");
                     raf.seek(donde2);
-                    System.out.println("DONDE2: " + donde2);
+                  //  System.out.println("DONDE2: " + donde2);
 
                     String dp = "";
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
@@ -2342,148 +2189,6 @@ public class Main extends javax.swing.JFrame {
         return pal2;
     }
     //
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //inserto NUMEROS 1,2,3,15,6,70,28,8
-
-        // tree.print(tree.raiz);
-        Arbolb tree1 = ap.getBtree();;
-        tree1.Show();
-        //search llave 28
-        // LLave mia=tree.buscarLlave(tree.raiz, 37);
-        System.out.println("");
-        //System.out.println("LLAVE ENCONTRADA:  "+mia.getLlave());
-
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        //insert 1,2,40,5,60,7,80
-        LLave l1 = new LLave(12121, 1);
-        LLave l2 = new LLave(12121, 2);
-        LLave l3 = new LLave(12121, 3);
-        LLave l4 = new LLave(12121, 4);
-        LLave l5 = new LLave(12121, 5);
-        LLave l6 = new LLave(12121, 6);
-        LLave l7 = new LLave(12121, 7);
-        LLave l8 = new LLave(12121, 8);
-        LLave l9 = new LLave(12121, 9);
-        LLave l10 = new LLave(12121, 10);
-        LLave l11 = new LLave(12121, 11);
-        LLave l12 = new LLave(12121, 12);
-        Arbolb Bprueba = new Arbolb(6);
-        Bprueba.insert(l1);
-        Bprueba.insert(l2);
-        Bprueba.insert(l3);
-        Bprueba.insert(l4);
-        Bprueba.insert(l5);
-        Bprueba.insert(l6);
-        Bprueba.insert(l7);
-        Bprueba.insert(l8);
-        Bprueba.insert(l9);
-        Bprueba.insert(l10);
-        Bprueba.insert(l11);
-        Bprueba.insert(l12);
-        //ver si esta el nodo a eliminar
-
-        System.out.println("");
-        System.out.println("ARBOL ANTES DE ELIMINAR");
-        Bprueba.Show();
-        System.out.println("");
-        Nodo n = Bprueba.buscarEliminado(Bprueba.getRaiz(), l3.getLlave());
-        boolean sepudo = Bprueba.eliminar(Bprueba.getRaiz(), l3);
-        if (sepudo == true) {
-            System.out.println("ELIMINAR 3");
-            System.out.println("");
-            System.out.println("ARBOL DESPUES DE ELIMINAR");
-            Bprueba.Show();
-            System.out.println("");
-
-        }
-
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        //availist
-        try {
-            System.out.println("adentro");
-            RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-            file_a.seek(donde2);//128
-            String seek = file_a.readLine();
-            System.out.println("Soy el seek: " + seek);
-            long off = donde2;
-            off = file_a.getFilePointer();
-            file_a.writeChars("BUSCANDO");
-            // file_a.wr
-            JOptionPane.showMessageDialog(null, "Funcionó");
-        } catch (Exception e) {
-            System.out.println(e);
-
-        }
-        System.out.println("salgo");
-
-
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        try {
-            Registros r = new Registros();
-            String keys = JOptionPane.showInputDialog(this, "INGRESE LLAVE A ELIMINAR");
-            int key = Integer.parseInt(keys);
-            LLave l1 = new LLave();
-            Arbolb tree1 = ap.getBtree();
-            l1 = tree1.buscarLlave(tree1.getRaiz(), key);
-            if (l1 == null) {
-
-            } else {
-                try {
-                    System.out.println("adentro");
-                    RandomAccessFile file_a = new RandomAccessFile(ap.getName(), "rw");
-                    file_a.seek(l1.getOffset() + 1);//128
-                    String seek = file_a.readLine();
-                    //System.out.println("Soy el seek: " + seek);
-                    JOptionPane.showMessageDialog(this, "SE ELIMINARA: " + seek);
-                    int rest = seek.length();
-
-                    //file_a.writeUTF("soy seek");
-                    // file_a.wr
-                    JOptionPane.showMessageDialog(null, "Funcionó");
-                    System.out.println("RESTA: " + rest);
-                    long offset = (l1.getOffset() + 1);
-                    System.out.println("NEW OFF: " + offset);
-
-                    file_a.seek(offset);
-
-                    file_a.writeChars("MIERDA|2|");
-
-                    //file_a.writeChars();
-                    file_a.close();
-
-                } catch (Exception e) {
-                    System.out.println(e);
-
-                }
-
-            }
-
-        } catch (Exception e) {
-        }
-
-    }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-        int k;
-        System.out.println("INGRESE LLave: ");
-        k = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese LLave: "));
-        Arbolb t = ap.getBtree();
-        LLave l1 = t.buscarLlave(t.getRaiz(), k);
-        System.out.println("OOFFSET: " + l1.getOffset());
-    }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
 
@@ -2786,6 +2491,7 @@ public class Main extends javax.swing.JFrame {
             ls.add(s2);
 
             //agregado tercer campo
+            
             //lc.add(c3);
             ls.add(s4);
             if (cont <= 1000) {
@@ -2818,7 +2524,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                         if (prim1 == true) {
-                            System.out.println("PRIMERA: " + writeMD().length());
+                           // System.out.println("PRIMERA: " + writeMD().length());
 
                             l1.setOffset(writeMD().length());
 
@@ -2834,7 +2540,7 @@ public class Main extends javax.swing.JFrame {
                                 //System.out.println("PALABRA: "+fin10);
 
                                 con += 82;
-                                System.out.println("OFFSET: " + con);
+                               // System.out.println("OFFSET: " + con);
 
                                 //System.out.println("OFFSET: "+e);
                                 l1.setOffset(con);
@@ -2884,45 +2590,13 @@ public class Main extends javax.swing.JFrame {
 
         System.out.println("VECES REPETIDAS: " + cont2);
         //System.out.println("ARBOL: ");
-        System.out.println("AVAIL OFF: " + donde2);
+        //System.out.println("AVAIL OFF: " + donde2);
 
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
+        JOptionPane.showMessageDialog(this,"Archivo creado con exito ");
 
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void B_Campo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Campo1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_Campo1ActionPerformed
-
-    private void B_Registro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Registro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_Registro1ActionPerformed
-
-    private void B_Index1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Index1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_Index1ActionPerformed
-
-    private void B_Exportar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Exportar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_B_Exportar1ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -2936,7 +2610,12 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_Crear_IndiceActionPerformed
 
     private void B_ReindexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ReindexarActionPerformed
-        // TODO add your handling code here:
+        if(indexar){
+            JOptionPane.showMessageDialog(this,"Arbol actualizado");
+            indexar=false;
+        }else{
+           JOptionPane.showMessageDialog(this,"Primero Reindexar porfavor"); 
+        }
     }//GEN-LAST:event_B_ReindexarActionPerformed
 
     private void Cb_IndexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_IndexarActionPerformed
@@ -2947,7 +2626,7 @@ public class Main extends javax.swing.JFrame {
         Campos c = (Campos) Cb_Indexar.getSelectedItem();
 
         int index = Cb_Indexar.getSelectedIndex();
-        System.out.println("index campo: " + index);
+     //   System.out.println("index campo: " + index);
         if (ap.getName().equals("Prueba1.txt")) {
             if (c.getNombre().equals("PersonName") || c.getNombre().equals("PersonAge")) {
                 JOptionPane.showMessageDialog(this, c.getNombre() + " No es un campo valido.");
@@ -2978,11 +2657,11 @@ public class Main extends javax.swing.JFrame {
 
                         for (int i = 0; i < offsets.size(); i++) {
                             raf.seek((long) offsets.get(i) + 1);
-                            System.out.println("Ofsset.geti i: " + offsets.get(i));
+                          //  System.out.println("Ofsset.geti i: " + offsets.get(i));
                             String prueba = raf.readLine();
                             System.out.println("Prueba: " + prueba);
                             int valor = getSegunda(prueba, index);
-                            System.out.println("Valor: " + valor);
+                           // System.out.println("Valor: " + valor);
                             //   l1=b2.buscarLlave(b2.getRaiz(), valor);
 
                             l1.setOffset((long) offsets.get(i));
@@ -2993,12 +2672,12 @@ public class Main extends javax.swing.JFrame {
                             System.out.println("Inserte ");
                         }
 
-                        System.out.println("despues for");
+                      //  System.out.println("despues for");
                         ap.setBtree(b2);
-                        System.out.println("seteo arbol");
+                      //  System.out.println("seteo arbol");
                         writeB("Prueba1", b2);
-                        System.out.println("Escribo arbol");
-                        System.out.println("Arbol: ");
+                      //  System.out.println("Escribo arbol");
+                       // System.out.println("Arbol: ");
                         b2.Show();
 
                     } catch (Exception e) {
@@ -3007,6 +2686,8 @@ public class Main extends javax.swing.JFrame {
 
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(this,"No se puede indexar este archivo.");
         }
         try {
             RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
@@ -3018,6 +2699,8 @@ public class Main extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+        JOptionPane.showMessageDialog(this,"Indexado correctamente");
+        indexar = true;
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseEntered
@@ -3025,6 +2708,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void cb_TD1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TD1ItemStateChanged
+        
         if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
             jLabel_CrearCampo8.setVisible(false);
             jSpinner2.setVisible(false);
@@ -3058,7 +2742,7 @@ public class Main extends javax.swing.JFrame {
 
     private void xmlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlsActionPerformed
         CrearXml();
-        CrearXSLT();
+       // CrearXSLT();
         JOptionPane.showMessageDialog(this, "Exportado con exito");
     }//GEN-LAST:event_xmlsActionPerformed
 
@@ -3094,7 +2778,7 @@ public class Main extends javax.swing.JFrame {
                 String s2 = s.replace("|", ";");
                 String s3 = s2.replace("\0", "");
 
-                System.out.println("Probando: " + s3);
+               // System.out.println("Probando: " + s3);
 
                 String[] s1 = new String[80];
                 Scanner sc1 = new Scanner(s3);
@@ -3104,7 +2788,7 @@ public class Main extends javax.swing.JFrame {
                     if (cont < Listac.size()) {
                         s1[cont] = sc1.next();
                         cont++;
-                        System.out.println("Sigo");
+                     //   System.out.println("Sigo");
                     }
                     if (cont == Listac.size()) {
                         cont = 0;
@@ -3283,16 +2967,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_AbrirRegistro;
     private javax.swing.JButton B_BorrarCampo;
     private javax.swing.JButton B_Campo;
-    private javax.swing.JButton B_Campo1;
     private javax.swing.JButton B_CerrarRegistro;
     private javax.swing.JButton B_CrearCampo;
     private javax.swing.JButton B_Crear_Indice;
     private javax.swing.JButton B_Eliminar;
     private javax.swing.JButton B_Exportar;
-    private javax.swing.JButton B_Exportar1;
     private javax.swing.JButton B_GuardarArchivo;
     private javax.swing.JButton B_Index;
-    private javax.swing.JButton B_Index1;
     private javax.swing.JButton B_Index2;
     private javax.swing.JButton B_Index3;
     private javax.swing.JButton B_ListarCampo;
@@ -3300,7 +2981,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_NuevoArchivo;
     private javax.swing.JButton B_NuevoRegistro1;
     private javax.swing.JButton B_Registro;
-    private javax.swing.JButton B_Registro1;
     private javax.swing.JButton B_Reindexar;
     private javax.swing.JDialog Buscar;
     private javax.swing.JComboBox<String> Cb_Indexar;
@@ -3319,31 +2999,19 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Random_R1;
     private javax.swing.JLabel Titulo;
     private javax.swing.JLabel Titulo1;
-    private javax.swing.JLabel Titulo2;
-    private javax.swing.JLabel Titulo3;
     private javax.swing.JLabel background;
-    private javax.swing.JLabel background1;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_TD;
     private javax.swing.JComboBox<String> cb_TD1;
     private javax.swing.JComboBox<String> cb_borrarc;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JDialog jDialog_Archivo;
     private javax.swing.JDialog jDialog_BorrarCampo;
     private javax.swing.JDialog jDialog_Campos;
@@ -3352,7 +3020,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog_EditarCampos;
     private javax.swing.JDialog jDialog_Indexar;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -3384,7 +3051,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton jRadioButton2;
@@ -3671,81 +3337,104 @@ public class Main extends javax.swing.JFrame {
 
     }
     public void CrearExcel() throws FileNotFoundException{
-        RandomAccessFile raf = new RandomAccessFile(ap.getArchivo(),"rw");
-        ArrayList<Object> offsets = new ArrayList();
-        try {
-            OutputStream fileOut = new FileOutputStream("Prueba1.xlsx");
-            FileInputStream fstream = new FileInputStream("Prueba1.xlsx");
-            
-            XSSFWorkbook libro = new XSSFWorkbook(fstream);
-            System.out.println("por lo menos entra al try");
-            XSSFSheet hoja = libro.createSheet("Registro");
-            
-            //agregar la info
-            
-            //titulo de las columnas
-            String[] header = new String [Listac.size()];
-            for (int i = 0; i < Listac.size()-1; i++) {
-                Campos campo = new Campos();
-                campo = Listac.get(i);
-                String aux = campo.getNombre();
-                header[i]= aux;
-            }
-            //contenido de las columnas con el offset size
-            String [][] documento = new String[offsets.size()][Listac.size()];
-            for (int i = 0; i < offsets.size(); i++){
-                raf.seek((long) offsets.get(i) + 1);
-                String aux = raf.readLine();
-                for (int j = 0; j < Listac.size()-1; j++) {
-                    //separar los delimitadores
-                    for (int k = 0; k < aux.length()-1; k++) {
-                        String auxLlave = "";
-                        char current = aux.charAt(k);
-                        if(current == '|'){
-                            documento[i][j]=auxLlave;
-                            auxLlave = "";                           
-                        }else{
-                            auxLlave+=current;
-                        }
-                    }
-                }
-            }
-            
-            //Generar los datos para el documento
-            for (int i = 0; i < documento.length; i++) {
-                XSSFRow row = hoja.createRow(i);
-                for (int j = 0; j < header.length; j++) {
-                    if(i==0){
-                        XSSFCell cell = row.createCell(j);
-                        cell.setCellValue(header[j]);
-                    }else{
-                        XSSFCell cell = row.createCell(j);
-                        cell.setCellValue(documento[i-1][j]);
-                    }
-                }
-            }
-            
-            //Crear el archivo
-            /*
-            try(OutputStream fileOut = new FileOutputStream("Prueba1.xlsx")){
-                System.out.println("se creo el excel");
-                libro.write(fileOut);
-            }catch(IOException e){
-                System.out.println("Aqui1");
-                e.printStackTrace();
-            }*/
-            libro.write(fileOut);
-            
-            
-        } catch (FileNotFoundException ex) {
-            System.out.println("Aqui2");
-            System.out.println(ex.getMessage());
-        } catch (IOException ex) {
-            System.out.println("Aqui3");
-            System.out.println(ex.getMessage());
+        JTable jt_Regis_nm = new JTable();
+        
+      String[] columns = new String[Listac.size()];
+        System.out.println("Size: " + Listac.size());
+        for (int i = 0; i < Listac.size(); i++) {
+
+            columns[i] = Listac.get(i).getNombre();
+
         }
+        //System.out.println("Columnas: " + columns[0]);
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+
+      //  model.addRow(columns);
+
+        ArrayList<Object> offsetts = new ArrayList();
+        ap.getBtree().getRegistersOffsets(offsetts, ap.getBtree().getRaiz(), 0);
+
+        try {
+            RandomAccessFile raf = new RandomAccessFile(ap.getArchivo(), "rw");
+            int cont = 0;
+            int x = 0;
+            for (int i = 0; i < offsetts.size(); i++) {
+
+               // Random r = new Random();
+               // x = 1 + r.nextInt(offsetts.size() - 1);
+                long y = (long) offsetts.get(i);
+
+                raf.seek(y + 1);
+
+                String s = raf.readLine();
+                String s2 = s.replace("|", ";");
+                String s3 = s2.replace("\0", "");
+
+              //  System.out.println("Probando: " + s3);
+
+                String[] s1 = new String[100000];
+                Scanner sc1 = new Scanner(s3);
+                sc1.useDelimiter(";");
+
+                while (sc1.hasNext()) {
+                    if (cont < Listac.size()) {
+                        s1[cont] = sc1.next();
+                        cont++;
+                      //  System.out.println("Sigo");
+                    }
+                    if (cont == Listac.size()) {
+                        cont = 0;
+                        break;
+                    }
+                }
+
+                model.addRow(s1);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        jt_Regis_nm.setModel(model);
+        
+          try {
+            Workbook wb = new XSSFWorkbook();
+            Sheet sheet = wb.createSheet("Prueba1");
+            Row rowCol = sheet.createRow(0);
+            for (int i = 0; i < jt_Regis_nm.getColumnCount(); i++) {
+                Cell cell = rowCol.createCell(i);
+                cell.setCellValue(jt_Regis_nm.getColumnName(i));
+            }
+            for (int j = 0; j < jt_Regis_nm.getRowCount(); j++) {
+                Row row = sheet.createRow(j + 1);
+                for (int k = 0; k < jt_Regis_nm.getColumnCount(); k++) {
+                    Cell cell = row.createCell(k);
+                    if (jt_Regis_nm.getValueAt(j, k) != null) {
+                        cell.setCellValue(jt_Regis_nm.getValueAt(j, k).toString());
+                    }
+                }
+            }
+            String g="";
+              for (int i = 0; i < ap.getName().length()-4; i++) {
+                  g+=ap.getName().charAt(i);
+              }
+            String nombre_archivo2 = g+ ".xlsx";
+            FileOutputStream out = new FileOutputStream(new File(nombre_archivo2));
+            wb.write(out);
+            wb.close();
+            out.close();
+
+            JOptionPane.showMessageDialog(this, "Exportado con exito");
+            } catch (FileNotFoundException e) {
+            //System.out.println(e);
+        } catch (IOException io) {
+            //System.out.println(io);
+        }
+        
     }
 
-   
+   boolean indexar = false;
 
 }
