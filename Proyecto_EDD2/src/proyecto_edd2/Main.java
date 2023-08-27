@@ -21,7 +21,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
@@ -55,7 +57,6 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
-
 
 /**
  *
@@ -1170,7 +1171,7 @@ public class Main extends javax.swing.JFrame {
 
                 Campos c1 = new Campos(name, tipo, size, llave);
                 Listac.add(c1);
-                JOptionPane.showMessageDialog(this,"Campo Guardado");
+                JOptionPane.showMessageDialog(this, "Campo Guardado");
                 boolean key = false;
 
                 for (int i = 0; i < Listac.size(); i++) {
@@ -1213,7 +1214,6 @@ public class Main extends javax.swing.JFrame {
                 modelo3.addElement(c1);
 
                 boolCampos = true;
-                
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, "Error al crear");
@@ -1252,8 +1252,8 @@ public class Main extends javax.swing.JFrame {
             }
             llave1 = true;
         }
-        
-                llave1 = false;
+
+        llave1 = false;
         ;
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1318,7 +1318,7 @@ public class Main extends javax.swing.JFrame {
                         k = pal;
 
                         llave = Integer.parseInt(pal);
-                       // System.out.println("LLAVE A LISTA: " + pal);
+                        // System.out.println("LLAVE A LISTA: " + pal);
                         pv = false;
                     } else {
                         if (listaK1.contains(pal)) {
@@ -1331,13 +1331,13 @@ public class Main extends javax.swing.JFrame {
                             k = pal;
 
                             llave = Integer.parseInt(pal);
-                          //  System.out.println("LLAVE A LISTA: " + pal);
+                            //  System.out.println("LLAVE A LISTA: " + pal);
                         } else {
                             listaK1.add(pal);
                             k = pal;
 
                             llave = Integer.parseInt(pal);
-                          //  System.out.println("LLAVE A LISTA: " + pal);
+                            //  System.out.println("LLAVE A LISTA: " + pal);
                             pv = false;
                         }
                     }
@@ -1389,13 +1389,13 @@ public class Main extends javax.swing.JFrame {
                         k = value + "";
                         llave = value;
 
-                      //  System.out.println("LLAVE A LISTA: " + value);
+                        //  System.out.println("LLAVE A LISTA: " + value);
                         pv = false;
                     } else {
                         LLave ll1 = new LLave();
                         try {
                             ll1 = ap.getBtree().buscarLlave(ap.getBtree().getRaiz(), value);
-                         //   System.out.println("Busca en el arbol: " + ll1.getLlave());
+                            //   System.out.println("Busca en el arbol: " + ll1.getLlave());
                         } catch (Exception e) {
 
                         }
@@ -1457,7 +1457,7 @@ public class Main extends javax.swing.JFrame {
                 String nombre_archivob = "./" + ap.getName() + ".bin";/////
                 Arbolb tree1 = ap.getBtree();
 
-               // System.out.println("Primera Vez en: " + ap.getName());
+                // System.out.println("Primera Vez en: " + ap.getName());
                 //
                 String fin = "";
                 String fin1 = "";
@@ -1487,7 +1487,7 @@ public class Main extends javax.swing.JFrame {
                 try {
                     int n;
                     if (ap.getAvailList().isEmpty()) {
-                     //   System.out.println("NAME: " + ap.getName());
+                        //   System.out.println("NAME: " + ap.getName());
                         RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
                         long md = writeMD().length();
                         raf.seek(raf.length());
@@ -1551,12 +1551,12 @@ public class Main extends javax.swing.JFrame {
                 }
 
                 ListaS1.clear();
-               // System.out.println("PALABRA: " + fin3);
+                // System.out.println("PALABRA: " + fin3);
 
                 JOptionPane.showMessageDialog(this, "CREADO");
             } else {
                 ap.primero = true;
-               // System.out.println("NO ES Primera Vez en: " + ap.getName());
+                // System.out.println("NO ES Primera Vez en: " + ap.getName());
             }
 
         }
@@ -1757,7 +1757,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                         if (prim1 == true) {
-                           // System.out.println("PRIMERA: " + writeMD().length());
+                            // System.out.println("PRIMERA: " + writeMD().length());
 
                             l1.setOffset(writeMD().length());
 
@@ -1820,13 +1820,12 @@ public class Main extends javax.swing.JFrame {
 
         ap.setBtree(t);
 
-       // System.out.println("VECES REPETIDAS: " + cont2);
+        // System.out.println("VECES REPETIDAS: " + cont2);
         //System.out.println("ARBOL: ");
-       // System.out.println("AVAIL OFF: " + donde2);
-
+        // System.out.println("AVAIL OFF: " + donde2);
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-        JOptionPane.showMessageDialog(this,"Archivo creado");
+        JOptionPane.showMessageDialog(this, "Archivo creado");
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void B_GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_GuardarArchivoActionPerformed
@@ -1903,7 +1902,7 @@ public class Main extends javax.swing.JFrame {
                 String file = "";
 
                 sc = new Scanner(ap.getArchivo());
-               // System.out.println("1");
+                // System.out.println("1");
 
                 file = sc.nextLine();
 
@@ -1918,7 +1917,7 @@ public class Main extends javax.swing.JFrame {
 
                 sc2 = new Scanner(file);
                 String re = file;
-               // System.out.println("Revisar: " + re);
+                // System.out.println("Revisar: " + re);
                 sc2.useDelimiter(";");
                 //System.out.println("file 1: " + file);
                 //System.out.println(file);
@@ -1987,8 +1986,8 @@ public class Main extends javax.swing.JFrame {
 
                 }
                 re += "TIPO ARCHIVO: .txt" + "\n";
-            //    System.out.println("RE S: " + re);
-            //    System.out.println("RE: " + re.length());
+                //    System.out.println("RE S: " + re);
+                //    System.out.println("RE: " + re.length());
                 donde2 = re.length();
                 file_a = new RandomAccessFile(ap.getName(), "rw");
                 file_a.seek(donde2);
@@ -2005,9 +2004,9 @@ public class Main extends javax.swing.JFrame {
                             ap.getAvailList().add(tok[i]);
                         }
                     }
-                  //  System.out.println("CANTIDAD EN AV: " + ap.getAvailList().size());
+                    //  System.out.println("CANTIDAD EN AV: " + ap.getAvailList().size());
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
-                      //  System.out.println("AVAIL: " + ap.getAvailList().get(i));
+                        //  System.out.println("AVAIL: " + ap.getAvailList().get(i));
                     }
 
                 } else {
@@ -2033,10 +2032,10 @@ public class Main extends javax.swing.JFrame {
         c = (Campos) Cb_editarCampo.getSelectedItem();
         Nombre_Campo1.setText(c.getNombre());
         jSpinner2.setValue(c.getSize());
-        if(c.getData_type().equals("Int")){
+        if (c.getData_type().equals("Int")) {
             jSpinner2.setVisible(false);
             jLabel_CrearCampo8.setVisible(false);
-        }else{
+        } else {
             jSpinner2.setVisible(true);
             jLabel_CrearCampo8.setVisible(true);
         }
@@ -2090,9 +2089,9 @@ public class Main extends javax.swing.JFrame {
                     ap.getAvailList().add(l1.getOffset() + "");
                     int n2 = (int) l1.getOffset();
                     ap.getAvail1().add(n2);
-                   // System.out.println("SE ELIMINO");
+                    // System.out.println("SE ELIMINO");
                     raf.seek(donde2);
-                  //  System.out.println("DONDE2: " + donde2);
+                    //  System.out.println("DONDE2: " + donde2);
 
                     String dp = "";
                     for (int i = 0; i < ap.getAvailList().size(); i++) {
@@ -2157,7 +2156,9 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_GuardarCamposActionPerformed
     public String writeMD() {
         String cc1 = "";
-
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        System.out.println(formatter.format(date));
         for (int i = 0; i < Listac.size(); i++) {
             Campos c1 = Listac.get(i);
             String size1 = c1.getSize() + "";
@@ -2181,7 +2182,7 @@ public class Main extends javax.swing.JFrame {
         pal2 += Listac.size() + "\n" + cc1 + esp + "TIPO ARCHIVO: .txt"
                 + "\n"
                 + "N                                                                                                                                                                 "
-                + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "_" + "\n";
+                + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + formatter.format(date)+"\n" + "_" + "\n";
         String hasta = Listac.size() + "\n" + cc1 + esp + "TIPO ARCHIVO: .txt"
                 + "\n";
         donde2 = hasta.length();
@@ -2491,7 +2492,6 @@ public class Main extends javax.swing.JFrame {
             ls.add(s2);
 
             //agregado tercer campo
-            
             //lc.add(c3);
             ls.add(s4);
             if (cont <= 1000) {
@@ -2524,7 +2524,7 @@ public class Main extends javax.swing.JFrame {
                         }
 
                         if (prim1 == true) {
-                           // System.out.println("PRIMERA: " + writeMD().length());
+                            // System.out.println("PRIMERA: " + writeMD().length());
 
                             l1.setOffset(writeMD().length());
 
@@ -2540,7 +2540,7 @@ public class Main extends javax.swing.JFrame {
                                 //System.out.println("PALABRA: "+fin10);
 
                                 con += 82;
-                               // System.out.println("OFFSET: " + con);
+                                // System.out.println("OFFSET: " + con);
 
                                 //System.out.println("OFFSET: "+e);
                                 l1.setOffset(con);
@@ -2594,7 +2594,7 @@ public class Main extends javax.swing.JFrame {
 
         //"CAMPOS: 4 "+"\n"+
         //+"\n"+"AVAILIST HEAD: NULL "+"\n";
-        JOptionPane.showMessageDialog(this,"Archivo creado con exito ");
+        JOptionPane.showMessageDialog(this, "Archivo creado con exito ");
 
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -2610,11 +2610,11 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_B_Crear_IndiceActionPerformed
 
     private void B_ReindexarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ReindexarActionPerformed
-        if(indexar){
-            JOptionPane.showMessageDialog(this,"Arbol actualizado");
-            indexar=false;
-        }else{
-           JOptionPane.showMessageDialog(this,"Primero Reindexar porfavor"); 
+        if (indexar) {
+            JOptionPane.showMessageDialog(this, "Arbol actualizado");
+            indexar = false;
+        } else {
+            JOptionPane.showMessageDialog(this, "Primero Reindexar porfavor");
         }
     }//GEN-LAST:event_B_ReindexarActionPerformed
 
@@ -2626,7 +2626,7 @@ public class Main extends javax.swing.JFrame {
         Campos c = (Campos) Cb_Indexar.getSelectedItem();
 
         int index = Cb_Indexar.getSelectedIndex();
-     //   System.out.println("index campo: " + index);
+        //   System.out.println("index campo: " + index);
         if (ap.getName().equals("Prueba1.txt")) {
             if (c.getNombre().equals("PersonName") || c.getNombre().equals("PersonAge")) {
                 JOptionPane.showMessageDialog(this, c.getNombre() + " No es un campo valido.");
@@ -2652,16 +2652,16 @@ public class Main extends javax.swing.JFrame {
 
                         LLave l1 = new LLave();
                         Arbolb b2 = new Arbolb(6);
-                        System.out.println("Antes for");
-                        System.out.println("Ofsset.size: " + offsets.size());
+                        //  System.out.println("Antes for");
+                        //System.out.println("Ofsset.size: " + offsets.size());
 
                         for (int i = 0; i < offsets.size(); i++) {
                             raf.seek((long) offsets.get(i) + 1);
-                          //  System.out.println("Ofsset.geti i: " + offsets.get(i));
+                            //  System.out.println("Ofsset.geti i: " + offsets.get(i));
                             String prueba = raf.readLine();
                             System.out.println("Prueba: " + prueba);
                             int valor = getSegunda(prueba, index);
-                           // System.out.println("Valor: " + valor);
+                            // System.out.println("Valor: " + valor);
                             //   l1=b2.buscarLlave(b2.getRaiz(), valor);
 
                             l1.setOffset((long) offsets.get(i));
@@ -2672,12 +2672,12 @@ public class Main extends javax.swing.JFrame {
                             System.out.println("Inserte ");
                         }
 
-                      //  System.out.println("despues for");
+                        //  System.out.println("despues for");
                         ap.setBtree(b2);
-                      //  System.out.println("seteo arbol");
+                        //  System.out.println("seteo arbol");
                         writeB("Prueba1", b2);
-                      //  System.out.println("Escribo arbol");
-                       // System.out.println("Arbol: ");
+                        //  System.out.println("Escribo arbol");
+                        // System.out.println("Arbol: ");
                         b2.Show();
 
                     } catch (Exception e) {
@@ -2686,8 +2686,8 @@ public class Main extends javax.swing.JFrame {
 
                 }
             }
-        }else{
-            JOptionPane.showMessageDialog(this,"No se puede indexar este archivo.");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede indexar este archivo.");
         }
         try {
             RandomAccessFile raf = new RandomAccessFile(ap.getName(), "rw");
@@ -2699,7 +2699,7 @@ public class Main extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        JOptionPane.showMessageDialog(this,"Indexado correctamente");
+        JOptionPane.showMessageDialog(this, "Indexado correctamente");
         indexar = true;
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -2708,7 +2708,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5MouseEntered
 
     private void cb_TD1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TD1ItemStateChanged
-        
+
         if (cb_TD.getSelectedItem().equals("Int") || cb_TD.getSelectedItem().equals("Char")) {
             jLabel_CrearCampo8.setVisible(false);
             jSpinner2.setVisible(false);
@@ -2742,19 +2742,19 @@ public class Main extends javax.swing.JFrame {
 
     private void xmlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xmlsActionPerformed
         CrearXml();
-       // CrearXSLT();
+        // CrearXSLT();
         JOptionPane.showMessageDialog(this, "Exportado con exito");
     }//GEN-LAST:event_xmlsActionPerformed
 
     private void Random_RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Random_RActionPerformed
         String[] columns = new String[Listac.size()];
-        System.out.println("Size: " + Listac.size());
+        //System.out.println("Size: " + Listac.size());
         for (int i = 0; i < Listac.size(); i++) {
 
             columns[i] = Listac.get(i).getNombre();
 
         }
-        System.out.println("Columnas: " + columns[0]);
+        //System.out.println("Columnas: " + columns[0]);
         DefaultTableModel model = new DefaultTableModel(columns, 0);
 
         model.addRow(columns);
@@ -2778,8 +2778,7 @@ public class Main extends javax.swing.JFrame {
                 String s2 = s.replace("|", ";");
                 String s3 = s2.replace("\0", "");
 
-               // System.out.println("Probando: " + s3);
-
+                // System.out.println("Probando: " + s3);
                 String[] s1 = new String[80];
                 Scanner sc1 = new Scanner(s3);
                 sc1.useDelimiter(";");
@@ -2788,7 +2787,7 @@ public class Main extends javax.swing.JFrame {
                     if (cont < Listac.size()) {
                         s1[cont] = sc1.next();
                         cont++;
-                     //   System.out.println("Sigo");
+                        //   System.out.println("Sigo");
                     }
                     if (cont == Listac.size()) {
                         cont = 0;
@@ -3074,7 +3073,6 @@ public class Main extends javax.swing.JFrame {
     ArrayList<Integer> ListaKeyPos = new ArrayList();//posición de las llaves.
     Archivo ap = new Archivo();
     String nameArchivo;
-    
 
     public void eliminarTabla() {
         //---------------------------------------------------//
@@ -3140,7 +3138,7 @@ public class Main extends javax.swing.JFrame {
     int donde;
     int cc2, cc3;
     int mdsize;
-    
+
     //Arbolb tree=new Arbolb(6);
     //booleans de validaciones
     boolean primA = true;
@@ -3267,8 +3265,8 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-    
-     public void CrearXSLT() {
+
+    public void CrearXSLT() {
         String g = "";
         for (int i = 0; i < ap.getName().length() - 4; i++) {
             g += nameArchivo.charAt(i);
@@ -3336,10 +3334,11 @@ public class Main extends javax.swing.JFrame {
         }
 
     }
-    public void CrearExcel() throws FileNotFoundException{
+
+    public void CrearExcel() throws FileNotFoundException {
         JTable jt_Regis_nm = new JTable();
-        
-      String[] columns = new String[Listac.size()];
+
+        String[] columns = new String[Listac.size()];
         System.out.println("Size: " + Listac.size());
         for (int i = 0; i < Listac.size(); i++) {
 
@@ -3349,8 +3348,7 @@ public class Main extends javax.swing.JFrame {
         //System.out.println("Columnas: " + columns[0]);
         DefaultTableModel model = new DefaultTableModel(columns, 0);
 
-      //  model.addRow(columns);
-
+        //  model.addRow(columns);
         ArrayList<Object> offsetts = new ArrayList();
         ap.getBtree().getRegistersOffsets(offsetts, ap.getBtree().getRaiz(), 0);
 
@@ -3360,8 +3358,8 @@ public class Main extends javax.swing.JFrame {
             int x = 0;
             for (int i = 0; i < offsetts.size(); i++) {
 
-               // Random r = new Random();
-               // x = 1 + r.nextInt(offsetts.size() - 1);
+                // Random r = new Random();
+                // x = 1 + r.nextInt(offsetts.size() - 1);
                 long y = (long) offsetts.get(i);
 
                 raf.seek(y + 1);
@@ -3370,8 +3368,7 @@ public class Main extends javax.swing.JFrame {
                 String s2 = s.replace("|", ";");
                 String s3 = s2.replace("\0", "");
 
-              //  System.out.println("Probando: " + s3);
-
+                //  System.out.println("Probando: " + s3);
                 String[] s1 = new String[100000];
                 Scanner sc1 = new Scanner(s3);
                 sc1.useDelimiter(";");
@@ -3380,7 +3377,7 @@ public class Main extends javax.swing.JFrame {
                     if (cont < Listac.size()) {
                         s1[cont] = sc1.next();
                         cont++;
-                      //  System.out.println("Sigo");
+                        //  System.out.println("Sigo");
                     }
                     if (cont == Listac.size()) {
                         cont = 0;
@@ -3398,8 +3395,8 @@ public class Main extends javax.swing.JFrame {
         }
 
         jt_Regis_nm.setModel(model);
-        
-          try {
+
+        try {
             Workbook wb = new XSSFWorkbook();
             Sheet sheet = wb.createSheet("Prueba1");
             Row rowCol = sheet.createRow(0);
@@ -3416,25 +3413,25 @@ public class Main extends javax.swing.JFrame {
                     }
                 }
             }
-            String g="";
-              for (int i = 0; i < ap.getName().length()-4; i++) {
-                  g+=ap.getName().charAt(i);
-              }
-            String nombre_archivo2 = g+ ".xlsx";
+            String g = "";
+            for (int i = 0; i < ap.getName().length() - 4; i++) {
+                g += ap.getName().charAt(i);
+            }
+            String nombre_archivo2 = g + ".xlsx";
             FileOutputStream out = new FileOutputStream(new File(nombre_archivo2));
             wb.write(out);
             wb.close();
             out.close();
 
             JOptionPane.showMessageDialog(this, "Exportado con exito");
-            } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             //System.out.println(e);
         } catch (IOException io) {
             //System.out.println(io);
         }
-        
+
     }
 
-   boolean indexar = false;
+    boolean indexar = false;
 
 }
